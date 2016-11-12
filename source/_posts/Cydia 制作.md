@@ -1,0 +1,411 @@
+---
+layout: async
+categories: ios
+title: 制作属于自己的 Cydia 源
+date: 2016-11-12 2:05:43
+tags: [ios,cydia]
+---
+{% fi https://drscdn.500px.org/photo/181146547/m%3D900/51d3b358f4a21eb397bc5559d60d3a91, Cydia, 夜里不睡的人，白天多多少少总有什么逃避掩饰的吧。白昼解不开的结黑夜慢慢耗。 %}
+
+大家肯定都知道 Cydia 吧，
+> iPhone、iPod touch、iPad等设备上的一种破解软件，类似苹果在线软件商店iTunes Store 的软件平台的客户端，在越狱的过程中被装入到系统中的，其中多数为iPhone、iPod Touch、ipad的第三方软件和补丁，主要都是弥补系统不足用。是由Jay Freeman（Saurik）领导，Okori Group以及UCSB大学合作开发。
+
+之前用了很多好用的源，但是很好奇的是，他们是怎么制作的呢？为什么越狱之后就可以这么厉害呢？       
+那么怎么制作这么一个东西
+
+<!-- more -->
+
+## 制作自己的 Cydia源
+
+Cydia 说白了启示就是一个云盘，你们需要的呢，只是需要几个文件，来告诉过来访问这个云盘的Cydia程序，我这个源叫啥？谁制作的这个源？这个源里都有什么软件？这些源的放置位置都是啥？
+那么如何制作自己的云盘呢？ 几种办法
+1. 第一种就是自己做一个服务器，本地跑起来。
+2. github
+3. 任何一个直接访问的文件存储地方 比如 七牛云。
+
+Cydia 源的文件结构
+````
++- /
+   +- Release
+   +- Packages
+   +- CydiaIcon.png
+   +- debs
+      +- *.deb
+````
+### 文件讲解
+`/` 服务器根目录
+`/Release`  文件记录软件源本身的相关信息 ，例如作者 之类的
+`/Packages` 记录具体软件包的存放位置和安装信息等数据
+`/CydiaIcon.png ` ICON 显示的ICON图片
+`/debs` 存放所有deb包的目录
+`/debs/*.deb` deb包……
+
+#### Release 文件讲解
+必须
+Origin: 软件源名称，可以使用中文（Cydia的软件源列表中显示的标题）
+Label:  同上，也可以使用中文
+Suite: 软件源的类型，比如正式源，测试源等，可以分别用stable, beta, unstable等来表示，一般填stable就可以了
+Version: 版本号，这个其实不重要，随便填，一般都是写1.0
+Codename: 代码代号，比如BigBoss的就写BigBoss，威锋的就写WeiPhone，也没什么限制，只能用英文
+Architectures: 结构。iPhone平台统一写iphoneos-arm
+Components: main
+Description: 软件介绍，可以使用中文和html代码，具体能使用哪些代码在下面会介绍。
+
+可选
+Support: 支持，没什么作用，除非特别需要，否则可以不要这个。
+MD5Sum: 不是必须的，但如果Packages文件位置不与Release文件在同一目录下，则必须有此项。另外，如果需要签名Release文件，也必须有这个。关于MD5Sum的格式，在下文也会介绍。
+
+Description格式
+
+* 显示在Cydia中每个软件页面最下方。
+* 不能直接换行，如果要实现显示换行显示，可以使用<br>代码。
+* 要加粗显示，可以使用<strong></strong>代码
+* 可以使用html代码设置字体颜色。
+* 不能使用超链接代码。
+
+代码：
+````
+Description: WeiPhone-威锋网为您提供iPhone所需软件/补丁。<br>联系我们: <strong>weip.com@ gmail.com</strong>;
+````
+
+#### 生成Packages文件
+1. 将 deb 文件放在一个文件夹下，比如说debs下
+2. 命令行里进入到debs目录的上级目录
+3. Packages存放于当前目录
+4. 执行命令 `dpkg-scanpackages debs > Packages`
+5. 执行命令 `bzip2 -zfk Packages` 生成 `Packages.bz2`
+6. 执行命令 `gzip -fk Packages` 生成 `Packages.gz`
+
+> ps 4.5.6 可以使用 `dpkg-scanpackages debs > Packages && bzip2 -zfk Packages && gzip -fk Packages`
+
+这样会自动将debs文件夹下的所有 deb文件信息 打印至 Packages 文件里
+
+
+## 制作 自己deb 文件
+
+### 总结
+1. 先把文件夹结构弄好
+2. 在 `Applications` 文件夹下面放入自己的 .app 文件
+3. 在 `DEBIAN` 文件夹下面放入 `control`描述文件，以及根据自己的需求放入脚本文件
+4. 使用 `chmod -R 0755 Directory` 设置权限
+5. 使用 `dpkg-deb -b Directory a.deb` 命令打包
+6. 使用 `dpkg-name a.deb` 规范命名
+
+
+#### 各个文件讲解
+先生成如下的文件目录结构：
+
+```
++- Directory
+   +- Applications
+   |   +- Example.app
+   |   |    +- Info.plist
+   |   |    +- Example
+   |   |    +- icon.png
+   +- DEBIAN
+       +- control
+       +- preinst/postinst/prerm/postrm/extrainst_
+```
+
+`/Directory` : 任意的一个文件夹放置主要的文件
+`/Directory/Applications` : 放置`.app`文件夹
+`/Directory/Applications/Example.app` : `.app`文件夹
+
+`/DEBIAN` : 放置描述的文件
+`/DEBIAN/control` : 记录了软件包标识，软件名，介绍，作者，冲突软件等信息，用来标识一个软件包
+
+####  DEBIAN/control 文件描述
+
+以下为必须项
+
+Package : 软件包标识符，类似于***，一个软件包必须要有一个唯一的标识符。通常是用com.xxx.abc这样的形式来命名。
+Architecture: 架构，用于标识运行的系统，iPhone上为iphoneos-arm
+Version: 版本号，不能用下划线和逗号和空格。格式有（以逗号分隔） 1.0，1.0f，0-1，1:1.0，其中1:1.0这种格式比较特殊，在Cydia中，1:1.0仍然会显示为1.0，但版本号实际是高于1.0的。
+
+以下为可选项
+Name: 软件包在Cydia中的显示名称，中英文不限，也可以用空格，但不宜过长（长了显示不完全）。
+Author: 软件作者。
+Maintainer: 维护者，一般是软件源的拥有者。
+Sponsor: 负责人，可以是个人也可以是网站。
+> Author，Maintainer，Sponsor 的格式相同，均为 名称+空格+<邮件地址或网址>，经测试，如果名称为中文的话，即使写了邮件地址和网址，在Cydia中点击也不会跳转。 示例： WEIP.Tech <weip.com@gmail,com> 或 WeiPhone.com <http://www.weiphone.com> 如果没有邮件地址或网址，则不需要 <> 及<>中的内容。中文名或未提供邮件/网址，无 > 符号
+
+Icon: 指定软件包的图标显示。当无Icon设定时，Cydia会显示该软件包所在的分类的图标。 格式：
+* 在线地址，如 http://www.abc.com/abc.png
+* 本地地址：file://+路径，如file:///Applications/Cydia.app/Sources/app.weiphone.com.png
+_注：在软件页面（非列表页面），自定义的图标是不会显示的，显示的是分类图标。_
+
+Section: 软件分类，中英文无限制，排列顺序是 英文->中文。
+Installed-Size: 解包后的文件大小，可以有小数位，以kb为单位，不需要注明kb，这个不需要很精确，而且小数位在Cydia里显示不出来（不是四舍五入，全部舍了）。至于文件大小是否包含DEBIAN目录中的内容就随意了。
+Priority: 优先级，可填 Required，Important，Standard，Optional，Extra，依次为 必须，重要，一般，可选，次要。虽然没有什么实际作用，但优先级为Required和Important的软件包在卸载时会有警告，这样可以避免删除一些系统必须的软件。但Required和Important不要滥用，一般用Standard，Optional或Extra即可。优先级在Cydia中是不会显示的
+Essential: 是否必须软件包，可填 yes 和 no， 填yes则为必须软件包，卸载时Cydia会有警告。卸载Essential标记为yes的软件包可能会导致系统问题。当然此功能需慎用，不要因为不希望用户删除自己的软件而加入Essential: yes。如果没有Essential这项的话默认就是非必须的，相当于Essential: no。
+Depends: Depends 字段应该包含您的软件包正常工作绝对必需的任何软件包的名称。
+Pre-Depends: "Pre-Depends"是为特例而保留的。当某个软件包被作为"Pre-Depends"列出时，它强制系统在试图安装您的软件包之前完全安装所指定的软件包。
+Conflicts: 冲突软件包。比如软件包A和B有冲突，不能同时安装。比如说A和B冲突，当系统已经安装了A的时候尝试安装B，则不能继续。
+Provides: 提供的软件包，比如说软件包A包含B的全部功能，那么则是A provides B，因此可以在安装了A的前提下不安装B。但此功能在非Cydia的软件管理工具中可能会无法识别（实际是这些软件不合deb标准）
+Replaces: 替换软件包，安装A会替换B。
+>* 以上5项的格式相同，直接填软件包的Package标识即可，如果需要加入版本号，则为 软件表标识+空格+(判断符号 版本号).比如 Depends: apt-key, firmware (>=3.0)， 这表示依赖于apt-key，不限版本，firmware，且版本大于或等于3.0。
+* 判断符号：远远低于（<<）、低于(<)、低于或等于（<=）、仅等于（=）、等于或高于（>=）、大于（>）以及远远高于（>>）。
+* 表示多个软件包，以英文逗号分隔。
+* 表示“或”关系，用 | 分隔。比如软件包C依赖于A或B，可写Depends: A | B。 但“或”关系要慎用。原因是，当不存在“或”关系的时候，假设B依赖于A，且系统并未安装A，那么在Cydia中安装B的时候会自动下载安装A。而假如说C依赖于A或B，且A与B都未安装，那么在安装C的时候就会失败，因为系统无法判断是应该下载A还是B。除非系统已经安装了A或B，否则C不能安装。
+* 一个特殊的依赖：firmware。这个Package记录了固件版本，在对固件版本有要求的软件包上特别重要。
+* 假设B依赖于A，那么在卸载A的时候也会一起卸载B
+
+Description: 软件描述，不能在control里直接换行，如果需要实现换行显示，可以使用<br>代码。当指定了Depiction时，在软件查看页面不会显示Description。
+Depiction: 功能类似于软件描述，链接到一个网页，以网页的内容代替软件描述。只在软件查看页面显示，在软件包列表页面不显示。 可以使用本地网页，格式同Icon。 注意：此功能可能会消耗大量网络流量。
+Homepage: 链接到页面，Cydia中显示为More Information。 页面不会主动加载。
+Tag: 可选项有 commercial, console, daemon, extension, library, uikit, x，对应图标文件在 /Applications/Cydia.app/Purposes 目录下。也可以自行添加 purpose 分类，并加入同名图标即可。 role:: 软件包使用者归类。developer开发者，hacker骇客，enduser普通用户，该标签用于Cydia中软件包显示过滤。 cydia::commercial Cydia Store软件。
+
+例子如下:
+
+````txt
+Package: com.weiphone.source
+Name: WeiPhone威锋中文源
+Version: 1.0
+Essential: no
+Icon: file:///Applications/Cydia.app/Sources/app.weiphone.com.png
+Installed-Size: 133.7
+Replaces: con.weiphone.logo
+Conflicts: con.weiphone.logo
+Provides: con.weiphone.logo
+Depends: cydia
+Priority: Standard
+Maintainer: WEIP.Tech <weip.com@gmail.com>
+Author: WEIP.Tech <weip.com@gmail.com>
+Section: Repositories
+Architecture: iphoneos-arm
+Description: WeiPhone Chinese Repository<br><br>威锋中文源
+HomePage: http://www.weiphone.com/
+Sponsor: WeiPhone.com <http://www.weiphone.com>
+Tag: purpose::repository, role::enduser
+
+````
+
+####  DEBIAN/preinst/postinst/prerm/postrm/extrainst_  文件描述
+
+很多时候deb安装并不是把文件复制到iPhone里就可以了，还需要执行一些命令，比如设置权限，备份文件，加载启动进程等等，那么这时候就需要一些脚本来实现这些操作。 标准的deb脚本有4个`preinst`,`postinst`,`prerm `和 `postrm`
+pre是表示XX之前的前缀，post是表示XX之后的前缀，inst是install（安装）的缩写，rm是remove（移除）的缩写，所以这4个脚本的功能很明显：
+* preinst: 在复制文件前执行的脚本
+* postinst: 在复制文件之后执行的脚本
+* prerm: 在卸载前执行的脚本
+* postrm: 在卸载之后执行的脚本
+
+在Cydia中还存在一个独立的脚本,`extrainst_`,从字面上来讲就是额外的安装脚本。
+这个脚本是Cydia的作者Saurik为解决某些脚本只需要在安装时执行，在升级时不执行而专门引入的一个脚本，功能跟postinst差不多，和Installer时代的“ahhhh”比较相似。
+关于extrainst_的详情可以看看这个：http://www.telesphoreo.org/piper ... ptember/000252.html 5个脚本的编写方法基本是一样的，但为了适应Cydia的安装，在某些情况下需要进行特定的配置。 查看某些deb可能会发现这样的语句：
+````
+if [[ $1 == install || $1 == upgrade ]]; then
+````
+这种语句是为了区别安装/升级/卸载而准备的脚本。$1是一个外部变量，将这个外部变量传入脚本来执行，而这个外部变量是由Cydia软件自身生成的。 简单来说，如果是安装，则是 $1 == install ；如果是升级，则是$1 == upgrade；如果是卸载则是 $1 == remove。 if 是个判断语句，当满足if后[ ]中的指定条件时，if中的内容就会执行。那么这里就可以通过设定install/upgrade/remove来控制在不同操作时执行的命令。 但要注意的是，这个功能只能在Cydia中使用，其它的apt软件管理工具，如Icy，Rock等，不能识别这个命令，因此无法执行if中的语句，所以在写脚本的时候到底需不需要用这种格式，就看自己的需要了。 总体来说，Unix的脚本（Shell Script）有其固定的格式。 文件顶头为
+````
+#!/bin/bash
+````
+表示调用bash这个shell 之后就是运行的命令了。 脚本中如果需要注释，可以使用 # 符号。 以 # 开头的行会被当作注释，里面的内容在执行过程中没有意义。 通配符： * 最常用的两个命令自然是设置属性/权限/用户/组 设置属性/
+
+#### 会使用到的系统命令操作
+
+##### 权限
+
+````
+chmod 【-R】 属性 文件名
+````
+由于deb的脚本执行都是在root用户下，因此不需要提升权限，即不需要使用sudo命令。 -R参数：表示递归，加上此参数会将指定的目录及其子目录的全部目录和文件的属性改变。 属性：有多种写法。具体可以看 http://baike.baidu.com/view/1229012.htm?fr=ala0_1 比较常用的几种属性：
+* chmod +x XXXXX 为文件增加可执行权限
+* chmod 0644 XXXXX 不可执行文件最常使用的权限
+* chmod 0755 XXXXX 可执行文件最常使用的权限
+
+实例：
+
+````
+chmod -R 0755 /Applications/Cydia.app
+````
+
+##### 设置用户/组
+````
+chown 【-R】 用户:组 文件名
+````
+同样不需要sudo来提示权限。-R也是表示递归。 比如要将文件A设为root用户，wheel组，可以使用命令
+```
+chown -R mobile:mobile /var/mobile/Documents
+```
+
+##### 复制文件/文件夹
+````
+cp 【参数】 原始文件 目的文件
+````
+参数列表：
+* -l（小写字母L）：创建硬链接，相当于一个镜像，而不是实际创建两个文件<br>`cp -l abc def`
+* -f：强行复制，如果目的文件已存在，覆盖之且不提示<br>`cp -f abc def`
+* -p：保留文件的属性、用户、组、时间戳等信息 <br> `cp -p abc def`
+* -r和-R：作用都是递归，将文件夹下的全部子文件和子文件夹一起复制 <br> `cp -r abc/ def/`
+* -s：创建符号链接而不是创建双份文件 <br> `cp -s abc/ def/`
+* -n：如果目的文件已存在，则不覆盖且不提示 <br>`cp -n abc def`
+* -a：相当与-dR，保留文件自身的属性等数据，一并复制子文件/文件夹 <br> `cp -a abc/ def/`
+
+##### 移动文件/文件夹 & 重命名
+````
+mv 【参数】 源文件 目的文件
+````
+ -f：强行移动，如果目的文件已存在，覆盖之且不提示
+
+ > 其实 mv  命令就是复制之后再删除，但 mv 命令会自动保留文件的属性等数据，移动文件夹时会自动移动子文件/子文件夹，因此都不需要另外的参数。 <br>
+ 重命名是由mv命令来实现的，mv 就是将 源文件 移动到 目标文件的位置并以目标文件的文件名保存。
+
+##### 显示语句
+
+````
+echo "Some Thing";
+````
+示例：显示语句 "测试echo命令"。
+````
+echo "测试echo命令";
+````
+
+##### 管理自启动服务
+````
+launchctl load或unload  -w plist文件路径
+````
+实例： 让wefit3自启动
+````
+launchctl load -w /System/Library/LaunchDaemons/com.weiphone.fitx.plist
+````
+禁用iPhone日志记录syslogd
+````
+launchctl unload -w /System/Library/LaunchDaemons/com.apple.syslogd.plist
+````
+
+>PS: 记录自启动进程的plist文件保存在以下两个目录： /System/Library/LaunchDaemons/ 和 /Library/LaunchDaemons/
+
+##### 杀死进程
+````
+killall 进程名
+````
+示例：关闭Safari进程
+````
+killall safari
+````
+##### 判断
+
+基本格式是
+````
+if [ 判断条件一 ]; then
+    执行命令
+else
+   执行命令
+fi
+````
+实例： 如果文件abc存在，则备份为abc.bak，否则将文件def重命名为abc
+````
+if [ -f abc]; then
+    mv -f abc abc.bak
+else
+    mv def abc
+fi
+````
+其中[ -f abc ]可以由[ -e abc]取代 如果目录abc不存在，则新建一个目录abc
+````
+if [ ! -e abc ]; then
+    mkdir abc
+fi
+````
+
+##### 获取固件系统版本号
+````
+sw_vers -productVersion
+````
+
+##### 获取设备型号
+````
+uname -i
+uname -m
+````
+##### Cydia中安装完之后重新启动SpringBoard
+````
+declare -a cydia
+cydia=($CYDIA)
+if [[ ${CYDIA+@} ]]; then
+    eval &quot;echo &#39;finish:reboot&#39; &gt;&amp;${cydia[0]}&quot;
+fi
+````
+
+#####  几个比较有用的实例
+
+* 备份 preinst（安装之前就要把原始文件备份，不能等到安装完已经覆盖以后才备份）<br>
+````
+if [ ! -f 原始文件备份 ]; then
+    echo &quot;原始文件的备份已存在，跳过备份&quot;
+else
+    cp -p 原始文件 原始文件备份
+    echo &quot;原始文件已备份&quot;
+fi
+````
+postrm（还原备份）<br>
+````
+echo "还原备份";
+mv -f 原始文件备份 原始文件
+````
+备份操作在制作补丁的时候，尤其是替换类型的补丁时特别有用
+
+* 判别具体固件版本 在control里可以通过Depends来设置依赖的固件版本，但有时候需要在某个特定固件版本下进行操作 比如说一个软件，要求固件版本大于或等于3.0，但在固件版本为3.1的时候必须删除某一个文件才能运行，那么脚本可以这样写：
+````
+firmware=$(sw_vers -productVersion)
+if  [[ $firmware == 3.1 ]]; then
+    删除文件
+fi
+````
+* 判别设备型号 当设备型号为iPod Touch时删除某个文件
+````
+platform=$(uname -i)
+if [[ $platform == &quot;N45AP&quot; || $platform == &quot;N72AP&quot; || $platform == &quot;N18AP&quot; ]]; then
+    删除文件
+fi
+````
+或
+````
+platform=$(uname -m)
+if [ $platform == iPod* ]; then
+    删除文件
+fi
+````
+
+
+
+> 更多关于Shell Script的信息请见 http://www.hack base.com/tech/2009-10-10/56808.html
+
+
+#### 打包
+
+如果在DEBIAN中有脚本存在，则需要将整个DEBIAN文件夹及子文件属性设为0755,如果没有脚本的话保留0644属性即可，0755属性也没问题。
+````
+chmod -R 0755 DEBIAN
+````
+ 打包命令
+ ````
+ dpkg-deb -b PATH FILENAME
+ ````
+其中PATH是打包deb的工作目录，DEBIAN文件夹需位于PATH指定的目录下 FILENAME是deb的文件名，这个可以自己决定。
+
+以上命令打包deb默认是采用gz格式压缩，压缩率有限，如果要获得更改的压缩率（更小的文件体积），可以使用bzip2和lzma格式。 压缩为bzip2格式
+````
+dpkg-deb -bZ bzip2 PATH FILENAME
+````
+压缩为bzip2格式
+````
+dpkg-deb -bZ lzma PATH FILENAME
+````
+默认的gz格式压缩率最低，bzip2格式居中，lzma格式压缩率最高。（当然也会有例外）
+
+>PS:
+* 压缩率越高，压缩时间越长，在iPhone上使用较高的压缩率有更大概率导致失去响应。
+* iPhone OS 2.x无lzma组件，因此无法安装lzma压缩的deb。iPhone OS 3.x可以解压lzma压缩。
+* 如果deb包含的文件文本量比较大，那么一般可以获得不错的压缩率。但如果是像铃声，jpg/png图片这样文件本身就是压缩格式的情况，继续压缩的可能性就不高了，这类情况很难获得比较好的压缩率
+
+#### 【可选】deb文件规范命名
+````
+dpkg-name abc_1.0.deb
+````
+如果想指定文件名格式，可以使用
+````
+dpkg-name --help
+````
+
+> 图形界面的deb制作工具 Debian Package Maker 网址： http://code.google.com/p/debianpackagemaker/ 个人感觉不如直接在命令行里来的直观，有兴趣的朋友可以自己试试。  ［ 需要翻墙 ］
