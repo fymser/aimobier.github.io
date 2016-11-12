@@ -1,7 +1,7 @@
 ---
 layout: async
 categories: ios
-title: 制作属于自己的 Cydia 源
+title: 制作一个自己的 Cydia 源
 date: 2016-11-12 2:05:43
 tags: [ios,cydia]
 ---
