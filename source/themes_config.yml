@@ -11,7 +11,7 @@ keywords: "IOS,Swift,开发,技术,荆文征，博客,blog,msiter"
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
 # Set rss to specific value if you have burned your feed already.
-rss:
+rss: false
 
 # Specify the date when the site was setup
 since: 2015
@@ -49,7 +49,11 @@ menu_icons:
   commonweal: heartbeat
 
 
-
+# Post meta display settings
+post_meta:
+  created_at: true
+  updated_at: false
+  categories: true
 
 # ---------------------------------------------------------------
 # Scheme Settings
@@ -166,8 +170,8 @@ sidebar:
   #  - always  expand for all pages automatically
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggler.
-  display: post
-  #display: always
+  # display: post
+  display: always
   #display: hide
   #display: remove
 
@@ -242,16 +246,16 @@ search:
 baidu_analytics: 37f9fd734b75f078c1b06452e6c3ccfb
 
 # Duoshuo ShortName
-#duoshuo_shortname:
+duoshuo_shortname: aimobier
 
 # Disqus
-disqus_shortname: msiter
+# disqus_shortname: msiter
 
 # Baidu Share
 # Available value:
 #    button | slide
-#baidushare:
-##  type: button
+baidushare:
+ type: button
 
 # Share
 #jiathis:
