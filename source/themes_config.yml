@@ -61,7 +61,7 @@ post_meta:
 
 # Schemes
 # scheme: Muse
-#scheme: Mist
+# scheme: Mist
 scheme: Pisces
 
 
@@ -103,7 +103,7 @@ font:
   logo:
     external: true
     family:
-    size:
+    size: 
 
   # Font settings for <code> and code blocks.
   codes:
@@ -254,8 +254,8 @@ duoshuo_shortname: aimobier
 # Baidu Share
 # Available value:
 #    button | slide
-baidushare:
- type: button
+# baidushare:
+#  type: button
 
 # Share
 #jiathis:
