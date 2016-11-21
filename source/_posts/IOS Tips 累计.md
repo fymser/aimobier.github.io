@@ -5,7 +5,7 @@ tags: [tips,swift,ios]
 keywords: tips,swift,ios
 categories: IOS
 ---
-{% fi https://drscdn.500px.org/photo/155024749/m%3D2048/6864381a7419a50d95c43fcaf4777e3f, mongodb,听说人在死前的一秒钟，他的一生会闪过眼前。 %}
+{% fi http://image.msiter.com/stock-photo-155024749.jpg, mongodb,听说人在死前的一秒钟，他的一生会闪过眼前。 %}
 
 IOS技巧，在工作学习中遇到的一些有点意思的小技巧，记录在在这里
 

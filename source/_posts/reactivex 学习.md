@@ -6,6 +6,8 @@ tags: [reactiv,rxswift]
 categories: swift
 ---
 
+{% fi http://image.msiter.com/stock-photo-179922657.jpg, 随便 , 庆幸你来自远方不清楚我的过往。。 %}
+
 ### 散记
 
 好久没有学习到新的东西了，之前一直想学习 `ReactiveCocoa`,但是看了一点之后，觉的很是繁琐，而且感觉很多api方法，再加上项目很紧迫没有时间去学习新的东西了。我就暂时搁置了，现在项目做的也差不多了，觉得这个学习进度是时候提上进程。

@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------
 
 # Put your favicon.ico into `hexo-site/source/` directory.
-favicon: http://7xt8nx.com2.z0.glb.clouddn.com/favicon.jpg
+favicon: favicon/favicon.png
 
 # Set default keywords (Use a comma to separate)
 keywords: "IOS,Swift,开发,技术,荆文征，博客,blog,msiter"
@@ -103,7 +103,7 @@ font:
   logo:
     external: true
     family:
-    size: 
+    size:
 
   # Font settings for <code> and code blocks.
   codes:
@@ -142,7 +142,7 @@ social_icons:
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.jpg
 # in site  directory(source/uploads): /uploads/avatar.jpg
-avatar: http://7xt8nx.com2.z0.glb.clouddn.com/favicon.jpg
+avatar: favicon/avatar.jpg
 
 
 # Table Of Contents in the Sidebar
