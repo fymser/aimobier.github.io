@@ -65,6 +65,13 @@ pagination_dir: page
 ## Themes: https://hexo.io/themes/
 theme: next
 
+algolia:
+  applicationID: 'Q6M8NFYVGH'
+  apiKey: 'ea0e0e2daf8318fe548dde76c30ee5bd'
+  adminApiKey: '38c68fb99f1cba839d826ba2ceef6e7a'
+  indexName: 'aimobier'
+  chunkSize: 5000
+
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html
 deploy:
