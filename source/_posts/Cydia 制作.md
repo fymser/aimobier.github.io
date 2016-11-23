@@ -81,7 +81,7 @@ Description: WeiPhone-威锋网为您提供iPhone所需软件/补丁。<br>联�
 这样会自动将debs文件夹下的所有 deb文件信息 打印至 Packages 文件里
 
 
-## 制作 自己deb 文件
+## (旧) 制作 自己deb 文件
 
 ### 总结
 1. 先把文件夹结构弄好
@@ -409,3 +409,124 @@ dpkg-name --help
 ````
 
 > 图形界面的deb制作工具 Debian Package Maker 网址： http://code.google.com/p/debianpackagemaker/ 个人感觉不如直接在命令行里来的直观，有兴趣的朋友可以自己试试。  ［ 需要翻墙 ］
+
+## (新) 制作自己的deb文件
+
+
+### 安装theos
+
+[安装方法](http://iphonedevwiki.net/index.php/Theos/Setup)
+
+选择theos的安装目录，官方建议放在默认的 /opt/theos.然后执行
+````
+export THEOS=/opt/theos
+````
+
+为了验证设置成功没有
+````
+echo $THEOS
+````
+如果打印 `/opt/theos` 说明摄制完成
+
+Using git:
+````
+git clone --recursive git://github.com/DHowett/theos.git /opt/theos
+````
+Alternatively, you can use svn, if you prefer:
+````
+svn co http://svn.howett.net/svn/theos/trunk $THEOS
+````
+> `git clone -b stableversion https://github.com/haorenqq/theos/ $THEOS`
+不要执行上面的语句，用上面的方法替换  特别感谢网名为逍遥笛子 的热心朋友 提供的分支，由于原theos最新的版本不兼容iosopendev，所以用15年的老版本
+
+以上操作，如果出现任何关于权限的错误。使用sudo就可以了。
+
+### 安装idld
+
+其实我不知道这个是干什么的？但是呢，说是签名的。。。但是我没用到过，但是还是记录一下毕竟有不少坑
+
+按照官方的教程是如此的说的。
+
+````
+git clone git://git.saurik.com/ldid.git
+cd ldid
+git submodule update --init
+./make.sh
+cp -f ./ldid $THEOS/bin/ldid
+````
+
+但是通常发生错误，        
+第一个错误就是 引入了 `#include <openssl/err.h>` ，默认是不存在 这个文件夹的额。
+第二个错误就是 make.sh中的代码默认是只匹配Xcode5-1-1的名称，所以需要修改 make 文件。
+
+下载 [文件](/publicFiles/iosOpenDev安装附件-新.zip) 修复
+
+接下来使用命令。生成 ldid 文件`./make.sh` . 反正我是生成失败了
+
+你可以直接下载别人已经编译完成的文件 [ldid文件](/publicFiles/ldid)
+
+之后将文件拷贝到 `/opt/theos/bin` 下就可以了
+
+### 安装iOSOpenDev
+
+````shell
+git clone https://github.com/AimobierExample/iOSOpenDevInstallFix
+cd iOSOpenDevInstallFix
+sh repair.sh
+````
+
+之后打开 `iOSOpenDev-1.6-2.pkg` 按照提示就可以安装完成了
+
+打开xcode就可以看见越狱的项目了 选择 `Logos TWeak`
+
+按照xm文件内的提示，libsubstrate.dylib添加到工程中(在安装好的/opt/iOSOpenDev/lib 目录下)，然后把xm中的内容清空。mm文件的内容会根据xm文件中的内容编译后自动生成。
+
+````
+%hook SpringBoard  
+- (void)applicationDidFinishLaunching:(id)application{  
+    %orig;    
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@"Welcome" message:@"HelloWorld!" delegate:nil cancelButtonTitle:@"Thanks" otherButtonTitles:nil];  
+    [alert show];  
+}  
+%end
+````
+
+点击菜单 `Product - Build For - Profiling` 这个时候通常会报错，因为真机调试会出现问题
+````
+Failed to create directory /var/root/iOSOpenDevPackages on device 你的iOS设备IP地址
+````
+但是此刻已经在项目根目录下出现了 变已完成的 deb文件了，你可以直接添加到咱们的源服务器中，按照之前的教程生成 packages 完成安装。
+
+### 真机调试
+
+现在调试越狱设备，在已经越狱的手机上打开Cydia，搜索下列插件
+如果搜索不到，打开软件源-编辑 删除BigBos和ModMyi，再回到首页，点击更多软件源，重新添加这两个即可搜索到下列插件
+
+````
+Core Utilities
+Core Utilities(/bin)
+diskdev-cmds
+file-cmds
+system-cmds
+Mobileterminal
+openSSH
+sshpass
+toggle ssh
+preferencdloader
+substrate safe mode
+syslogd to /var/log/syslog
+````
+
+再在Xcode中的Target的Build Settings中的Code Signing中，改为Don't Code Sign.       
+最后打开Target-Build Settings 找到iOSOpenDevDevice选项，填入越狱手机的本地ip
+
+之后打开终端创建key
+````
+iosod sshkey -h 192.168.23.71（换成你的iOS设备IP地址）
+````
+
+创建完成
+
+点击菜单 `Product - Build For - Profiling`
+
+就可以安装到设备，安装完成之后，设备回自己重启，之后就会弹出了一个alertView。
