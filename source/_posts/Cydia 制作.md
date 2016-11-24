@@ -530,3 +530,151 @@ iosod sshkey -h 192.168.23.71（换成你的iOS设备IP地址）
 点击菜单 `Product - Build For - Profiling`
 
 就可以安装到设备，安装完成之后，设备回自己重启，之后就会弹出了一个alertView。
+
+## Theos 创建 Cydia 应用
+
+### 首先安装 Theos
+
+[安装方法](http://iphonedevwiki.net/index.php/Theos/Setup)
+
+选择theos的安装目录，官方建议放在默认的 /opt/theos.然后执行
+````
+export THEOS=/opt/theos
+````
+
+为了验证设置成功没有
+````
+echo $THEOS
+````
+如果打印 `/opt/theos` 说明摄制完成
+
+Using git:
+````
+git clone --recursive git://github.com/DHowett/theos.git /opt/theos
+````
+
+### 使用Theos创建应用
+
+安装完成之后 使用：
+
+````
+/opt/theos/bin/nic.pl
+````
+
+调用之后
+
+````shell
+msiter:~ jingwenzheng$ /opt/theos/bin/nic.pl
+NIC 2.0 - New Instance Creator
+------------------------------
+  [1.] iphone/activator_event
+  [2.] iphone/application_modern
+  [3.] iphone/cydget
+  [4.] iphone/flipswitch_switch
+  [5.] iphone/framework
+  [6.] iphone/ios7_notification_center_widget
+  [7.] iphone/library
+  [8.] iphone/notification_center_widget
+  [9.] iphone/preference_bundle_modern
+  [10.] iphone/tool
+  [11.] iphone/tweak
+  [12.] iphone/xpc_service
+Choose a Template (required): 2
+Project Name (required): Demo
+Package Name [com.yourcompany.demo]: com.demo
+Author/Maintainer Name [荆文征]: jwz
+[iphone/application_modern] Class name prefix (two or more characters) [XX]: demo
+Instantiating iphone/application_modern in demo/...
+Done.
+msiter:~ jingwenzheng$
+````
+
+这样就创建完成了
+
+### 运行到真机
+
+首先要确保震级上面安装 openssh
+
+````
+ssh root@ip地址
+````
+密码。默认为 alpine
+
+这样连接上就说明安装完成，可以调用的到～
+
+之后设置环境变量`THEOS_DEVICE_IP` 为 真机 IP。
+
+之后 cd 目录。 使用命令安装到真机上
+````
+make package install
+````
+#### 第一个问题 ldid
+
+你可以直接下载别人已经编译完成的文件 [ldid文件](/publicFiles/ldid)
+
+之后将文件拷贝到 `/opt/theos/bin` 下就可以了
+
+默认是没有权限的 所以可能需要 `sudo`. 复制完成之后赋予权限`sudo chmod 777 /opt/theos/bin/ldid`
+
+#### 第二个问题 dpkg
+
+没有安装文件工具
+
+````
+brew install dpkg
+````
+
+#### dpkg 1.18.14 版本问题
+
+在 `1.18.14` 版本，dpkg `lzma` 不能使用了，必须使用 `xz`
+
+#### 这个时候需要修改 `/opt/theos/makefiles/package/deb.mk` 文件
+
+````Makefile
+ifeq ($(_THEOS_PACKAGE_FORMAT_LOADED),)
+_THEOS_PACKAGE_FORMAT_LOADED := 1
+
+_THEOS_DEB_PACKAGE_CONTROL_PATH := $(or $(wildcard $(THEOS_PROJECT_DIR)/control),$(wildcard $(THEOS_PROJECT_DIR)/layout/DEBIAN/control))
+_THEOS_DEB_CAN_PACKAGE := $(if $(_THEOS_DEB_PACKAGE_CONTROL_PATH),$(_THEOS_TRUE),$(_THEOS_FALSE))
+
+_THEOS_DEB_HAS_DPKG_DEB := $(call __executable,dpkg-deb)
+ifneq ($(_THEOS_DEB_HAS_DPKG_DEB),$(_THEOS_TRUE))
+internal-package-check::
+	@echo "$(MAKE) package requires dpkg-deb."; exit 1
+endif
+
+ifeq ($(_THEOS_DEB_CAN_PACKAGE),$(_THEOS_TRUE)) # Control file found (or layout/ found.)
+THEOS_PACKAGE_NAME := $(shell grep -i "^Package:" "$(_THEOS_DEB_PACKAGE_CONTROL_PATH)" | cut -d' ' -f2-)
+THEOS_PACKAGE_ARCH := $(shell grep -i "^Architecture:" "$(_THEOS_DEB_PACKAGE_CONTROL_PATH)" | cut -d' ' -f2-)
+THEOS_PACKAGE_BASE_VERSION := $(shell grep -i "^Version:" "$(_THEOS_DEB_PACKAGE_CONTROL_PATH)" | cut -d' ' -f2-)
+
+$(_THEOS_ESCAPED_STAGING_DIR)/DEBIAN:
+	$(ECHO_NOTHING)mkdir -p "$(THEOS_STAGING_DIR)/DEBIAN"$(ECHO_END)
+ifeq ($(_THEOS_HAS_STAGING_LAYOUT),1) # If we have a layout/ directory, copy layout/DEBIAN to the staging directory.
+	$(ECHO_NOTHING)[ -d "$(THEOS_PROJECT_DIR)/layout/DEBIAN" ] && rsync -a "$(THEOS_PROJECT_DIR)/layout/DEBIAN/" "$(THEOS_STAGING_DIR)/DEBIAN" $(_THEOS_RSYNC_EXCLUDE_COMMANDLINE) || true$(ECHO_END)
+endif # _THEOS_HAS_STAGING_LAYOUT
+
+$(_THEOS_ESCAPED_STAGING_DIR)/DEBIAN/control: $(_THEOS_ESCAPED_STAGING_DIR)/DEBIAN
+	$(ECHO_NOTHING)sed -e '/^[Vv]ersion:/d' "$(_THEOS_DEB_PACKAGE_CONTROL_PATH)" > "$@"$(ECHO_END)
+	$(ECHO_NOTHING)echo "Version: $(_THEOS_INTERNAL_PACKAGE_VERSION)" >> "$@"$(ECHO_END)
+	$(ECHO_NOTHING)echo "Installed-Size: $(shell du $(_THEOS_PLATFORM_DU_EXCLUDE) DEBIAN -ks "$(THEOS_STAGING_DIR)" | cut -f 1)" >> "$@"$(ECHO_END)
+
+before-package:: $(_THEOS_ESCAPED_STAGING_DIR)/DEBIAN/control
+
+_THEOS_DEB_PACKAGE_FILENAME = $(THEOS_PACKAGE_DIR)/$(THEOS_PACKAGE_NAME)_$(_THEOS_INTERNAL_PACKAGE_VERSION)_$(THEOS_PACKAGE_ARCH).deb
+internal-package::
+	$(ECHO_NOTHING)COPYFILE_DISABLE=1 $(FAKEROOT) -r dpkg-deb -Zgzip -b "$(THEOS_STAGING_DIR)" "$(_THEOS_DEB_PACKAGE_FILENAME)" $(STDERR_NULL_REDIRECT)$(ECHO_END)
+
+# This variable is used in package.mk
+after-package:: __THEOS_LAST_PACKAGE_FILENAME = $(_THEOS_DEB_PACKAGE_FILENAME)
+
+else # _THEOS_DEB_CAN_PACKAGE == 0
+internal-package::
+	@echo "$(MAKE) package requires you to have a layout/ directory in the project root, containing the basic package structure, or a control file in the project root describing the package."; exit 1
+
+endif # _THEOS_DEB_CAN_PACKAGE
+endif # _THEOS_PACKAGE_FORMAT_LOADED
+
+````
+
+这样按理就可以运行了
