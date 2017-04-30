@@ -2,7 +2,7 @@ language: node_js
 node_js: stable
 
 install:
-  - export TZ='Asia/Shanghai'  
+  - export TZ='Asia/Beijing'  
   - npm install -g hexo
   - npm install -g hexo-cli 
   - npm install
@@ -13,14 +13,18 @@ before_script:
   - git config --global user.email "200739491@qq.com"
   
   - sed -i'' "s~git@github.com:${UName}/${PName}.git~https://${github}:x-oauth-basic@github.com/${UName}/${PName}.git~" _config.yml
+  
   - git clone https://github.com/iissnan/hexo-theme-next themes/next
   - cp -f ./source/themes_config.yml ./themes/next/_config.yml &&  cp -f ./source/404.html ./themes/next/source/404.html
+  
 script:
 
   - hexo clean
   - hexo g
+  
 after_success:
-  - hexo deploy
+ 
+ - hexo deploy
 
 branches:
   only:
