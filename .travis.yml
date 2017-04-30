@@ -10,16 +10,17 @@ install:
 
 
 before_script:
-  - git config user.name "aimobier
-  - git config user.email "200739491@qq.com
+  - git config user.name "aimobier"
+  - git config user.email "200739491@qq.com"
   - git clone https://github.com/iissnan/hexo-theme-next themes/next
-  - cp -f source/themes_config.yml themes/next/_config.yml &&  cp -f source/404.html themes/next/source/404.html
+  - cp -f ./source/themes_config.yml ./themes/next/_config.yml &&  cp -f ./source/404.html ./themes/next/source/404.html
 
 script:
   - hexo clean 
   - hexo g
 
 after_script:
+  - cd ./public
   - git init
   - git add .
   - git commit -m "提交新的文章 By:Travis-ci"
