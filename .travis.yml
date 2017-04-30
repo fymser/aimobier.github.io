@@ -10,7 +10,7 @@ install:
 before_script:
   - git config user.name "aimobier"
   - git config user.email "200739491@qq.com"
-  - sed -i'' "s~git@github.com:${aimobier}/${PName}.git~https://${github}:x-oauth-basic@github.com/${aimobier}/${PName}.git~" _config.ym
+  - sed -i'' "s~git@github.com:${aimobier}/${PName}.git~https://${github}:x-oauth-basic@github.com/${aimobier}/${PName}.git~" _config.yml
 script:
   - git clone https://github.com/iissnan/hexo-theme-next themes/next
   - cp -f ./source/themes_config.yml ./themes/next/_config.yml &&  cp -f ./source/404.html ./themes/next/source/404.html
