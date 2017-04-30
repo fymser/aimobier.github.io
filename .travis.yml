@@ -3,21 +3,26 @@ node_js: stable
 
 # S: Build Lifecycle
 install:
+  - export TZ='Asia/Shanghai'  
+  - npm install -g hexo
+  - npm install -g hexo-cli 
   - npm install
 
 
-#before_script:
- # - npm install -g gulp
+before_script:
+  - git config user.name "aimobier
+  - git config user.email "200739491@qq.com
+  - git clone https://github.com/iissnan/hexo-theme-next themes/next
+  - cp -f source/themes_config.yml themes/next/_config.yml &&  cp -f source/404.html themes/next/source/404.html
 
 script:
+  - hexo clean 
   - hexo g
 
 after_script:
   - git init
-  - git config user.name "aimobier
-  - git config user.email "200739491@qq.com
   - git add .
-  - git commit -m "Update docs"
+  - git commit -m "提交新的文章 By:Travis-ci"
   - git push --force --quiet "https://${github}@${GH_REF}" master:master
 # E: Build LifeCycle
 
