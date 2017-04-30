@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------
 
 # Put your favicon.ico into `hexo-site/source/` directory.
-favicon: http://7xt8nx.com2.z0.glb.clouddn.com/favicon.jpg
+favicon: favicon/favicon.png
 
 # Set default keywords (Use a comma to separate)
 keywords: "IOS,Swift,开发,技术,荆文征，博客,blog,msiter"
@@ -11,7 +11,7 @@ keywords: "IOS,Swift,开发,技术,荆文征，博客,blog,msiter"
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
 # Set rss to specific value if you have burned your feed already.
-rss:
+rss: false
 
 # Specify the date when the site was setup
 since: 2015
@@ -49,7 +49,11 @@ menu_icons:
   commonweal: heartbeat
 
 
-
+# Post meta display settings
+post_meta:
+  created_at: true
+  updated_at: false
+  categories: true
 
 # ---------------------------------------------------------------
 # Scheme Settings
@@ -57,7 +61,7 @@ menu_icons:
 
 # Schemes
 # scheme: Muse
-#scheme: Mist
+# scheme: Mist
 scheme: Pisces
 
 
@@ -91,7 +95,7 @@ font:
   # Fallback to `global` font settings.
   posts:
     external: true
-    family:
+    family: 'Monda'
 
   # Font settings for Logo
   # Fallback to `global` font settings.
@@ -138,7 +142,7 @@ social_icons:
 # Sidebar Avatar
 # in theme directory(source/images): /images/avatar.jpg
 # in site  directory(source/uploads): /uploads/avatar.jpg
-avatar: http://7xt8nx.com2.z0.glb.clouddn.com/favicon.jpg
+avatar: favicon/avatar.jpg
 
 
 # Table Of Contents in the Sidebar
@@ -166,8 +170,8 @@ sidebar:
   #  - always  expand for all pages automatically
   #  - hide    expand only when click on the sidebar toggle icon.
   #  - remove  Totally remove sidebar including sidebar toggler.
-  display: post
-  #display: always
+  # display: post
+  display: always
   #display: hide
   #display: remove
 
@@ -230,6 +234,16 @@ mathjax:
   enable: false
   cdn: //cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML
 
+# Algolia Search
+algolia_search:
+  enable: false
+  hits:
+    per_page: 10
+  labels:
+    input_placeholder: 搜索
+    hits_empty: "没有找到任何关于: ${query}"
+    hits_stats: "${hits} 个结果，耗时 ${time} ms"
+
 
 # Swiftype Search API Key
 #swiftype_key:
@@ -237,21 +251,23 @@ mathjax:
 search:
   path: search.xml
   field: post
+  format: html
+  limit: 10000
 
 # Baidu Analytics ID
 baidu_analytics: 37f9fd734b75f078c1b06452e6c3ccfb
 
 # Duoshuo ShortName
-#duoshuo_shortname:
+duoshuo_shortname: aimobier
 
 # Disqus
-disqus_shortname: msiter
+# disqus_shortname: msiter
 
 # Baidu Share
 # Available value:
 #    button | slide
-#baidushare:
-##  type: button
+# baidushare:
+#  type: button
 
 # Share
 #jiathis:

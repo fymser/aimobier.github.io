@@ -5,7 +5,7 @@ tags: [mongodb,mongoose,nodejs]
 keywords: mongodb,nodejs,mongoose
 categories: 数据库
 ---
-{% fi https://drscdn.500px.org/photo/154327695/m%3D900/9a1da785dc30e394af0409cbe2e8b458, 随便 , 醉后不知天在水，满船清梦压星河。 %}
+{% fi http://image.msiter.com/stock-photo-161742993.jpg, 随便 , 醉后不知天在水，满船清梦压星河。 %}
 
 > Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment.
 

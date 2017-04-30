@@ -4,9 +4,9 @@
 
 # Site
 title: 荆文征
-subtitle: 心有猛虎，细嗅蔷薇
+subtitle: 已識乾坤大，猶憐草木新。
 description: 在硝烟中想起冰棒汽水的味道<br/>和那些无所事事一整个夏天的年少
-author: 荆文征
+author: 小破酒馆老板
 language: zh-Hans
 timezone:
 
@@ -64,6 +64,13 @@ pagination_dir: page
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: next
+
+algolia:
+  applicationID: 'Q6M8NFYVGH'
+  apiKey: 'ea0e0e2daf8318fe548dde76c30ee5bd'
+  adminApiKey: '38c68fb99f1cba839d826ba2ceef6e7a'
+  indexName: 'aimobier'
+  chunkSize: 5000
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

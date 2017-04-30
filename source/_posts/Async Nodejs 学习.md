@@ -5,7 +5,7 @@ title: Nodejs Async 学习
 date: 2015-07-6 18:41:43
 tags: [nodejs,async]
 ---
-{% fi https://drscdn.500px.org/photo/155012621/q%3D80_m%3D2000/86e40503418ad965aaeacdf3bae5dd5f, mongodb, 让你难过的事情，有一天，你一定会笑着说出来。 %}
+{% fi http://image.msiter.com/stock-photo-151005535.jpg, mongodb, 让你难过的事情，有一天，你一定会笑着说出来。 %}
 
 > 本文整理于[`bsspirit`](https://github.com/bsspirit)的[博文](http://blog.fens.me/nodejs-async/)和[代码示例](https://github.com/bsspirit/async_demo)
 
