@@ -13,7 +13,6 @@ script:
   - hexo g
 
 after_script:
-  - cd ./public
   - git init
   - git config user.name "aimobier
   - git config user.email "200739491@qq.com
