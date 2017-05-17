@@ -8,6 +8,11 @@ tags: [AttributedString,Systematic distinction]
 
 在ios中想要把html字符串转换成 AttributedString ，需要使用以下方法
 
+
+{% fi http://image.msiter.com/stock-photo-212192603.jpg, 图片, 请勇敢地向黑夜里走去，虽然你没有什么成功的机会，虽然你刚上路便可能横死，但我依然祝福你，并诅咒你。——猫腻 %}
+
+<!-- more -->
+
 ````objective-c
 NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData:[title dataUsingEncoding:NSUnicodeStringEncoding]  options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 ````

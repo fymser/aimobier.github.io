@@ -6,6 +6,10 @@ date: 2017-05-17 14:40:00
 tags: [WKWebView,Systematic distinction]
 ---
 
+{% fi http://image.msiter.com/stock-photo-212184725.jpg, 图片, 不是现实支撑的梦想，而是梦想支撑了现实。——星空日记 %}
+
+<!-- more -->
+
 做项目的时候，需要展示新闻详情。经过一系列的调研，最终选定为使用 webview。
 因为需要支持ios7，所以我在详情页就需要同时具备 UIWebView 和 WKWebView，两种。           
 由于IOS8才开始出现的WKWebView，所以自然而然的我当然想从ios8就是用WkwebVIew。毕竟性能好，，，各种夸       

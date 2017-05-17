@@ -6,6 +6,11 @@ date: 2017-05-17 14:19:00
 tags: [WebKit,Systematic distinction]
 ---
 
+{% fi http://image.msiter.com/stock-photo-212206847.jpg, 图片, 生活总是让我们遍体鳞伤，但到后来，那些受伤的地方一定会成为我们最强壮的地方。——海明威 %}
+
+<!-- more -->
+
+
 今天遇到一个奇怪的问题，在我 dismiss UIViewController后，我的UIViewController没有销毁，这导致内存在慢慢的增长，没有销毁。         
 查了一会儿，把问题锁定在了 WKWebView上了，我开始慢慢的注释，调试，最后发现。是我的以下代码的问题。
 
