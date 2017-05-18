@@ -302,11 +302,11 @@ han: false
 baidu_analytics: 37f9fd734b75f078c1b06452e6c3ccfb
 
 # Duoshuo ShortName
-duoshuo_shortname: aimobier
+# duoshuo_shortname: aimobier
 
 # Disqus
 disqus:
-  enable: false
+  enable: true
   disqus_shortname: msiter
   count: true
 
