@@ -1,5 +1,5 @@
 ---
-categories: Difficult miscellaneous diseases
+categories: To solve Difficult miscellaneous diseases
 title: 奇怪的 unrecognized selector sent to instance 问题
 date: 2017-5-18 15:39:00
 tags: [ios, error]

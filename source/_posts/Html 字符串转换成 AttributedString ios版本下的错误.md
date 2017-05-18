@@ -1,9 +1,8 @@
 ---
-layout: WKWebView
-categories: WebKit
+categories: To solve Difficult miscellaneous diseases
 title: Html 字符串转换成 AttributedString ios版本下的错误
 date: 2017-05-17 14:31:00
-tags: [AttributedString,Systematic distinction]
+tags: [AttributedString,iOS8 html2AttributedString error]
 ---
 
 在ios中想要把html字符串转换成 AttributedString ，需要使用以下方法

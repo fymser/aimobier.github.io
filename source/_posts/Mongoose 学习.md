@@ -2,8 +2,7 @@
 title: Mongoose 学习
 date: 2015-07-11 20:53:35
 tags: [mongodb,mongoose,nodejs]
-keywords: mongodb,nodejs,mongoose
-categories: 数据库
+categories: Constant learning
 ---
 {% fi http://image.msiter.com/stock-photo-161742993.jpg, 随便 , 醉后不知天在水，满船清梦压星河。 %}
 

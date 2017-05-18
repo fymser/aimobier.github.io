@@ -1,6 +1,5 @@
 ---
-layout: WKWebView
-categories: WebKit
+categories: To solve Difficult miscellaneous diseases
 title: WKWebView IOS8 下 loadHtmlString错误
 date: 2017-05-17 14:40:00
 tags: [WKWebView,Systematic distinction]

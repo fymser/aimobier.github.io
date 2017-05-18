@@ -1,6 +1,5 @@
 ---
-layout: async
-categories: nodejs
+categories: Constant learning
 title: Nodejs Async 学习
 date: 2015-07-6 18:41:43
 tags: [nodejs,async]
