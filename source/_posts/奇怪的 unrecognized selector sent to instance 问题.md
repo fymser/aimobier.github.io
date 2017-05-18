@@ -1,8 +1,8 @@
 ---
-categories: autolayout
+categories: Difficult miscellaneous diseases
 title: 奇怪的 unrecognized selector sent to instance 问题
 date: 2017-5-18 15:39:00
-tags: [swift, autolayout]
+tags: [ios, error]
 ---
 
 {% fi http://image.msiter.com/stock-photo-212311441.jpg, mongodb, Nuts！- 101空降师副师长麦考里夫将军 %}
