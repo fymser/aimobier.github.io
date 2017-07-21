@@ -86,7 +86,6 @@ mybatis:
     typeAliasesPackage: com.farrom.domain
 ````
 
-读取配置
 
 ````java
 package com.farrom.config;
@@ -147,6 +146,25 @@ public class MybatisConfig {
 }
 
 ````
+
+#### 数据库 emoji mysql 适配。
+
+在根目录下的etc创建一个文件,`my.cnf`。在文件中设置配置
+
+````
+[client]
+default-character-set=utf8mb4
+
+[mysql]
+default-character-set=utf8mb4
+
+[mysqld]
+character-set-client-handshake=FALSE
+character-set-server=utf8mb4
+collation-server=utf8mb4_unicode_ci
+init-connect='SET NAMES utf8mb4'
+````
+创建Database的时候选择 对一个的编码
 
 该配置不需要设置任何代码。这个时候 sqlsession就已经创建好了
 
