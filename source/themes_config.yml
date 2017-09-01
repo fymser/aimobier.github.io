@@ -11,16 +11,16 @@ keywords: "IOS,Swift,开发,技术,荆文征，博客,blog,msiter"
 # Set rss to false to disable feed link.
 # Leave rss as empty to use site's feed link.
 # Set rss to specific value if you have burned your feed already.
-rss:
+rss: false
 
 # Specify the date when the site was setup
-#since: 2015
+since: 2015
 
 # icon between year and author @Footer
 authoricon: heart
 
 # Footer `powered-by` and `theme-info` copyright
-copyright: true
+copyright: false
 
 
 # ---------------------------------------------------------------
@@ -60,15 +60,13 @@ menu:
 
 # Enable/Disable menu icons.
 menu_icons:
-  enable: true
-  #KeyMapsToMenuItemKey: NameOfTheIconFromFontAwesome
+  enable: false
+  # Icon Mapping.
   home: home
   about: user
   categories: th
-  schedule: calendar
   tags: tags
   archives: archive
-  sitemap: sitemap
   commonweal: heartbeat
 
 
