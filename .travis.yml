@@ -15,7 +15,10 @@ before_script:
   - sed -i'' "s~git@github.com:${UName}/${PName}.git~https://${github}:x-oauth-basic@github.com/${UName}/${PName}.git~" _config.yml
   
   - git clone https://github.com/iissnan/hexo-theme-next themes/next
-  - cp -f ./source/themes_config.yml ./themes/next/_config.yml &&  cp -f ./source/404.html ./themes/next/source/404.html
+  - ls
+  - pwd
+  - cp -f ./source/themes_config.yml ./themes/next/_config.yml 
+  - cp -f ./source/404.html ./themes/next/source/404.html
   
 script:
 
