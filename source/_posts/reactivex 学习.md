@@ -5,7 +5,7 @@ tags: [reactiv,rxswift]
 categories: Constant learning
 ---
 
-{% fi http://image.msiter.com/stock-photo-179922657.jpg, 随便 , 庆幸你来自远方不清楚我的过往。。 %}
+![](http://image.msiter.com/stock-photo-179922657.jpg "庆幸你来自远方不清楚我的过往。")
 
 ### 散记
 

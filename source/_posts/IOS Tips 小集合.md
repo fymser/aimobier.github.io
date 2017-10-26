@@ -4,7 +4,8 @@ date: 2015-08-10 20:53:35
 tags: [技巧,swift,ios]
 categories: Knowledge learned
 ---
-{% fi http://image.msiter.com/stock-photo-155024749.jpg, mongodb,听说人在死前的一秒钟，他的一生会闪过眼前。 %}
+
+![](http://image.msiter.com/stock-photo-155024749.jpg "听说人在死前的一秒钟，他的一生会闪过眼前。")
 
 IOS技巧，在工作学习中遇到的一些有点意思的小技巧，记录在在这里
 

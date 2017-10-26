@@ -5,7 +5,7 @@ date: 2015-7-13 18:41:43
 tags: [swagger,api]
 categories: api
 ---
-{% fi http://image.msiter.com/stock-photo-76133855.jpg, mongodb, 突然想到你，笑了笑自己。 %}
+![](http://image.msiter.com/stock-photo-76133855.jpg "突然想到你，笑了笑自己。")
 
 
 最开始只是想找一个制作api的工具而已，然后再某一个帖子中发现了这个家伙。他不只是可以让你可以展示服务器的API接口。你甚至可以让客户端受益，生成客户端代码，让客户端开发者直接调用生成代码，使用生成的代码，访问你的接口并且完成数据的获取。So Coll

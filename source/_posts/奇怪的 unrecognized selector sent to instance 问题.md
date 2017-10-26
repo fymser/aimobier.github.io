@@ -5,7 +5,7 @@ date: 2017-5-18 15:39:00
 tags: [ios, error]
 ---
 
-{% fi http://image.msiter.com/stock-photo-212311441.jpg, mongodb, "Nuts！" —— 101空降师副师长麦考里夫将军 %}
+![](http://image.msiter.com/stock-photo-212311441.jpg " "Nuts！" —— 101空降师副师长麦考里夫将军")
 
 <!-- more -->
 

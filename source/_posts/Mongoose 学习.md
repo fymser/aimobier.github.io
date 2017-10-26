@@ -4,7 +4,8 @@ date: 2015-07-11 20:53:35
 tags: [mongodb,mongoose,nodejs]
 categories: Constant learning
 ---
-{% fi http://image.msiter.com/stock-photo-161742993.jpg, 随便 , 醉后不知天在水，满船清梦压星河。 %}
+
+![](http://image.msiter.com/stock-photo-161742993.jpg "醉后不知天在水，满船清梦压星河。")
 
 > Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment.
 

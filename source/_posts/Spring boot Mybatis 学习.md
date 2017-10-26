@@ -5,7 +5,7 @@ date: 2017-7-21 18:25:00
 tags: [java, spring boot,mybatis]
 ---
 
-{% fi http://image.msiter.com/stock-photo-220506113.jpg, mongodb, 我年华虚度，空有一身疲倦。 %}
+![](http://image.msiter.com/stock-photo-220506113.jpg "我年华虚度，空有一身疲倦")
 
 ## 开始前的闲聊
 一直都想回家，北京呆不起。想回家，却发现，家里的开发职位都是java的，，，那没办法，捡起来吧
@@ -17,7 +17,7 @@ tags: [java, spring boot,mybatis]
 在创建项目的时候，我们使用了最基本的配置，所以项目没有目录等。我们需要使用maven默认的文件配置
 ````
 src
-  main -- 开发包 
+  main -- 开发包
     java -- 代码包
     resources -- 资源包
   test -- 测试包
@@ -169,4 +169,4 @@ init-connect='SET NAMES utf8mb4'
 
 该配置不需要设置任何代码。这个时候 sqlsession就已经创建好了
 
-目前就学习了这点。。。 
+目前就学习了这点。。。
