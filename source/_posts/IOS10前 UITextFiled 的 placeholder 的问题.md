@@ -49,7 +49,13 @@ self.addressBar.attributedPlaceholder = [[NSAttributedString alloc] initWithStri
 
 ````objective-c
 
-    textFiled.placeholder = placeholderString;
-    [textFiled setValue:placeholderColor forKeyPath:@"_placeholderLabel.textColor"];
-    [textFiled setValue:placeholderFont forKeyPath:@"_placeholderLabel.font"];
+- (CGRect)placeholderRectForBounds:(CGRect)bounds {
+    
+    return CGRectMake(0, 0 , self.bounds.size.width, self.bounds.size.height);
+}
+
+- (void)drawPlaceholderInRect:(CGRect)rect {
+    
+    [super drawPlaceholderInRect:CGRectMake(0, 0 , self.bounds.size.width, self.bounds.size.height)];
+}
 ````
