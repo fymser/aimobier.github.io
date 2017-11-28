@@ -1,6 +1,5 @@
 ---
-layout: WKWebView
-categories: WebKit
+categories: IOS
 title: WebKit WkwebView dealloc Crash错误
 date: 2017-05-17 14:19:00
 tags: [WebKit,Systematic distinction]

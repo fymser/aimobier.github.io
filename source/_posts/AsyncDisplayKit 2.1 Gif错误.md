@@ -1,5 +1,5 @@
 ---
-categories: 教你写东西
+categories: IOS
 title: AsyncDisplayKit 2.1 Gif错误，以及解决方法
 date: 2017-08-22 14:45:00
 tags: [Objective-C, AsyncDisplayKit,ios,约束教程]
@@ -26,7 +26,7 @@ tags: [Objective-C, AsyncDisplayKit,ios,约束教程]
 2. 使用我已经修改好的代码库 引入 `pod AsyncDisplayKitFix`
 
 
------------------------------------------- 2017年9月4号 
+------------------------------------------ 2017年9月4号
 
 再次修复了，两个问题，当然只是我的项目中的。记录一下
 
@@ -38,11 +38,11 @@ tags: [Objective-C, AsyncDisplayKit,ios,约束教程]
 ````objective-c
 - (void)setAttributedText:(NSAttributedString *)attributedText
 {
-  
+
   if (attributedText == nil) {
       attributedText = [[NSAttributedString alloc] initWithString:@"" attributes:nil];
   }
-  
+
   // Don't hold textLock for too long.
   {
     ASDN::MutexLocker l(__instanceLock__);
@@ -55,11 +55,11 @@ tags: [Objective-C, AsyncDisplayKit,ios,约束教程]
 ````objective-c
 - (void)setAttributedText:(NSAttributedString *)attributedText
 {
-  
+
   if (attributedText == nil) {
       return;
   }
-  
+
   // Don't hold textLock for too long.
   {
     ASDN::MutexLocker l(__instanceLock__);

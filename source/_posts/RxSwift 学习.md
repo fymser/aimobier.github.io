@@ -1,6 +1,5 @@
 ---
-layout: async
-categories: swift
+categories: IOS
 title: RxSwift 学习 未完待续
 date: 2016-07-6 21:16:43
 tags: [swift,ios,RX]

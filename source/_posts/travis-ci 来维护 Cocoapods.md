@@ -1,5 +1,5 @@
 ---
-categories: Knowledge learned
+categories: IOS
 title: travis-ci 来维护 Cocoapods
 date: 2017-05-25 18:54:00
 tags: [travis-ci,ios,cocoapods]

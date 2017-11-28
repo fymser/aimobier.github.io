@@ -1,5 +1,5 @@
 ---
-categories: Knowledge learned
+categories: 服务器
 title: Spring boot Mybatis 学习
 date: 2017-7-21 18:25:00
 tags: [java, spring boot,mybatis]

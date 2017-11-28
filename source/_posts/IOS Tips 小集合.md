@@ -2,7 +2,7 @@
 title: IOS Tips 小集合
 date: 2015-08-10 20:53:35
 tags: [技巧,swift,ios]
-categories: Knowledge learned
+categories: IOS
 ---
 
 ![](http://image.msiter.com/stock-photo-155024749.jpg "听说人在死前的一秒钟，他的一生会闪过眼前。")

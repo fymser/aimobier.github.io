@@ -1,5 +1,5 @@
 ---
-categories: Constant learning
+categories: IOS
 title: 制作一个自己的 Cydia 源
 date: 2016-11-12 2:05:43
 tags: [越狱,cydia,制作源]

@@ -1,5 +1,5 @@
 ---
-categories:
+categories: IOS
 title: IOS10前 UITextFiled 的 placeholder 的问题
 date: 2017-11-16 01:16:00
 tags: [IOS]
@@ -50,12 +50,12 @@ self.addressBar.attributedPlaceholder = [[NSAttributedString alloc] initWithStri
 ````objective-c
 
 - (CGRect)placeholderRectForBounds:(CGRect)bounds {
-    
+
     return CGRectMake(0, 0 , self.bounds.size.width, self.bounds.size.height);
 }
 
 - (void)drawPlaceholderInRect:(CGRect)rect {
-    
+
     [super drawPlaceholderInRect:CGRectMake(0, 0 , self.bounds.size.width, self.bounds.size.height)];
 }
 ````

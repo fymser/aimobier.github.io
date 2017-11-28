@@ -2,8 +2,7 @@
 title: Realm-cocoa 学习
 date: 2016-3-3 20:53:35
 tags: [DB,realm]
-keywords: DB,realm
-categories: 数据库
+categories: IOS
 ---
 ![](http://image.msiter.com/stock-photo-181146547.jpg "如果没有见过光明，我本可以忍受黑暗。")
 

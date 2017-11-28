@@ -1,5 +1,5 @@
 ---
-categories: Knowledge learned
+categories: IOS
 title: Autolayout 和 size-class 简明教程
 date: 2016-11-21 03:25:00
 tags: [swift, autolayout,ios,约束教程]

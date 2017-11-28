@@ -1,6 +1,5 @@
 ---
-layout: WKWebView
-categories: swift
+categories: IOS
 title: WKWebView 制作详情页的一些经验
 date: 2016-09-21 03:25:00
 tags: [swift,WKWebView]

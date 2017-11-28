@@ -1,5 +1,5 @@
 ---
-categories: To solve Difficult miscellaneous diseases
+categories: IOS
 title: Html 字符串转换成 AttributedString ios版本下的错误
 date: 2017-05-17 14:31:00
 tags: [AttributedString,iOS8 html2AttributedString error]

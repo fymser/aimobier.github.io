@@ -1,9 +1,8 @@
 ---
-layout: async
 title: Swagger 初级学习
 date: 2015-7-13 18:41:43
 tags: [swagger,api]
-categories: api
+categories: 开发帮助
 ---
 ![](http://image.msiter.com/stock-photo-76133855.jpg "突然想到你，笑了笑自己。")
 

@@ -1,5 +1,5 @@
 ---
-categories: Constant learning
+categories: 服务器
 title: Nodejs Async 学习
 date: 2015-07-6 18:41:43
 tags: [nodejs,async]
