@@ -38,10 +38,36 @@ post_asset_folder: false
 relative_link: false
 future: true
 highlight:
-  enable: true
+  enable: false
   line_number: true
   auto_detect: false
   tab_replace:
+
+prism_plugin:
+  mode: 'preprocess'    # realtime/preprocess
+  # theme: coy
+  # theme: dark
+  # theme: funky
+  # theme: okaidia
+  # theme: solarizedlight
+  # theme: tomorrow
+  # theme: twilight
+  theme: atom-dark
+  # theme: base16-ateliersulphurpool.light
+  # theme: cb
+  # theme: duotone-dark
+  # theme: duotone-earth
+  # theme: duotone-forest
+  # theme: duotone-light
+  # theme: duotone-sea
+  # theme: duotone-space
+  # theme: ghcolors
+  # theme: hopscotch
+  # theme: pojoaque
+  # theme: vs
+  # theme: xonokai
+  # theme: default
+  line_number: true    # default false
 
 # Category & Tag
 default_category: uncategorized
