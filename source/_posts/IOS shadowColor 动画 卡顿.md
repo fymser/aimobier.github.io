@@ -9,7 +9,7 @@ tags: [Objective-C,ios]
 最终终于发现了问题的所在在于 shadowColor ，在跳转的时候我设置了一个阴影增加层级层次效果。
 <!-- more -->
 
-````objective-c
+````objectivec
 @implementation BaseViewControllerPresentdAnimation
 
 -(NSTimeInterval)transitionDuration:(id<UIViewControllerContextTransitioning>)transitionContext {
@@ -67,7 +67,7 @@ tags: [Objective-C,ios]
 之后就很好奇为什么这个代码会有这么神奇的作用呢？ [SpeedBoy007的专栏](http://blog.csdn.net/meegomeego/article/details/22728465)
 
 >  只要你提前告诉CoreAnimation你要渲染的View的形状Shape,就会减少离屏渲染计算
->````objective-c
+>````objectivec
 >[myView.layer setShadowPath：[[UIBezierPath
 >    bezierPathWithRect：myView.bounds] CGPath];
 >````

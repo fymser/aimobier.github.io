@@ -35,7 +35,7 @@ tags: [Objective-C, AsyncDisplayKit,ios,约束教程]
 在文件 `_ASHierarchyChangeSet.mm`  `_validateUpdate` 修改验证
 
 第二个. 在ASTextNode赋值的时候，我记得没错误的话。官方的例子是 可以判断 ASTextNode的attritedString 是否为空，来做一些布局的变化。但是在实际使用中，发现了它的方法，写的确实
-````objective-c
+````objectivec
 - (void)setAttributedText:(NSAttributedString *)attributedText
 {
 
@@ -52,7 +52,7 @@ tags: [Objective-C, AsyncDisplayKit,ios,约束教程]
 ````
 
 这种问题就是会一直都不能为nil。故而修复为
-````objective-c
+````objectivec
 - (void)setAttributedText:(NSAttributedString *)attributedText
 {
 

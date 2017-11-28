@@ -14,7 +14,7 @@ tags: [WKWebView,Systematic distinction]
 由于IOS8才开始出现的WKWebView，所以自然而然的我当然想从ios8就是用WkwebVIew。毕竟性能好，，，各种夸       
 但是很快就遇见一个问题，本来呢，在ios9，ios10 ，我直接调用方法就可以。
 
-````objective-c
+````objectivec
 [_wkWebView loadHTMLString:htmlStr baseURL:[NSBundle oddity_shareBundle].bundleURL];
 ````
 在htmlStr 里面，我有设置的 本地图片，本地js，本地css。在 ios9-10 一切OK。但是偏偏ios8不行，加载出来本地图片，但是本地js本地css加载不出来……      
@@ -27,7 +27,7 @@ tags: [WKWebView,Systematic distinction]
 
 于是乎，有了这样子的一段代码
 
-````objective-c
+````objectivec
 if ([[[UIDevice currentDevice] systemVersion] floatValue] >= 8.0 && [[[UIDevice currentDevice] systemVersion] floatValue] < 9.0) {
 
         NSString *file1 =  [[NSBundle oddity_shareBundle] pathForResource:@"jquery" ofType:@"js"];

@@ -25,7 +25,7 @@ tags: [IOS]
 
 [kean](https://stackoverflow.com/users/1486308/kean)在 Stackflow中的回答
 
-````objective-c
+````objectivec
 NSMutableParagraphStyle *style = [self.addressBar.defaultTextAttributes[NSParagraphStyleAttributeName] mutableCopy];
 style.minimumLineHeight = self.addressBar.font.lineHeight - (self.addressBar.font.lineHeight - [UIFont fontWithName:@"Gotham-BookItalic" size:14.0].lineHeight) / 2.0;
 
@@ -47,7 +47,7 @@ self.addressBar.attributedPlaceholder = [[NSAttributedString alloc] initWithStri
 还有很多搜到的方法 我就不一一赘述了。他们的方法或多或少的都没很麻烦，而且需要进行适配，比如这种调整位置的是可以的。但是IOS11 位置又好了怎么办呢？
 最终找到如下的方法，特此记录一下
 
-````objective-c
+````objectivec
 
 - (CGRect)placeholderRectForBounds:(CGRect)bounds {
 

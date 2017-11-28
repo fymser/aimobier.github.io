@@ -23,7 +23,7 @@ tags: [WebView,WKWebView,UIWebView,Input,File,Bug]
 
 之后重写 UINavigationController 的方法
 
-````objective-c
+````objectivec
 -(void)dismissViewControllerAnimated:(BOOL)flag completion:(void (^)(void))completion{
 
     if (self.presentedViewController) {
@@ -54,7 +54,7 @@ tags: [WebView,WKWebView,UIWebView,Input,File,Bug]
 
 ##### 获取到 手势 并且设置 delegate
 
-````objective-c
+````objectivec
 for (UIGestureRecognizer *reconizer in self.wkWebView.gestureRecognizers) {
 
         /// 如果获取的 手势 类型是 ScreenEdgePanGestureRecognizer 类型
@@ -78,7 +78,7 @@ for (UIGestureRecognizer *reconizer in self.wkWebView.gestureRecognizers) {
 
 获取到 delegate之后我们就可以进行操作了 接下来实现 delegate 的方法
 
-````objective-c
+````objectivec
 
 /// 当WebView 不可以返回到时候，我们不让该手势触发
 -(BOOL)gestureRecognizerShouldBegin:(UIGestureRecognizer *)gestureRecognizer{
@@ -89,7 +89,7 @@ for (UIGestureRecognizer *reconizer in self.wkWebView.gestureRecognizers) {
 
 ##### 写 推出视图的方法
 
-````objective-c
+````objectivec
 -(instancetype)initWithRootViewController:(UIViewController *)rootViewController{
 
     self = [super initWithRootViewController:rootViewController];

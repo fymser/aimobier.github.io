@@ -12,14 +12,14 @@ tags: [AttributedString,iOS8 html2AttributedString error]
 
 <!-- more -->
 
-````objective-c
+````objectivec
 NSMutableAttributedString *attributedString = [[NSMutableAttributedString alloc] initWithData:[title dataUsingEncoding:NSUnicodeStringEncoding]  options:@{ NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType } documentAttributes:nil error:nil];
 ````
 
 这样子的话,html字符串就可以转换为 `NSMutableAttributedString` 对象，可以展示在可以展示 AttributedString的空间上，但是这个东西是有一定时间的耗时的。      
 尤其是在 tableview上会消耗很大的计算时间，使滑动出现问题。那么我们就需要进行一个一步计算，并且为了更好的节省性能，我们最好做一个缓存。接下来就是我的制作方式
 
-````objective-c
+````objectivec
 @interface OddityHtmlTitleCache()
 @property(nonatomic,strong)  NSCache *sharedCache;
 
