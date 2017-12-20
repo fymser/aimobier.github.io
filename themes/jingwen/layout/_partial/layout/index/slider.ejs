@@ -1,0 +1,300 @@
+<!-- Promo Articles -->
+<div class="js-carousel" id="js-carousel" data-infinite="true" data-arrows-classes="u-arrow-v1 g-pos-abs g-absolute-centered--x g-bottom-20 text-center g-width-30 g-height-28 g-color-secondary-dark-v1 g-color-primary--hover" data-arrow-left-classes="fa fa-angle-left g-ml-minus-50"
+  data-arrow-right-classes="fa fa-angle-right g-ml-50" data-pagi-classes="u-carousel-indicators-v1 g-absolute-centered--x g-bottom-30 text-center">
+
+
+</div>
+<!-- End Promo Articles -->
+
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+  REQuest("https://api.douban.com/v2/movie/in_theaters",function(data){
+    for (subject in data.subjects.slice(0,5)){
+      GetDetail(data.subjects[subject],subject % 2 == 0);
+    }
+    // initialization of carousel
+    $.HSCore.components.HSCarousel.init('[class*="js-carousel"]');
+  });
+});
+
+/// 获取电影的详细内容
+function GetDetail(movie,bool){
+
+  var elment = bool ? White(movie) : Black(movie);
+
+  REQuest("https://api.douban.com/v2/movie/subject/"+movie.id,function(data){
+
+      $(elment).find("#"+movie.id).html(data.summary);
+  });
+};
+
+
+/// 将新闻数据植入
+function White(data){
+
+var htmlString = '<div class="js-slide">\
+  <!-- Promo Articles -->\
+  <div class="g-bg-secondary">\
+    <div class="container g-pt-70 g-pb-20">\
+      <div class="row justify-content-between align-items-center">\
+        <div class="col-md-6 g-mb-50">\
+          <div class="d-flex align-items-center g-mb-50">';
+
+          for(cat in data.directors){
+            var cats =  data.directors[cat];
+
+            htmlString += '<div class="g-width-32 g-height-32">\
+            <div class="g-width-32 g-height-32 img-fluid g-brd-around g-brd-2 g-brd-white rounded-circle" style = "overflow:hidden;" ><a href="'+cats.alt+'" alt="'+cats.name+'"><img class="img-fluid" src="'+cats.avatars.small+'" alt="'+cats.name+'"></a></div>\
+            </div>';
+          }
+
+            htmlString += '<div class="g-font-size-11 g-pl-10 g-pr-25">\
+              <span class="d-block g-font-weight-600">By</span>\
+              <a class="d-block g-color-secondary-dark-v1" href="#"> 导演 </a>\
+            </div>\
+\
+            <div class="list-inline-item g-height-35 g-brd-right g-brd-secondary-light-v2 g-mr-20"></div>\
+            <!-- End Authors -->';
+
+            for(cat in data.casts){
+              var cats =  data.casts[cat];
+
+              htmlString += '<div class="g-width-32 g-height-32">\
+                <div class="g-width-32 g-height-32 img-fluid g-brd-around g-brd-2 g-brd-white rounded-circle" style = "overflow:hidden;" ><a href="'+cats.alt+'" alt="'+cats.name+'"><img class="img-fluid" src="'+cats.avatars.small+'" alt="'+cats.name+'"></a></div>\
+              </div>';
+            }
+
+            htmlString += '<div class="g-font-size-11 g-pl-10 g-pr-25">\
+              <span class="d-block g-font-weight-600">By</span>\
+              <a class="d-block g-color-secondary-dark-v1" href="#"> 演员 </a>\
+            </div>\
+\
+            <div class="list-inline-item g-height-35 g-brd-right g-brd-secondary-light-v2 g-mr-20"></div>\
+\
+            <!-- Share Button Group -->\
+            <div class="btn-group dropup">\
+              <button class="btn align-items-center g-color-secondary-light-v1 g-bg-transparent g-color-primary--hover g-font-size-12 g-pa-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\
+                      <span class="u-icon-v3 u-icon-size--xs g-color-primary g-color-white--hover g-bg-white g-bg-primary--hover rounded-circle">\
+                        <i class="g-font-size-12 fa fa-share-alt"></i>\
+                      </span>\
+                    </button>\
+              <div class="dropdown-menu g-min-width-170 g-brd-secondary-light-v2 g-bg-white g-font-size-12 text-center mx-auto">\
+                <a class="u-icon-v1 g-width-30 g-height-32 g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-text-underline--none--hover g-pa-5" href="#">\
+                        <i class="g-font-size-12 fa fa-facebook"></i>\
+                      </a>\
+                <a class="u-icon-v1 g-width-30 g-height-32 g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-text-underline--none--hover g-pa-5" href="#">\
+                        <i class="g-font-size-12 fa fa-twitter"></i>\
+                      </a>\
+                <a class="u-icon-v1 g-width-30 g-height-32 g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-text-underline--none--hover g-pa-5" href="#">\
+                        <i class="g-font-size-12 fa fa-google-plus"></i>\
+                      </a>\
+                <a class="u-icon-v1 g-width-30 g-height-32 g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-text-underline--none--hover g-pa-5" href="#">\
+                        <i class="g-font-size-12 fa fa-instagram"></i>\
+                      </a>\
+                <a class="u-icon-v1 g-width-30 g-height-32 g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-text-underline--none--hover g-pa-5" href="#">\
+                        <i class="g-font-size-12 fa fa-pinterest"></i>\
+                      </a>\
+              </div>\
+            </div>\
+            <!-- End Share Button Group -->\
+\
+          </div>\
+\
+          <!-- Info -->\
+          <div class="g-mb-70">\
+            <div class="mb-4">\
+              <span class="d-block g-color-primary g-font-weight-700 text-uppercase mb-2">';
+
+           for(cat in data.genres){
+                htmlString += data.genres[cat]+"  " ;
+
+              }
+
+              htmlString += '</span>\
+              <h1 class="mb-4">'+data.title+'</h1>\
+              <p id="'+data.id+'" class="g-color-secondary-dark-v1 g-font-size-16" style="height:120px;overflow:auto;">'+data.content_c+'</p>\
+            </div>\
+\
+            <a class="btn u-btn-black g-color-primary--hover g-font-weight-700 g-font-size-13 text-uppercase rounded g-py-12 g-px-20" href="bm-classic-single-2.html">阅读详情</a>\
+          </div>\
+          <!-- End Info -->\
+\
+          <!-- Dates -->\
+          <ul class="list-inline g-font-size-13 mb-0">\
+            <li class="list-inline-item">\
+              <a class="d-inline-block u-block-hover g-brd-around g-text-underline--none--hover g-pr-7 g-mr-7" href="#">\
+                         <i class="align-middle mr-1 icon-education-124 u-line-icon-pro"></i>\
+                         <span class="g-color-secondary-dark-v1 g-color-primary--hover">'+data.year+' 上映</span>\
+                       </a>\
+            </li>\
+            <li class="list-inline-item g-height-20 g-brd-right g-brd-secondary-light-v2 g-pos-rel g-top-minus-2"></li>\
+            <li class="list-inline-item">\
+              <a class="d-inline-block u-block-hover g-brd-around g-text-underline--none--hover g-px-7 g-mr-7" href="#">\
+                         <i class="align-middle mr-1 icon-medical-022 u-line-icon-pro"></i>\
+                         <span class="g-color-secondary-dark-v1 g-color-primary--hover">'+data.collect_count+'</span>\
+                       </a>\
+            </li>\
+            <li class="list-inline-item g-height-20 g-brd-right g-brd-secondary-light-v2 g-pos-rel g-top-minus-2"></li>\
+            <li class="list-inline-item">\
+              <a class="d-inline-block u-block-hover g-brd-around g-text-underline--none--hover g-pl-7" href="#">\
+                         <i class="align-middle mr-1 icon-finance-206 u-line-icon-pro"></i>\
+                         <span class="g-color-secondary-dark-v1 g-color-primary--hover">'+data.rating.average+'</span>\
+                       </a>\
+            </li>\
+          </ul>\
+          <!-- End Dates -->\
+        </div>\
+\
+        <div class="col-md-6 col-lg-5 g-mb-50">\
+          <img class="img-fluid" src="'+data.images.large+'" alt="'+data.title+'">\
+        </div>\
+      </div>\
+    </div>\
+  </div>\
+  <!-- End Promo Articles -->\
+</div>';
+
+  var elment = $.parseHTML( htmlString );
+
+  $("#js-carousel").append(elment);
+
+  return elment;
+}
+
+
+function Black(data){
+
+  var htmlString = '\
+        <div class="js-slide">\
+          <!-- Promo Articles -->\
+          <div class="g-bg-darkblue-v1">\
+            <div class="container g-pt-70 g-pb-20">\
+              <div class="row justify-content-between align-items-center">\
+                <div class="col-md-6 g-mb-50">\
+                  <div class="d-flex align-items-center g-mb-50">';
+
+                  for(cat in data.directors){
+                    var cats =  data.directors[cat];
+
+                    htmlString += '<div class="g-width-32 g-height-32">\
+                    <div class="g-width-32 g-height-32 img-fluid g-brd-around g-brd-2 g-brd-white rounded-circle" style = "overflow:hidden;" ><a href="'+cats.alt+'" alt="'+cats.name+'"><img class="img-fluid" src="'+cats.avatars.small+'" alt="'+cats.name+'"></a></div>\
+                    </div>';
+                  }
+
+                    htmlString += '                    <div class="g-font-size-11 g-pl-10 g-pr-25">\
+                                          <span class="d-block g-color-white g-font-weight-600">By</span>\
+                                          <a class="d-block g-color-secondary-dark-v1" href="#">2 导演</a>\
+                                        </div>\
+        \
+                    <div class="list-inline-item g-height-35 g-brd-right g-brd-secondary-light-v2 g-mr-20"></div>\
+                    <!-- End Authors -->';
+
+                    for(cat in data.casts){
+                      var cats =  data.casts[cat];
+
+                      htmlString += '<div class="g-width-32 g-height-32">\
+                        <div class="g-width-32 g-height-32 img-fluid g-brd-around g-brd-2 g-brd-white rounded-circle" style = "overflow:hidden;" ><a href="'+cats.alt+'" alt="'+cats.name+'"><img class="img-fluid" src="'+cats.avatars.small+'" alt="'+cats.name+'"></a></div>\
+                      </div>';
+                    }
+
+                    htmlString += '                    <div class="g-font-size-11 g-pl-10 g-pr-25">\
+                                          <span class="d-block g-color-white g-font-weight-600">By</span>\
+                                          <a class="d-block g-color-secondary-dark-v1" href="#">演员</a>\
+                                        </div>\
+\
+                    <div class="list-inline-item g-height-35 g-brd-right g-brd-gray-dark-v2 g-mr-20"></div>\
+                    <!-- End Authors -->\
+\
+                    <!-- Share Button Group -->\
+                    <div class="btn-group dropup">\
+                      <button class="btn align-items-center g-color-secondary-light-v1 g-bg-transparent g-color-primary--hover g-font-size-12 g-pa-0" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">\
+                        <span class="u-icon-v3 u-icon-size--xs g-color-primary g-color-white--hover g-bg-white g-bg-primary--hover rounded-circle">\
+                          <i class="g-font-size-12 fa fa-share-alt"></i>\
+                        </span>\
+                      </button>\
+                      <div class="dropdown-menu g-min-width-170 g-brd-secondary-light-v2 g-bg-white g-font-size-12 text-center mx-auto">\
+                        <a class="u-icon-v1 g-width-30 g-height-30 g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-text-underline--none--hover g-pa-5" href="#">\
+                          <i class="g-font-size-12 fa fa-facebook"></i>\
+                        </a>\
+                        <a class="u-icon-v1 g-width-30 g-height-30 g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-text-underline--none--hover g-pa-5" href="#">\
+                          <i class="g-font-size-12 fa fa-twitter"></i>\
+                        </a>\
+                        <a class="u-icon-v1 g-width-30 g-height-30 g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-text-underline--none--hover g-pa-5" href="#">\
+                          <i class="g-font-size-12 fa fa-google-plus"></i>\
+                        </a>\
+                        <a class="u-icon-v1 g-width-30 g-height-30 g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-text-underline--none--hover g-pa-5" href="#">\
+                          <i class="g-font-size-12 fa fa-instagram"></i>\
+                        </a>\
+                        <a class="u-icon-v1 g-width-30 g-height-30 g-color-secondary-dark-v1 g-color-primary--hover g-bg-secondary--hover g-text-underline--none--hover g-pa-5" href="#">\
+                          <i class="g-font-size-12 fa fa-pinterest"></i>\
+                        </a>\
+                      </div>\
+                    </div>\
+                    <!-- End Share Button Group -->\
+                  </div>\
+\
+                  <!-- Info -->\
+                  <div class="g-mb-70">\
+                    <div class="mb-4">\
+                      <span class="d-block g-color-primary g-font-weight-700 text-uppercase mb-2">';
+
+                                 for(cat in data.genres){
+                                      htmlString += data.genres[cat]+"  " ;
+
+                                    }
+
+                                    htmlString += '</span>\
+                      <h2 class="g-color-white mb-4">'+data.title+'</h2>\
+                      <p id="'+data.id+'" class="g-color-secondary-dark-v1 g-font-size-16" style="height:120px;overflow:auto;">'+data.content_c+'</p>\
+                    </div>\
+\
+                    <a class="btn u-btn-white g-color-primary--hover g-font-weight-700 g-font-size-13 text-uppercase rounded g-py-12 g-px-20" href="bm-classic-single-2.html">阅读详情</a>\
+                  </div>\
+                  <!-- End Info -->\
+\
+                  <!-- Dates -->\
+                  <ul class="list-inline g-font-size-13 mb-0">\
+                    <li class="list-inline-item">\
+                      <a class="d-inline-block u-block-hover g-brd-around g-text-underline--none--hover g-pr-7 g-mr-7" href="#">\
+                        <i class="align-middle mr-1 icon-education-124 u-line-icon-pro"></i>\
+                        <span class="g-color-secondary-dark-v1 g-color-primary--hover">'+data.year+' 上映</span>\
+                      </a>\
+                    </li>\
+                    <li class="list-inline-item g-height-20 g-brd-right g-brd-gray-dark-v2 g-pos-rel g-top-minus-2"></li>\
+                    <li class="list-inline-item">\
+                      <a class="d-inline-block u-block-hover g-brd-around g-text-underline--none--hover g-px-7 g-mr-7" href="#">\
+                        <i class="align-middle mr-1 icon-medical-022 u-line-icon-pro"></i>\
+                        <span class="g-color-secondary-dark-v1 g-color-primary--hover">'+data.collect_count+'</span>\
+                      </a>\
+                    </li>\
+                    <li class="list-inline-item g-height-20 g-brd-right g-brd-gray-dark-v2 g-pos-rel g-top-minus-2"></li>\
+                    <li class="list-inline-item">\
+                      <a class="d-inline-block u-block-hover g-brd-around g-text-underline--none--hover g-pl-7" href="#">\
+                        <i class="align-middle mr-1 icon-finance-206 u-line-icon-pro"></i>\
+                        <span class="g-color-secondary-dark-v1 g-color-primary--hover">'+data.rating.average+'</span>\
+                      </a>\
+                    </li>\
+                  </ul>\
+                  <!-- End Dates -->\
+                </div>\
+\
+                <div class="col-md-6 col-lg-5 g-mb-50">\
+                  <img class="img-fluid" src="'+data.images.large+'" alt="'+data.title+'">\
+                </div>\
+              </div>\
+            </div>\
+          </div>\
+          <!-- End Promo Articles -->\
+        </div>'
+
+
+          var elment = $.parseHTML( htmlString );
+
+          $("#js-carousel").append(elment);
+
+          return elment;
+}
+
+</script>

@@ -1,0 +1,10 @@
+
+<% var name = pfi(post.content) %>
+
+<% if (name.src){ %>
+
+  <a class="d-flex g-mt-3 mr-3" href="<%= url_for(post.path)%>">
+    <img class="g-width-60 g-height-60 rounded" src="<%= name.src %>" alt="Image Description">
+  </a>
+
+<% } %>

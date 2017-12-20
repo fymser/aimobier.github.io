@@ -1,0 +1,48 @@
+footer:
+  since: 2015
+  about: 努力学习的IOS程序员。目前在学习制作Hexo主题，主要还是为了做自己的一个博客.之后会好好学习linux以及服务器相关的知识.
+  local: 北京 - 国家的首都
+  emails:
+    - alphabetion@gmail.com
+    - jingwenzheng@baimaodai.com
+
+  ## 如果设置了值 则被视为关闭 随机产生值
+  hitokoto: 妹子
+  userlink:
+    百度: https://baidu.com
+    测试链接: https://test.baidu.com
+    hexo: https://baidu.com
+  subscribe: 订阅我可以更及时的获取到文章的推送，请在下方输入您的邮箱地址获取文章更新
+  socialdesc: 作为一个宅男，长期宅在家里，会不定期的更新文章。如果你想更新的了解到我的动态，请选择一下任意一种社交方式关注我。
+
+  ## 在底部显示的 一排 icon  style  carousel1 - 12 其中 4 5 8 9 10 存在问题
+  displaylinks:
+    show: true
+    style: carousel6
+    link1:
+      image: ../../assets/img-temp/200x100/img1.png
+      link: http://baidu.com
+    link2:
+      image: ../../assets/img-temp/200x100/img2.png
+      link: http://baidu.com
+    link3:
+      image: ../../assets/img-temp/200x100/img3.png
+      link: http://baidu.com
+    link4:
+      image: ../../assets/img-temp/200x100/img4.png
+      link: http://baidu.com
+    link5:
+      image: ../../assets/img-temp/200x100/img5.png
+      link: http://baidu.com
+    link6:
+      image: ../../assets/img-temp/200x100/img6.png
+      link: http://baidu.com
+    link7:
+      image: ../../assets/img-temp/200x100/img7.png
+      link: http://baidu.com
+    link8:
+      image: ../../assets/img-temp/200x100/img8.png
+      link: http://baidu.com
+    link9:
+      image: ../../assets/img-temp/200x100/img9.png
+      link: http://baidu.com

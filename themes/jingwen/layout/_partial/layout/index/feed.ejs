@@ -1,0 +1,92 @@
+<!-- Article -->
+<article class="g-mb-100">
+  <div class="text-center">
+    <!-- Category & Date -->
+    <ul class="list-inline g-color-secondary-dark-v1 g-font-weight-600 g-font-size-12 text-uppercase mb-3">
+      <li class="list-inline-item g-mr-10">
+        <i class="align-middle g-color-primary mr-1 icon-communication-020 u-line-icon-pro"></i>
+
+        <% site.tags.limit(3).each(function(tag){ %>
+
+          <a class="g-font-weight-700" href="<%- url_for(tag.path) %>">
+            <%= tag.name %>&nbsp;&nbsp;</a>
+          <% }) %>
+
+      </li>
+      <li class="list-inline-item">&#8226;</li>
+      <li class="list-inline-item g-ml-10">
+        <i class="align-middle g-color-secondary-dark-v1 mr-1 icon-education-124 u-line-icon-pro"></i>
+        <%- date(post.date, 'YYYY/M/D H:m:s') %>
+      </li>
+
+    </ul>
+    <!-- End Category & Date -->
+    <h2 class="h3 mb-5">
+
+      <a class="u-link-v5 g-color-main g-color-primary--hover" href="<%- url_for(post.path) %>"><%= post.title %></a>
+    </h2>
+  </div>
+
+  <% var name = pfi(post.content) %>
+    <% if (name){ %>
+      <figure class="mb-4">
+        <img class="img-fluid" src="<%- name.src %>">
+        <% if (name.title){ %>
+          <figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">
+            <%- name.title %>
+          </figcaption>
+          <%}%>
+      </figure>
+      <% } %>
+
+        <!-- Info -->
+        <div class="mb-4">
+          <%- pet(post.excerpt) %>
+        </div>
+        <!-- End Info -->
+
+        <div class="g-mb-25">
+          <!-- Info -->
+          <div class="d-flex justify-content-start">
+            <ul class="list-inline mb-0">
+              <li class="list-inline-item mx-0">
+                <a class="d-inline-block g-color-secondary-dark-v1 g-color-primary--hover g-text-underline--none--hover g-pr-15 g-py-4" href="#">
+            <i class="align-middle mr-2 icon-hotel-restaurant-242 u-line-icon-pro"></i>共有<%= wordcount(post.content) %>个字
+          </a>
+              </li>
+              <li class="list-inline-item mr-0">
+                <a class="d-inline-block g-color-secondary-dark-v1 g-color-primary--hover g-text-underline--none--hover g-px-15 g-py-4" href="#">
+            <i class="align-middle mr-2 icon-hotel-restaurant-003 u-line-icon-pro"></i>预计阅读<%= min2read(post.content) %>分钟
+          </a>
+            </ul>
+            <a class="g-font-weight-600 g-font-size-13 text-uppercase ml-auto g-py-4" href="<%- url_for(post.path) %>">阅读更多</a>
+          </div>
+          <!-- End Info -->
+        </div>
+        <!-- Social Icons -->
+        <div class="g-overflow-hidden">
+          <ul class="list-inline u-info-v10-1 mb-0">
+
+            <li class="list-inline-item g-mx-2">
+              <a class="jiathis_button_weixin u-icon-v3 u-icon-size--xs g-color-primary g-color-white--hover g-bg-secondary g-bg-primary--hover rounded-circle">
+          <i class="fa fa-weixin"></i>
+        </a>
+            </li>
+            <li class="list-inline-item g-mx-2">
+              <a class="jiathis_button_tsina u-icon-v3 u-icon-size--xs g-color-primary g-color-white--hover g-bg-secondary g-bg-primary--hover rounded-circle">
+          <i class="fa fa-weibo"></i>
+        </a>
+            </li>
+            <li class="list-inline-item g-mx-2">
+              <a class="jiathis_button_tqq u-icon-v3 u-icon-size--xs g-color-primary g-color-white--hover g-bg-secondary g-bg-primary--hover rounded-circle">
+          <i class="fa fa-qq"></i>
+        </a>
+            </li>
+
+          </ul>
+
+          <script type="text/javascript" src="http://v3.jiathis.com/code_mini/jia.js" charset="utf-8"></script>
+        </div>
+        <!-- End Social Icons -->
+</article>
+<!-- End Article -->

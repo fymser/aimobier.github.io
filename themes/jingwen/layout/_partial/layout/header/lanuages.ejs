@@ -1,0 +1,27 @@
+<!-- Language -->
+<div id="clock" class="col-4 col-lg-2 g-pos-rel g-px-15 ml-auto">
+</div>
+<!-- End Language -->
+
+
+<script type="text/javascript">
+
+var config = {
+  syncURL: "https://wd2622139095udguuj.wilddogio.com" //输入节点 URL
+};
+wilddog.initializeApp(config);
+var ref = wilddog.sync().ref("browerlog");
+
+ref.push({
+  "url": window.location.href,
+  "date": Math.round(new Date().getTime())
+});
+
+ref.orderByChild("url").equalTo(window.location.href).on('value', function(snapshot) {
+
+  $("#clock").text("No."+Object.keys(snapshot.val()).length);
+
+  }, function (error) {
+});
+
+</script>

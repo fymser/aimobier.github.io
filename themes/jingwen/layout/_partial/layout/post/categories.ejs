@@ -1,0 +1,25 @@
+
+        <!-- Social Links -->
+        <div class="g-mb-50">
+          <div class="u-heading-v3-1 g-mb-30">
+            <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">最热专题</h2>
+          </div>
+
+          <ul class="list-unstyled mb-0">
+
+            <% site.categories.sort('posts.length',-1).limit(5).each(function(tag){ %>
+
+              <li class="d-flex align-items-center justify-content-between g-mb-20">
+                <a class="d-flex align-items-center u-link-v5 g-color-gray-dark-v1" href="#">
+                        <span class="u-icon-v3 u-icon-size--xs u-shadow-v25 g-font-size-12 g-bg-facebook g-bg-facebook--hover g-color-white rounded-circle g-mr-10" href="#">
+                          <i class="fa fa-code"></i>
+                        </span>
+                        <%= tag.name %>
+                      </a>
+                <span class="js-counter d-block g-color-gray-dark-v4"><%= tag.posts.length %></span>
+              </li>
+
+              <% }) %>
+          </ul>
+        </div>
+        <!-- End Social Links -->

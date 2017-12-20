@@ -1,0 +1,28 @@
+<!-- Articles -->
+<div class="g-max-width-700 mx-auto g-px-20 g-px-0--md g-pt-100">
+
+  <% page.posts.limit(2).each(function(post){ %>
+
+    <%- partial('feed',{post:post}) %>
+
+  <% }) %>
+
+</div>
+<!-- End Articles -->
+
+
+
+<!-- partial('randnew') -->
+
+
+<!-- Articles -->
+<div class="g-max-width-700 mx-auto g-px-20 g-px-0--md g-pt-100">
+
+  <% page.posts.slice(2).each(function(post){ %>
+
+    <%- partial('feed',{post:post}) %>
+
+  <% }) %>
+
+</div>
+<!-- End Articles -->

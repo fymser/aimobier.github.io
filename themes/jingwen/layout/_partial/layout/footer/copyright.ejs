@@ -1,0 +1,16 @@
+<!-- Copyright Footer -->
+<div class="g-bg-black-opacity-0_1 g-color-white-opacity-0_8 text-center g-py-20">
+  <div class="container">
+    <% var timestring %>
+      <% var nowTime = date(Date.now(), 'YYYY') %>
+        <% if (theme.footer.since && theme.footer.since < nowTime ) {
+          timestring = theme.footer.since+" - "+nowTime
+      }else {
+          timestring = nowTime
+      }%>
+        <small class="g-font-size-7 g-mr-10 g-mb-10 g-mb-0--md"><%= timestring%> © All Rights Reserved. Msiter by
+        <a class="g-color-white-opacity-0_8" href="#">Jing WenZheng</a>
+      </small>
+  </div>
+</div>
+<!-- End Copyright Footer -->

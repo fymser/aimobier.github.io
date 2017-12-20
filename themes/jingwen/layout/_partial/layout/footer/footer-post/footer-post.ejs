@@ -1,0 +1,35 @@
+<% site.posts.sort('date',-1).limit(4).each(function(post){ %>
+
+  <article class="media">
+
+
+  <%- partial('footer-post-image', {post: post}) %>
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="<%= url_for(post.path)%>"><%= post.title%></a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          <%- date(post.date, 'YYYY/M/D H:m:s') %>
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="<%= url_for(post.path)%>">
+                <i class="fa fa-comments-o"></i>
+                12
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  <% }) %>

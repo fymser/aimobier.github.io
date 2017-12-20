@@ -1,0 +1,42 @@
+<!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0"><%= __('footer.about') %></h2>
+  </div>
+
+  <div class="g-mb-30">
+    <p class="g-color-white-opacity-0_8"><%= theme.footer.about %></p>
+  </div>
+
+  <address class="mb-0">
+    <div class="g-mb-30">
+      <h4 class="h6 g-font-weight-600"><%= __('footer.local') %></h4>
+      <p class="mb-0 g-color-white-opacity-0_8"><%= theme.footer.local %> </p>
+    </div>
+
+    <!-- 配置标签相关视图 -->
+    <% if (theme.footer.emails.length){ %>
+
+      <div class="g-mb-30">
+        <h4 class="h6 g-font-weight-600"><%= __('footer.email') %>:</h4>
+
+        <% theme.footer.emails.forEach(function(email){ %>
+
+                <p class="mb-0 g-color-white-opacity-0_8"><%= email %></p>
+        <% }) %>
+
+      </div>
+
+      <% } %>
+
+
+
+    <div class="mb-0">
+      <h4 class="h6 g-font-weight-600"><%= __('footer.hitokoto') %>:</h4>
+      <p class="mb-0">
+        <a class="g-color-white-opacity-0_8" id="hitokoto" href="http://hitokoto.cn/">support@htmlstream.com</a>
+      </p>
+    </div>
+  </address>
+</div>
+<!-- End Footer Content -->

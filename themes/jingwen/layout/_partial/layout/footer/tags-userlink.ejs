@@ -1,0 +1,45 @@
+<!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+
+
+  <!-- 配置标签相关视图 -->
+  <% if (site.tags.length){ %>
+    <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+      <h2 class="u-heading-v2__title h6 text-uppercase mb-0"><%= __('footer.tags') %></h2>
+    </div>
+    <ul class="u-list-inline g-font-size-12 g-mb-30">
+
+      <% site.tags.limit(8).each(function(tag){ %>
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="<%- url_for(tag.path) %>">
+            <%= tag.name %>
+          </a>
+        </li>
+        <% }) %>
+    </ul>
+    <% } %>
+
+      <!-- 布局相关链接-->
+
+      <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+        <h2 class="u-heading-v2__title h6 text-uppercase mb-0"><%= __('footer.userlink') %></h2>
+      </div>
+
+      <ul class="list-unstyled">
+        <% for (var i in theme.footer.userlink){ %>
+
+          <li class="g-mb-5">
+            <i class="fa fa-angle-right g-mr-5"></i>
+
+            <a class="g-color-white-opacity-0_8" href="<%- url_for(theme.footer.userlink[i]) %>">
+              <%= i %>
+            </a>
+          </li>
+
+          <% } %>
+      </ul>
+
+
+
+</div>
+<!-- End Footer Content -->

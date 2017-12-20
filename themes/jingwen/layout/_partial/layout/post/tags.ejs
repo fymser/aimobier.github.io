@@ -1,0 +1,15 @@
+<!-- Popular Tags -->
+<div class="g-mb-20">
+  <div class="u-heading-v3-1 g-mb-30">
+    <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">标签</h2>
+  </div>
+
+  <ul class="u-list-inline g-font-size-11 text-uppercase mb-0">
+    <% site.tags.limit(10).each(function(tag){ %>
+            <li class="list-inline-item g-mb-10">
+              <a class="u-tags-v1 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15" href="<%- url_for(tag.path) %>"><%= tag.name %></a>
+            </li>
+      <% }) %>
+  </ul>
+</div>
+<!-- End Popular Tags -->

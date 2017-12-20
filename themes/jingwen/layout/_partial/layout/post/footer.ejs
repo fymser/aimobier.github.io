@@ -1,0 +1,32 @@
+<!-- Sources & Tags -->
+<div class="g-mb-30">
+  <h6 class="g-color-gray-dark-v1 g-mb-15">
+
+
+
+      <% if (post.categories && post.categories.length){ %>
+
+        <% post.categories.each(function(tag){ %>
+
+                    <strong class="g-mr-5">专栏:</strong> <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="<%- url_for(tag.path) %>"><%= tag.name %></a>
+          <% }) %>
+
+        <% } %>
+
+
+        </h6>
+  <h6 class="g-color-gray-dark-v1">
+          <strong class="g-mr-5">标签:</strong>
+
+
+          <% if (post.tags && post.tags.length){ %>
+
+            <% post.tags.each(function(tag){ %>
+                <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5" href="<%- url_for(tag.path) %>"><%= tag.name %></a>
+              <% }) %>
+
+            <% } %>
+
+        </h6>
+</div>
+<!-- End Sources & Tags -->

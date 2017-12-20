@@ -1,0 +1,29 @@
+<!-- News Feed -->
+<div class="g-mb-40">
+  <div class="u-heading-v3-1 g-mb-30">
+    <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">最新日志</h2>
+  </div>
+
+
+  <% site.posts.sort('date',-1).limit(4).each(function(post,i){ %>
+
+    <!-- Article -->
+    <article>
+      <h3 class="h6">
+              <a class="g-color-gray-dark-v1" href="<%- url_for(post.path) %>"><%= post.title %></a>
+            </h3>
+
+              <span class="g-font-size-12">
+                      <%- date(post.date, 'YYYY/M/D H:m:s') %>
+                    </span>
+    </article>
+    <!-- End Article -->
+
+    <% if(i < 3){%>
+    <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+    <% } %>
+
+  <% }) %>
+
+</div>
+<!-- End News Feed -->
