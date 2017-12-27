@@ -28,9 +28,9 @@
   </div>
 
   <% var name = pfi(post.content) %>
-    <% if (name){ %>
-      <figure class="mb-4">
-        <img class="img-fluid" src="<%- name.src %>">
+    <% if (name.src){ %>
+      <figure class="mb-4 text-center ">
+            <img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="<%- name.src %>">
         <% if (name.title){ %>
           <figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">
             <%- name.title %>
