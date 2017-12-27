@@ -40,7 +40,15 @@
     $.HSCore.components.HSGoTo.init('.js-go-to');
     $.HSCore.components.HSModalWindow.init('[data-modal-target]');
     $.getJSON("https://sslapi.hitokoto.cn/?encode=json", function(json) {
-      $("#hitokoto").html(json["hitokoto"]);
+
+      var author = json["from"];
+      var content = json["hitokoto"];
+
+      $("#hitokoto").html(content);
+
+      $("#headerhitokotocontent").html(content);
+      $("#headerhitokotoauthor").html(author);
+
     });
   });
 </script>

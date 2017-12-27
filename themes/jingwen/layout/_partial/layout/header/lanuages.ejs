@@ -6,6 +6,8 @@
 
 <script type="text/javascript">
 
+var counter;
+
 var config = {
   syncURL: "https://wd2622139095udguuj.wilddogio.com" //输入节点 URL
 };
@@ -23,5 +25,22 @@ ref.orderByChild("url").equalTo(window.location.href).on('value', function(snaps
 
   }, function (error) {
 });
+
+var zan = wilddog.sync().ref("dianzan");
+
+zan.on('value', function(snapshot) {
+    counter = snapshot.val();
+    $("#counter").html(""+counter);
+  }, function (error) {
+    console.log(error);
+  });
+
+
+function zanUpMethod(){
+  zan.set(counter+1)
+}
+function zanDownMethod(){
+  zan.set(counter-1)
+}
 
 </script>
