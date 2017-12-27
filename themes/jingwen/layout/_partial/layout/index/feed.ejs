@@ -6,7 +6,7 @@
       <li class="list-inline-item g-mr-10">
         <i class="align-middle g-color-primary mr-1 icon-communication-020 u-line-icon-pro"></i>
 
-        <% site.tags.limit(3).each(function(tag){ %>
+        <% post.tags.limit(3).each(function(tag){ %>
 
           <a class="g-font-weight-700" href="<%- url_for(tag.path) %>">
             <%= tag.name %>&nbsp;&nbsp;</a>
