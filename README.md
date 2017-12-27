@@ -1,26 +1,10 @@
-`git clone ` 项目之后进入 `make-blog`分支
+## 博客
 
-首先安装node支持包
-````shell
-npm install
-````
+荆文征的博客
 
-之后安装主题
-````
-git clone https://github.com/iissnan/hexo-theme-next themes/next
-````
-安装完成之后，拷贝 配置文件 和 404页面
-````
- cp -f source/themes_config.yml themes/next/_config.yml &&  cp -f source/404.html themes/next/source/404.html
-````
+本博客是为了记录我的一些工作和生活的地方。
 
+* [博客主页](msiter.com)
+* [个人主页](jingwenzheng.com)
 
-````shell
-npm install && git clone https://github.com/iissnan/hexo-theme-next themes/next &&  cp -f source/themes_config.yml themes/next/_config.yml &&  cp -f source/404.html themes/next/source/404.html
-
-````
-
-
-````shell
- hexo clean && hexo g && hexo s
-````
+[![Build Status](https://travis-ci.org/aimobier/aimobier.github.io.svg)](https://travis-ci.org/aimobier/aimobier.github.io)
