@@ -66,10 +66,10 @@ function imageHandle($){
     var title = $(this).attr("title");
 
     var replaceString = '\
-      <figure class="mb-4">\
+      <figure class="mb-4 text-center">\
 \
       <a class="js-fancybox-thumbs" href="'+url+'" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">\
-            <img class="img-fluid" src="'+url+'" alt="Image Description">\
+            <br/><img class="img-fluid g-brd-around g-brd-gray-light-v2 g-rounded-3" src="'+url+'" alt="Image Description">\
           </a>';
 
       if (title) {
