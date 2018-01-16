@@ -10,6 +10,7 @@ tags: [IOS, 稀奇古怪的问题]
 
 在这里记录一下。
 
+<!--more-->
 
 1. 进入 `/User/{username}/Library/Autosave Information` 这个文件夹下
 2. 删除里面 开头 Unsaved Xcode 的文件.
