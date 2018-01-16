@@ -29,7 +29,7 @@
         <!-- Background Gray Colored -->
         <ul class="u-list-inline">
 
-          <% site.tags.each(function(tag){ %>
+          <% site.tags.skip(5).each(function(tag){ %>
 
                         <li class="list-inline-item g-mb-10">
                           <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="<%- url_for(tag.path) %>"><%= tag.name %></a>
