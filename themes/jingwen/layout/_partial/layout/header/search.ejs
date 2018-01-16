@@ -32,6 +32,8 @@
   }
 
 </style>
+<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" charset="utf-8"></script>
 
 <!-- Subscribe Form -->
 <div class="col-6 col-md-5">
@@ -50,9 +52,9 @@
       g-brd-secondary-light-v2 rounded
       g-brd-primary--focus">
 
-        <ul class="list-unstyled resultlist" id="PostSearchResults">
+<table id="PostSearchResults" class="display" cellspacing="0" width="100%">
 
-        </ul>
+</table>
 
         <!-- Pagination #11 -->
         <nav class="text-center" aria-label="Page Navigation">
@@ -102,6 +104,8 @@
 
 <script type="text/javascript">
 
+  var searchTable;
+
   var createTemp = function(title,content){
 
     if(content.length>200){
@@ -109,6 +113,7 @@
     }
 
     return "\
+    <tr><td><ul class='list-unstyled resultlist' >\
     <li class='g-pa-20 g-mb-minus-1'>\
       <!-- Article -->\
       <article>\
@@ -126,6 +131,7 @@
           </article>\
       <!-- End Article -->\
     </li>\
+    </ul></td></tr>\
     ";
   }
 
@@ -214,7 +220,11 @@
               }
             }
           })
+          str = "<thead><th>title-1</th></thead>"+str
           $resultContent.innerHTML = str;
+          if (!searchTable) {
+            searchTable = $("#PostSearchResults").DataTable();
+          }
         })
       }
     })
