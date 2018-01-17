@@ -10,21 +10,21 @@
     padding: 0px;
     position: absolute;
     top: 42px;
-    display:none;
+    display: none;
     border-width: 1px;
     border-style: solid;
   }
 
-  #searchdownview nav{
+  #searchdownview nav {
     padding-top: 10px;
   }
 
-  #PostSearchResults_wrapper{
+  #PostSearchResults_wrapper {
     margin: 0px;
     padding-bottom: 0px;
   }
 
-/* 搜索结果 设置 */
+  /* 搜索结果 设置 */
 
   .resultlist {
     margin: 0px;
@@ -37,7 +37,8 @@
     border-bottom-color: #e0e4ea;
   }
 
-/* 搜索结果关键字 高粱设置 */
+  /* 搜索结果关键字 高粱设置 */
+
   .search-keyword {
     color: #6281c8;
     border-bottom: 1px dashed #4088b8;
@@ -45,11 +46,10 @@
   }
 
   /*  分页 前一夜 后一页 隐藏 边框 */
-  .searchpage a{
+
+  .searchpage a {
     border-style: hidden;
   }
-
-
 </style>
 
 
@@ -67,7 +67,7 @@
       g-placeholder-secondary-dark-v1
       g-bg-white g-font-weight-400
       g-font-size-13 rounded g-px-20
-      g-py-12 searchinput" id="PostSearchInput" type="text" placeholder="输入以搜索该博客文章">
+      g-py-12 searchinput" id="PostSearchInput" type="search" placeholder="输入以搜索该博客文章">
 
       <div class=" w-100 markdown g-bg-white
       g-brd-secondary-light-v2 rounded
@@ -81,7 +81,7 @@
 
 
     <span class="input-group-addon g-brd-none g-py-0 g-pr-0">
-      <button class="btn u-btn-white g-color-primary--hover g-bg-secondary g-font-weight-600 g-font-size-13 text-uppercase rounded g-py-12 g-px-20" type="submit">
+      <button id="BarrageStartButton" class="btn u-btn-white g-color-primary--hover g-bg-secondary g-font-weight-600 g-font-size-13 text-uppercase rounded g-py-12 g-px-20">
         <span class="g-hidden-md-down">search</span>
     <i class="g-hidden-lg-up fa fa-search"></i>
     </button>
@@ -98,20 +98,20 @@
 
   var SearchKeyElemnt = "search";
 
-  var Timer={
-  data:{},
-  start:function(key){
-    Timer.data[key]=new Date();
-  },
-  stop:function(key){
-    var time=Timer.data[key];
-    if(time)
-    Timer.data[key]=new Date()-time;
-  },
-  getTime:function(key){
-    return Timer.data[key];
-  }
-};
+  var Timer = {
+    data: {},
+    start: function(key) {
+      Timer.data[key] = new Date();
+    },
+    stop: function(key) {
+      var time = Timer.data[key];
+      if (time)
+        Timer.data[key] = new Date() - time;
+    },
+    getTime: function(key) {
+      return Timer.data[key];
+    }
+  };
 
   // AJAX 请求获取 XML 数据
   function RequestSearchXMLMethod(finish) {
@@ -137,7 +137,7 @@
     });
   }
 
-  function createTemp(title,url, content) {
+  function createTemp(title, url, content) {
 
     if (content.length > 200) {
       content = content.substring(0, 200) + "...";
@@ -149,7 +149,7 @@
     <!-- Article -->\
     <article>\
           <h3 class='h6'>\
-            <a class='g-color-main g-color-primary--hover' href='"+url+"'>" +
+            <a class='g-color-main g-color-primary--hover' href='" + url + "'>" +
       title +
       "</a>\
           </h3>\
@@ -163,21 +163,53 @@
   }
 
 
+  function WatchLeftAndRightKeyWork() {
+
+    $(document).keydown(function(event) {
+
+      var pointEvent = event.which == 37 || event.which == 39 || event.which == 27 || event.which == 96;
+
+      var pointStatus = $('#searchdownview').css('display') != 'none' || $("#PostSearchInput").is(':focus') || $("#PostSearchInput").val().length > 0;
+
+      if (pointEvent && pointStatus){
+        $("#PostSearchInput").blur(); // 失去焦点
+        event.preventDefault(); // 组织键盘
+        switch (event.which) { //判断按键;
+          case 37: // 上一页
+            SearchDataTablesElment.page('previous').draw('page');
+            break;
+          case 39: // 下一页
+            SearchDataTablesElment.page('next').draw('page');
+            break;
+            case 27:
+            case 96:
+            $("#PostSearchInput").val("");
+            $("#PostSearchInput").trigger("input");
+              break;
+          default:
+            break;
+        }
+      }
+    });
+  }
+
   // 监视输入框的一些输入问题
   // @params data XML 解析出来的JOSN 数据
   // @params finish 检测到输入框修改之后 回调的数据
   //
   // @return nil
   function WhachSearchInputMethod(datas, finish) {
-    var $input = document.getElementById("PostSearchInput");
-    $input.addEventListener('input', function() {
+
+    WatchLeftAndRightKeyWork();
+
+    $("#PostSearchInput").on('input',function(e){
 
       var startTime = new Date().getTime(); // 开始时间
 
       var dataSet = [];
       var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
       if (this.value.trim().length <= 0) {
-        finish(keywords,dataSet);
+        finish(keywords, dataSet);
         return;
       }
       // perform local searching
@@ -230,7 +262,7 @@
               data_title = data_title.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
               match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
             });
-            var datas = [createTemp(data_title,data_url, match_content)];
+            var datas = [createTemp(data_title, data_url, match_content)];
             dataSet.push(datas);
           };
         };
@@ -238,17 +270,17 @@
 
       var endTime = new Date().getTime(); // 开始时间
 
-      finish(keywords,dataSet,endTime - startTime);
+      finish(keywords, dataSet, endTime - startTime);
     });
   };
 
   function InitSearchInterfaceMethod() {
-    RequestSearchXMLMethod(function(keywords,datas,times) {
+    RequestSearchXMLMethod(function(keywords, datas, times) {
 
-      if(datas.length <= 0){
-        $("#searchdownview").attr("style","display:none;");//隐藏div
-      }else{
-        $("#searchdownview").attr("style","display:block;");//显示div
+      if (datas.length <= 0) {
+        $("#searchdownview").attr("style", "display:none;"); //隐藏div
+      } else {
+        $("#searchdownview").attr("style", "display:block;"); //显示div
       }
 
       if (!SearchDataTablesElment) {
@@ -262,9 +294,9 @@
           pagingType: "cutsomPage",
           footerCallback: function(tfoot, data, start, end, display) {
 
-            var keyWorkd = "<span style='color: #6281c8;font-weight: bold;'>"+$("#PostSearchInput").val()+"</span>";
+            var keyWorkd = "<span style='color: #6281c8;font-weight: bold;'>" + $("#PostSearchInput").val() + "</span>";
 
-            var title = "查询["+keyWorkd+"]结果共"+data.length+"个,总耗时"+times/1000+"秒";
+            var title = "查询[" + keyWorkd + "]结果共" + data.length + "个,总耗时" + times / 1000 + "秒";
 
             $("#infomessagelabel").html(title);
           },

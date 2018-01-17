@@ -173,9 +173,6 @@ $.fn.dataTableExt.oPagination.cutsomPage = {
                 oNumber.click({ 'fnCallbackDraw': fnCallbackDraw, 'oSettings': oSettings, 'sPage': i - 1 }, that.fnClickHandler);
             }
 
-
-            console.log(oNumber);
-
             // Draw
             oNumbers.append(oNumber);
         }
