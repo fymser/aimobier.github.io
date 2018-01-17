@@ -15,6 +15,17 @@
     border-style: solid;
   }
 
+  #searchdownview nav{
+    padding-top: 10px;
+  }
+
+  #PostSearchResults_wrapper{
+    margin: 0px;
+    padding-bottom: 0px;
+  }
+
+/* 搜索结果 设置 */
+
   .resultlist {
     margin: 0px;
     padding: 0px;
@@ -26,13 +37,24 @@
     border-bottom-color: #e0e4ea;
   }
 
+/* 搜索结果关键字 高粱设置 */
   .search-keyword {
     color: #6281c8;
     border-bottom: 1px dashed #4088b8;
     font-weight: bold;
   }
+
+  /*  分页 前一夜 后一页 隐藏 边框 */
+  .searchpage a{
+    border-style: hidden;
+  }
+
+
 </style>
+
+
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" charset="utf-8"></script>
+<script src="/assets/js/helpers/hs.pages.table.js" charset="utf-8"></script>
 
 <!-- Subscribe Form -->
 <div class="col-6 col-md-5">
@@ -50,15 +72,9 @@
       <div class=" w-100 markdown g-bg-white
       g-brd-secondary-light-v2 rounded
       g-brd-primary--focus" id="searchdownview">
-
         <table id="PostSearchResults" class="display" cellspacing="0" width="100%">
-
         </table>
-
-        <!-- Pagination #11 -->
-        <p class="g-pa-7-14 text-center" id="infomessagelabel">显示了多少个呢</p>
-        <!-- End Pagination #11 -->
-
+        <p class="text-center g-font-size-10" id="infomessagelabel">显示了多少个呢</p>
       </div>
 
     </div>
@@ -79,6 +95,23 @@
 
 <script type="text/javascript">
   var SearchDataTablesElment;
+
+  var SearchKeyElemnt = "search";
+
+  var Timer={
+  data:{},
+  start:function(key){
+    Timer.data[key]=new Date();
+  },
+  stop:function(key){
+    var time=Timer.data[key];
+    if(time)
+    Timer.data[key]=new Date()-time;
+  },
+  getTime:function(key){
+    return Timer.data[key];
+  }
+};
 
   // AJAX 请求获取 XML 数据
   function RequestSearchXMLMethod(finish) {
@@ -106,8 +139,8 @@
 
   function createTemp(title,url, content) {
 
-    if (content.length > 100) {
-      content = content.substring(0, 100) + "...";
+    if (content.length > 200) {
+      content = content.substring(0, 200) + "...";
     }
 
     return "\
@@ -120,13 +153,6 @@
       title +
       "</a>\
           </h3>\
-          <ul class='list-inline g-font-size-12 g-color-gray-dark-v5 g-mb-5'>\
-            <li class='list-inline-item'>Aug 17, 2017</li>\
-            <li class='list-inline-item'>/</li>\
-            <li class='list-inline-item'>\
-              <a class='g-color-gray-dark-v5' href='#'>Artificial Intelligence</a>\
-            </li>\
-          </ul>\
           <p class='g-font-size-12'>" +
       content + "</p>\
         </article>\
@@ -145,6 +171,9 @@
   function WhachSearchInputMethod(datas, finish) {
     var $input = document.getElementById("PostSearchInput");
     $input.addEventListener('input', function() {
+
+      var startTime = new Date().getTime(); // 开始时间
+
       var dataSet = [];
       var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
       if (this.value.trim().length <= 0) {
@@ -206,12 +235,15 @@
           };
         };
       });
-      finish(keywords,dataSet);
+
+      var endTime = new Date().getTime(); // 开始时间
+
+      finish(keywords,dataSet,endTime - startTime);
     });
   };
 
   function InitSearchInterfaceMethod() {
-    RequestSearchXMLMethod(function(keywords,datas) {
+    RequestSearchXMLMethod(function(keywords,datas,times) {
 
       if(datas.length <= 0){
         $("#searchdownview").attr("style","display:none;");//隐藏div
@@ -226,13 +258,15 @@
           searching: false,
           lengthChange: false,
           pageLength: 4,
-          dom: 'ipt',
           info: false,
+          pagingType: "cutsomPage",
           footerCallback: function(tfoot, data, start, end, display) {
 
-            var title = "共"+data.length+"个，显示"+start+"-"+end;
+            var keyWorkd = "<span style='color: #6281c8;font-weight: bold;'>"+$("#PostSearchInput").val()+"</span>";
 
-            $("#infomessagelabel").text(title);
+            var title = "查询["+keyWorkd+"]结果共"+data.length+"个,总耗时"+times/1000+"秒";
+
+            $("#infomessagelabel").html(title);
           },
           columns: [{
             title: ""
