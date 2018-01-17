@@ -8,9 +8,9 @@
   .markdown {
     margin: 0px;
     padding: 0px;
-    padding-bottom: 15px;
     position: absolute;
-    top: 44px;
+    top: 42px;
+    display:none;
     border-width: 1px;
     border-style: solid;
   }
@@ -27,12 +27,11 @@
   }
 
   .search-keyword {
+    color: #6281c8;
     border-bottom: 1px dashed #4088b8;
     font-weight: bold;
   }
-
 </style>
-<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css"/>
 <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" charset="utf-8"></script>
 
 <!-- Subscribe Form -->
@@ -50,35 +49,14 @@
 
       <div class=" w-100 markdown g-bg-white
       g-brd-secondary-light-v2 rounded
-      g-brd-primary--focus">
+      g-brd-primary--focus" id="searchdownview">
 
-<table id="PostSearchResults" class="display" cellspacing="0" width="100%">
+        <table id="PostSearchResults" class="display" cellspacing="0" width="100%">
 
-</table>
+        </table>
 
         <!-- Pagination #11 -->
-        <nav class="text-center" aria-label="Page Navigation">
-          <ul class="list-inline">
-            <li class="list-inline-item float-sm-left">
-              <a class="u-pagination-v1__item u-pagination-v1-4 g-rounded-50 g-pa-7-16" href="#" aria-label="Previous">
-                <span aria-hidden="true">
-                  <i class="fa fa-angle-left g-mr-5"></i>
-                  Previous
-                </span>
-                <span class="sr-only">Previous</span>
-              </a>
-            </li>
-            <li class="list-inline-item float-sm-right">
-              <a class="u-pagination-v1__item u-pagination-v1-4 g-rounded-50 g-pa-7-16" href="#" aria-label="Next">
-                <span aria-hidden="true">
-                  Next
-                  <i class="fa fa-angle-right g-ml-5"></i>
-                </span>
-                <span class="sr-only">Next</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <p class="g-pa-7-14 text-center" id="infomessagelabel">显示了多少个呢</p>
         <!-- End Pagination #11 -->
 
       </div>
@@ -88,7 +66,7 @@
 
     <span class="input-group-addon g-brd-none g-py-0 g-pr-0">
       <button class="btn u-btn-white g-color-primary--hover g-bg-secondary g-font-weight-600 g-font-size-13 text-uppercase rounded g-py-12 g-px-20" type="submit">
-        <span class="g-hidden-md-down">搜索文章</span>
+        <span class="g-hidden-md-down">search</span>
     <i class="g-hidden-lg-up fa fa-search"></i>
     </button>
     </span>
@@ -99,51 +77,16 @@
 
 
 
-
-
-
 <script type="text/javascript">
+  var SearchDataTablesElment;
 
-  var searchTable;
-
-  var createTemp = function(title,content){
-
-    if(content.length>200){
-      content = content.substring(0,200)+"...";
+  // AJAX 请求获取 XML 数据
+  function RequestSearchXMLMethod(finish) {
+    var search_path = "<%= config.search.path %>";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
     }
-
-    return "\
-    <tr><td><ul class='list-unstyled resultlist' >\
-    <li class='g-pa-20 g-mb-minus-1'>\
-      <!-- Article -->\
-      <article>\
-            <h3 class='h6'>\
-              <a class='g-color-main g-color-primary--hover' href='#'>"+title+"</a>\
-            </h3>\
-            <ul class='list-inline g-font-size-12 g-color-gray-dark-v5 g-mb-5'>\
-              <li class='list-inline-item'>Aug 17, 2017</li>\
-              <li class='list-inline-item'>/</li>\
-              <li class='list-inline-item'>\
-                <a class='g-color-gray-dark-v5' href='#'>Artificial Intelligence</a>\
-              </li>\
-            </ul>\
-            <p class='g-font-size-12'>"+content+"</p>\
-          </article>\
-      <!-- End Article -->\
-    </li>\
-    </ul></td></tr>\
-    ";
-  }
-
-
-  // A local search script with the help of [hexo-generator-search](https://github.com/PaicHyperionDev/hexo-generator-search)
-  // Copyright (C) 2015
-  // Joseph Pan <http://github.com/wzpan>
-  // Shuhao Mao <http://github.com/maoshuhao>
-  // Edited by MOxFIVE <http://github.com/MOxFIVE>
-
-  var searchFunc = function(path, search_id, content_id) {
-    'use strict';
+    var path = "<%= config.root %>" + search_path;
     $.ajax({
       url: path,
       dataType: "xml",
@@ -156,85 +99,156 @@
             url: $("url", this).text()
           };
         }).get();
-        var $input = document.getElementById(search_id);
-        var $resultContent = document.getElementById(content_id);
-        $input.addEventListener('input', function() {
-          var str = "";
-          var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
-          $resultContent.innerHTML = "";
-          if (this.value.trim().length <= 0) {
-            return;
-          }
-          // perform local searching
-          datas.forEach(function(data) {
-            var isMatch = true;
-            var content_index = [];
-            var data_title = data.title.trim().toLowerCase();
-            var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
-            var data_url = data.url;
-            var index_title = -1;
-            var index_content = -1;
-            var first_occur = -1;
-            // only match artiles with not empty titles and contents
-            if (data_title != '' && data_content != '') {
-              keywords.forEach(function(keyword, i) {
-                index_title = data_title.indexOf(keyword);
-                index_content = data_content.indexOf(keyword);
-                if (index_title < 0 && index_content < 0) {
-                  isMatch = false;
-                } else {
-                  if (index_content < 0) {
-                    index_content = 0;
-                  }
-                  if (i == 0) {
-                    first_occur = index_content;
-                  }
-                }
-              });
-            }
-            // show search results
-            if (isMatch) {
-              // str += "<li><a href='" + data_url + "' class='search-result-title' target='_blank'>" + "> " + data_title + "</a>";
-              var content = data.content.trim().replace(/<[^>]+>/g, "");
-              if (first_occur >= 0) {
-                // cut out characters
-                var start = first_occur - 6;
-                var end = first_occur + 6;
-                if (start < 0) {
-                  start = 0;
-                }
-                if (start == 0) {
-                  end = 10;
-                }
-                if (end > content.length) {
-                  end = content.length;
-                }
-                var match_content = content.substr(start, end);
-                // highlight all keywords
-                keywords.forEach(function(keyword) {
-                  var regS = new RegExp(keyword, "gi");
-                  match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
-                })
-                str += createTemp(data_title,match_content);
-                // str += "<p class=\"search-result\">" + match_content + "...</p>"
+        WhachSearchInputMethod(datas, finish);
+      }
+    });
+  }
+
+  function createTemp(title,url, content) {
+
+    if (content.length > 100) {
+      content = content.substring(0, 100) + "...";
+    }
+
+    return "\
+  <ul class='list-unstyled resultlist' >\
+  <li class='g-pa-20 g-mb-minus-1'>\
+    <!-- Article -->\
+    <article>\
+          <h3 class='h6'>\
+            <a class='g-color-main g-color-primary--hover' href='"+url+"'>" +
+      title +
+      "</a>\
+          </h3>\
+          <ul class='list-inline g-font-size-12 g-color-gray-dark-v5 g-mb-5'>\
+            <li class='list-inline-item'>Aug 17, 2017</li>\
+            <li class='list-inline-item'>/</li>\
+            <li class='list-inline-item'>\
+              <a class='g-color-gray-dark-v5' href='#'>Artificial Intelligence</a>\
+            </li>\
+          </ul>\
+          <p class='g-font-size-12'>" +
+      content + "</p>\
+        </article>\
+    <!-- End Article -->\
+  </li>\
+  </ul>\
+  ";
+  }
+
+
+  // 监视输入框的一些输入问题
+  // @params data XML 解析出来的JOSN 数据
+  // @params finish 检测到输入框修改之后 回调的数据
+  //
+  // @return nil
+  function WhachSearchInputMethod(datas, finish) {
+    var $input = document.getElementById("PostSearchInput");
+    $input.addEventListener('input', function() {
+      var dataSet = [];
+      var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+      if (this.value.trim().length <= 0) {
+        finish(keywords,dataSet);
+        return;
+      }
+      // perform local searching
+      datas.forEach(function(data) {
+        var isMatch = true;
+        var content_index = [];
+        var data_title = data.title.trim().toLowerCase();
+        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+        var data_url = data.url;
+        var index_title = -1;
+        var index_content = -1;
+        var first_occur = -1;
+        // only match artiles with not empty titles and contents
+        if (data_title != '' && data_content != '') {
+          keywords.forEach(function(keyword, i) {
+            index_title = data_title.indexOf(keyword);
+            index_content = data_content.indexOf(keyword);
+            if (index_title < 0 && index_content < 0) {
+              isMatch = false;
+            } else {
+              if (index_content < 0) {
+                index_content = 0;
+              }
+              if (i == 0) {
+                first_occur = index_content;
               }
             }
-          })
-          str = "<thead><th>title-1</th></thead>"+str
-          $resultContent.innerHTML = str;
-          if (!searchTable) {
-            searchTable = $("#PostSearchResults").DataTable();
-          }
-        })
+          });
+        }
+        // show search results
+        if (isMatch) {
+          var content = data.content.trim().replace(/<[^>]+>/g, "");
+          if (first_occur >= 0) {
+            // cut out characters
+            var start = first_occur - 6;
+            var end = first_occur + 6;
+            if (start < 0) {
+              start = 0;
+            }
+            if (start == 0) {
+              end = 10;
+            }
+            if (end > content.length) {
+              end = content.length;
+            }
+            var match_content = content.substr(start, end);
+            // highlight all keywords
+            keywords.forEach(function(keyword) {
+              var regS = new RegExp(keyword, "gi");
+              data_title = data_title.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+              match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+            });
+            var datas = [createTemp(data_title,data_url, match_content)];
+            dataSet.push(datas);
+          };
+        };
+      });
+      finish(keywords,dataSet);
+    });
+  };
+
+  function InitSearchInterfaceMethod() {
+    RequestSearchXMLMethod(function(keywords,datas) {
+
+      if(datas.length <= 0){
+        $("#searchdownview").attr("style","display:none;");//隐藏div
+      }else{
+        $("#searchdownview").attr("style","display:block;");//显示div
       }
-    })
-  }
+
+      if (!SearchDataTablesElment) {
+        SearchDataTablesElment = $('#PostSearchResults').DataTable({
+          data: datas,
+          ordering: false,
+          searching: false,
+          lengthChange: false,
+          pageLength: 4,
+          dom: 'ipt',
+          info: false,
+          footerCallback: function(tfoot, data, start, end, display) {
+
+            var title = "共"+data.length+"个，显示"+start+"-"+end;
+
+            $("#infomessagelabel").text(title);
+          },
+          columns: [{
+            title: ""
+          }]
+        });
+      } else {
+        SearchDataTablesElment.clear().rows.add(datas).draw();
+      }
 
 
-  var search_path = "<%= config.search.path %>";
-  if (search_path.length == 0) {
-    search_path = "search.xml";
-  }
-  var path = "<%= config.root %>" + search_path;
-  searchFunc(path, 'PostSearchInput', 'PostSearchResults')
+
+    });
+  };
+
+  $(document).ready(function() {
+
+    InitSearchInterfaceMethod();
+  });
 </script>
