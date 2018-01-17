@@ -316,6 +316,13 @@
   }
 
   function InitSearchInterfaceMethod() {
+
+    $("#PostSearchInput").focus(function(){
+        if ($("#PostSearchInput").val().length > 0) {
+          $("#PostSearchInput").trigger("input");
+        }
+    });
+
     RequestSearchXMLMethod(function(keywords, datas, times) {
       if (datas.length <= 0) {
         $("#searchdownview").attr("style", "display:none;"); //隐藏div
