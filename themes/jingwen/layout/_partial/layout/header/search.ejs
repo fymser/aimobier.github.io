@@ -10,9 +10,12 @@
     padding: 0px;
     position: absolute;
     top: 42px;
-    display: none;
     border-width: 1px;
     border-style: solid;
+  }
+
+  #searchdownview {
+    display: none;
   }
 
   #searchdownview nav {
@@ -23,6 +26,30 @@
     margin: 0px;
     padding-bottom: 0px;
   }
+
+  /* 配置 没有搜索到内容的 上边距 */
+
+  #emptymessageview {
+    display: none;
+  }
+
+  #emptymessageview p {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+
+  #searchdownview table {
+    table-layout: fixed;
+  }
+
+  #searchdownview td {
+
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
+
 
   /* 搜索结果 设置 */
 
@@ -72,9 +99,15 @@
       <div class=" w-100 markdown g-bg-white
       g-brd-secondary-light-v2 rounded
       g-brd-primary--focus" id="searchdownview">
-        <table id="PostSearchResults" class="display" cellspacing="0" width="100%">
+        <table id="PostSearchResults" class="w-100">
         </table>
-        <p class="text-center g-font-size-10" id="infomessagelabel">显示了多少个呢</p>
+        <p class="text-center g-font-size-10" id="infomessagelabel"></p>
+      </div>
+
+      <div class=" w-100 markdown g-bg-white
+      g-brd-secondary-light-v2 rounded
+      g-brd-primary--focus" id="emptymessageview">
+        <p class="text-center g-font-size-13">什么都没有找到</p>
       </div>
 
     </div>
@@ -171,7 +204,7 @@
 
       var pointStatus = $('#searchdownview').css('display') != 'none' || $("#PostSearchInput").is(':focus') || $("#PostSearchInput").val().length > 0;
 
-      if (pointEvent && pointStatus){
+      if (pointEvent && pointStatus) {
         $("#PostSearchInput").blur(); // 失去焦点
         event.preventDefault(); // 组织键盘
         switch (event.which) { //判断按键;
@@ -181,11 +214,11 @@
           case 39: // 下一页
             SearchDataTablesElment.page('next').draw('page');
             break;
-            case 27:
-            case 96:
+          case 27:
+          case 96:
             $("#PostSearchInput").val("");
             $("#PostSearchInput").trigger("input");
-              break;
+            break;
           default:
             break;
         }
@@ -202,7 +235,7 @@
 
     WatchLeftAndRightKeyWork();
 
-    $("#PostSearchInput").on('input',function(e){
+    $("#PostSearchInput").on('input', function(e) {
 
       var startTime = new Date().getTime(); // 开始时间
 
@@ -274,18 +307,26 @@
     });
   };
 
+  function EmptyViewHandleMethod(datacount) {
+    if (datacount <= 0 && $("#PostSearchInput").val().length > 0) {
+      $("#emptymessageview").attr("style", "display:block;"); //隐藏div
+    } else {
+      $("#emptymessageview").attr("style", "display:none;"); //显示div
+    }
+  }
+
   function InitSearchInterfaceMethod() {
     RequestSearchXMLMethod(function(keywords, datas, times) {
-
       if (datas.length <= 0) {
         $("#searchdownview").attr("style", "display:none;"); //隐藏div
       } else {
         $("#searchdownview").attr("style", "display:block;"); //显示div
       }
-
+      EmptyViewHandleMethod(datas.length);
       if (!SearchDataTablesElment) {
         SearchDataTablesElment = $('#PostSearchResults').DataTable({
           data: datas,
+          autoWidth: false,
           ordering: false,
           searching: false,
           lengthChange: false,
