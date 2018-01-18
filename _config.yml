@@ -7,15 +7,28 @@ title: 荆文征
 subtitle: 已識乾坤大，猶憐草木新。
 description: 欲买桂花同载酒<br/>终不似 少年游
 author: 小酒馆老板
+keywords: 荆文征,MSITER,msiter,jingwenzheng,IOS,Blog,博客,荆文征博客,Nodejs,JAVA,JavaScript,js,swift,oc,objective-c,c++,c
 language: zh-Hans
 timezone:
+
+# 转换为拼音
+## 将标题转换为英文
+transform: true
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
 url: http://blog.msiter.com/
 root: /
-permalink: :year/:month/:day/:title/
+# permalink: :year/:month/:day/:title/
+permalink: :title-:year:month:day.html
 permalink_defaults:
+
+# sitemap
+## SEO
+sitemap:
+    path: sitemap.xml
+baidusitemap:
+    path: baidusitemap.xml
 
 # Directory
 source_dir: source
@@ -96,13 +109,6 @@ search:
 ## Plugins: https://hexo.io/plugins/
 ## Themes: https://hexo.io/themes/
 theme: jingwen
-
-algolia:
-  applicationID: 'Q6M8NFYVGH'
-  apiKey: 'ea0e0e2daf8318fe548dde76c30ee5bd'
-  adminApiKey: '38c68fb99f1cba839d826ba2ceef6e7a'
-  indexName: 'aimobier'
-  chunkSize: 5000
 
 # Deployment
 ## Docs: https://hexo.io/docs/deployment.html

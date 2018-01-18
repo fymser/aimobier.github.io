@@ -94,13 +94,14 @@
       g-placeholder-secondary-dark-v1
       g-bg-white g-font-weight-400
       g-font-size-13 rounded g-px-20
-      g-py-12 searchinput" id="PostSearchInput" type="search" placeholder="输入以搜索该博客文章">
+      g-py-12 searchinput"
+      autocomplete="off"
+      id="PostSearchInput" type="text" placeholder="输入以搜索该博客文章">
 
       <div class=" w-100 markdown g-bg-white
       g-brd-secondary-light-v2 rounded
       g-brd-primary--focus" id="searchdownview">
-        <table id="PostSearchResults" class="w-100">
-        </table>
+      <table id="PostSearchResults" ></table>
         <p class="text-center g-font-size-10" id="infomessagelabel"></p>
       </div>
 

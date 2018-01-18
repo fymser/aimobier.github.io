@@ -1,1 +1,13 @@
+Sitemap: http://blog.msiter.com/sitemap.xml
+Sitemap: http://blog.msiter.com/baidusitemap.xml
 
+User-agent: *
+Allow: /
+Allow: /archives/
+Allow: /categories/
+Allow: /tags/
+Allow: /about/
+
+Disallow: /assets/
+Disallow: /revolution-slider/
+Disallow: /publicFiles/
