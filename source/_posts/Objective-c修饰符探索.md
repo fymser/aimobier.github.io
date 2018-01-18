@@ -1,8 +1,11 @@
 ---
 title: Objective-c修饰符探索
-date: 2018-01-11 11:11:11
-tags: [IOS,ObjC]
+tags:
+  - IOS
+  - ObjC
 categories: 学习
+permalink: Objectivecxsfts
+date: 2018-01-11 11:11:11
 ---
 
 最近想学习一下 objc的 一些修饰符的相关问题。

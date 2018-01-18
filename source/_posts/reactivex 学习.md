@@ -1,8 +1,11 @@
 ---
 title: reactivex 学习
-date: 2016-6-21 23:22:00
-tags: [reactiv,rxswift]
+tags:
+  - reactiv
+  - rxswift
 categories: 开发帮助
+permalink: reactivexxx
+date: 2016-06-21 23:22:00
 ---
 
 ![](http://image.msiter.com/stock-photo-179922657.jpg "庆幸你来自远方不清楚我的过往。")

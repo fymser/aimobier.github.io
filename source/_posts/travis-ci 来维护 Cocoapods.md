@@ -1,8 +1,12 @@
 ---
 categories: IOS
 title: travis-ci 来维护 Cocoapods
+tags:
+  - travis-ci
+  - ios
+  - cocoapods
+permalink: traviscilwhCocoapods
 date: 2017-05-25 18:54:00
-tags: [travis-ci,ios,cocoapods]
 ---
 
 ![](http://image.msiter.com/stock-photo-213307611.jpg "人的一切痛苦，本质上都是对自己的无能的愤怒。——王小波")

@@ -1,8 +1,13 @@
 ---
 categories: IOS
 title: AsyncDisplayKit 2.1 Gif错误，以及解决方法
+tags:
+  - Objective-C
+  - AsyncDisplayKit
+  - ios
+  - 约束教程
+permalink: AsyncDisplayKit21Gifcwyjjjff
 date: 2017-08-22 14:45:00
-tags: [Objective-C, AsyncDisplayKit,ios,约束教程]
 ---
 
 在使用 AsyncDisplayKit 遇到了一些问题，因为工作需要必须支持IOS7，所以选择了 AsyncDisplayKit 2.1版本。但是在使用 其中的 展示gif的时候出现了一些问题。

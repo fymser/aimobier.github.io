@@ -1,8 +1,11 @@
 ---
 categories: IOS
 title: Xcode8 无响应 点击Stop 卡死问题
+tags:
+  - IOS
+  - 稀奇古怪的问题
+permalink: Xcode8wxydjStopqswt
 date: 2018-01-09 14:18:00
-tags: [IOS, 稀奇古怪的问题]
 ---
 
 最近在学习 Pthreads,写了一些代码，每次运行结束后，都会出现无法Stop，每次都需要强制关闭 Xcode的问题。    

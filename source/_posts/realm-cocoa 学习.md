@@ -1,8 +1,11 @@
 ---
 title: Realm-cocoa 学习
-date: 2016-3-3 20:53:35
-tags: [DB,realm]
+tags:
+  - DB
+  - realm
 categories: IOS
+permalink: Realmcocoaxx
+date: 2016-03-03 20:53:35
 ---
 ![](http://image.msiter.com/stock-photo-181146547.jpg "如果没有见过光明，我本可以忍受黑暗。")
 

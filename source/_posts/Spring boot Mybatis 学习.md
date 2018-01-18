@@ -1,8 +1,12 @@
 ---
 categories: 服务器
 title: Spring boot Mybatis 学习
-date: 2017-7-21 18:25:00
-tags: [java, spring boot,mybatis]
+tags:
+  - java
+  - spring boot
+  - mybatis
+permalink: SpringbootMybatisxx
+date: 2017-07-21 18:25:00
 ---
 
 ![](http://image.msiter.com/stock-photo-220506113.jpg "我年华虚度，空有一身疲倦")

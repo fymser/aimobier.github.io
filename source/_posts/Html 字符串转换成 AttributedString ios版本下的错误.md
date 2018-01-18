@@ -1,8 +1,11 @@
 ---
 categories: IOS
 title: Html 字符串转换成 AttributedString ios版本下的错误
+tags:
+  - AttributedString
+  - iOS8 html2AttributedString error
+permalink: HtmlzfczhcAttributedStringiosbbxdcw
 date: 2017-05-17 14:31:00
-tags: [AttributedString,iOS8 html2AttributedString error]
 ---
 
 在ios中想要把html字符串转换成 AttributedString ，需要使用以下方法

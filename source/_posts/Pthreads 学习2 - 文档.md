@@ -1,8 +1,12 @@
 ---
 title: Pthreads 学习1
-date: 2018-1-11 08:22:00
-tags: [IOS,Pthreads,线程]
+tags:
+  - IOS
+  - Pthreads
+  - 线程
 categories: 线程
+permalink: Pthreadsxx1
+date: 2018-01-11 08:22:00
 ---
 
 在共享内存多处理器体系结构中，可以使用线程来实现并行性。从历史上看，硬件供应商已经实现了自己的专有版本的线程，使得可移植性成为软件开发人员的关注点。对于UNIX系统，标准化的C语言线程编程接口已由IEEE POSIX 1003.1c标准规定。坚持这个标准的实现被称为POSIX线程或Pthreads。

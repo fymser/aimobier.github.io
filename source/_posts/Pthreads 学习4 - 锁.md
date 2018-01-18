@@ -1,8 +1,13 @@
 ---
 title: Pthreads 学习4 - 锁
-date: 2018-1-10 23:22:00
-tags: [IOS,POSIX,Pthreads,线程]
+tags:
+  - IOS
+  - POSIX
+  - Pthreads
+  - 线程
 categories: 线程
+permalink: Pthreadsxx4s
+date: 2018-01-10 23:22:00
 ---
 我也已经学习了挺久了，那么接下来我会进行一些总结性的记录。
 

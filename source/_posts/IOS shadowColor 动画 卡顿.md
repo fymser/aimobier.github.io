@@ -1,8 +1,11 @@
 ---
 categories: IOS
 title: IOS shadowColor 动画 卡顿
+tags:
+  - Objective-C
+  - ios
+permalink: IOSshadowColordhqd
 date: 2017-10-12 18:00:00
-tags: [Objective-C,ios]
 ---
 
 最近开发的时候遇见了一件怪事儿，做了一个 `UIViewControllerContextTransitioning`,在同事的手机上跳转会卡顿。在此之前写的跳转动画都没有卡顿的现象。

@@ -1,8 +1,13 @@
 ---
 categories: IOS
 title: Autolayout 和 size-class 简明教程
+tags:
+  - swift
+  - autolayout
+  - ios
+  - 约束教程
+permalink: Autolayouthsizeclassjmjc
 date: 2016-11-21 03:25:00
-tags: [swift, autolayout,ios,约束教程]
 ---
 
 ![](http://image.msiter.com/stock-photo-184089425.jpg "让你难过的事情，有一天，你一定会笑着说出来。")

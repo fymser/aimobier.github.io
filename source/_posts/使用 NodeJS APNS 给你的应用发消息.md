@@ -1,8 +1,12 @@
 ---
 categories: 服务器
 title: 使用 NodeJS APNS 给你的应用发消息
+tags:
+  - NodeJS
+  - APNs
+  - ios
+permalink: syNodeJSAPNSgndyyfxx
 date: 2017-11-22 17:02:00
-tags: [NodeJS, APNs,ios]
 ---
 
 用到了小米的 MiPushSDK 今天出现了问题，总之无论如何就吃错误。在跟他们的开发人员进行交流的同时，我想看看是谁的问题，所以有了以下的经历。

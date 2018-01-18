@@ -1,8 +1,12 @@
 ---
 categories: IOS
 title: RxSwift Moya 实际项目实践
+tags:
+  - RxSwift
+  - Moya
+  - ios
+permalink: RxSwiftMoyasjxmsj
 date: 2017-12-26 14:45:00
-tags: [RxSwift, Moya,ios]
 ---
 
 在公司最近贷款项目被国家管控的原因，这几天一直在学习。今天就开始说说 rXswift 吧。

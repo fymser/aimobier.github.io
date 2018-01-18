@@ -1,8 +1,12 @@
 ---
 title: Pthreads 学习1
-date: 2018-1-10 23:22:00
-tags: [IOS,Pthreads,线程]
+tags:
+  - IOS
+  - Pthreads
+  - 线程
 categories: 线程
+permalink: Pthreadsxx1
+date: 2018-01-10 23:22:00
 ---
 
 为了学习IOS中的多线程，开始研究线程。但是感觉一开始就学习IOS的线程的话，很难理解，所以学习了Pthreads。

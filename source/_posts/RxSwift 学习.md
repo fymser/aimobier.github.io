@@ -1,8 +1,12 @@
 ---
 categories: IOS
 title: RxSwift 学习 未完待续
-date: 2016-07-6 21:16:43
-tags: [swift,ios,RX]
+tags:
+  - swift
+  - ios
+  - RX
+permalink: RxSwiftxxwwdx
+date: 2016-07-06 21:16:43
 ---
 
 ## 简介

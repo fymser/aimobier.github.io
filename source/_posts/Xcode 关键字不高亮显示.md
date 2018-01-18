@@ -1,8 +1,11 @@
 ---
 categories: IOS
 title: Xcode 关键字不高亮显示
+tags:
+  - IOS
+  - 稀奇古怪的问题
+permalink: Xcodegjzbglxs
 date: 2018-01-09 14:23:00
-tags: [IOS, 稀奇古怪的问题]
 ---
 
 Xcode 在长时间运行之后，会出现一个问题，那就是 例如 `return` 不再高亮显示了。   

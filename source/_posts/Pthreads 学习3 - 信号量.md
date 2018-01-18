@@ -1,8 +1,12 @@
 ---
 title: Pthreads 学习3 - 信号量
-date: 2018-1-11 23:22:00
-tags: [IOS,Pthreads,线程]
+tags:
+  - IOS
+  - Pthreads
+  - 线程
 categories: 线程
+permalink: Pthreadsxx3xhl
+date: 2018-01-11 23:22:00
 ---
 
 锁，在多个线程中一起访问同一个属性，如果不加锁的话，会导致数据出现错误。

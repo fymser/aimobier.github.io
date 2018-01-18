@@ -1,8 +1,11 @@
 ---
 categories: 服务器
 title: Nodejs Async 学习
-date: 2015-07-6 18:41:43
-tags: [nodejs,async]
+tags:
+  - nodejs
+  - async
+permalink: NodejsAsyncxx
+date: 2015-07-06 18:41:43
 ---
 ![](http://image.msiter.com/stock-photo-151005535.jpg "让你难过的事情，有一天，你一定会笑着说出来。")
 

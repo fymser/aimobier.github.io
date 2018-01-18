@@ -1,8 +1,12 @@
 ---
 categories: 开发帮助
 title: hexo 增加本地搜索模块
+tags:
+  - hexo
+  - js
+  - jquery
+permalink: hexozjbdssmk
 date: 2018-01-17 18:41:00
-tags: [hexo, js,jquery]
 ---
 
 马上要下班了,【笔芯】。
@@ -12,6 +16,8 @@ tags: [hexo, js,jquery]
 好吧，那咱们就自己LocalSearch吧。这个博客的本地搜索，我做了一天半才做完，本来不是很难的功能，因为本身人家的搜索的数据都给你了。你就是负责一个显示怎么就这么难？
 
 好吧，确实好难啊，，，，我这个博客用的是 unify 的 HTML 模版，本身他没有搜索结果展示的相关的，我得自己想如何展示，一点点的抠出来了。接下来我主要来讲解一下我如何做的吧。
+
+<!--more-->
 
 ### 生成 Search.xml
 
@@ -84,4 +90,190 @@ datas.forEach(function(data) {
 之后我们设置  search-keyword 的calss 就可以了～
 
 ### 使用 Datatables 分页展示内容
-到了以上其实就已经可以了
+到了以上其实就已经可以了,你只需要找到自己的需要的筛选结果显示器就可以了的。但是无奈我用的这套模版没有只能自己开发了。而且还遇到了一个问题。在小屏幕的时候显示的很差强人意.. 目前因为不熟悉 html 前端的开发，先放弃了。     
+首先来说我们做这个显示结果总结的一些知识点吧。
+
+#### DataTable JavaScript DataSource Refresh
+
+关于这个筛选出来结果之后重新复制到 DataTables 出现了一个不可以重新 init 的问题，所以在查找了一些资料之后，发现了解决办法。
+
+````js
+var SearchDataTablesElment;
+if (!SearchDataTablesElment) {
+  SearchDataTablesElment = $("#PostSearchResults").DataTable({
+    data: datas
+  );
+} else {
+  SearchDataTablesElment.clear().rows.add(datas).draw();
+}
+````
+我们可以通过判断 Table 是否存在，之后来觉的是生成还是重新绘制行。
+
+#### DataTables 一些配置
+关于 这个控件如果熟悉的话 就不需要继续看了，，我这是以前用过，但是现在许久没用了，自然就需要重新看了。。。
+````js
+{
+  data: datas,
+  autoWidth: false,
+  ordering: false,
+  searching: false,
+  lengthChange: false,
+  pageLength: 4,
+  info: false,
+  pagingType: "cutsomPage",
+  footerCallback: function(tfoot, data, start, end, display) {
+
+    var keyWorkd = "<span style='color: #6281c8;font-weight: bold;'>" + $("#PostSearchInput").val() + "</span>";
+
+    var title = "查询[" + keyWorkd + "]结果共" + data.length + "个,总耗时" + times / 1000 + "秒";
+
+    $("#infomessagelabel").html(title);
+  },
+  columns: [{
+    title: ""
+  }]
+}
+````
+这是我的一些配置。在[这里查看更多的API](https://datatables.net/reference/option/)
+
+#### Custom DataTables pagingType
+这里真的是好麻烦的，，差了好多资料，大多都是一些修改 分页器的 Class这些东西的。涉及到其他的话就看不到了。最后终于还是在(官方网站)[https://datatables.net/plug-ins/pagination/]找到了方法。        
+你也可以查看我的(自定义方法)[/assets/js/helpers/hs.pages.table.js]，我这里设置到了一些创建 包裹 控件的方法。
+
+还有一些其他的东西，比如 监听 ecs 以及 左右键位来换页。代码如下。当然你也可以自己在这个HTML中查找，当时没有c抽象成js文件，直接就是写在这里面的。
+````js
+
+  function WatchLeftAndRightKeyWork() {
+
+    $(document).keydown(function(event) {
+
+      var pointEvent = event.which == 37 || event.which == 39 || event.which == 27 || event.which == 96;
+
+      var pointStatus = $('#searchdownview').css('display') != 'none' || $("#PostSearchInput").is(':focus') || $("#PostSearchInput").val().length > 0;
+
+      if (pointEvent && pointStatus) {
+        $("#PostSearchInput").blur(); // 失去焦点
+        event.preventDefault(); // 组织键盘
+        switch (event.which) { //判断按键;
+          case 37: // 上一页
+            SearchDataTablesElment.page('previous').draw('page');
+            break;
+          case 39: // 下一页
+            SearchDataTablesElment.page('next').draw('page');
+            break;
+          case 27:
+          case 96:
+            $("#PostSearchInput").val("");
+            $("#PostSearchInput").trigger("input");
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  }
+````
+
+#### 关于TableView中有些内容会超出div的情况
+在这个问题上，我偶尔发现当我搜索结果出现大段的英文的时候，不会出现折行而是超出父控件。
+
+````css
+
+  #searchdownview table {
+    table-layout: fixed;
+  }
+
+  #searchdownview td {
+
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+````
+
+另外 关于搜索输入框偶尔展示输入记录。`autocomplete="off"`.... 博大... 程序员 没有google 百度，，，难以想象。。。
+
+主要就是这些，接下来我会进行一些 SEO 相关的问题。
+
+### 关于 Https
+好吧，我真的特别喜欢那些绿色的小锁，以及前面的一些字 比如 'Apple Inc.[US]' 日日！  好帅啊！       
+好吧，最后实现了，虽然没有那些字，毕竟是免费的不计较的了。
+
+`CloudFlare` 好吧 就是他，他其实也没有给你证书，只是给你做了一层 DNS 代理，这样子的话，你访问的时候会带上人家的 https 证书，当然你要是愿意支付每个月 5 美元的钱的话，是可以加小字的。。。没钱。。。
+
+设置 page rules 可以将所有的 http 请求转换为 https。
+
+另外其实还是有不少免费证书申请的，但是无奈，我没有自己的服务器，所以只能，这样子了。
+
+### SEO 优化
+增加 mate 属性一些值
+
+````ejs
+<% if (config.keywords){ %>
+  <meta name="keywords" content="<%= config.keywords %>">
+<%} %>
+<% if (config.author){ %>
+  <meta name="author" content="<%= config.author %>">
+<%} %>
+<% if (config.description){ %>
+  <meta name="description" content="<%= config.description %>">
+<%} %>
+````
+增加 拼音 设置一些方法 增加 script 中针对于 `before_post_render` 的监听，使用 `pinyin` Nodejs 模块将标题转换为 拼音并增加 .html 后缀。
+````js
+var hexo = hexo || {};
+var config = hexo.config;
+
+var fs = require('hexo-fs');
+var pinyin = require("pinyin");
+var front = require('hexo-front-matter');
+
+
+
+hexo.extend.filter.register('before_post_render', function(data) {
+  if (!config.transform || !config.url || data.layout !== 'post') {
+    return data;
+  }
+  let tmpPost = front.parse(data.raw);
+  let title = data.title;
+  var final_title_str = "";
+  pinyin(title, { style: pinyin.STYLE_FIRST_LETTER, heteronym: true }).forEach(function(value,index,array){
+    final_title_str += value[0];
+  });
+  final_title_str=final_title_str.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g,"");
+  final_title_str = final_title_str.replace(/[\u3002|\uff1f|\uff01|\uff0c|\u3001|\uff1b|\uff1a|\u201c|\u201d|\u2018|\u2019|\uff08|\uff09|\u300a|\u300b|\u3008|\u3009|\u3010|\u3011|\u300e|\u300f|\u300c|\u300d|\ufe43|\ufe44|\u3014|\u3015|\u2026|\u2014|\uff5e|\ufe4f|\uffe5]/,"");
+  tmpPost.permalink = final_title_str;
+  // console.log(final_title_str);
+  let postStr = front.stringify(tmpPost);
+  postStr = '---\n' + postStr;
+  fs.writeFileSync(data.full_source, postStr, 'utf-8');
+
+  return data;
+});
+
+````
+
+减少 html url 的层数,在根目录下的 `_config.yml`,配置一下代码。
+
+````yml
+# URL
+## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
+url: http://blog.msiter.com/
+root: /
+# permalink: :year/:month/:day/:title/
+permalink: :title-:year:month:day.html
+permalink_defaults:
+````
+
+增加 sitmap
+````shell
+"hexo-generator-sitemap": "",
+````
+安装 组建，在config 配置如下。
+````yml
+# sitemap
+## SEO
+sitemap:
+    path: sitemap.xml
+baidusitemap:
+    path: baidusitemap.xml
+````

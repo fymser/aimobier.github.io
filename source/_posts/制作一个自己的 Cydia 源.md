@@ -1,8 +1,12 @@
 ---
 categories: IOS
 title: 制作一个自己的 Cydia 源
-date: 2016-11-12 2:05:43
-tags: [越狱,cydia,制作源]
+tags:
+  - 越狱
+  - cydia
+  - 制作源
+permalink: zzygzjdCydiay
+date: 2016-11-12 02:05:43
 ---
 
 ![](http://image.msiter.com/stock-photo-155012621.jpg "夜里不睡的人，白天多多少少总有什么逃避掩饰的吧。白昼解不开的结黑夜慢慢耗")

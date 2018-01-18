@@ -1,8 +1,11 @@
 ---
 title: Swagger 初级学习
-date: 2015-7-13 18:41:43
-tags: [swagger,api]
+tags:
+  - swagger
+  - api
 categories: 开发帮助
+permalink: Swaggercjxx
+date: 2015-07-13 18:41:43
 ---
 ![](http://image.msiter.com/stock-photo-76133855.jpg "突然想到你，笑了笑自己。")
 

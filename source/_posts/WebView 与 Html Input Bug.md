@@ -1,8 +1,15 @@
 ---
 categories: IOS
 title: WebView 与 Html Input File 以及 Upload File 出现的问题
+tags:
+  - WebView
+  - WKWebView
+  - UIWebView
+  - Input
+  - File
+  - Bug
+permalink: WebViewyHtmlInputFileyjUploadFilecxdwt
 date: 2017-10-26 04:10:00
-tags: [WebView,WKWebView,UIWebView,Input,File,Bug]
 ---
 
 在项目中使用了WebView来显示一些内容，之后就遇到了一些问题。总结了一下

@@ -1,8 +1,12 @@
 ---
 categories: IOS
 title: IOS 绘制 录音波形图
+tags:
+  - Waver
+  - AVFoundation
+  - IOS
+permalink: IOShzlybxt
 date: 2017-12-22 05:38:00
-tags: [Waver,AVFoundation,IOS]
 ---
 
 最近工作不是非常的忙，前段时间在研究 Objective-c 的Runtime，Runloop，这些知识实在是太杂多，搞的很乱。
