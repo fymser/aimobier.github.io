@@ -1,81 +1,9 @@
-<section class="g-pt-50 g-pb-100">
-  <div class="container">
-    <div class="row">
-      <!-- Articles Content -->
-      <div class="col-lg-9 g-mb-50 g-mb-0--lg">
-        <article class="g-mb-60">
-          <header class="g-mb-30">
-            <h2 class="h1 g-mb-15"><%= page.title %></h2>
+<% if(page.layout == "resume") { %>
 
-            <ul class="list-inline d-sm-flex g-color-gray-dark-v4 mb-0">
-              <li class="list-inline-item">
-                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
-                  <%= config.author %>
-                </a>
-              </li>
-              <li class="list-inline-item g-mx-10">/</li>
-              <li class="list-inline-item">
-                <%- date(page.date, 'YYYY/M/D H:m:s') %>
-              </li>
-              <li class="list-inline-item g-mx-10">/</li>
-              <li class="list-inline-item g-mr-10">
-                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
-                        <i class="align-middle mr-2 icon-hotel-restaurant-242 u-line-icon-pro"></i>共有<%= wordcount(page.content) %>个字
-                      </a>
-              </li>
-              <li class="list-inline-item g-mx-10">/</li>
-              <li class="list-inline-item g-mr-10">
-                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
-                        <i class="align-middle mr-2 icon-hotel-restaurant-003 u-line-icon-pro"></i>预计阅读<%= min2read(page.content) %>分钟
-                      </a>
-              </li>
-            </ul>
+<%- partial('_partial/layout/post/resumelayout/index') %>
 
-            <hr class="g-brd-gray-light-v4 g-my-15">
+<% } else { %>
 
+<%- partial('_partial/layout/post/postlayout/index') %>
 
-
-
-          </header>
-
-          <div class="">
-            <%- ph(page.content)%>
-          </div>
-
-          <%- partial('_partial/layout/post/footer',{"post":page}) %>
-
-          <hr class="g-brd-gray-light-v4">
-
-          <%- partial('_partial/layout/post/share') %>
-
-
-          <%- partial('_partial/layout/post/comment') %>
-
-        </article>
-
-        <div id="stickyblock-end"></div>
-      </div>
-      <!-- End Articles Content -->
-
-      <!-- Sidebar -->
-      <div class="col-lg-3">
-
-        <%- partial('_partial/layout/post/categories') %>
-
-        <%- partial('_partial/layout/post/menu') %>
-
-      </div>
-      <!-- End Sidebar -->
-    </div>
-  </div>
-</section>
-
-<script src="/assets/js/components/hs.sticky-block.js"></script>
-<script type="text/javascript">
-
-    $(window).on('load', function () {
-      // initialization of sticky blocks
-      $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
-    });
-
-</script>
+<% } %>
