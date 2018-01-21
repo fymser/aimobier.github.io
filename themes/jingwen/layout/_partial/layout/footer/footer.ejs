@@ -46,9 +46,8 @@
 
       $("#hitokoto").html(content);
 
-      $("#headerhitokotocontent").html(content);
-      $("#headerhitokotoauthor").html(author);
-
+      $("blockquote .content").html(content);
+      $("blockquote .author").html(author);
     });
   });
 </script>
