@@ -14,6 +14,9 @@ date: 2018-02-22 12:07:00
 在展示问题上无非就是MathJax和LaTex两种数学公式方法。
 
 我们现在来说说如何在Hexo中展示数学公式吧。我们使用的Hexo的第三方框架 [Hexo-Math](https://github.com/akfish/hexo-math).除了引入这个框架之外还需要引入
+
+<!-- more -->
+
 ````json
 "dependencies": {
   ... more
