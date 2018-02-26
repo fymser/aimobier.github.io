@@ -23,6 +23,20 @@ root: /
 permalink: :title-:year:month:day.html
 permalink_defaults:
 
+# MathJS
+## Hexo Math JS LTX
+math:
+  engine: 'mathjax' # or 'katex'
+  mathjax:
+    src: "//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"
+    config:
+      # MathJax config
+  katex:
+    css: #custom_css_source
+    js: #custom_js_source # not used
+    config:
+      # KaTeX config
+
 # sitemap
 ## SEO
 sitemap:
