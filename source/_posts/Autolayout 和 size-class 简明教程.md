@@ -10,7 +10,7 @@ permalink: Autolayouthsizeclassjmjc
 date: 2016-11-21 03:25:00
 ---
 
-![](http://image.msiter.com/stock-photo-184089425.jpg "让你难过的事情，有一天，你一定会笑着说出来。")
+![](/publicFiles/images/stock-photo/stock-photo-184089425.jpg "让你难过的事情，有一天，你一定会笑着说出来。")
 
 ## 教程开始前的废话连篇
 在iphone5出现之后，也就是ios6的时候。约束(autolayout)出现了，其实最开始的时候，ios dever们都还是坚持手写代码，毕竟自己用了好几年了，你说换就换，现在的需求你帮我写啊？所以导致当时使用约束的少之又少，直至后来出现了横屏和竖屏之类适配，而且屏幕更多繁多的时候，手写代码已经越来越不太能担任这个任务的时候，才开始慢慢的进入了这个大潮
@@ -39,7 +39,7 @@ date: 2016-11-21 03:25:00
 ### align:  
 英文解释的意思为排序，那么我们即可以理解为，排序…点击展开选项，我会挨个解释一下。
 
-![](http://image.msiter.com/AutoLayout/A09775AE-9029-4D6B-B158-7B0DF235BDCF.png "align 展开示例")
+![](/publicFiles/images/stock-photo/AutoLayout/A09775AE-9029-4D6B-B158-7B0DF235BDCF.png "align 展开示例")
 
 > ps选项一共有4个类别。第一类和第二类是需要选中两个或者多个的view的时候，才可以操作  
 
@@ -143,7 +143,7 @@ public enum NSLayoutAttribute : Int {
 
 在网上看到一张图可以很好的说明问题。
 
-![](http://image.msiter.com/AutoLayout/NSLayoutAttribute.png "NSLayoutAttribute 示例")
+![](/publicFiles/images/stock-photo/AutoLayout/NSLayoutAttribute.png "NSLayoutAttribute 示例")
 
 以上的属性很多大家肯定都自己可以看懂，我也就不说了。我这里就说几个比较让人觉的不解的地方。
 

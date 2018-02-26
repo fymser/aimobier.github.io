@@ -7,7 +7,7 @@ categories: IOS
 permalink: Realmcocoaxx
 date: 2016-03-03 20:53:35
 ---
-![](http://image.msiter.com/stock-photo-181146547.jpg "如果没有见过光明，我本可以忍受黑暗。")
+![](/publicFiles/images/stock-photo/stock-photo-181146547.jpg "如果没有见过光明，我本可以忍受黑暗。")
 
 PS:以下内容均为项目为Swift的基础，如果需要Object－c请查阅Realm的[Object－c文档](https://realm.io/docs/objc/latest)。
 

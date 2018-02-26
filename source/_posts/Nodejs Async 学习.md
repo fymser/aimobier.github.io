@@ -7,7 +7,7 @@ tags:
 permalink: NodejsAsyncxx
 date: 2015-07-06 18:41:43
 ---
-![](http://image.msiter.com/stock-photo-151005535.jpg "让你难过的事情，有一天，你一定会笑着说出来。")
+![](/publicFiles/images/stock-photo/stock-photo-151005535.jpg "让你难过的事情，有一天，你一定会笑着说出来。")
 
 
 > 本文整理于[`bsspirit`](https://github.com/bsspirit)的[博文](http://blog.fens.me/nodejs-async/)和[代码示例](https://github.com/bsspirit/async_demo)

@@ -18,7 +18,7 @@ date: 2016-07-06 21:16:43
 于是乎就有人想到了，为什么不设计一种处理机制来统一处理这些东西呢？所以 `reactivex` 这种机制出现了，而这里的 `RxSwift` 就是这么一个机制下的一个扩展。
 所以RxSwift 为什么用它？你可以理解了吗？
 
-![](http://image.msiter.com/stock-photo-184019953.jpg "学校里还是相对单纯的地方，找不到女朋友，基本还是因为你丑。")
+![](/publicFiles/images/stock-photo/stock-photo-184019953.jpg "学校里还是相对单纯的地方，找不到女朋友，基本还是因为你丑。")
 
 
 <!-- more -->

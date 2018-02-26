@@ -8,7 +8,7 @@ permalink: reactivexxx
 date: 2016-06-21 23:22:00
 ---
 
-![](http://image.msiter.com/stock-photo-179922657.jpg "庆幸你来自远方不清楚我的过往。")
+![](/publicFiles/images/stock-photo/stock-photo-179922657.jpg "庆幸你来自远方不清楚我的过往。")
 
 ### 散记
 

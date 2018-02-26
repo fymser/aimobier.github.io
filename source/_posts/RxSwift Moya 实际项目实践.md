@@ -17,7 +17,7 @@ date: 2017-12-26 14:45:00
 
 可以查看我的Commit 来看看我的修改路程
 
-![](http://image.msiter.com/stock-photo-240228129.jpg "好的坏的都是风景")
+![](/publicFiles/images/stock-photo/stock-photo-240228129.jpg "好的坏的都是风景")
 
 <!-- more -->
 
@@ -28,4 +28,4 @@ date: 2017-12-26 14:45:00
 
 以下是 预览的 Gif (大小 12.85M).
 
-![](http://image.msiter.com/douyu-tool-preview.gif)
+![](/publicFiles/images/stock-photo/douyu-tool-preview.gif)

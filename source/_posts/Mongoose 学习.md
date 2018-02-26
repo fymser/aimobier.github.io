@@ -9,7 +9,7 @@ permalink: Mongoosexx
 date: 2015-07-11 20:53:35
 ---
 
-![](http://image.msiter.com/stock-photo-161742993.jpg "醉后不知天在水，满船清梦压星河。")
+![](/publicFiles/images/stock-photo/stock-photo-161742993.jpg "醉后不知天在水，满船清梦压星河。")
 
 > Mongoose is a MongoDB object modeling tool designed to work in an asynchronous environment.
 

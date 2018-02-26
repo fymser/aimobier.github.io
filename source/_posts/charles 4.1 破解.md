@@ -10,7 +10,7 @@ permalink: Charlesversion41pjyjHttpsdpy
 date: 2017-07-10 13:26:00
 ---
 
-![](http://image.msiter.com/stock-photo-219218271.jpg "后来我终于知道,它并不是我的花,我只是恰好途径了它的盛放。")
+![](/publicFiles/images/stock-photo/stock-photo-219218271.jpg "后来我终于知道,它并不是我的花,我只是恰好途径了它的盛放。")
 
 ## Charles 限时优惠
 
@@ -22,7 +22,7 @@ Charles 4 正版限时优惠优惠活动（限时：2016 年 8 月 8 日 - 15 �
 
 ## 简介
 
-{% image http://image.msiter.com/charles-logo.png %}
+{% image /publicFiles/images/stock-photo/charles-logo.png %}
 
 [Charles](http://www.charlesproxy.com/) 是在 Mac 下常用的网络封包截取工具，在做
 移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。
@@ -58,7 +58,7 @@ Charles 4 新增的主要功能包括：
 
 启动 Charles 后，第一次 Charles 会请求你给它设置系统代理的权限。你可以输入登录密码授予 Charles 该权限。你也可以忽略该请求，然后在需要将 Charles 设置成系统代理时，选择菜单中的 "Proxy" -> "Mac OS X Proxy" 来将 Charles 设置成系统代理。如下所示：
 
-{% image http://image.msiter.com/charles-pro-3.png %}
+{% image /publicFiles/images/stock-photo/charles-pro-3.png %}
 
 之后，你就可以看到源源不断的网络请求出现在 Charles 的界面中。
 
@@ -66,7 +66,7 @@ Charles 4 新增的主要功能包括：
 
 ## Charles 主界面介绍
 
-{% image http://image.msiter.com/charles-pro-4.png %}
+{% image /publicFiles/images/stock-photo/charles-pro-4.png %}
 
 Charles 主要提供两种查看封包的视图，分别名为 "Structure" 和 "Sequence"。
 
@@ -85,13 +85,13 @@ Charles 主要提供两种查看封包的视图，分别名为 "Structure" 和 "
 
 方法二：在 Charles 的菜单栏选择 "Proxy"->"Recording Settings"，然后选择 Include 栏，选择添加一个项目，然后填入需要监控的协议，主机地址，端口号。这样就可以只截取目标网站的封包了。如下图所示：
 
-{% image http://image.msiter.com/charles-filter-setting.jpg %}
+{% image /publicFiles/images/stock-photo/charles-filter-setting.jpg %}
 
 通常情况下，我们使用方法一做一些临时性的封包过滤，使用方法二做一些经常性的封包过滤。
 
 方法三：在想过滤的网络请求上右击，选择 "Focus"，之后在 Filter 一栏勾选上 Focussed 一项，如下图所示：
 
-{% image http://image.msiter.com/charles-focus.png %}
+{% image /publicFiles/images/stock-photo/charles-focus.png %}
 
 这种方式可以临时性的，快速地过滤出一些没有通过关键字的一类网络请求。
 
@@ -103,21 +103,21 @@ Charles 通常用来截取本地上的网络封包，但是当我们需要时，
 
 要截取 iPhone 上的网络请求，我们首先需要将 Charles 的代理功能打开。在 Charles 的菜单栏上选择 "Proxy"->"Proxy Settings"，填入代理端口 8888，并且勾上 "Enable transparent HTTP proxying" 就完成了在 Charles 上的设置。如下图所示:
 
-{% image http://image.msiter.com/charles-proxy-setting.jpg %}
+{% image /publicFiles/images/stock-photo/charles-proxy-setting.jpg %}
 
 ### iPhone 上的设置
 
 首先我们需要获取 Charles 运行所在电脑的 IP 地址，Charles 的顶部菜单的 "Help"->"Local IP Address"，即可在弹出的对话框中看到 IP 地址，如下图所示：
 
-{% image http://image.msiter.com/charles-local-ip.png %}
+{% image /publicFiles/images/stock-photo/charles-local-ip.png %}
 
 在 iPhone 的 " 设置 "->" 无线局域网 " 中，可以看到当前连接的 wifi 名，通过点击右边的详情键，可以看到当前连接上的 wifi 的详细信息，包括 IP 地址，子网掩码等信息。在其最底部有「HTTP 代理」一项，我们将其切换成手动，然后填上 Charles 运行所在的电脑的 IP，以及端口号 8888，如下图所示：
 
-{% image http://image.msiter.com/charles-iphone-setting.jpg %}
+{% image /publicFiles/images/stock-photo/charles-iphone-setting.jpg %}
 
 设置好之后，我们打开 iPhone 上的任意需要网络通讯的程序，就可以看到 Charles 弹出 iPhone 请求连接的确认菜单（如下图所示），点击 "Allow" 即可完成设置。
 
-{% image http://image.msiter.com/charles-proxy-confirm.jpg %}
+{% image /publicFiles/images/stock-photo/charles-proxy-confirm.jpg %}
 
 ## 截取 Https 通讯信息
 
@@ -127,11 +127,11 @@ Charles 通常用来截取本地上的网络封包，但是当我们需要时，
 
 首先我们需要在 Mac 电脑上安装证书。点击 Charles 的顶部菜单，选择 "Help" -> "SSL Proxying" -> "Install Charles Root Certificate"，然后输入系统的帐号密码，即可在 KeyChain 看到添加好的证书。如下图所示：
 
-{% image http://image.msiter.com/charles-pro-1.png %}
+{% image /publicFiles/images/stock-photo/charles-pro-1.png %}
 
 需要注意的是，即使是安装完证书之后，Charles 默认也并不截取 Https 网络通讯的信息，如果你想对截取某个网站上的所有 Https 网络请求，可以在该请求上右击，选择 SSL proxy，如下图所示：
 
-{% image http://image.msiter.com/charles-ssl-add-host.jpg %}
+{% image /publicFiles/images/stock-photo/charles-ssl-add-host.jpg %}
 
 这样，对于该 Host 的所有 SSL 请求可以被截取到了。
 
@@ -139,7 +139,7 @@ Charles 通常用来截取本地上的网络封包，但是当我们需要时，
 
 如果我们需要在 iOS 或 Android 机器上截取 Https 协议的通讯内容，还需要在手机上安装相应的证书。点击 Charles 的顶部菜单，选择 "Help" -> "SSL Proxying" -> "Install Charles Root Certificate on a Mobile Device or Remote Browser"，然后就可以看到 Charles 弹出的简单的安装教程。如下图所示：
 
-{% image http://image.msiter.com/charles-pro-2.png %}
+{% image /publicFiles/images/stock-photo/charles-pro-2.png %}
 
 按照我们之前说的教程，在设备上设置好 Charles 为代理后，在手机浏览器中访问地址：<http://charlesproxy.com/getssl>，即可打开证书安装的界面，安装完证书后，就可以截取手机上的 Https 通讯内容了。不过同样需要注意，默认情况下 Charles 并不做截取，你还需要在要截取的网络请求上右击，选择 SSL proxy 菜单项。
 
@@ -149,7 +149,7 @@ Charles 通常用来截取本地上的网络封包，但是当我们需要时，
 
 在 Charles 的菜单上，选择 "Proxy"->"Throttle Setting" 项，在之后弹出的对话框中，我们可以勾选上 "Enable Throttling"，并且可以设置 Throttle Preset 的类型。如下图所示：
 
-{% image http://image.msiter.com/charles-throttle-setting.jpg %}
+{% image /publicFiles/images/stock-photo/charles-throttle-setting.jpg %}
 
 如果我们只想模拟指定网站的慢速网络，可以再勾选上图中的 "Only for selected hosts" 项，然后在对话框的下半部分设置中增加指定的 hosts 项即可。
 
@@ -157,11 +157,11 @@ Charles 通常用来截取本地上的网络封包，但是当我们需要时，
 
 有些时候为了调试服务器的接口，我们需要反复尝试不同参数的网络请求。Charles 可以方便地提供网络请求的修改和重发功能。只需要在以往的网络请求上点击右键，选择 "Edit"，即可创建一个可编辑的网络请求。如下所示：
 
-{% image http://image.msiter.com/charles-edit.png %}
+{% image /publicFiles/images/stock-photo/charles-edit.png %}
 
 我们可以修改该请求的任何信息，包括 URL 地址、端口、参数等，之后点击 "Execute" 即可发送该修改后的网络请求（如下图所示）。Charles 支持我们多次修改和发送该请求，这对于我们和服务器端调试接口非常方便，如下图所示：
 
-{% image http://image.msiter.com/charles-execute.png %}
+{% image /publicFiles/images/stock-photo/charles-execute.png %}
 
 ## 给服务器做压力测试
 
@@ -169,11 +169,11 @@ Charles 通常用来截取本地上的网络封包，但是当我们需要时，
 
 我们在想打压的网络请求上（POST 或 GET 请求均可）右击，然后选择 「Repeat Advanced」菜单项，如下所示：
 
-{% image http://image.msiter.com/charles-repeat-1.png %}
+{% image /publicFiles/images/stock-photo/charles-repeat-1.png %}
 
 接着我们就可以在弹出的对话框中，选择打压的并发线程数以及打压次数，确定之后，即可开始打压。
 
-{% image http://image.msiter.com/charles-repeat-2.png %}
+{% image /publicFiles/images/stock-photo/charles-repeat-2.png %}
 
 悄悄说一句，一些写得很弱的投票网站，也可以用这个办法来快速投票。当然，我也拿 Charles 的 Repeat 功能给一些诈骗的钓鱼网站喂了不少垃圾数据，上次不小心还把一个钓鱼网站的数据库打挂了，嗯，请叫我雷锋。
 
@@ -193,21 +193,21 @@ Charles 的 Map 功能分 Map Remote 和 Map Local 两种，顾名思义，Map R
 
 在 Charles 的菜单中，选择 "Tools"->"Map Remote" 或 "Map Local" 即可进入到相应功能的设置页面。
 
-{% image http://image.msiter.com/charles-map.png %}
+{% image /publicFiles/images/stock-photo/charles-map.png %}
 
 
 对于 Map Remote 功能，我们需要分别填写网络重定向的源地址和目的地址，对于不需要限制的条件，可以留空。下图是一个示例，我将所有 `ytk1.yuanku.ws`（测试服务器）的请求重定向到了 `www.yuantiku.com`（线上服务器）。
 
-{% image http://image.msiter.com/charles-map-remote.png %}
+{% image /publicFiles/images/stock-photo/charles-map-remote.png %}
 
 对于 Map Local 功能，我们需要填写的重定向的源地址和本地的目标文件。对于有一些复杂的网络请求结果，我们可以先使用 Charles 提供的 "Save Response…" 功能，将请求结果保存到本地（如下图所示），然后稍加修改，成为我们的目标映射文件。
 
-{% image http://image.msiter.com/charles-save-response.png %}
+{% image /publicFiles/images/stock-photo/charles-save-response.png %}
 
 
 下图是一个示例，我将一个指定的网络请求通过 Map Local 功能映射到了本地的一个经过修改的文件中。
 
-{% image http://image.msiter.com/charles-map-local.png %}
+{% image /publicFiles/images/stock-photo/charles-map-local.png %}
 
 Map Local 在使用的时候，有一个潜在的问题，就是其返回的 Http Response Header 与正常的请求并不一样。这个时候如果客户端校验了 Http Response Header 中的部分内容，就会使得该功能失效。解决办法是同时使用 Map Local 以下面提到的 Rewrite 功能，将相关的 Http 头 Rewrite 成我们希望的内容。
 
@@ -218,15 +218,15 @@ Rewrite 功能功能适合对某一类网络请求进行一些正则替换，以
 
 例如，我们的客户端有一个 API 请求是获得用户昵称，而我当前的昵称是 "tangqiaoboy"，如下所示：
 
-{% image http://image.msiter.com/charles-rewrite-1.jpeg %}
+{% image /publicFiles/images/stock-photo/charles-rewrite-1.jpeg %}
 
 我们想试着直接修改网络返回值，将 tangqiaoboy 换成成 iosboy。于是我们启用 Rewrite 功能，然后设置如下的规则：
 
-{% image http://image.msiter.com/charles-rewrite-2.png %}
+{% image /publicFiles/images/stock-photo/charles-rewrite-2.png %}
 
 完成设置之后，我们就可以从 Charles 中看到，之后的 API 获得的昵称被自动 Rewrite 成了 iosboy，如下图所示：
 
-{% image http://image.msiter.com/charles-rewrite-3.png %}
+{% image /publicFiles/images/stock-photo/charles-rewrite-3.png %}
 
 ### Breakpoints 功能
 
@@ -236,7 +236,7 @@ Breakpoints 功能类似我们在 Xcode 中设置的断点一样，当指定的�
 
 下图是我们临时修改获取用户信息的 API，将用户的昵称进行了更改，修改完成后点击 "Execute" 则可以让网络请求继续进行。
 
-{% image http://image.msiter.com/charles-breakpoint.png %}
+{% image /publicFiles/images/stock-photo/charles-breakpoint.png %}
 
 需要注意的是，使用 Breakpoints 功能将网络请求截获并修改过程中，整个网络请求的计时并不会暂停，所以长时间的暂停可能导致客户端的请求超时。
 
@@ -244,7 +244,7 @@ Breakpoints 功能类似我们在 Xcode 中设置的断点一样，当指定的�
 
 Charles 的反向代理功能允许我们将本地的端口映射到远程的另一个端口上。例如，在下图中，我将本机的 61234 端口映射到了远程（www.yuantiku.com）的80端口上了。这样，当我访问本地的 61234 端口时，实际返回的内容会由 www.yuantiku.com 的 80 端口提供。
 
-{% image http://image.msiter.com/charles-reverse-proxy.jpg %}
+{% image /publicFiles/images/stock-photo/charles-reverse-proxy.jpg %}
 
 ## 设置外部代理，解决与翻墙软件的冲突
 
@@ -254,7 +254,7 @@ Charles 的原理是把自己设置成系统的代理服务器，但是在中国
 
 ## 破解
 
-1. 下载特定的版本的[Charles](http://image.msiter.com/charles-proxy-4.1.dmg)以及破解文件 [charles.jar](http://image.msiter.com/charles.jar)
+1. 下载特定的版本的[Charles](/publicFiles/images/stock-photo/charles-proxy-4.1.dmg)以及破解文件 [charles.jar](/publicFiles/images/stock-photo/charles.jar)
 2. 在应用程序中右键Charles，选择“显示包内容”。
 3. 依次打开目录：Contents -> Java
 4. 用下载的charles.jar替换目录中的charles.jar。

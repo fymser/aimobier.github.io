@@ -9,7 +9,7 @@ permalink: SpringbootMybatisxx
 date: 2017-07-21 18:25:00
 ---
 
-![](http://image.msiter.com/stock-photo-220506113.jpg "我年华虚度，空有一身疲倦")
+![](/publicFiles/images/stock-photo/stock-photo-220506113.jpg "我年华虚度，空有一身疲倦")
 
 ## 开始前的闲聊
 一直都想回家，北京呆不起。想回家，却发现，家里的开发职位都是java的，，，那没办法，捡起来吧

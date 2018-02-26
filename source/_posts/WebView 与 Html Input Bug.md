@@ -14,7 +14,7 @@ date: 2017-10-26 04:10:00
 
 在项目中使用了WebView来显示一些内容，之后就遇到了一些问题。总结了一下
 
-![一杯敬自由，一杯敬死亡](http://image.msiter.com/stock-photo-233150091.jpg "你还很年轻,将来你会遇到很多人,经历很多事,得到很多,也会失去很多<br/><br/>但无论如何,有两样东西,你绝不能丢弃,一个叫良心,另一个叫理想")
+![一杯敬自由，一杯敬死亡](/publicFiles/images/stock-photo/stock-photo-233150091.jpg "你还很年轻,将来你会遇到很多人,经历很多事,得到很多,也会失去很多<br/><br/>但无论如何,有两样东西,你绝不能丢弃,一个叫良心,另一个叫理想")
 
 <!-- more -->
 
@@ -178,4 +178,4 @@ for (UIGestureRecognizer *reconizer in self.wkWebView.gestureRecognizers) {
 
 效果如下：
 
-![](http://image.msiter.com/wkwebview-screen-pan-cancel.gif)
+![](/publicFiles/images/stock-photo/wkwebview-screen-pan-cancel.gif)

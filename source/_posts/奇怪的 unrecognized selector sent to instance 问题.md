@@ -9,7 +9,7 @@ permalink: qgdunrecognizedselectorsenttoinstancewt
 date: 2017-05-18 15:39:00
 ---
 
-![](http://image.msiter.com/stock-photo-212311441.jpg " "Nuts！" —— 101空降师副师长麦考里夫将军")
+![](/publicFiles/images/stock-photo/stock-photo-212311441.jpg " "Nuts！" —— 101空降师副师长麦考里夫将军")
 
 <!-- more -->
 

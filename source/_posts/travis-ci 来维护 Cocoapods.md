@@ -9,7 +9,7 @@ permalink: traviscilwhCocoapods
 date: 2017-05-25 18:54:00
 ---
 
-![](http://image.msiter.com/stock-photo-213307611.jpg "人的一切痛苦，本质上都是对自己的无能的愤怒。——王小波")
+![](/publicFiles/images/stock-photo/stock-photo-213307611.jpg "人的一切痛苦，本质上都是对自己的无能的愤怒。——王小波")
 
 ## 教程开始前的废话连篇
 我们公司的app，是在是火不聊了。那么办法了，我们抽象出来一个sdk给别人接吧。这样子的话，我们怎么也可以有些量啊。

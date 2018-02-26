@@ -9,7 +9,7 @@ permalink: zzygzjdCydiay
 date: 2016-11-12 02:05:43
 ---
 
-![](http://image.msiter.com/stock-photo-155012621.jpg "夜里不睡的人，白天多多少少总有什么逃避掩饰的吧。白昼解不开的结黑夜慢慢耗")
+![](/publicFiles/images/stock-photo/stock-photo-155012621.jpg "夜里不睡的人，白天多多少少总有什么逃避掩饰的吧。白昼解不开的结黑夜慢慢耗")
 
 大家肯定都知道 Cydia 吧，
 > iPhone、iPod touch、iPad等设备上的一种破解软件，类似苹果在线软件商店iTunes Store 的软件平台的客户端，在越狱的过程中被装入到系统中的，其中多数为iPhone、iPod Touch、ipad的第三方软件和补丁，主要都是弥补系统不足用。是由Jay Freeman（Saurik）领导，Okori Group以及UCSB大学合作开发。
