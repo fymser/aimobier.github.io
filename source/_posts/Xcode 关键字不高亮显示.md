@@ -35,5 +35,6 @@ Xcode 在长时间运行之后，会出现一个问题，那就是 例如 `retur
   3. 选择失效的那一个工程，右健，Remove from Organizer
   4. 打开工程，失效的功能都回来了
 
-### 参考资料：
+参考资料：
+
 * [xcode 代码不高亮 不提示语法错误 解决方法](http://blog.csdn.net/liyun123gx/article/details/51544402)

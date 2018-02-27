@@ -116,7 +116,7 @@ self.recorder.meteringEnabled = YES;
 
 ````
 
-#### 关于录音和Audio Session Categories
+### 关于录音和Audio Session Categories
 如果AVAudioRecorder的averagePowerForChannel和peakPowerForChannel方法总是返回-160的话，那么很有可能是当前的Audio Session Categories不允许进行音频输入（也就是麦克风输入）。如：AVAudioSessionCategorySoloAmbient/kAudioSessionCategory_SoloAmbientSound，AVAudioSessionCategoryPlayback/kAudioSessionCategory_MediaPlayback。
 
 如果这样的话，我们需要把当前Audio Session Categories设置成 AVAudioSessionCategoryRecord/kAudioSessionCategory_RecordAudio，或者AVAudioSessionCategoryPlayAndRecord/kAudioSessionCategory_PlayAndRecord。
@@ -142,7 +142,7 @@ UInt32 sessionCategory = kAudioSessionCategory_RecordAudio;
 
 OSStatus result = AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, sizeof(sessionCategory), &sessionCategory);
 ````
-#### 分贝数据的处理
+### 分贝数据的处理
 根据Apple文档，AVAudioRecorder的averagePowerForChannel和peakPowerForChannel方法返回的是分贝数据，数值在-160 - 0之间（可能会返回大于0的值如果超出了极限）。在实际测试中，比如我在办公室（不算吵也不算特别安静的环境下）我测试averagePowerForChannel的返回值平均在-35左右徘徊。
 
 有很多方法可以把这个原始的分贝数据转化成更可读或者更可用的形式。如[Apple SpeakHere Sample](https://developer.apple.com/library/ios/samplecode/SpeakHere/Introduction/Intro.html)。
@@ -266,5 +266,7 @@ OSStatus result = AudioSessionSetProperty(kAudioSessionProperty_AudioCategory, s
     CGContextStrokePath(context);
 }
 ````
+
+## 岩石项目
 
 [完整项目](/publicFiles/rTExample.zip)
