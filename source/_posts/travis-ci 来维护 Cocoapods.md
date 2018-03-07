@@ -5,7 +5,6 @@ tags:
   - travis-ci
   - ios
   - cocoapods
-permalink: traviscilwhCocoapods
 date: 2017-05-25 18:54:00
 ---
 

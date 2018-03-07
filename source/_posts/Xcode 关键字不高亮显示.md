@@ -4,7 +4,6 @@ title: Xcode 关键字不高亮显示
 tags:
   - IOS
   - 稀奇古怪的问题
-permalink: Xcodegjzbglxs
 date: 2018-01-09 14:23:00
 ---
 

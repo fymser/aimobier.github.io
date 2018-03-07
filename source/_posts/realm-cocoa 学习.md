@@ -4,7 +4,6 @@ tags:
   - DB
   - realm
 categories: IOS
-permalink: Realmcocoaxx
 date: 2016-03-03 20:53:35
 ---
 ![](/publicFiles/images/stock-photo/stock-photo-181146547.jpg "如果没有见过光明，我本可以忍受黑暗。")

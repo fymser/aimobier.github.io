@@ -5,7 +5,6 @@ tags:
   - java
   - spring boot
   - mybatis
-permalink: SpringbootMybatisxx
 date: 2017-07-21 18:25:00
 ---
 

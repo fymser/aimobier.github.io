@@ -6,7 +6,6 @@ tags:
   - autolayout
   - ios
   - 约束教程
-permalink: Autolayouthsizeclassjmjc
 date: 2016-11-21 03:25:00
 ---
 

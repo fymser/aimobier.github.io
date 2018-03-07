@@ -4,7 +4,6 @@ title: extern与static用法
 tags:
   - c
   - c++
-permalink: externystaticyf
 date: 2018-01-22 19:32:00
 ---
 

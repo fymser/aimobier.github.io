@@ -5,7 +5,6 @@ tags:
   - ios
   - error
   - 奇怪的问题
-permalink: qgdunrecognizedselectorsenttoinstancewt
 date: 2017-05-18 15:39:00
 ---
 

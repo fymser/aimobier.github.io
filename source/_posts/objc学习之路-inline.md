@@ -4,7 +4,6 @@ title: objc学习之路-inline
 tags:
   - objc
   - ios
-permalink: objcxxzlinline
 date: 2018-01-22 10:31:00
 ---
 在学习oc 之前，c的基础非常的不好所以今天我学习以下 inline的意思，要不然每次看到的时候心里都觉的有东西没理解。以下的文章转载自[C++中的inline用法](https://www.cnblogs.com/fnlingnzb-learner/p/6423917.html)

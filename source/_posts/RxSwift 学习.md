@@ -5,7 +5,6 @@ tags:
   - swift
   - ios
   - RX
-permalink: RxSwiftxxwwdx
 date: 2016-07-06 21:16:43
 ---
 

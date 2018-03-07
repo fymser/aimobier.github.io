@@ -5,7 +5,6 @@ tags:
   - mongoose
   - nodejs
 categories: 服务器
-permalink: Mongoosexx
 date: 2015-07-11 20:53:35
 ---
 

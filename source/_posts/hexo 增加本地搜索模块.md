@@ -1,11 +1,9 @@
 ---
-categories: 开发帮助
+categories: 博客历程
 title: hexo 增加本地搜索模块
 tags:
+  - 博客美化
   - hexo
-  - js
-  - jquery
-permalink: hexozjbdssmk
 date: 2018-01-17 18:41:00
 ---
 
@@ -137,6 +135,7 @@ if (!SearchDataTablesElment) {
 这是我的一些配置。在[这里查看更多的API](https://datatables.net/reference/option/)
 
 #### Custom DataTables pagingType
+
 这里真的是好麻烦的，，差了好多资料，大多都是一些修改 分页器的 Class这些东西的。涉及到其他的话就看不到了。最后终于还是在(官方网站)[https://datatables.net/plug-ins/pagination/]找到了方法。        
 你也可以查看我的(自定义方法)[/assets/js/helpers/hs.pages.table.js]，我这里设置到了一些创建 包裹 控件的方法。
 
@@ -190,90 +189,6 @@ if (!SearchDataTablesElment) {
   }
 ````
 
+#### 关闭搜索输入框搜索历史
+
 另外 关于搜索输入框偶尔展示输入记录。`autocomplete="off"`.... 博大... 程序员 没有google 百度，，，难以想象。。。
-
-主要就是这些，接下来我会进行一些 SEO 相关的问题。
-
-### 关于 Https
-好吧，我真的特别喜欢那些绿色的小锁，以及前面的一些字 比如 'Apple Inc.[US]' 日日！  好帅啊！       
-好吧，最后实现了，虽然没有那些字，毕竟是免费的不计较的了。
-
-`CloudFlare` 好吧 就是他，他其实也没有给你证书，只是给你做了一层 DNS 代理，这样子的话，你访问的时候会带上人家的 https 证书，当然你要是愿意支付每个月 5 美元的钱的话，是可以加小字的。。。没钱。。。
-
-设置 page rules 可以将所有的 http 请求转换为 https。
-
-另外其实还是有不少免费证书申请的，但是无奈，我没有自己的服务器，所以只能，这样子了。
-
-### SEO 优化
-增加 mate 属性一些值
-
-````ejs
-<% if (config.keywords){ %>
-  <meta name="keywords" content="<%= config.keywords %>">
-<%} %>
-<% if (config.author){ %>
-  <meta name="author" content="<%= config.author %>">
-<%} %>
-<% if (config.description){ %>
-  <meta name="description" content="<%= config.description %>">
-<%} %>
-````
-增加 拼音 设置一些方法 增加 script 中针对于 `before_post_render` 的监听，使用 `pinyin` Nodejs 模块将标题转换为 拼音并增加 .html 后缀。
-````js
-var hexo = hexo || {};
-var config = hexo.config;
-
-var fs = require('hexo-fs');
-var pinyin = require("pinyin");
-var front = require('hexo-front-matter');
-
-
-
-hexo.extend.filter.register('before_post_render', function(data) {
-  if (!config.transform || !config.url || data.layout !== 'post') {
-    return data;
-  }
-  let tmpPost = front.parse(data.raw);
-  let title = data.title;
-  var final_title_str = "";
-  pinyin(title, { style: pinyin.STYLE_FIRST_LETTER, heteronym: true }).forEach(function(value,index,array){
-    final_title_str += value[0];
-  });
-  final_title_str=final_title_str.replace(/[\ |\~|\`|\!|\@|\#|\$|\%|\^|\&|\*|\(|\)|\-|\_|\+|\=|\||\\|\[|\]|\{|\}|\;|\:|\"|\'|\,|\<|\.|\>|\/|\?]/g,"");
-  final_title_str = final_title_str.replace(/[\u3002|\uff1f|\uff01|\uff0c|\u3001|\uff1b|\uff1a|\u201c|\u201d|\u2018|\u2019|\uff08|\uff09|\u300a|\u300b|\u3008|\u3009|\u3010|\u3011|\u300e|\u300f|\u300c|\u300d|\ufe43|\ufe44|\u3014|\u3015|\u2026|\u2014|\uff5e|\ufe4f|\uffe5]/,"");
-  tmpPost.permalink = final_title_str;
-  // console.log(final_title_str);
-  let postStr = front.stringify(tmpPost);
-  postStr = '---\n' + postStr;
-  fs.writeFileSync(data.full_source, postStr, 'utf-8');
-
-  return data;
-});
-
-````
-
-减少 html url 的层数,在根目录下的 `_config.yml`,配置一下代码。
-
-````yml
-# URL
-## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
-url: http://blog.msiter.com/
-root: /
-# permalink: :year/:month/:day/:title/
-permalink: :title-:year:month:day.html
-permalink_defaults:
-````
-
-增加 sitmap
-````shell
-"hexo-generator-sitemap": "",
-````
-安装 组建，在config 配置如下。
-````yml
-# sitemap
-## SEO
-sitemap:
-    path: sitemap.xml
-baidusitemap:
-    path: baidusitemap.xml
-````

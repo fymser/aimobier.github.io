@@ -4,7 +4,6 @@ tags:
   - IOS
   - ObjC
 categories: 学习
-permalink: Objectivecxsfts
 date: 2018-01-11 11:11:11
 ---
 

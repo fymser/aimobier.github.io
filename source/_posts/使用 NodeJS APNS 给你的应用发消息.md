@@ -5,7 +5,6 @@ tags:
   - NodeJS
   - APNs
   - ios
-permalink: syNodeJSAPNSgndyyfxx
 date: 2017-11-22 17:02:00
 ---
 

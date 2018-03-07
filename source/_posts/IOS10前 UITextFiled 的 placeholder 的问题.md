@@ -3,7 +3,6 @@ categories: IOS
 title: IOS10前 UITextFiled 的 placeholder 的问题
 tags:
   - IOS
-permalink: IOS10qUITextFileddplaceholderdwt
 date: 2017-11-16 01:16:00
 ---
 

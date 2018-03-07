@@ -5,7 +5,6 @@ tags:
   - swift
   - ios
 categories: IOS
-permalink: IOSTipsxjh
 date: 2015-08-10 20:53:35
 ---
 

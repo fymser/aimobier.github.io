@@ -6,7 +6,6 @@ tags:
   - theos
   - ios
   - tweak
-permalink: IOSnxxx
 date: 2018-01-29 14:25:00
 ---
 

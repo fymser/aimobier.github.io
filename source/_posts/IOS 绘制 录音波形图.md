@@ -5,7 +5,6 @@ tags:
   - Waver
   - AVFoundation
   - IOS
-permalink: IOShzlybxt
 date: 2017-12-22 05:38:00
 ---
 

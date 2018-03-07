@@ -5,7 +5,6 @@ tags:
   - Pthreads
   - 线程
 categories: 线程
-permalink: Pthreadsxx3xhl
 date: 2018-01-11 23:22:00
 ---
 

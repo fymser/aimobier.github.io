@@ -4,7 +4,6 @@ tags:
   - reactiv
   - rxswift
 categories: 开发帮助
-permalink: reactivexxx
 date: 2016-06-21 23:22:00
 ---
 

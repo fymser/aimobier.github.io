@@ -4,7 +4,6 @@ title: Nodejs Async 学习
 tags:
   - nodejs
   - async
-permalink: NodejsAsyncxx
 date: 2015-07-06 18:41:43
 ---
 ![](/publicFiles/images/stock-photo/stock-photo-151005535.jpg "让你难过的事情，有一天，你一定会笑着说出来。")

@@ -4,7 +4,6 @@ title: IOS shadowColor 动画 卡顿
 tags:
   - Objective-C
   - ios
-permalink: IOSshadowColordhqd
 date: 2017-10-12 18:00:00
 ---
 
