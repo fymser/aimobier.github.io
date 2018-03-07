@@ -12,8 +12,10 @@ language: zh-Hans
 timezone:
 
 # 转换为拼音
-## 将标题转换为英文
-transform: true
+## pinyin - 拼音
+## sha256 - Hash 值
+## another - 默认
+transform: pinyin
 
 # URL
 ## If your site is put in a subdirectory, set url as 'http://yoursite.com/child' and root as '/child/'
