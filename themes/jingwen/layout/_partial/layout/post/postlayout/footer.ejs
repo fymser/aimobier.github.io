@@ -1,38 +1,44 @@
 <!-- Sources & Tags -->
 <div class="g-mb-30">
-  <h6 class="g-color-gray-dark-v1 g-mb-15">
+    <h6 class="g-color-gray-dark-v1 g-mb-15">
 
-
-
-      <% if (post.categories && post.categories.length){ %>
+        <% if (post.categories && post.categories.length){ %>
 
         <% post.categories.each(function(tag){ %>
 
-                    <strong class="g-mr-5">专栏:</strong> <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="<%- url_for(tag.path) %>"><%= tag.name %></a>
-          <% }) %>
+        <strong class="g-mr-5">专栏:</strong> <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover"
+                                               href="<%- url_for(tag.path) %>"><%= tag.name %></a>
+        <% }) %>
 
         <% } %>
 
+    </h6>
+    <h6 class="g-color-gray-dark-v1">
+        <strong class="g-mr-5">标签:</strong>
 
-        </h6>
-  <h6 class="g-color-gray-dark-v1">
-          <strong class="g-mr-5">标签:</strong>
+        <% if (post.tags && post.tags.length){ %>
 
+        <% post.tags.each(function(tag){ %>
+        <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5"
+           href="<%- url_for(tag.path) %>"><%= tag.name %></a>
+        <% }) %>
 
-          <% if (post.tags && post.tags.length){ %>
+        <% } %>
 
-            <% post.tags.each(function(tag){ %>
-                <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5" href="<%- url_for(tag.path) %>"><%= tag.name %></a>
-              <% }) %>
+    </h6>
+    <br>
 
-            <% } %>
-
-        </h6>
-
-        <h6 class="g-color-gray-dark-v1">
-                <strong class="g-mr-5">版权:</strong>
-<span class="g-color-gray-dark-v4 g-font-size-12">本文首发于<a href="<%= config.url%>"><%= config.author%></a>的博客<a href="<%= config.url%>"><%= config.title%></a>，版权所有，侵权必究。</p></span>
-
-              </h6>
-</div>
-<!-- End Sources & Tags -->
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="media">
+                    <div class="media-body">
+                        <span class="g-color-gray-dark-v4 g-font-size-12">本博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a></span>
+                        <br>
+                        <span class="g-color-gray-dark-v4 g-font-size-12">本文首发于<a
+                                    href="<%= config.url %>"><%= config.author %></a>的博客<a
+                                    href="<%= config.url %>"><%= config.title %></a>，版权所有，侵权必究。</span>
+                    </div>
+                </div>
+            </div>
+        </div>
