@@ -1,11 +1,10 @@
 ---
-categories: hexo
+categories: 博客历程
 title: 博客增加MathJax支持
 tags:
   - hexo
   - 博客美化
   - mathjax
-permalink: bkzjMathJaxzc
 date: 2018-02-22 12:07:00
 ---
 
