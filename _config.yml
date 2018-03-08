@@ -12,6 +12,7 @@ language: zh-Hans
 timezone:
 
 # 转换为拼音
+## pinyin - id
 ## pinyin - 拼音
 ## sha256 - Hash 值
 ## another - 默认
