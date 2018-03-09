@@ -65,3 +65,13 @@ $$\frac{\partial u}{\partial t}
 = h^2 \left( \frac{\partial^2 u}{\partial x^2} +
 \frac{\partial^2 u}{\partial y^2} +
 \frac{\partial^2 u}{\partial z^2}\right)$$
+
+
+ps:
+
+>在实际使用中由于 hexo的markdown的解析的问题，我们可能需要使用
+````txt
+{%raw%}{%endraw%}
+或者
+{%math%}{%endmath%}
+````
