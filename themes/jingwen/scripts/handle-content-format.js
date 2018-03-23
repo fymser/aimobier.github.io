@@ -27,7 +27,7 @@ function handleTable($){
         let content = $(this).html();
         let replaceString = ' \
             <div class="card g-brd-bluegray rounded-0 g-mb-30">\
-                <h3 class="card-header g-bg-linkedin g-brd-transparent g-color-white g-font-size-13 rounded-0 mb-0"><i class="fa fa-table g-mr-5"></i>我就一展示数据的表格 </h3>\
+                <strong class="card-header g-bg-linkedin g-brd-transparent g-color-white g-font-size-13 rounded-0 mb-0"><i class="fa fa-table g-mr-5"></i>我就一展示数据的表格 </strong>\
                 <div class="table-responsive">\
                     <table class="table table-striped u-table--v1 mb-0">'+content+'\
                     </table>\
@@ -80,7 +80,7 @@ function imageHandle($){
         var replaceString = '\
            <figure class="mb-4 text-center">\
               <a class="js-fancybox-thumbs" href="'+url+'" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">\
-                <br/><img class="img-fluid g-brd-around g-brd-gray-light-v2 g-rounded-3 g-pl-90" src="'+url+'" alt="Image Description">\
+                <br/><img class="img-fluid g-brd-around g-brd-gray-light-v2 g-rounded-3 w-100" src="'+url+'" alt="Image Description">\
               </a>';
         if (title) {
             replaceString += '<figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">'+title+'</figcaption>';
