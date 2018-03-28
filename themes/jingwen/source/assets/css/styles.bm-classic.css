@@ -45598,7 +45598,7 @@ h1, h2, h3, h4, h5, h6 {
 
 /* Typography */
 p {
-  color: #858993;
+  /* color: #858993; */
   line-height: 1.8;
 }
 
