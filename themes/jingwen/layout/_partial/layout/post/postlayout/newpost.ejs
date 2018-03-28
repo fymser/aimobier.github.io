@@ -1,29 +1,54 @@
 <!-- News Feed -->
 <div class="g-mb-40">
-  <div class="u-heading-v3-1 g-mb-30">
-    <h2 class="h5 u-heading-v3__title g-color-gray-dark-v1 text-uppercase g-brd-primary">最新日志</h2>
+
+  <!-- Nav tabs -->
+<ul class="nav u-nav-v1-2 u-nav-primary u-nav-rounded-5 g-brd-bottom--md g-brd-primary g-mb-20" role="tablist" data-target="nav-1-2-default-hor-left-rounded-underline" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block u-btn-outline-primary g-mb-20">
+  <li class="nav-item">
+    <a class="nav-link active g-rounded-bottom-0 g-brd-bottom-none" data-toggle="tab" href="#nav-1-2-default-hor-left-rounded-underline--1" role="tab">最新文章</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link g-rounded-bottom-0 g-brd-bottom-none" data-toggle="tab" href="#nav-1-2-default-hor-left-rounded-underline--2" role="tab">修改历史</a>
+  </li>
+</ul>
+<!-- End Nav tabs -->
+
+<!-- Tab panes -->
+<div id="nav-1-2-default-hor-left-rounded-underline" class="tab-content">
+  <div class="tab-pane fade show active" id="nav-1-2-default-hor-left-rounded-underline--1" role="tabpanel">
+    <% site.posts.sort('date',-1).limit(4).each(function(post,i){ %>
+      <article>
+        <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="<%- url_for(post.path) %>"><%= post.title %></a>
+        </h3>
+        <span class="g-font-size-12">
+            <%- date(post.date, 'YYYY/M/D H:m:s') %>
+        </span>
+      </article>
+      <% if(i < 3){%>
+      <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+      <% } %>
+    <% }) %>
   </div>
 
+  <div class="tab-pane fade" id="nav-1-2-default-hor-left-rounded-underline--2" role="tabpanel">
+    <ul id="commit-history" class="list-unstyled">
+      <li class="media g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1">
+        <div class="d-flex g-mt-2 g-mr-15">
+          <img class="g-width-20 g-height-20 rounded-circle" src="../../assets/img-temp/100x100/img7.jpg" alt="Image Description">
+        </div>
+        <div class="media-body">
+          <div class="d-flex justify-content-between">
+            <strong class="g-font-size-9">James Coolman</strong>
+            <span class="align-self-center g-font-size-9 text-nowrap">2 min ago</span>
+          </div>
+          <span class="d-block g-font-size-11">saved your pinsaved your pinsaved your pinsaved your pinsaved your pinsaved your pinsaved your pinsaved your pinsaved your pin</span>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>
+<!-- End Tab panes -->
 
-  <% site.posts.sort('date',-1).limit(4).each(function(post,i){ %>
-
-    <!-- Article -->
-    <article>
-      <h3 class="h6">
-              <a class="g-color-gray-dark-v1" href="<%- url_for(post.path) %>"><%= post.title %></a>
-            </h3>
-
-              <span class="g-font-size-12">
-                      <%- date(post.date, 'YYYY/M/D H:m:s') %>
-                    </span>
-    </article>
-    <!-- End Article -->
-
-    <% if(i < 3){%>
-    <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
-    <% } %>
-
-  <% }) %>
 
 </div>
 <!-- End News Feed -->
