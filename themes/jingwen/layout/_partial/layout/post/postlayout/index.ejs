@@ -7,11 +7,9 @@
           <header class="g-mb-30">
             <h2 class="h1 g-mb-15"><%= page.title %></h2>
 
-            <ul class="list-inline d-sm-flex g-color-gray-dark-v4 mb-0">
+            <ul id="editHtmlElement" class="list-inline d-sm-flex g-color-gray-dark-v4 mb-0">
               <li class="list-inline-item">
-                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
-                  <%= config.author %>
-                </a>
+                <%= config.author %>
               </li>
               <li class="list-inline-item g-mx-10">/</li>
               <li class="list-inline-item">
@@ -19,15 +17,13 @@
               </li>
               <li class="list-inline-item g-mx-10">/</li>
               <li class="list-inline-item g-mr-10">
-                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
-                        <i class="align-middle mr-2 icon-hotel-restaurant-242 u-line-icon-pro"></i>共有<%= wordcount(page.content) %>个字
-                      </a>
+                <i class="align-middle mr-2 icon-hotel-restaurant-242 u-line-icon-pro"></i>共有
+                <%= wordcount(page.content) %>个字
               </li>
               <li class="list-inline-item g-mx-10">/</li>
               <li class="list-inline-item g-mr-10">
-                <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover" href="#">
-                        <i class="align-middle mr-2 icon-hotel-restaurant-003 u-line-icon-pro"></i>预计阅读<%= min2read(page.content) %>分钟
-                      </a>
+                <i class="align-middle mr-2 icon-hotel-restaurant-003 u-line-icon-pro"></i>预计阅读
+                <%= min2read(page.content) %>分钟
               </li>
             </ul>
 
@@ -41,7 +37,7 @@
 
           <%- partial('footer',{"post":page}) %>
 
-          <hr class="g-brd-gray-light-v4">
+            <hr class="g-brd-gray-light-v4">
 
         </article>
 
@@ -68,8 +64,6 @@
 <script src="/assets/js/components/hs.sticky-block.js"></script>
 <script src="/assets/js/githubhistory.js"></script>
 <script type="text/javascript">
-
   // initialization of sticky blocks
   $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
-
 </script>

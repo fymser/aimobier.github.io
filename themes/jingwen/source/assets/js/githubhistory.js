@@ -55,8 +55,6 @@ const GitHubHistoryReq = {
 
     commit.commit.message = commit.commit.message.replace(/\n/g,"<br>");
 
-    console.log(commit.commit.message);
-
     return '\
     <li class="media g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1">\
       <div class="d-flex g-mt-2 g-mr-15">\
@@ -80,9 +78,28 @@ const GitHubHistoryReq = {
     }.bind(this));
 
     $("#commit-history").html(liRes.join(""));
+  },
+  editHtmlMethod:function(){
+
+    const fileName = $("#CurrentFileName").text();
+    const urlString = "https://github.com/aimobier/aimobier.github.io/tree/make-blog/source/_posts/"+fileName;
+
+    const editHtml = '\
+    <li class="list-inline-item g-mx-10">/</li>\
+    <li class="list-inline-item g-mr-10">\
+      <a target="_blank" class="u-link-v5 g-color-deeporange g-color-orange--hover" href="'+urlString+'">\
+              <i class="align-middle mr-2 fa fa-edit u-line-icon-pro"></i>发现错误，编辑本页\
+            </a>\
+    </li>\
+    ';
+
+    $("#editHtmlElement").append(editHtml);
   }
 }
 
 $(function() {
+
   GitHubHistoryReq.Request();
+
+  GitHubHistoryReq.editHtmlMethod();
 });
