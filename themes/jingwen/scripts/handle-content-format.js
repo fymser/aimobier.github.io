@@ -5,6 +5,12 @@ var cheerio;
 
 hexo.extend.filter.register('after_post_render', function(data){
 
+    const appendHtmlString = '\
+    <p hidden id="CurrentFileName">'+data.full_source.split("/").slice(-1)[0]+'</p>\
+    ';
+
+    data.content += appendHtmlString;
+
     if (!cheerio) cheerio = require('cheerio');
 
     var $ = cheerio.load(data.content);
