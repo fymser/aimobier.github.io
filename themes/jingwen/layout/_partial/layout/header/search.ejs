@@ -67,9 +67,10 @@
   /* 搜索结果关键字 高粱设置 */
 
   .search-keyword {
+    font-size: 1rem;
     color: #6281c8;
     border-bottom: 1px dashed #4088b8;
-    font-weight: bold;
+    font-weight:700;
   }
 
   /*  分页 前一夜 后一页 隐藏 边框 */
@@ -293,8 +294,8 @@
             // highlight all keywords
             keywords.forEach(function(keyword) {
               var regS = new RegExp(keyword, "gi");
-              data_title = data_title.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
-              match_content = match_content.replace(regS, "<em class=\"search-keyword\">" + keyword + "</em>");
+              data_title = data_title.replace(regS, "<strong class=\"search-keyword\">" + keyword + "</strong>");
+              match_content = match_content.replace(regS, "<strong class=\"search-keyword\">" + keyword + "</strong>");
             });
             var datas = [createTemp(data_title, data_url, match_content)];
             dataSet.push(datas);
