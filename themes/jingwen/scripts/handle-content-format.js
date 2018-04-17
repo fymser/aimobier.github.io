@@ -27,9 +27,12 @@ hexo.extend.filter.register('after_post_render', function(data){
 });
 
 
+/// handle 任意标签 都可以增加概述行
+/// handle = "nohandle" 表示为 不需要处理
+
 function handleTable($){
 
-    $("table").each(function () {
+    $("table[handle!='nohandle']").each(function () {
         let content = $(this).html();
         let replaceString = ' \
             <div class="card g-brd-bluegray rounded-0 g-mb-30">\
@@ -45,14 +48,14 @@ function handleTable($){
 
 function ulliHandle($){
 
-    $("ul").each(function(){
+    $("ul[handle!='nohandle']").each(function(){
         $(this).addClass("g-list-style-circle");
     });
 }
 
 /// 代码 处理方法
 function codeHandle($){
-    $("pre").each(function(){
+    $("pre[handle!='nohandle']").each(function(){
         if (!$(this).attr("class")) {
             $(this).addClass('line-numbers language-txt');
             $(this).find("code").addClass('language-txt')
@@ -64,7 +67,7 @@ function codeHandle($){
 // 引用 内容的配置
 function blockquoteHandle($){
 
-    $("blockquote").each(function(){
+    $("blockquote[handle!='nohandle']").each(function(){
         var content = $(this).html();
         var replaceString = '\
                                 <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">\
@@ -78,7 +81,7 @@ function blockquoteHandle($){
 /// 图片的处理
 function imageHandle($){
 
-    $("img").each(function(){
+    $("img[handle!='nohandle']").each(function(){
 
         var url = $(this).attr("src");
         var title = $(this).attr("title");
@@ -86,7 +89,7 @@ function imageHandle($){
         var replaceString = '\
            <figure class="mb-4 text-center">\
               <a class="js-fancybox-thumbs" href="'+url+'" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">\
-                <br/><img class="img-fluid g-brd-around g-brd-gray-light-v2 g-rounded-3 w-50" src="'+url+'" alt="Image Description">\
+                <br/><img class="img-fluid g-brd-around g-brd-gray-light-v2 g-rounded-3 w-100" src="'+url+'" alt="Image Description">\
               </a>';
         if (title) {
             replaceString += '<figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">'+title+'</figcaption>';
