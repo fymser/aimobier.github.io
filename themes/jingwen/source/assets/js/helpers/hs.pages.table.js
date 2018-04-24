@@ -38,7 +38,7 @@ function PreviousConMethod(){
 
   var resString = '\
               <li class="list-inline-item float-sm-left">\
-                <a class="u-pagination-v1__item u-pagination-v1-4 g-rounded-50 g-pa-7-16" href="#" aria-label="Previous">\
+                <a class="u-pagination-v1__item u-pagination-v1-4 g-rounded-50 g-pa-7-16" aria-label="Previous">\
                   <span aria-hidden="true">\
                     <i class="fa fa-angle-left g-mr-5"></i>\
                     上一页\
@@ -55,7 +55,7 @@ function NextConMethod(){
 
   var resString = '\
                 <li class="list-inline-item float-sm-right">\
-                  <a class="u-pagination-v1__item u-pagination-v1-4 g-rounded-50 g-pa-7-16" href="#" aria-label="Next">\
+                  <a class="u-pagination-v1__item u-pagination-v1-4 g-rounded-50 g-pa-7-16" aria-label="Next">\
                     <span aria-hidden="true">\
                       下一页\
                       <i class="fa fa-angle-right g-ml-5"></i>\
@@ -73,7 +73,7 @@ function NormalNumberConMethod(number){
 
   var resString = '\
               <li class="list-inline-item g-hidden-sm-down hidden-all-list-li-link-elment">\
-                <a class="u-pagination-v1__item u-pagination-v1-4 g-rounded-50 g-pa-7-14" href="#">'+number+'</a>\
+                <a class="u-pagination-v1__item u-pagination-v1-4 g-rounded-50 g-pa-7-14" href="javascript:void(0)">'+number+'</a>\
               </li>';
 
               return resString;
@@ -114,7 +114,7 @@ $.fn.dataTableExt.oPagination.cutsomPage = {
             oLang = oSettings.oLanguage.oPaginate,
             that = this;
 
-        var iShowPages = oSettings.oInit.iShowPages || this.oDefaults.iShowPages,
+        var iShowPages = oSettings.oInit.iShowPages ,
             iShowPagesHalf = Math.floor(iShowPages / 2);
 
         $.extend(oSettings, {
@@ -135,6 +135,7 @@ $.fn.dataTableExt.oPagination.cutsomPage = {
     },
     // fnUpdate is only called once while table is rendered
     'fnUpdate': function(oSettings, fnCallbackDraw) {
+
         var oClasses = oSettings.oClasses,
             that = this;
 
@@ -143,21 +144,27 @@ $.fn.dataTableExt.oPagination.cutsomPage = {
         // Update stateful properties
         this.fnUpdateState(oSettings);
 
+        const selectorStr = oSettings.oInstance.selector+'_paginate';
+
         if (oSettings._iCurrentPage === 1) {
-            $('#searchdownview a[aria-label="Previous"]').addClass("u-pagination-v1__item--disabled");
+            $(selectorStr+' a[aria-label="Previous"]').addClass("u-pagination-v1__item--disabled");
         } else {
-            $('#searchdownview a[aria-label="Previous"]').removeClass("u-pagination-v1__item--disabled");
+            $(selectorStr+' a[aria-label="Previous"]').removeClass("u-pagination-v1__item--disabled");
         }
 
         if (oSettings._iTotalPages === 0 || oSettings._iCurrentPage === oSettings._iTotalPages) {
-            $('#searchdownview a[aria-label="Next"]').addClass("u-pagination-v1__item--disabled");
+            $(selectorStr+' a[aria-label="Next"]').addClass("u-pagination-v1__item--disabled");
         } else {
-            $('#searchdownview a[aria-label="Next"]').removeClass("u-pagination-v1__item--disabled");
+            $(selectorStr+' a[aria-label="Next"]').removeClass("u-pagination-v1__item--disabled");
         }
 
-        var i, oNumber, oNumbers = $("#searchdownview ul[class='list-inline']");
+        if (!oSettings._iShowPages) {
+          return;
+        }
 
-        $(".hidden-all-list-li-link-elment").remove();
+        var i, oNumber, oNumbers = $(selectorStr+" ul[class='list-inline']");
+
+        $(selectorStr+" .hidden-all-list-li-link-elment").remove();
 
         for (i = oSettings._iFirstPage; i <= oSettings._iLastPage; i++) {
 
