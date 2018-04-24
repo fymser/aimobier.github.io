@@ -13,7 +13,7 @@ hexo.extend.filter.register('after_post_render', function(data){
 
     if (!cheerio) cheerio = require('cheerio');
 
-    var $ = cheerio.load(data.content);
+    var $ = cheerio.load(data.content, {decodeEntities: false});
 
     ulliHandle($);
     codeHandle($);

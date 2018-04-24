@@ -6,7 +6,7 @@ hexo.extend.helper.register('pfi', function(content) {
 
   if (!cheerio) cheerio = require('cheerio');
 
-  var $ = cheerio.load(content);
+  var $ = cheerio.load(content, {decodeEntities: false});
 
   return {
     "src": $("img").first().attr("src"),
@@ -21,7 +21,7 @@ hexo.extend.helper.register('pet', function(content) {
 
   if (!cheerio) cheerio = require('cheerio');
 
-  var $ = cheerio.load(content);
+  var $ = cheerio.load(content, {decodeEntities: false});
 
   $("img").remove();
 
