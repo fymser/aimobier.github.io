@@ -26,7 +26,6 @@ hexo.extend.filter.register('after_post_render', function(data){
     return data;
 });
 
-
 /// handle 任意标签 都可以增加概述行
 /// handle = "nohandle" 表示为 不需要处理
 
@@ -86,10 +85,20 @@ function imageHandle($){
         var url = $(this).attr("src");
         var title = $(this).attr("title");
 
+
+      // <figure class="mb-4 text-center ">
+      //   <img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="<%- name.src %>">
+      //   <% if (name.title){ %>
+      //     <figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">
+      //       <%- name.title %>
+      //     </figcaption>
+      //     <%}%>
+      // </figure>
+
         var replaceString = '\
            <figure class="mb-4 text-center">\
               <a class="js-fancybox-thumbs" href="'+url+'" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">\
-                <br/><img class="img-fluid g-brd-around g-brd-gray-light-v2 g-rounded-3 w-100" src="'+url+'" alt="Image Description">\
+                <br/><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="'+url+'" alt="Image Description">\
               </a>';
         if (title) {
             replaceString += '<figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">'+title+'</figcaption>';
