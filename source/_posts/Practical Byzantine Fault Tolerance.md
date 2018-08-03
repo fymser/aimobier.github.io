@@ -77,7 +77,7 @@ Like all state machine replication techniques [34], we impose two requirements o
 The remainder of this section describes a simplified version of the algorithm. We omit discussion of how nodes recover from faults due to lack of space. We also omit details related to message retransmissions. Furthermore, we assume that message authentication is achieved using digital signatures rather than the more efficient scheme based on message authentication codes; Section 5 discusses this issue further. A detailed formalization of the algorithm using the I/O automaton model [21] is presented in [4].
 
 ## 4.1 The Client
-A client {%raw%}$c${%endraw%} requests the execution of state machine operation {%raw%}$o${%endraw%} by sending a {%raw%}$ \langle REQUEST,0,t,c\rangle_{\sigma _{c}}$ {%endraw%} message to the primary. Timestamp {%raw%}$t${%endraw%} is used to ensure exactlyonce semantics for the execution of client requests. Timestamps for {%raw%}$c${%endraw%}’s requests are totally ordered such that later requests have higher timestamps than earlier ones; for example, the timestamp could be the value of the client’s local clock when the request is issued.
+A client {%raw%}$c${%endraw%} requests the execution of state machine operation {%raw%}$o${%endraw%} by sending a {%raw%}$ \langle REQUEST,o,t,c\rangle_{\sigma _{c}}$ {%endraw%} message to the primary. Timestamp {%raw%}$t${%endraw%} is used to ensure exactlyonce semantics for the execution of client requests. Timestamps for {%raw%}$c${%endraw%}’s requests are totally ordered such that later requests have higher timestamps than earlier ones; for example, the timestamp could be the value of the client’s local clock when the request is issued.
 
 Each message sent by the replicasto the clientincludes the current view number, allowing the client to track the view and hence the current primary. A client sends a request to what it believes is the current primary using a point-to-point message. The primary atomically multicaststhe requestto allthe backups using the protocol described in the next section
 
@@ -96,7 +96,7 @@ When the primary, {%raw%}$p${%endraw%} , receives a client request, {%raw%}$m${%
 
 The three phases are pre-prepare, prepare, and commit. The pre-prepare and prepare phases are used to totally order requests sent in the same view even when the primary, which proposes the ordering of requests, is faulty. The prepare and commit phases are used to ensure that requeststhat commit are totally ordered across views.
 
-In the pre-prepare phase, the primary assigns a sequence number, {%raw%}$n${%endraw%} , to the request, multicasts a preprepare message with {%raw%}$m${%endraw%} piggybacked to all the backups, and appends the message to its log. The message has the form {%raw%}$ \langle\langle REQUEST,0,t,c\rangle_{\sigma _{p}},m \rangle $ {%endraw%} , where {%raw%}$v${%endraw%} indicates the view in which the message is being sent,{%raw%}$m${%endraw%} is the client’s request message, and {%raw%}$d${%endraw%} is {%raw%}$m${%endraw%}’s digest.
+In the pre-prepare phase, the primary assigns a sequence number, {%raw%}$n${%endraw%} , to the request, multicasts a preprepare message with {%raw%}$m${%endraw%} piggybacked to all the backups, and appends the message to its log. The message has the form {%raw%}$ \langle\langle PRE-PREPARE,v,n,d\rangle_{\sigma _{p}},m \rangle $ {%endraw%} , where {%raw%}$v${%endraw%} indicates the view in which the message is being sent,{%raw%}$m${%endraw%} is the client’s request message, and {%raw%}$d${%endraw%} is {%raw%}$m${%endraw%}’s digest.
 
 Requests are not included in pre-prepare messages to keep them small. This is important because preprepare messages are used as a proof that the request was assigned sequence number {%raw%}$n${%endraw%} in view {%raw%}$v${%endraw%} in view changes. Additionally, it decouples the protocol to totally order requests from the protocol to transmit the request to the replicas; allowing us to use a transport optimized for small messages for protocol messages and a transport optimized for large messages for large requests.
 
@@ -109,7 +109,7 @@ A backup accepts a pre-prepare message provided:
 
 The last condition prevents a faulty primary from exhausting the space of sequence numbers by selecting a very large one. We discuss how {%raw%}$H${%endraw%} and {%raw%}$h${%endraw%} advance in Section 4.3.
 
-If backup {%raw%}$i${%endraw%}  accepts the {%raw%}$ \langle\langle PRE-PREPARE,v,n,d\rangle_{\sigma _{v}},m \rangle $ {%endraw%} message, it enters the prepare phase by multicasting a {%raw%}$ \langle PREPARE,v,n,d,i\rangle_{\sigma _{i}}$ {%endraw%} message to all other replicas and adds both messagesto itslog. Otherwise,it does nothing.
+If backup {%raw%}$i${%endraw%}  accepts the {%raw%}$ \langle\langle PRE-PREPARE,v,n,d\rangle_{\sigma _{p}},m \rangle $ {%endraw%} message, it enters the prepare phase by multicasting a {%raw%}$ \langle PREPARE,v,n,d,i\rangle_{\sigma _{i}}$ {%endraw%} message to all other replicas and adds both messagesto itslog. Otherwise,it does nothing.
 
 A replica (including the primary) accepts prepare messages and adds them to its log provided their signatures are correct, their view number equals the replica’s current view, and their sequence number is between {%raw%}$h${%endraw%} and {%raw%}$H${%endraw%}.
 
