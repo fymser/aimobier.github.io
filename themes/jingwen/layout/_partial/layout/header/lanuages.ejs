@@ -16,14 +16,15 @@ var ref = wilddog.sync().ref("browerlog");
 
 ref.push({
   "url": window.location.href,
+  "path": window.location.pathname,
   "date": Math.round(new Date().getTime())
 });
 
-ref.orderByChild("url").equalTo(window.location.href).on('value', function(snapshot) {
+ref.orderByChild("path").equalTo(window.location.pathname).on('value', function(snapshot) {
 
-  $("#clock").text("No."+Object.keys(snapshot.val()).length);
+  var value = snapshot.val() == null ? 0 : Object.keys(snapshot.val()).length
 
-  }, function (error) {
+  $("#clock").text("No."+value);
 });
 
 var zan = wilddog.sync().ref("dianzan");

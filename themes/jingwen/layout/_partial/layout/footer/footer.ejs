@@ -39,7 +39,7 @@
     // initialization of go to
     $.HSCore.components.HSGoTo.init('.js-go-to');
     $.HSCore.components.HSModalWindow.init('[data-modal-target]');
-    $.getJSON("https://sslapi.hitokoto.cn/?encode=json", function(json) {
+    $.getJSON("https://v1.hitokoto.cn/?encode=json", function(json) {
 
       var author = json["from"];
       var content = json["hitokoto"];
