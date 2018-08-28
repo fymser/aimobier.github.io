@@ -5,6 +5,7 @@ install:
   - export TZ='Asia/Beijing'
   - npm install -g hexo
   - npm install -g hexo-cli
+  - npm set audit false  ## https://docs.npmjs.com/getting-started/running-a-security-audit
   - npm install
 
 
