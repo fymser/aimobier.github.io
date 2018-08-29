@@ -21,6 +21,8 @@ hexo.extend.filter.register('after_post_render', function(data){
     blockquoteHandle($);
     handleTable($);
 
+    handleTitle($); 
+
     data.content = $.html();
 
     return data;
@@ -105,5 +107,15 @@ function imageHandle($){
         }
         replaceString += '</figure>';
         $(this).replaceWith($(replaceString));
+    });
+}
+
+function handleTitle($){
+    ["H1","H2","H3","H4","H5","H6"].forEach(function(tagStr){
+        let content = "<br/><span class='g-font-size-14 g-color-gray-dark-v4'>"+tagStr+"   </span>"
+        $(tagStr).each(function(){
+            $(this).css('display','inline');
+            $(this).before(content);
+        });
     });
 }
