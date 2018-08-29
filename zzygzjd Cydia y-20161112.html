@@ -1,0 +1,3512 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Title -->
+      
+      <title>制作一个自己的 Cydia 源 | 荆文征</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="baidu-site-verification" content="x3N9zxqrty" />
+    <meta name="baidu-site-verification" content="cP2u6szylS" />
+    <meta name="google-site-verification" content="pwQ78Z9AmtXiVWejypS4rBSfBZ4_G95mchbkWo3EWmI" />
+    
+      <meta name="keywords" content="荆文征,MSITER,msiter,jingwenzheng,IOS,Blog,博客,荆文征博客,Nodejs,JAVA,JavaScript,js,swift,oc,objective-c,c++,c">
+    
+    
+      <meta name="author" content="小酒馆老板">
+    
+    
+      <meta name="description" content="欲买桂花同载酒&lt;br/&gt;终不似 少年游">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700%7COpen+Sans:400,600,700">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/assets/vendor/icon-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/vendor/icon-line-pro/style.css">
+    <link rel="stylesheet" href="/assets/vendor/icon-hs/style.css">
+    <link rel="stylesheet" href="/assets/vendor/animate.css">
+    <link rel="stylesheet" href="/assets/vendor/hs-megamenu/src/hs.megamenu.css">
+    <link rel="stylesheet" href="/assets/vendor/hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" href="/assets/vendor/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="/assets/vendor/fancybox/jquery.fancybox.css">
+
+    <!-- Revolution Slider -->
+    <link rel="stylesheet" href="/assets/vendor/revolution-slider/revolution/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="/assets/vendor/revolution-slider/revolution/css/settings.css">
+    <link rel="stylesheet" href="/revolution-slider/carousel-gallery/assets/css/style.css">
+
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" href="/assets/css/styles.bm-classic.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="/assets/css/custom.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link  rel="stylesheet" href="/assets/vendor/fancybox/jquery.fancybox.min.css">
+
+  <link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<!-- JS Global Compulsory -->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+<script src="/assets/vendor/popper.js/index.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="/assets/vendor/appear.js"></script>
+<script src="/assets/vendor/slick-carousel/slick/slick.js"></script>
+<script src="/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+<script src="/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+
+<!-- JS Unify -->
+<script src="/assets/js/hs.core.js"></script>
+<script src="/assets/js/components/hs.header.js"></script>
+<script src="/assets/js/helpers/hs.hamburgers.js"></script>
+<script src="/assets/js/components/hs.dropdown.js"></script>
+<script src="/assets/js/components/hs.carousel.js"></script>
+<script src="/assets/js/components/hs.go-to.js"></script>
+<script src="/assets/js/components/hs.popup.js"></script>
+
+<!-- JS Revolution Slider -->
+<script src="/assets/vendor/revolution-slider/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/jquery.themepunch.revolution.min.js"></script>
+
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
+<!-- JS Customization -->
+<script src="/assets/js/custom.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script  src="/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+
+<!-- JS Unify -->
+<script  src="/assets/js/components/hs.popup.js"></script>
+
+<script src="https://cdn.wilddog.com/sdk/js/2.5.17/wilddog-sync.js"></script>
+
+<script>
+  function SETValue(key, value) {
+    if (typeof(Storage) !== "undefined") {
+      var curTime = new Date().getTime();
+      localStorage.setItem(key, JSON.stringify({
+        data: value,
+        time: curTime
+      }));
+    }
+  }
+
+  function GETvalue(key) {
+    if (typeof(Storage) !== "undefined") {
+      var data = localStorage.getItem(key);
+      if(data) {
+        var dataObj = JSON.parse(data);
+        if (new Date().getTime() - dataObj.time > 1000*60*60) {
+          //alert("信息已过期")
+        } else {
+          //console.log("data="+dataObj.data);
+          //console.log(JSON.parse(dataObj.data));
+          var dataObjDatatoJson = dataObj.data
+          return dataObjDatatoJson;
+        }
+      }
+    }
+  }
+
+  function REQuest(url, finish) {
+
+    var value = GETvalue(url);
+
+    if (value) {
+      finish(value);
+      return;
+    }
+
+    $.ajax({
+      type: "get",
+      dataType: "jsonp",
+      cache: true,
+      url: url,
+      success: function(data) {
+        SETValue(url, data);
+        finish(data);
+      }
+    });
+  }
+
+
+  $(document).on('ready', function() {
+    // initialization of header
+    $.HSCore.components.HSHeader.init($('#js-header'));
+    $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+    // initialization of MegaMenu
+    $('.js-mega-menu').HSMegaMenu();
+
+    // initialization of HSDropdown component
+    $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
+      afterOpen: function() {
+        $(this).find('input[type="search"]').focus();
+      }
+    });
+    // initialization of popups
+                                $.HSCore.components.HSPopup.init('.js-fancybox');
+
+                                // initialization of gallery with thumbs
+                                $.HSCore.components.HSPopup.init('.js-fancybox-thumbs', {
+                                  thumbs: {
+                                    showOnStart: true
+                                  }
+                                });
+
+    // initialization of go to
+    $.HSCore.components.HSGoTo.init('.js-go-to');
+  });
+</script>
+
+<script>
+
+//  百度站长 推送
+
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+  <body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><main>
+
+  <!-- Header -->
+  <header id="js-header" class="u-header u-header--static u-shadow-v19">
+    <!-- Top Bar -->
+    <div class="u-header__section g-brd-bottom g-brd-gray-light-v4 g-py-18">
+      <div class="container">
+        <div class="row align-items-center">
+
+          <!-- Logo -->
+<div class="col-md-3 g-hidden-md-down logo">
+  <a href="/" class="navbar-brand">
+    <img src="/favicon/logo.png" alt="Logo">
+  </a>
+</div>
+<!-- End Logo -->
+
+
+          <style media="screen">
+  .searchbox {
+    border-style: hidden;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .markdown {
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top: 42px;
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  #searchdownview {
+    display: none;
+  }
+
+  #searchdownview nav {
+    padding-top: 10px;
+  }
+
+  #PostSearchResults_wrapper {
+    margin: 0px;
+    padding-bottom: 0px;
+  }
+
+  /* 配置 没有搜索到内容的 上边距 */
+
+  #emptymessageview {
+    display: none;
+  }
+
+  #emptymessageview p {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+
+  #searchdownview table {
+    table-layout: fixed;
+  }
+
+  #searchdownview td {
+
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
+
+
+  /* 搜索结果 设置 */
+
+  .resultlist {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .resultlist li {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #e0e4ea;
+  }
+
+  /* 搜索结果关键字 高粱设置 */
+
+  .search-keyword {
+    font-size: 1rem;
+    color: #6281c8;
+    border-bottom: 1px dashed #4088b8;
+    font-weight:700;
+  }
+
+  /*  分页 前一夜 后一页 隐藏 边框 */
+
+  .searchpage a {
+    border-style: hidden;
+  }
+</style>
+
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" charset="utf-8"></script>
+<script src="/assets/js/helpers/hs.pages.table.js" charset="utf-8"></script>
+
+<!-- Subscribe Form -->
+<div class="col-lg-5 col-md-10 col-sm-10 col-xs-12">
+  <form class="input-group rounded">
+    <div class="form-control w-100 searchbox">
+      <input class="form-control w-100
+      g-brd-secondary-light-v2
+      g-brd-primary--focus
+      g-color-secondary-dark-v1
+      g-placeholder-secondary-dark-v1
+      g-bg-white g-font-weight-400
+      g-font-size-13 rounded g-px-20
+      g-py-12 searchinput"
+      autocomplete="off"
+      id="PostSearchInput" type="text" placeholder="输入以搜索该博客文章">
+
+      <div class=" w-100 markdown g-bg-white
+      g-brd-secondary-light-v2 rounded
+      g-brd-primary--focus" id="searchdownview">
+      <table id="PostSearchResults" ></table>
+        <p class="text-center g-font-size-10" id="infomessagelabel"></p>
+      </div>
+
+      <div class=" w-100 markdown g-bg-white
+      g-brd-secondary-light-v2 rounded
+      g-brd-primary--focus" id="emptymessageview">
+        <p class="text-center g-font-size-13">什么都没有找到</p>
+      </div>
+
+    </div>
+
+
+    <span class="input-group-addon g-brd-none g-py-0 g-pr-0">
+      <button id="BarrageStartButton" class="btn u-btn-white g-color-primary--hover g-bg-secondary g-font-weight-600 g-font-size-13 text-uppercase rounded g-py-12 g-px-20">
+        <span class="g-hidden-md-down">search</span>
+    <i class="g-hidden-lg-up fa fa-search"></i>
+    </button>
+    </span>
+  </form>
+
+</div>
+<!-- End Subscribe Form -->
+
+
+
+<script type="text/javascript">
+  var SearchDataTablesElment;
+
+  var SearchKeyElemnt = "search";
+
+  var Timer = {
+    data: {},
+    start: function(key) {
+      Timer.data[key] = new Date();
+    },
+    stop: function(key) {
+      var time = Timer.data[key];
+      if (time)
+        Timer.data[key] = new Date() - time;
+    },
+    getTime: function(key) {
+      return Timer.data[key];
+    }
+  };
+
+  // AJAX 请求获取 XML 数据
+  function RequestSearchXMLMethod(finish) {
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    $.ajax({
+      url: path,
+      dataType: "xml",
+      success: function(xmlResponse) {
+        // get the contents from search data
+        var datas = $("entry", xmlResponse).map(function() {
+          return {
+            title: $("title", this).text(),
+            content: $("content", this).text(),
+            url: $("url", this).text()
+          };
+        }).get();
+        WhachSearchInputMethod(datas, finish);
+      }
+    });
+  }
+
+  function createTemp(title, url, content) {
+
+    if (content.length > 200) {
+      content = content.substring(0, 200) + "...";
+    }
+
+    return "\
+  <ul class='list-unstyled resultlist' >\
+  <li class='g-pa-20 g-mb-minus-1'>\
+    <!-- Article -->\
+    <article>\
+          <h3 class='h6'>\
+            <a class='g-color-main g-color-primary--hover' href='" + url + "'>" +
+      title +
+      "</a>\
+          </h3>\
+          <p class='g-font-size-12'>" +
+      content + "</p>\
+        </article>\
+    <!-- End Article -->\
+  </li>\
+  </ul>\
+  ";
+  }
+
+
+  function WatchLeftAndRightKeyWork() {
+
+    $(document).keydown(function(event) {
+
+      var pointEvent = event.which == 37 || event.which == 39 || event.which == 27 || event.which == 96;
+
+      var pointStatus = $('#searchdownview').css('display') != 'none' || $("#PostSearchInput").is(':focus') || $("#PostSearchInput").val().length > 0;
+
+      if (pointEvent && pointStatus) {
+        $("#PostSearchInput").blur(); // 失去焦点
+        event.preventDefault(); // 组织键盘
+        switch (event.which) { //判断按键;
+          case 37: // 上一页
+            SearchDataTablesElment.page('previous').draw('page');
+            break;
+          case 39: // 下一页
+            SearchDataTablesElment.page('next').draw('page');
+            break;
+          case 27:
+          case 96:
+            $("#PostSearchInput").val("");
+            $("#PostSearchInput").trigger("input");
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  }
+
+  // 监视输入框的一些输入问题
+  // @params data XML 解析出来的JOSN 数据
+  // @params finish 检测到输入框修改之后 回调的数据
+  //
+  // @return nil
+  function WhachSearchInputMethod(datas, finish) {
+
+    WatchLeftAndRightKeyWork();
+
+    $("#PostSearchInput").on('input', function(e) {
+
+      var startTime = new Date().getTime(); // 开始时间
+
+      var dataSet = [];
+      var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+      if (this.value.trim().length <= 0) {
+        finish(keywords, dataSet);
+        return;
+      }
+      // perform local searching
+      datas.forEach(function(data) {
+        var isMatch = true;
+        var content_index = [];
+        var data_title = data.title.trim().toLowerCase();
+        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+        var data_url = data.url;
+        var index_title = -1;
+        var index_content = -1;
+        var first_occur = -1;
+        // only match artiles with not empty titles and contents
+        if (data_title != '' && data_content != '') {
+          keywords.forEach(function(keyword, i) {
+            index_title = data_title.indexOf(keyword);
+            index_content = data_content.indexOf(keyword);
+            if (index_title < 0 && index_content < 0) {
+              isMatch = false;
+            } else {
+              if (index_content < 0) {
+                index_content = 0;
+              }
+              if (i == 0) {
+                first_occur = index_content;
+              }
+            }
+          });
+        }
+        // show search results
+        if (isMatch) {
+          var content = data.content.trim().replace(/<[^>]+>/g, "");
+          if (first_occur >= 0) {
+            // cut out characters
+            var start = first_occur - 6;
+            var end = first_occur + 6;
+            if (start < 0) {
+              start = 0;
+            }
+            if (start == 0) {
+              end = 10;
+            }
+            if (end > content.length) {
+              end = content.length;
+            }
+            var match_content = content.substr(start, end);
+            // highlight all keywords
+            keywords.forEach(function(keyword) {
+              var regS = new RegExp(keyword, "gi");
+              data_title = data_title.replace(regS, "<strong class=\"search-keyword\">" + keyword + "</strong>");
+              match_content = match_content.replace(regS, "<strong class=\"search-keyword\">" + keyword + "</strong>");
+            });
+            var datas = [createTemp(data_title, data_url, match_content)];
+            dataSet.push(datas);
+          };
+        };
+      });
+
+      var endTime = new Date().getTime(); // 开始时间
+
+      finish(keywords, dataSet, endTime - startTime);
+    });
+  };
+
+  function EmptyViewHandleMethod(datacount) {
+    if (datacount <= 0 && $("#PostSearchInput").val().length > 0) {
+      $("#emptymessageview").attr("style", "display:block;"); //隐藏div
+    } else {
+      $("#emptymessageview").attr("style", "display:none;"); //显示div
+    }
+  }
+
+  function InitSearchInterfaceMethod() {
+
+    $("#PostSearchInput").focus(function(){
+        if ($("#PostSearchInput").val().length > 0) {
+          $("#PostSearchInput").trigger("input");
+        }
+    });
+
+    RequestSearchXMLMethod(function(keywords, datas, times) {
+      if (datas.length <= 0) {
+        $("#searchdownview").attr("style", "display:none;"); //隐藏div
+      } else {
+        $("#searchdownview").attr("style", "display:block;"); //显示div
+      }
+      EmptyViewHandleMethod(datas.length);
+      if (!SearchDataTablesElment) {
+        SearchDataTablesElment = $('#PostSearchResults').DataTable({
+          data: datas,
+          autoWidth: false,
+          ordering: false,
+          searching: false,
+          lengthChange: false,
+          pageLength: 4,
+          info: false,
+          iShowPages: 3,
+          pagingType: "cutsomPage",
+          footerCallback: function(tfoot, data, start, end, display) {
+
+            var keyWorkd = "<span style='color: #6281c8;font-weight: bold;'>" + $("#PostSearchInput").val() + "</span>";
+
+            var title = "查询[" + keyWorkd + "]结果共" + data.length + "个,总耗时" + times / 1000 + "秒";
+
+            $("#infomessagelabel").html(title);
+          },
+          columns: [{
+            title: ""
+          }]
+        });
+      } else {
+        SearchDataTablesElment.clear().rows.add(datas).draw();
+      }
+
+
+
+    });
+  };
+
+  $(document).ready(function() {
+
+    InitSearchInterfaceMethod();
+  });
+</script>
+
+
+          <!-- Language -->
+<div id="clock" class="col-xl-2 col-md-2 col-sm-2 g-hidden-xs-down ml-auto ">
+</div>
+<!-- End Language -->
+
+
+<script type="text/javascript">
+
+var counter;
+
+var config = {
+  syncURL: "https://wd2622139095udguuj.wilddogio.com" //输入节点 URL
+};
+wilddog.initializeApp(config);
+var ref = wilddog.sync().ref("browerlog");
+
+ref.push({
+  "url": window.location.href,
+  "path": window.location.pathname,
+  "date": Math.round(new Date().getTime())
+});
+
+ref.orderByChild("path").equalTo(window.location.pathname).on('value', function(snapshot) {
+
+  var value = snapshot.val() == null ? 0 : Object.keys(snapshot.val()).length
+
+  $("#clock").text("No."+value);
+});
+
+var zan = wilddog.sync().ref("dianzan");
+
+zan.on('value', function(snapshot) {
+    counter = snapshot.val();
+    $("#counter").html(""+counter);
+  }, function (error) {
+    console.log(error);
+  });
+
+
+function zanUpMethod(){
+  zan.set(counter+1)
+}
+function zanDownMethod(){
+  zan.set(counter-1)
+}
+
+</script>
+
+
+          <!-- Account -->
+<div class="col-1 g-hidden-md-down" id="account">
+  <a id="account-dropdown-invoker" class="media align-items-center float-right g-text-underline--none--hover" href="#"
+     aria-controls="account-dropdown"
+     aria-haspopup="true"
+     aria-expanded="false"
+     data-dropdown-event="hover"
+     data-dropdown-target="#account-dropdown"
+     data-dropdown-type="css-animation"
+     data-dropdown-duration="300"
+     data-dropdown-hide-on-scroll="false"
+     data-dropdown-animation-in="fadeIn"
+     data-dropdown-animation-out="fadeOut">
+    <div class="d-flex g-width-30 g-height-30 mr-2">
+      <img class="img-fluid rounded-circle" src="http://blog.msiter.com/favicon/avatar.jpg" alt="Image Description">
+    </div>
+    <div class="media-body">
+      <span class="d-block g-hidden-sm-down g-color-main g-font-weight-600 g-font-size-13">文征</span>
+    </div>
+  </a>
+
+  <div id="account-dropdown" class="list-unstyled g-brd-around g-brd-secondary-light-v2 g-bg-white rounded g-pos-abs g-right-0 g-py-5 g-mt-57" aria-labelledby="account-dropdown-invoker" style="width:300px;">
+
+
+
+
+
+
+    <div class="col-lg-12 g-mb-30">
+        <!-- Figure -->
+        <figure class="u-shadow-v19 g-bg-white g-rounded-4 g-pa-20">
+
+          <div id="counter" class="text-center g-font-size-20">
+
+            0
+
+          </div>
+
+          <hr class="g-brd-gray-light-v4 g-my-15">
+
+          <div class="d-flex justify-content-start">
+            <!-- Figure Image -->
+            <img class="g-width-90 g-height-90 rounded-circle g-mr-15" src="http://blog.msiter.com/favicon/avatar.jpg" alt="Image Description">
+            <!-- Figure Image -->
+
+            <div class="d-block">
+              <!-- Figure Info -->
+              <div class="g-mb-5">
+                <h4 class="h5 g-mb-1">荆文征</h4>
+                <em class="d-block g-color-gray-dark-v4 g-font-style-normal g-font-size-13">Zhidu Inc.</em>
+              </div>
+              <!-- End Figure Info -->
+
+              <!-- Social Icons -->
+              <ul class="list-inline mb-0">
+                <li class="list-inline-item g-mx-2">
+                  <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-facebook--hover g-ml-minus-15" href="javascript:;" onclick="zanUpMethod()">
+                    <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-thumbs-o-up"></i>
+                    <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-thumbs-up"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item g-mx-2">
+                  <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-twitter--hover" href="javascript:void(0)" onclick="zanDownMethod()">
+                    <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-thumbs-o-down"></i>
+                    <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-thumbs-down"></i>
+                  </a>
+                </li>
+              </ul>
+              <!-- End Social Icons -->
+            </div>
+          </div>
+
+          <hr class="g-brd-gray-light-v4 g-my-15">
+
+          <div class="g-py-10">
+            <!-- Figure Contacts -->
+            <ul class="list-unstyled g-color-gray-dark-v5 g-font-size-13 g-mb-0">
+              <li class="g-mb-10">
+                <i class="g-pos-rel g-mt-1 mr-2 icon-communication-062 u-line-icon-pro"></i>
+                <a href="mailto:alphabetion@gmail.com">alphabetion@gmail.com</a>
+              </li>
+              <li>
+                <i class="g-pos-rel g-top-1 mr-2 icon-electronics-005 u-line-icon-pro"></i>
+                <em class="g-font-style-normal">+(86) 136 0135 6004</em>
+              </li>
+            </ul>
+            <!-- End Figure Contacts -->
+          </div>
+
+          <hr class="g-brd-gray-light-v4 g-my-15">
+            <!-- Border Primary Blockquotes -->
+            <blockquote class="blockquote g-brd-2 g-brd-primary g-font-size-12 g-mb-30">
+              <p class="content"></p>
+              <footer class="blockquote-footer text-right">
+                <cite title="Source Title" class="author"></cite>
+              </footer>
+            </blockquote>
+            <!-- End Border Primary Blockquotes -->
+        </figure>
+        <!-- End Figure -->
+      </div>
+
+
+
+
+
+
+
+  </div>
+
+
+</div>
+<!-- End Account -->
+
+<script type="text/javascript">
+
+$("#account").mouseover(function(){
+
+
+});
+
+$("#account").mouseout(function(){
+
+});
+
+</script>
+
+
+        </div>
+      </div>
+    </div>
+    <!-- End Top Bar -->
+
+    <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10">
+      <nav class="js-mega-menu navbar navbar-expand-lg g-px-0">
+        <div class="container g-px-15">
+          <!-- Logo -->
+          <a class="navbar-brand g-hidden-lg-up" href="bm-classic-home-page-1.html">
+            <img src="/assets/img/logo.png" alt="Logo">
+          </a>
+          <!-- End Logo -->
+
+          <!-- Responsive Toggle Button -->
+          <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 ml-auto" type="button"
+                  aria-label="Toggle navigation"
+                  aria-expanded="false"
+                  aria-controls="navBar"
+                  data-toggle="collapse"
+                  data-target="#navBar">
+            <span class="hamburger hamburger--slider g-pa-0">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+            </span>
+          </button>
+          <!-- End Responsive Toggle Button -->
+
+          <!-- Navigation -->
+          <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg" id="navBar">
+            <ul class="navbar-nav g-font-weight-600">
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-1" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">标签
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-1">
+    <div class="row">
+      <div class="col-lg-2">
+        <ul class="list-unstyled mb-0" style="ov">
+
+          
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/生活/">生活</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/悲观/">悲观</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/Objective-C/">Objective-C</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/AsyncDisplayKit/">AsyncDisplayKit</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/ios/">ios</a></li>
+
+            
+
+        </ul>
+      </div>
+      <div class="col-lg-1">
+
+      </div>
+      <div class="col-lg-9" style="height:auto;" >
+
+        <!-- Background Gray Colored -->
+        <ul class="u-list-inline">
+
+          
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/约束教程/">约束教程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/AttributedString/">AttributedString</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/iOS8-html2AttributedString-error/">iOS8 html2AttributedString error</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/IOS/">IOS</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/ObjC/">ObjC</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Pthreads/">Pthreads</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/线程/">线程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/POSIX/">POSIX</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/RxSwift/">RxSwift</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Moya/">Moya</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/java/">java</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/spring-boot/">spring boot</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mybatis/">mybatis</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/WKWebView/">WKWebView</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Systematic-distinction/">Systematic distinction</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/WebKit/">WebKit</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/WebView/">WebView</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/UIWebView/">UIWebView</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Input/">Input</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/File/">File</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Bug/">Bug</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/稀奇古怪的问题/">稀奇古怪的问题</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/博客美化/">博客美化</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/hexo/">hexo</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mathjax/">mathjax</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/objc/">objc</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/travis-ci/">travis-ci</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/cocoapods/">cocoapods</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/NodeJS/">NodeJS</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/APNs/">APNs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/八爪鱼/">八爪鱼</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/html/">html</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/js/">js</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Javascript/">Javascript</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/鼠标悬浮/">鼠标悬浮</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/面试题目/">面试题目</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/递归/">递归</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/error/">error</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/奇怪的问题/">奇怪的问题</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/希望/">希望</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/家庭/">家庭</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/测试/">测试</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/MARKDOWN/">MARKDOWN</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/无趣，心理学/">无趣，心理学</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Iterm/">Iterm</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/zsh/">zsh</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/主题/">主题</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/hashimoto/">hashimoto</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/论文/">论文</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/共识算法/">共识算法</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/技巧/">技巧</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/swift/">swift</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Waver/">Waver</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/AVFoundation/">AVFoundation</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/逆向/">逆向</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/theos/">theos</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/tweak/">tweak</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mongodb/">mongodb</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mongoose/">mongoose</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/nodejs/">nodejs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/RX/">RX</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/c/">c</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/c/">c++</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/reactiv/">reactiv</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/rxswift/">rxswift</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/swagger/">swagger</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/api/">api</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Web3js/">Web3js</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Ethereum/">Ethereum</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Solidity/">Solidity</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/truffle/">truffle</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/ganache/">ganache</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/数据结构/">数据结构</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/计算机基础/">计算机基础</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/手势密码/">手势密码</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/autolayout/">autolayout</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/破解/">破解</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/抓包/">抓包</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/DB/">DB</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/realm/">realm</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/jooq/">jooq</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/paoxs/">paoxs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/越狱/">越狱</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/cydia/">cydia</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/制作源/">制作源</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Segwit/">Segwit</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Lightning-Network/">Lightning Network</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Atomic-Transaction/">Atomic Transaction</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/HD-Wallet/">HD Wallet</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/BIP32-44/">BIP32-44</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Block-chain/">Block chain</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/multi-paoxs/">multi-paoxs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/async/">async</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/区块链/">区块链</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/p2p/">p2p</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/dns-seed/">dns seed</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/PBFT/">PBFT</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/consensus/">consensus</a>
+                        </li>
+
+            
+
+        </ul>
+        <!-- End Background Gray Colored -->
+
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-5" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">栏目
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-primary g-left-15 g-right-15 g-px-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-5">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="list-inline text-center mb-0">
+
+
+
+          
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/牢骚/">牢骚</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/IOS/">IOS</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/学习/">学习</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/线程/">线程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/服务器/">服务器</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/博客历程/">博客历程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/学习资料/">学习资料</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/Web-前端/">Web 前端</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/面试题目/">面试题目</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/生活/">生活</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/测试用例/">测试用例</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/hexo/">hexo</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/共识算法/">共识算法</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/开发帮助/">开发帮助</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/区块链/">区块链</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/数据结构/">数据结构</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/ios/">ios</a>
+                        </li>
+
+            
+
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-3" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">最新文章
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-3">
+    <div class="row">
+      <div class="col-lg-4">
+        <article>
+          <figure class="g-pos-rel">
+            <img class="img-fluid w-100 g-mb-20" src="/assets/img-temp/900x600/img7.jpg" alt="Image Description">
+          </figure>
+          <h3 class="h4 g-mb-10"><a class="g-color-gray-dark-v2" href="#">Love the mother nature</a>
+          </h3>
+          <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+            <li class="list-inline-item">
+              <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">Kathy Reyes</a>
+            </li>
+            <li class="list-inline-item">/</li>
+            <li class="list-inline-item">July 20, 2016</li>
+            <li class="list-inline-item">/</li>
+            <li class="list-inline-item">
+              <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                <i class="fa fa-comments-o"></i> 18
+              </a>
+            </li>
+          </ul>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img1.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Top 10 Luxury Hotels - 5 Star Best Luxury Hotels</a>
+            </h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 07, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 24
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img2.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6"><a class="g-color-main" href="#">10 Most beautiful beaches</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 20, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 18
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img3.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Stylish things to do, see and buy this week</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 16, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 31
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img1.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">8 health benefits and drawbacks of coffee</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 30, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 12
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img2.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Stylish things to do, see and buy this week</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 16, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 31
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img3.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Top 10 Luxury Hotels - 5 Star Best Luxury Hotels</a>
+            </h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 07, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 24
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-4" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">最火文章
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-4">
+    <div class="row">
+      <div class="col-lg-4">
+        <article class="u-block-hover">
+          <figure class="g-bg-cover g-bg-black-gradient-opacity-v1--after">
+            <img class="img-fluid u-block-hover__main--zoom-v1" src="/assets/img-temp/500x320/img1.jpg" alt="Image Description">
+          </figure>
+          <span class="g-pos-abs g-top-20 g-left-20">
+          <a class="btn btn-sm u-btn-red rounded-0" href="#">Fashion</a>
+        </span>
+          <span class="u-icon-v3 u-icon-size--sm g-bg-white g-color-black g-rounded-50x g-cursor-pointer g-pos-abs g-top-20 g-right-20">
+          <i class="icon-camera"></i>
+        </span>
+          <header class="g-pos-abs g-bottom-10 g-left-20 g-right-20">
+            <small class="g-color-white">
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 26, 2016
+            </small>
+            <h3 class="h4 g-font-weight-600 g-mt-5">
+              <a class="g-color-white g-color-white--hover" href="#">Be ready, fashion of the year is coming this year</a>
+            </h3>
+          </header>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="u-block-hover">
+          <figure class="g-bg-cover g-bg-black-gradient-opacity-v1--after">
+            <img class="img-fluid u-block-hover__main--zoom-v1" src="/assets/img-temp/500x320/img2.jpg" alt="Image Description">
+          </figure>
+          <span class="g-pos-abs g-top-20 g-left-20">
+          <a class="btn btn-sm u-btn-red rounded-0" href="#">Beaches</a>
+        </span>
+          <span class="u-icon-v3 u-icon-size--sm g-bg-white g-color-black g-rounded-50x g-cursor-pointer g-pos-abs g-top-20 g-right-20">
+          <i class="icon-camera"></i>
+        </span>
+          <header class="g-pos-abs g-bottom-10 g-left-20 g-right-20">
+            <small class="g-color-white">
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 15, 2016
+            </small>
+            <h3 class="h4 g-font-weight-600 g-mt-5">
+              <a class="g-color-white g-color-white--hover" href="#">Must be visited places in the USA - Florida Beaches</a>
+            </h3>
+          </header>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="u-block-hover">
+          <figure class="g-bg-cover g-bg-black-gradient-opacity-v1--after">
+            <img class="img-fluid u-block-hover__main--zoom-v1" src="/assets/img-temp/500x320/img3.jpg" alt="Image Description">
+          </figure>
+          <span class="g-pos-abs g-top-20 g-left-20">
+          <a class="btn btn-sm u-btn-red rounded-0" href="#">Food</a>
+        </span>
+          <span class="u-icon-v3 u-icon-size--sm g-bg-white g-color-black g-rounded-50x g-cursor-pointer g-pos-abs g-top-20 g-right-20">
+          <i class="icon-camera g-left-2"></i>
+        </span>
+          <header class="g-pos-abs g-bottom-10 g-left-20 g-right-20">
+            <small class="g-color-white">
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 8, 2016
+            </small>
+            <h3 class="h4 g-font-weight-600 g-mt-5">
+              <a class="g-color-white g-color-white--hover" href="#">Why your next glass of juice will cost you more</a>
+            </h3>
+          </header>
+        </article>
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-ml-15--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-7" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">新闻热点
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-7">
+    <div class="row">
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 16, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">You've been making French Pie all wrong - Until Now</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 02, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Unify facts, study finds - sensitive to gluten without having coeliac disease</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 18, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Why your next cup of cofee with milk will cost you more</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 12, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Incredible product and quality: Unify best template of the year</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 16, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Some post title will be implimented here and It's cool!</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 02, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Wireframe approach for the news blocks and pages</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 18, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Over thousands of components help you to boost your project</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 12, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">How to run a ticket: Best 10 point approaches for people who stands..</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Main -->
+<li class="nav-item g-mx-10--lg g-mx-20--xl">
+  <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-0" href="/">
+    主页
+  </a>
+</li>
+<!-- End Main -->
+
+
+
+
+
+
+
+
+            </ul>
+          </div>
+          <!-- End Navigation -->
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- End Header -->
+
+
+
+            <style media="screen">
+  .barrage {
+    width: 100%;
+    background-color: #6281c8;
+    position: fixed;
+    top: 0px;
+    display: none;
+  }
+
+  .barrage .logo {
+    visibility: hidden;
+  }
+</style>
+
+<header id="BarrageInputView" class="u-header u-header--static u-shadow-v19 barrage">
+  <div class="u-header__section g-brd-bottom g-brd-gray-light-v4 g-py-18">
+    <div class="container">
+      <div class="row align-items-center">
+
+        <!-- Logo -->
+<div class="col-md-3 g-hidden-md-down logo">
+  <a href="/" class="navbar-brand">
+    <img src="/favicon/logo.png" alt="Logo">
+  </a>
+</div>
+<!-- End Logo -->
+
+
+          <h3 class="col-4 col-lg-2 g-pos-rel g-px-15 ml-auto text-center g-color-white">你好，再见</h3>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    var barrageInputView = $("#BarrageInputView");
+
+    $("#BarrageStartButton").click(function(event) {
+
+      barrageInputView.css("display", "block");
+      barrageInputView.css("top", "-300px");
+
+      console.log("这个按钮一点用都没有.直接搜索就好了");
+
+      barrageInputView.animate({
+        top: "0",
+      }, 1000, function() {
+        setTimeout(function() {
+
+          barrageInputView.animate({
+            top: "-200"
+          }, 1000,function(){
+            barrageInputView.css("display", "none");
+          });
+
+        }, 1000);
+      });
+
+    });
+  });
+</script>
+
+
+
+    
+
+<section class="g-pt-50 g-pb-100">
+  <div class="container">
+    <div class="row">
+      <!-- Articles Content -->
+      <div class="col-lg-9 g-mb-50 g-mb-0--lg">
+        <article class="g-mb-60">
+          <header class="g-mb-30">
+            <h2 class="h1 g-mb-15">制作一个自己的 Cydia 源</h2>
+
+            <ul id="editHtmlElement" class="list-inline d-sm-flex g-color-gray-dark-v4 mb-0">
+              <li class="list-inline-item">
+                小酒馆老板
+              </li>
+              <li class="list-inline-item g-mx-10">/</li>
+              <li class="list-inline-item">
+                2016/11/12 2:5:43
+              </li>
+              <li class="list-inline-item g-mx-10">/</li>
+              <li class="list-inline-item g-mr-10">
+                <i class="align-middle mr-2 icon-hotel-restaurant-242 u-line-icon-pro"></i>共有
+                6,509个字
+              </li>
+              <li class="list-inline-item g-mx-10">/</li>
+              <li class="list-inline-item g-mr-10">
+                <i class="align-middle mr-2 icon-hotel-restaurant-003 u-line-icon-pro"></i>预计阅读
+                26分钟
+              </li>
+            </ul>
+
+            <hr class="g-brd-gray-light-v4 g-my-15">
+
+          </header>
+
+          <div class="">
+            <p>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/stock-photo-155012621.jpg" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/stock-photo-155012621.jpg" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">夜里不睡的人，白天多多少少总有什么逃避掩饰的吧。白昼解不开的结黑夜慢慢耗</figcaption></figure></p>
+<p>大家肯定都知道 Cydia 吧，</p>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>iPhone、iPod touch、iPad等设备上的一种破解软件，类似苹果在线软件商店iTunes Store 的软件平台的客户端，在越狱的过程中被装入到系统中的，其中多数为iPhone、iPod Touch、ipad的第三方软件和补丁，主要都是弥补系统不足用。是由Jay Freeman（Saurik）领导，Okori Group以及UCSB大学合作开发。</p>
+</em>                                </div>        
+<p>之前用了很多好用的源，但是很好奇的是，他们是怎么制作的呢？为什么越狱之后就可以这么厉害呢？<br>那么怎么制作这么一个东西</p>
+<a id="more"></a>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="制作自己的-Cydia源" style="display: inline;"><a href="#制作自己的-Cydia源" class="headerlink" title="制作自己的 Cydia源"></a>制作自己的 Cydia源</h2><p>Cydia 说白了启示就是一个云盘，你们需要的呢，只是需要几个文件，来告诉过来访问这个云盘的Cydia程序，我这个源叫啥？谁制作的这个源？这个源里都有什么软件？这些源的放置位置都是啥？<br>那么如何制作自己的云盘呢？ 几种办法</p>
+<ol>
+<li>第一种就是自己做一个服务器，本地跑起来。</li>
+<li>github</li>
+<li>任何一个直接访问的文件存储地方 比如 七牛云。</li>
+</ol>
+<p>Cydia 源的文件结构</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">+- /
+   +- Release
+   +- Packages
+   +- CydiaIcon.png
+   +- debs
+      +- *.deb
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="文件讲解" style="display: inline;"><a href="#文件讲解" class="headerlink" title="文件讲解"></a>文件讲解</h3><p><code>/</code> 服务器根目录<br><code>/Release</code>  文件记录软件源本身的相关信息 ，例如作者 之类的<br><code>/Packages</code> 记录具体软件包的存放位置和安装信息等数据<br><code>/CydiaIcon.png</code> ICON 显示的ICON图片<br><code>/debs</code> 存放所有deb包的目录<br><code>/debs/*.deb</code> deb包……</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="Release-文件讲解" style="display: inline;"><a href="#Release-文件讲解" class="headerlink" title="Release 文件讲解"></a>Release 文件讲解</h4><p>必须<br>Origin: 软件源名称，可以使用中文（Cydia的软件源列表中显示的标题）<br>Label:  同上，也可以使用中文<br>Suite: 软件源的类型，比如正式源，测试源等，可以分别用stable, beta, unstable等来表示，一般填stable就可以了<br>Version: 版本号，这个其实不重要，随便填，一般都是写1.0<br>Codename: 代码代号，比如BigBoss的就写BigBoss，威锋的就写WeiPhone，也没什么限制，只能用英文<br>Architectures: 结构。iPhone平台统一写iphoneos-arm<br>Components: main<br>Description: 软件介绍，可以使用中文和html代码，具体能使用哪些代码在下面会介绍。</p>
+<p>可选<br>Support: 支持，没什么作用，除非特别需要，否则可以不要这个。<br>MD5Sum: 不是必须的，但如果Packages文件位置不与Release文件在同一目录下，则必须有此项。另外，如果需要签名Release文件，也必须有这个。关于MD5Sum的格式，在下文也会介绍。</p>
+<p>Description格式</p>
+<ul class="g-list-style-circle">
+<li>显示在Cydia中每个软件页面最下方。</li>
+<li>不能直接换行，如果要实现显示换行显示，可以使用<br>代码。</li>
+<li>要加粗显示，可以使用<strong></strong>代码</li>
+<li>可以使用html代码设置字体颜色。</li>
+<li>不能使用超链接代码。</li>
+</ul>
+<p>代码：</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">Description: WeiPhone-威锋网为您提供iPhone所需软件/补丁。&lt;br&gt;联系我们: &lt;strong&gt;weip.com@ gmail.com&lt;/strong&gt;;
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="生成Packages文件" style="display: inline;"><a href="#生成Packages文件" class="headerlink" title="生成Packages文件"></a>生成Packages文件</h4><ol>
+<li>将 deb 文件放在一个文件夹下，比如说debs下</li>
+<li>命令行里进入到debs目录的上级目录</li>
+<li>Packages存放于当前目录</li>
+<li>执行命令 <code>dpkg-scanpackages debs &gt; Packages</code></li>
+<li>执行命令 <code>bzip2 -zfk Packages</code> 生成 <code>Packages.bz2</code></li>
+<li>执行命令 <code>gzip -fk Packages</code> 生成 <code>Packages.gz</code></li>
+</ol>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>ps 4.5.6 可以使用 <code>dpkg-scanpackages debs &gt; Packages &amp;&amp; bzip2 -zfk Packages &amp;&amp; gzip -fk Packages</code></p>
+</em>                                </div>        
+<p>这样会自动将debs文件夹下的所有 deb文件信息 打印至 Packages 文件里</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="旧-制作-自己deb-文件" style="display: inline;"><a href="#旧-制作-自己deb-文件" class="headerlink" title="(旧) 制作 自己deb 文件"></a>(旧) 制作 自己deb 文件</h2><br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="总结" style="display: inline;"><a href="#总结" class="headerlink" title="总结"></a>总结</h3><ol>
+<li>先把文件夹结构弄好</li>
+<li>在 <code>Applications</code> 文件夹下面放入自己的 .app 文件</li>
+<li>在 <code>DEBIAN</code> 文件夹下面放入 <code>control</code>描述文件，以及根据自己的需求放入脚本文件</li>
+<li>使用 <code>chmod -R 0755 Directory</code> 设置权限</li>
+<li>使用 <code>dpkg-deb -b Directory a.deb</code> 命令打包</li>
+<li>使用 <code>dpkg-name a.deb</code> 规范命名</li>
+</ol>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="各个文件讲解" style="display: inline;"><a href="#各个文件讲解" class="headerlink" title="各个文件讲解"></a>各个文件讲解</h4><p>先生成如下的文件目录结构：</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">+- Directory
+   +- Applications
+   |   +- Example.app
+   |   |    +- Info.plist
+   |   |    +- Example
+   |   |    +- icon.png
+   +- DEBIAN
+       +- control
+       +- preinst/postinst/prerm/postrm/extrainst_
+</code></pre><p><code>/Directory</code> : 任意的一个文件夹放置主要的文件<br><code>/Directory/Applications</code> : 放置<code>.app</code>文件夹<br><code>/Directory/Applications/Example.app</code> : <code>.app</code>文件夹</p>
+<p><code>/DEBIAN</code> : 放置描述的文件<br><code>/DEBIAN/control</code> : 记录了软件包标识，软件名，介绍，作者，冲突软件等信息，用来标识一个软件包</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="DEBIAN-control-文件描述" style="display: inline;"><a href="#DEBIAN-control-文件描述" class="headerlink" title="DEBIAN/control 文件描述"></a>DEBIAN/control 文件描述</h4><p>以下为必须项</p>
+<p>Package : 软件包标识符，类似于<em>*</em>，一个软件包必须要有一个唯一的标识符。通常是用com.xxx.abc这样的形式来命名。<br>Architecture: 架构，用于标识运行的系统，iPhone上为iphoneos-arm<br>Version: 版本号，不能用下划线和逗号和空格。格式有（以逗号分隔） 1.0，1.0f，0-1，1:1.0，其中1:1.0这种格式比较特殊，在Cydia中，1:1.0仍然会显示为1.0，但版本号实际是高于1.0的。</p>
+<p>以下为可选项<br>Name: 软件包在Cydia中的显示名称，中英文不限，也可以用空格，但不宜过长（长了显示不完全）。<br>Author: 软件作者。<br>Maintainer: 维护者，一般是软件源的拥有者。<br>Sponsor: 负责人，可以是个人也可以是网站。</p>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>Author，Maintainer，Sponsor 的格式相同，均为 名称+空格+&lt;邮件地址或网址&gt;，经测试，如果名称为中文的话，即使写了邮件地址和网址，在Cydia中点击也不会跳转。 示例： WEIP.Tech <a href="&#109;&#97;&#x69;&#108;&#116;&#111;&#x3a;&#119;&#x65;&#105;&#112;&#46;&#99;&#x6f;&#109;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#44;&#99;&#x6f;&#x6d;">&#119;&#x65;&#105;&#112;&#46;&#99;&#x6f;&#109;&#x40;&#x67;&#x6d;&#x61;&#x69;&#108;&#44;&#99;&#x6f;&#x6d;</a> 或 WeiPhone.com <a href="http://www.weiphone.com" target="_blank" rel="noopener">http://www.weiphone.com</a> 如果没有邮件地址或网址，则不需要 &lt;&gt; 及&lt;&gt;中的内容。中文名或未提供邮件/网址，无 &gt; 符号</p>
+</em>                                </div>        
+<p>Icon: 指定软件包的图标显示。当无Icon设定时，Cydia会显示该软件包所在的分类的图标。 格式：</p>
+<ul class="g-list-style-circle">
+<li>在线地址，如 <a href="http://www.abc.com/abc.png" target="_blank" rel="noopener">http://www.abc.com/abc.png</a></li>
+<li>本地地址：file://+路径，如file:///Applications/Cydia.app/Sources/app.weiphone.com.png<br><em>注：在软件页面（非列表页面），自定义的图标是不会显示的，显示的是分类图标。</em></li>
+</ul>
+<p>Section: 软件分类，中英文无限制，排列顺序是 英文-&gt;中文。<br>Installed-Size: 解包后的文件大小，可以有小数位，以kb为单位，不需要注明kb，这个不需要很精确，而且小数位在Cydia里显示不出来（不是四舍五入，全部舍了）。至于文件大小是否包含DEBIAN目录中的内容就随意了。<br>Priority: 优先级，可填 Required，Important，Standard，Optional，Extra，依次为 必须，重要，一般，可选，次要。虽然没有什么实际作用，但优先级为Required和Important的软件包在卸载时会有警告，这样可以避免删除一些系统必须的软件。但Required和Important不要滥用，一般用Standard，Optional或Extra即可。优先级在Cydia中是不会显示的<br>Essential: 是否必须软件包，可填 yes 和 no， 填yes则为必须软件包，卸载时Cydia会有警告。卸载Essential标记为yes的软件包可能会导致系统问题。当然此功能需慎用，不要因为不希望用户删除自己的软件而加入Essential: yes。如果没有Essential这项的话默认就是非必须的，相当于Essential: no。<br>Depends: Depends 字段应该包含您的软件包正常工作绝对必需的任何软件包的名称。<br>Pre-Depends: “Pre-Depends”是为特例而保留的。当某个软件包被作为”Pre-Depends”列出时，它强制系统在试图安装您的软件包之前完全安装所指定的软件包。<br>Conflicts: 冲突软件包。比如软件包A和B有冲突，不能同时安装。比如说A和B冲突，当系统已经安装了A的时候尝试安装B，则不能继续。<br>Provides: 提供的软件包，比如说软件包A包含B的全部功能，那么则是A provides B，因此可以在安装了A的前提下不安装B。但此功能在非Cydia的软件管理工具中可能会无法识别（实际是这些软件不合deb标准）<br>Replaces: 替换软件包，安装A会替换B。</p>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<ul class="g-list-style-circle">
+<li>以上5项的格式相同，直接填软件包的Package标识即可，如果需要加入版本号，则为 软件表标识+空格+(判断符号 版本号).比如 Depends: apt-key, firmware (&gt;=3.0)， 这表示依赖于apt-key，不限版本，firmware，且版本大于或等于3.0。</li>
+<li>判断符号：远远低于（&lt;&lt;）、低于(&lt;)、低于或等于（&lt;=）、仅等于（=）、等于或高于（&gt;=）、大于（&gt;）以及远远高于（&gt;&gt;）。</li>
+<li>表示多个软件包，以英文逗号分隔。</li>
+<li>表示“或”关系，用 | 分隔。比如软件包C依赖于A或B，可写Depends: A | B。 但“或”关系要慎用。原因是，当不存在“或”关系的时候，假设B依赖于A，且系统并未安装A，那么在Cydia中安装B的时候会自动下载安装A。而假如说C依赖于A或B，且A与B都未安装，那么在安装C的时候就会失败，因为系统无法判断是应该下载A还是B。除非系统已经安装了A或B，否则C不能安装。</li>
+<li>一个特殊的依赖：firmware。这个Package记录了固件版本，在对固件版本有要求的软件包上特别重要。</li>
+<li>假设B依赖于A，那么在卸载A的时候也会一起卸载B</li>
+</ul>
+</em>                                </div>        
+<p>Description: 软件描述，不能在control里直接换行，如果需要实现换行显示，可以使用<br>代码。当指定了Depiction时，在软件查看页面不会显示Description。<br>Depiction: 功能类似于软件描述，链接到一个网页，以网页的内容代替软件描述。只在软件查看页面显示，在软件包列表页面不显示。 可以使用本地网页，格式同Icon。 注意：此功能可能会消耗大量网络流量。<br>Homepage: 链接到页面，Cydia中显示为More Information。 页面不会主动加载。<br>Tag: 可选项有 commercial, console, daemon, extension, library, uikit, x，对应图标文件在 /Applications/Cydia.app/Purposes 目录下。也可以自行添加 purpose 分类，并加入同名图标即可。 role:: 软件包使用者归类。developer开发者，hacker骇客，enduser普通用户，该标签用于Cydia中软件包显示过滤。 cydia::commercial Cydia Store软件。</p>
+<p>例子如下:</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">Package: com.weiphone.source
+Name: WeiPhone威锋中文源
+Version: 1.0
+Essential: no
+Icon: file:///Applications/Cydia.app/Sources/app.weiphone.com.png
+Installed-Size: 133.7
+Replaces: con.weiphone.logo
+Conflicts: con.weiphone.logo
+Provides: con.weiphone.logo
+Depends: cydia
+Priority: Standard
+Maintainer: WEIP.Tech <weip.com@gmail.com>
+Author: WEIP.Tech <weip.com@gmail.com>
+Section: Repositories
+Architecture: iphoneos-arm
+Description: WeiPhone Chinese Repository<br><br>威锋中文源
+HomePage: http://www.weiphone.com/
+Sponsor: WeiPhone.com <http: www.weiphone.com="">
+Tag: purpose::repository, role::enduser
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></http:></weip.com@gmail.com></weip.com@gmail.com></code></pre>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="DEBIAN-preinst-postinst-prerm-postrm-extrainst-文件描述" style="display: inline;"><a href="#DEBIAN-preinst-postinst-prerm-postrm-extrainst-文件描述" class="headerlink" title="DEBIAN/preinst/postinst/prerm/postrm/extrainst_  文件描述"></a>DEBIAN/preinst/postinst/prerm/postrm/extrainst_  文件描述</h4><p>很多时候deb安装并不是把文件复制到iPhone里就可以了，还需要执行一些命令，比如设置权限，备份文件，加载启动进程等等，那么这时候就需要一些脚本来实现这些操作。 标准的deb脚本有4个<code>preinst</code>,<code>postinst</code>,<code>prerm</code>和 <code>postrm</code><br>pre是表示XX之前的前缀，post是表示XX之后的前缀，inst是install（安装）的缩写，rm是remove（移除）的缩写，所以这4个脚本的功能很明显：</p>
+<ul class="g-list-style-circle">
+<li>preinst: 在复制文件前执行的脚本</li>
+<li>postinst: 在复制文件之后执行的脚本</li>
+<li>prerm: 在卸载前执行的脚本</li>
+<li>postrm: 在卸载之后执行的脚本</li>
+</ul>
+<p>在Cydia中还存在一个独立的脚本,<code>extrainst_</code>,从字面上来讲就是额外的安装脚本。<br>这个脚本是Cydia的作者Saurik为解决某些脚本只需要在安装时执行，在升级时不执行而专门引入的一个脚本，功能跟postinst差不多，和Installer时代的“ahhhh”比较相似。<br>关于extrainst_的详情可以看看这个：<a href="http://www.telesphoreo.org/piper" target="_blank" rel="noopener">http://www.telesphoreo.org/piper</a> … ptember/000252.html 5个脚本的编写方法基本是一样的，但为了适应Cydia的安装，在某些情况下需要进行特定的配置。 查看某些deb可能会发现这样的语句：</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">if [[ $1 == install || $1 == upgrade ]]; then
+</code></pre><p>这种语句是为了区别安装/升级/卸载而准备的脚本。$1是一个外部变量，将这个外部变量传入脚本来执行，而这个外部变量是由Cydia软件自身生成的。 简单来说，如果是安装，则是 $1 == install ；如果是升级，则是$1 == upgrade；如果是卸载则是 $1 == remove。 if 是个判断语句，当满足if后[ ]中的指定条件时，if中的内容就会执行。那么这里就可以通过设定install/upgrade/remove来控制在不同操作时执行的命令。 但要注意的是，这个功能只能在Cydia中使用，其它的apt软件管理工具，如Icy，Rock等，不能识别这个命令，因此无法执行if中的语句，所以在写脚本的时候到底需不需要用这种格式，就看自己的需要了。 总体来说，Unix的脚本（Shell Script）有其固定的格式。 文件顶头为</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">#!/bin/bash
+</code></pre><p>表示调用bash这个shell 之后就是运行的命令了。 脚本中如果需要注释，可以使用 # 符号。 以 # 开头的行会被当作注释，里面的内容在执行过程中没有意义。 通配符： * 最常用的两个命令自然是设置属性/权限/用户/组 设置属性/</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="会使用到的系统命令操作" style="display: inline;"><a href="#会使用到的系统命令操作" class="headerlink" title="会使用到的系统命令操作"></a>会使用到的系统命令操作</h4><br><span class="g-font-size-14 g-color-gray-dark-v4">H5   </span><h5 id="权限" style="display: inline;"><a href="#权限" class="headerlink" title="权限"></a>权限</h5><pre class="line-numbers language-txt g-mb-30"><code class="language-txt">chmod 【-R】 属性 文件名
+</code></pre><p>由于deb的脚本执行都是在root用户下，因此不需要提升权限，即不需要使用sudo命令。 -R参数：表示递归，加上此参数会将指定的目录及其子目录的全部目录和文件的属性改变。 属性：有多种写法。具体可以看 <a href="http://baike.baidu.com/view/1229012.htm?fr=ala0_1" target="_blank" rel="noopener">http://baike.baidu.com/view/1229012.htm?fr=ala0_1</a> 比较常用的几种属性：</p>
+<ul class="g-list-style-circle">
+<li>chmod +x XXXXX 为文件增加可执行权限</li>
+<li>chmod 0644 XXXXX 不可执行文件最常使用的权限</li>
+<li>chmod 0755 XXXXX 可执行文件最常使用的权限</li>
+</ul>
+<p>实例：</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">chmod -R 0755 /Applications/Cydia.app
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H5   </span><h5 id="设置用户-组" style="display: inline;"><a href="#设置用户-组" class="headerlink" title="设置用户/组"></a>设置用户/组</h5><pre class="line-numbers language-txt g-mb-30"><code class="language-txt">chown 【-R】 用户:组 文件名
+</code></pre><p>同样不需要sudo来提示权限。-R也是表示递归。 比如要将文件A设为root用户，wheel组，可以使用命令</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">chown -R mobile:mobile /var/mobile/Documents
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H5   </span><h5 id="复制文件-文件夹" style="display: inline;"><a href="#复制文件-文件夹" class="headerlink" title="复制文件/文件夹"></a>复制文件/文件夹</h5><pre class="line-numbers language-txt g-mb-30"><code class="language-txt">cp 【参数】 原始文件 目的文件
+</code></pre><p>参数列表：</p>
+<ul class="g-list-style-circle">
+<li>-l（小写字母L）：创建硬链接，相当于一个镜像，而不是实际创建两个文件<br><code>cp -l abc def</code></li>
+<li>-f：强行复制，如果目的文件已存在，覆盖之且不提示<br><code>cp -f abc def</code></li>
+<li>-p：保留文件的属性、用户、组、时间戳等信息 <br> <code>cp -p abc def</code></li>
+<li>-r和-R：作用都是递归，将文件夹下的全部子文件和子文件夹一起复制 <br> <code>cp -r abc/ def/</code></li>
+<li>-s：创建符号链接而不是创建双份文件 <br> <code>cp -s abc/ def/</code></li>
+<li>-n：如果目的文件已存在，则不覆盖且不提示 <br><code>cp -n abc def</code></li>
+<li>-a：相当与-dR，保留文件自身的属性等数据，一并复制子文件/文件夹 <br> <code>cp -a abc/ def/</code></li>
+</ul>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H5   </span><h5 id="移动文件-文件夹-amp-重命名" style="display: inline;"><a href="#移动文件-文件夹-amp-重命名" class="headerlink" title="移动文件/文件夹 &amp; 重命名"></a>移动文件/文件夹 &amp; 重命名</h5><pre class="line-numbers language-txt g-mb-30"><code class="language-txt">mv 【参数】 源文件 目的文件
+</code></pre><p> -f：强行移动，如果目的文件已存在，覆盖之且不提示</p>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>其实 mv  命令就是复制之后再删除，但 mv 命令会自动保留文件的属性等数据，移动文件夹时会自动移动子文件/子文件夹，因此都不需要另外的参数。 <br><br> 重命名是由mv命令来实现的，mv 就是将 源文件 移动到 目标文件的位置并以目标文件的文件名保存。</p>
+</em>                                </div>        
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H5   </span><h5 id="显示语句" style="display: inline;"><a href="#显示语句" class="headerlink" title="显示语句"></a>显示语句</h5><pre class="line-numbers language-txt g-mb-30"><code class="language-txt">echo &quot;Some Thing&quot;;
+</code></pre><p>示例：显示语句 “测试echo命令”。</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">echo &quot;测试echo命令&quot;;
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H5   </span><h5 id="管理自启动服务" style="display: inline;"><a href="#管理自启动服务" class="headerlink" title="管理自启动服务"></a>管理自启动服务</h5><pre class="line-numbers language-txt g-mb-30"><code class="language-txt">launchctl load或unload  -w plist文件路径
+</code></pre><p>实例： 让wefit3自启动</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">launchctl load -w /System/Library/LaunchDaemons/com.weiphone.fitx.plist
+</code></pre><p>禁用iPhone日志记录syslogd</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">launchctl unload -w /System/Library/LaunchDaemons/com.apple.syslogd.plist
+</code></pre>                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>PS: 记录自启动进程的plist文件保存在以下两个目录： /System/Library/LaunchDaemons/ 和 /Library/LaunchDaemons/</p>
+</em>                                </div>        
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H5   </span><h5 id="杀死进程" style="display: inline;"><a href="#杀死进程" class="headerlink" title="杀死进程"></a>杀死进程</h5><pre class="line-numbers language-txt g-mb-30"><code class="language-txt">killall 进程名
+</code></pre><p>示例：关闭Safari进程</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">killall safari
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H5   </span><h5 id="判断" style="display: inline;"><a href="#判断" class="headerlink" title="判断"></a>判断</h5><p>基本格式是</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">if [ 判断条件一 ]; then
+    执行命令
+else
+   执行命令
+fi
+</code></pre><p>实例： 如果文件abc存在，则备份为abc.bak，否则将文件def重命名为abc</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">if [ -f abc]; then
+    mv -f abc abc.bak
+else
+    mv def abc
+fi
+</code></pre><p>其中[ -f abc ]可以由[ -e abc]取代 如果目录abc不存在，则新建一个目录abc</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">if [ ! -e abc ]; then
+    mkdir abc
+fi
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H5   </span><h5 id="获取固件系统版本号" style="display: inline;"><a href="#获取固件系统版本号" class="headerlink" title="获取固件系统版本号"></a>获取固件系统版本号</h5><pre class="line-numbers language-txt g-mb-30"><code class="language-txt">sw_vers -productVersion
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H5   </span><h5 id="获取设备型号" style="display: inline;"><a href="#获取设备型号" class="headerlink" title="获取设备型号"></a>获取设备型号</h5><pre class="line-numbers language-txt g-mb-30"><code class="language-txt">uname -i
+uname -m
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H5   </span><h5 id="Cydia中安装完之后重新启动SpringBoard" style="display: inline;"><a href="#Cydia中安装完之后重新启动SpringBoard" class="headerlink" title="Cydia中安装完之后重新启动SpringBoard"></a>Cydia中安装完之后重新启动SpringBoard</h5><pre class="line-numbers language-txt g-mb-30"><code class="language-txt">declare -a cydia
+cydia=($CYDIA)
+if [[ ${CYDIA+@} ]]; then
+    eval &amp;quot;echo &amp;#39;finish:reboot&amp;#39; &amp;gt;&amp;amp;${cydia[0]}&amp;quot;
+fi
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H5   </span><h5 id="几个比较有用的实例" style="display: inline;"><a href="#几个比较有用的实例" class="headerlink" title="几个比较有用的实例"></a>几个比较有用的实例</h5><ul class="g-list-style-circle">
+<li><p>备份 preinst（安装之前就要把原始文件备份，不能等到安装完已经覆盖以后才备份）<br></p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">if [ ! -f 原始文件备份 ]; then
+  echo &amp;quot;原始文件的备份已存在，跳过备份&amp;quot;
+else
+  cp -p 原始文件 原始文件备份
+  echo &amp;quot;原始文件已备份&amp;quot;
+fi
+</code></pre><p>postrm（还原备份）<br></p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">echo &quot;还原备份&quot;;
+mv -f 原始文件备份 原始文件
+</code></pre><p>备份操作在制作补丁的时候，尤其是替换类型的补丁时特别有用</p>
+</li>
+<li><p>判别具体固件版本 在control里可以通过Depends来设置依赖的固件版本，但有时候需要在某个特定固件版本下进行操作 比如说一个软件，要求固件版本大于或等于3.0，但在固件版本为3.1的时候必须删除某一个文件才能运行，那么脚本可以这样写：</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">firmware=$(sw_vers -productVersion)
+if  [[ $firmware == 3.1 ]]; then
+  删除文件
+fi
+</code></pre></li>
+<li>判别设备型号 当设备型号为iPod Touch时删除某个文件<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">platform=$(uname -i)
+if [[ $platform == &amp;quot;N45AP&amp;quot; || $platform == &amp;quot;N72AP&amp;quot; || $platform == &amp;quot;N18AP&amp;quot; ]]; then
+  删除文件
+fi
+</code></pre>或<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">platform=$(uname -m)
+if [ $platform == iPod* ]; then
+  删除文件
+fi
+</code></pre></li>
+</ul>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>更多关于Shell Script的信息请见 <a href="http://www.hack" target="_blank" rel="noopener">http://www.hack</a> base.com/tech/2009-10-10/56808.html</p>
+</em>                                </div>        
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="打包" style="display: inline;"><a href="#打包" class="headerlink" title="打包"></a>打包</h4><p>如果在DEBIAN中有脚本存在，则需要将整个DEBIAN文件夹及子文件属性设为0755,如果没有脚本的话保留0644属性即可，0755属性也没问题。</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">chmod -R 0755 DEBIAN
+</code></pre><p> 打包命令</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt"> dpkg-deb -b PATH FILENAME
+</code></pre><p>其中PATH是打包deb的工作目录，DEBIAN文件夹需位于PATH指定的目录下 FILENAME是deb的文件名，这个可以自己决定。</p>
+<p>以上命令打包deb默认是采用gz格式压缩，压缩率有限，如果要获得更改的压缩率（更小的文件体积），可以使用bzip2和lzma格式。 压缩为bzip2格式</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">dpkg-deb -bZ bzip2 PATH FILENAME
+</code></pre><p>压缩为bzip2格式</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">dpkg-deb -bZ lzma PATH FILENAME
+</code></pre><p>默认的gz格式压缩率最低，bzip2格式居中，lzma格式压缩率最高。（当然也会有例外）</p>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>PS:</p>
+<ul class="g-list-style-circle">
+<li>压缩率越高，压缩时间越长，在iPhone上使用较高的压缩率有更大概率导致失去响应。</li>
+<li>iPhone OS 2.x无lzma组件，因此无法安装lzma压缩的deb。iPhone OS 3.x可以解压lzma压缩。</li>
+<li>如果deb包含的文件文本量比较大，那么一般可以获得不错的压缩率。但如果是像铃声，jpg/png图片这样文件本身就是压缩格式的情况，继续压缩的可能性就不高了，这类情况很难获得比较好的压缩率</li>
+</ul>
+</em>                                </div>        
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="【可选】deb文件规范命名" style="display: inline;"><a href="#【可选】deb文件规范命名" class="headerlink" title="【可选】deb文件规范命名"></a>【可选】deb文件规范命名</h4><pre class="line-numbers language-txt g-mb-30"><code class="language-txt">dpkg-name abc_1.0.deb
+</code></pre><p>如果想指定文件名格式，可以使用</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">dpkg-name --help
+</code></pre>                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>图形界面的deb制作工具 Debian Package Maker 网址： <a href="http://code.google.com/p/debianpackagemaker/" target="_blank" rel="noopener">http://code.google.com/p/debianpackagemaker/</a> 个人感觉不如直接在命令行里来的直观，有兴趣的朋友可以自己试试。  ［ 需要翻墙 ］</p>
+</em>                                </div>        
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="新-制作自己的deb文件" style="display: inline;"><a href="#新-制作自己的deb文件" class="headerlink" title="(新) 制作自己的deb文件"></a>(新) 制作自己的deb文件</h2><br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="安装theos" style="display: inline;"><a href="#安装theos" class="headerlink" title="安装theos"></a>安装theos</h3><p><a href="http://iphonedevwiki.net/index.php/Theos/Setup" target="_blank" rel="noopener">安装方法</a></p>
+<p>选择theos的安装目录，官方建议放在默认的 /opt/theos.然后执行</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">export THEOS=/opt/theos
+</code></pre><p>为了验证设置成功没有</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">echo $THEOS
+</code></pre><p>如果打印 <code>/opt/theos</code> 说明摄制完成</p>
+<p>Using git:</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">git clone --recursive git://github.com/DHowett/theos.git /opt/theos
+</code></pre><p>Alternatively, you can use svn, if you prefer:</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">svn co http://svn.howett.net/svn/theos/trunk $THEOS
+</code></pre>                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p><code>git clone -b stableversion https://github.com/haorenqq/theos/ $THEOS</code><br>不要执行上面的语句，用上面的方法替换  特别感谢网名为逍遥笛子 的热心朋友 提供的分支，由于原theos最新的版本不兼容iosopendev，所以用15年的老版本</p>
+</em>                                </div>        
+<p>以上操作，如果出现任何关于权限的错误。使用sudo就可以了。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="安装idld" style="display: inline;"><a href="#安装idld" class="headerlink" title="安装idld"></a>安装idld</h3><p>其实我不知道这个是干什么的？但是呢，说是签名的。。。但是我没用到过，但是还是记录一下毕竟有不少坑</p>
+<p>按照官方的教程是如此的说的。</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">git clone git://git.saurik.com/ldid.git
+cd ldid
+git submodule update --init
+./make.sh
+cp -f ./ldid $THEOS/bin/ldid
+</code></pre><p>但是通常发生错误，<br>第一个错误就是 引入了 <code>#include &lt;openssl/err.h&gt;</code> ，默认是不存在 这个文件夹的额。<br>第二个错误就是 make.sh中的代码默认是只匹配Xcode5-1-1的名称，所以需要修改 make 文件。</p>
+<p>下载 <a href="/publicFiles/iosOpenDev安装附件-新.zip">文件</a> 修复</p>
+<p>接下来使用命令。生成 ldid 文件<code>./make.sh</code> . 反正我是生成失败了</p>
+<p>你可以直接下载别人已经编译完成的文件 <a href="/publicFiles/ldid">ldid文件</a></p>
+<p>之后将文件拷贝到 <code>/opt/theos/bin</code> 下就可以了</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="安装iOSOpenDev" style="display: inline;"><a href="#安装iOSOpenDev" class="headerlink" title="安装iOSOpenDev"></a>安装iOSOpenDev</h3><pre class="line-numbers language-shell g-mb-30"><code class="language-shell">git clone https://github.com/AimobierExample/iOSOpenDevInstallFix
+cd iOSOpenDevInstallFix
+sh repair.sh
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>之后打开 <code>iOSOpenDev-1.6-2.pkg</code> 按照提示就可以安装完成了</p>
+<p>打开xcode就可以看见越狱的项目了 选择 <code>Logos TWeak</code></p>
+<p>按照xm文件内的提示，libsubstrate.dylib添加到工程中(在安装好的/opt/iOSOpenDev/lib 目录下)，然后把xm中的内容清空。mm文件的内容会根据xm文件中的内容编译后自动生成。</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">%hook SpringBoard  
+- (void)applicationDidFinishLaunching:(id)application{  
+    %orig;    
+    UIAlertView * alert = [[UIAlertView alloc]initWithTitle:@&quot;Welcome&quot; message:@&quot;HelloWorld!&quot; delegate:nil cancelButtonTitle:@&quot;Thanks&quot; otherButtonTitles:nil];  
+    [alert show];  
+}  
+%end
+</code></pre><p>点击菜单 <code>Product - Build For - Profiling</code> 这个时候通常会报错，因为真机调试会出现问题</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">Failed to create directory /var/root/iOSOpenDevPackages on device 你的iOS设备IP地址
+</code></pre><p>但是此刻已经在项目根目录下出现了 变已完成的 deb文件了，你可以直接添加到咱们的源服务器中，按照之前的教程生成 packages 完成安装。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="真机调试" style="display: inline;"><a href="#真机调试" class="headerlink" title="真机调试"></a>真机调试</h3><p>现在调试越狱设备，在已经越狱的手机上打开Cydia，搜索下列插件<br>如果搜索不到，打开软件源-编辑 删除BigBos和ModMyi，再回到首页，点击更多软件源，重新添加这两个即可搜索到下列插件</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">Core Utilities
+Core Utilities(/bin)
+diskdev-cmds
+file-cmds
+system-cmds
+Mobileterminal
+openSSH
+sshpass
+toggle ssh
+preferencdloader
+substrate safe mode
+syslogd to /var/log/syslog
+</code></pre><p>再在Xcode中的Target的Build Settings中的Code Signing中，改为Don’t Code Sign.<br>最后打开Target-Build Settings 找到iOSOpenDevDevice选项，填入越狱手机的本地ip</p>
+<p>之后打开终端创建key</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">iosod sshkey -h 192.168.23.71（换成你的iOS设备IP地址）
+</code></pre><p>创建完成</p>
+<p>点击菜单 <code>Product - Build For - Profiling</code></p>
+<p>就可以安装到设备，安装完成之后，设备回自己重启，之后就会弹出了一个alertView。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="Theos-创建-Cydia-应用" style="display: inline;"><a href="#Theos-创建-Cydia-应用" class="headerlink" title="Theos 创建 Cydia 应用"></a>Theos 创建 Cydia 应用</h2><br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="首先安装-Theos" style="display: inline;"><a href="#首先安装-Theos" class="headerlink" title="首先安装 Theos"></a>首先安装 Theos</h3><p><a href="http://iphonedevwiki.net/index.php/Theos/Setup" target="_blank" rel="noopener">安装方法</a></p>
+<p>选择theos的安装目录，官方建议放在默认的 /opt/theos.然后执行</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">export THEOS=/opt/theos
+</code></pre><p>为了验证设置成功没有</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">echo $THEOS
+</code></pre><p>如果打印 <code>/opt/theos</code> 说明摄制完成</p>
+<p>Using git:</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">git clone --recursive git://github.com/DHowett/theos.git /opt/theos
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="使用Theos创建应用" style="display: inline;"><a href="#使用Theos创建应用" class="headerlink" title="使用Theos创建应用"></a>使用Theos创建应用</h3><p>安装完成之后 使用：</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">/opt/theos/bin/nic.pl
+</code></pre><p>调用之后</p>
+<pre class="line-numbers language-shell g-mb-30"><code class="language-shell">msiter:~ jingwenzheng$ /opt/theos/bin/nic.pl
+NIC 2.0 - New Instance Creator
+------------------------------
+  [1.] iphone/activator_event
+  [2.] iphone/application_modern
+  [3.] iphone/cydget
+  [4.] iphone/flipswitch_switch
+  [5.] iphone/framework
+  [6.] iphone/ios7_notification_center_widget
+  [7.] iphone/library
+  [8.] iphone/notification_center_widget
+  [9.] iphone/preference_bundle_modern
+  [10.] iphone/tool
+  [11.] iphone/tweak
+  [12.] iphone/xpc_service
+Choose a Template (required): 2
+Project Name (required): Demo
+Package Name [com.yourcompany.demo]: com.demo
+Author/Maintainer Name [荆文征]: jwz
+[iphone/application_modern] Class name prefix (two or more characters) [XX]: demo
+Instantiating iphone/application_modern in demo/...
+Done.
+msiter:~ jingwenzheng$
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样就创建完成了</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="运行到真机" style="display: inline;"><a href="#运行到真机" class="headerlink" title="运行到真机"></a>运行到真机</h3><p>首先要确保震级上面安装 openssh</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">ssh root@ip地址
+</code></pre><p>密码。默认为 alpine</p>
+<p>这样连接上就说明安装完成，可以调用的到～</p>
+<p>之后设置环境变量<code>THEOS_DEVICE_IP</code> 为 真机 IP。</p>
+<p>之后 cd 目录。 使用命令安装到真机上</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">make package install
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="第一个问题-ldid" style="display: inline;"><a href="#第一个问题-ldid" class="headerlink" title="第一个问题 ldid"></a>第一个问题 ldid</h4><p>你可以直接下载别人已经编译完成的文件 <a href="/publicFiles/ldid">ldid文件</a></p>
+<p>之后将文件拷贝到 <code>/opt/theos/bin</code> 下就可以了</p>
+<p>默认是没有权限的 所以可能需要 <code>sudo</code>. 复制完成之后赋予权限<code>sudo chmod 777 /opt/theos/bin/ldid</code></p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="第二个问题-dpkg" style="display: inline;"><a href="#第二个问题-dpkg" class="headerlink" title="第二个问题 dpkg"></a>第二个问题 dpkg</h4><p>没有安装文件工具</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">brew install dpkg
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="dpkg-1-18-14-版本问题" style="display: inline;"><a href="#dpkg-1-18-14-版本问题" class="headerlink" title="dpkg 1.18.14 版本问题"></a>dpkg 1.18.14 版本问题</h4><p>在 <code>1.18.14</code> 版本，dpkg <code>lzma</code> 不能使用了，必须使用 <code>xz</code></p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="这个时候需要修改-opt-theos-makefiles-package-deb-mk-文件" style="display: inline;"><a href="#这个时候需要修改-opt-theos-makefiles-package-deb-mk-文件" class="headerlink" title="这个时候需要修改 /opt/theos/makefiles/package/deb.mk 文件"></a>这个时候需要修改 <code>/opt/theos/makefiles/package/deb.mk</code> 文件</h4><pre class="line-numbers language-Makefile g-mb-30"><code class="language-Makefile">ifeq ($(_THEOS_PACKAGE_FORMAT_LOADED),)
+_THEOS_PACKAGE_FORMAT_LOADED := 1
+
+_THEOS_DEB_PACKAGE_CONTROL_PATH := $(or $(wildcard $(THEOS_PROJECT_DIR)/control),$(wildcard $(THEOS_PROJECT_DIR)/layout/DEBIAN/control))
+_THEOS_DEB_CAN_PACKAGE := $(if $(_THEOS_DEB_PACKAGE_CONTROL_PATH),$(_THEOS_TRUE),$(_THEOS_FALSE))
+
+_THEOS_DEB_HAS_DPKG_DEB := $(call __executable,dpkg-deb)
+ifneq ($(_THEOS_DEB_HAS_DPKG_DEB),$(_THEOS_TRUE))
+internal-package-check::
+    @echo "$(MAKE) package requires dpkg-deb."; exit 1
+endif
+
+ifeq ($(_THEOS_DEB_CAN_PACKAGE),$(_THEOS_TRUE)) # Control file found (or layout/ found.)
+THEOS_PACKAGE_NAME := $(shell grep -i "^Package:" "$(_THEOS_DEB_PACKAGE_CONTROL_PATH)" | cut -d' ' -f2-)
+THEOS_PACKAGE_ARCH := $(shell grep -i "^Architecture:" "$(_THEOS_DEB_PACKAGE_CONTROL_PATH)" | cut -d' ' -f2-)
+THEOS_PACKAGE_BASE_VERSION := $(shell grep -i "^Version:" "$(_THEOS_DEB_PACKAGE_CONTROL_PATH)" | cut -d' ' -f2-)
+
+$(_THEOS_ESCAPED_STAGING_DIR)/DEBIAN:
+    $(ECHO_NOTHING)mkdir -p "$(THEOS_STAGING_DIR)/DEBIAN"$(ECHO_END)
+ifeq ($(_THEOS_HAS_STAGING_LAYOUT),1) # If we have a layout/ directory, copy layout/DEBIAN to the staging directory.
+    $(ECHO_NOTHING)[ -d "$(THEOS_PROJECT_DIR)/layout/DEBIAN" ] && rsync -a "$(THEOS_PROJECT_DIR)/layout/DEBIAN/" "$(THEOS_STAGING_DIR)/DEBIAN" $(_THEOS_RSYNC_EXCLUDE_COMMANDLINE) || true$(ECHO_END)
+endif # _THEOS_HAS_STAGING_LAYOUT
+
+$(_THEOS_ESCAPED_STAGING_DIR)/DEBIAN/control: $(_THEOS_ESCAPED_STAGING_DIR)/DEBIAN
+    $(ECHO_NOTHING)sed -e '/^[Vv]ersion:/d' "$(_THEOS_DEB_PACKAGE_CONTROL_PATH)" > "$@"$(ECHO_END)
+    $(ECHO_NOTHING)echo "Version: $(_THEOS_INTERNAL_PACKAGE_VERSION)" >> "$@"$(ECHO_END)
+    $(ECHO_NOTHING)echo "Installed-Size: $(shell du $(_THEOS_PLATFORM_DU_EXCLUDE) DEBIAN -ks "$(THEOS_STAGING_DIR)" | cut -f 1)" >> "$@"$(ECHO_END)
+
+before-package:: $(_THEOS_ESCAPED_STAGING_DIR)/DEBIAN/control
+
+_THEOS_DEB_PACKAGE_FILENAME = $(THEOS_PACKAGE_DIR)/$(THEOS_PACKAGE_NAME)_$(_THEOS_INTERNAL_PACKAGE_VERSION)_$(THEOS_PACKAGE_ARCH).deb
+internal-package::
+    $(ECHO_NOTHING)COPYFILE_DISABLE=1 $(FAKEROOT) -r dpkg-deb -Zgzip -b "$(THEOS_STAGING_DIR)" "$(_THEOS_DEB_PACKAGE_FILENAME)" $(STDERR_NULL_REDIRECT)$(ECHO_END)
+
+# This variable is used in package.mk
+after-package:: __THEOS_LAST_PACKAGE_FILENAME = $(_THEOS_DEB_PACKAGE_FILENAME)
+
+else # _THEOS_DEB_CAN_PACKAGE == 0
+internal-package::
+    @echo "$(MAKE) package requires you to have a layout/ directory in the project root, containing the basic package structure, or a control file in the project root describing the package."; exit 1
+
+endif # _THEOS_DEB_CAN_PACKAGE
+endif # _THEOS_PACKAGE_FORMAT_LOADED
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这样按理就可以运行了</p>
+    <p hidden id="CurrentFileName">制作一个自己的 Cydia 源.md</p>    
+          </div>
+
+          <!-- Sources & Tags -->
+<div class="g-mb-30">
+    <h6 class="g-color-gray-dark-v1 g-mb-15">
+
+        
+
+        
+
+        <strong class="g-mr-5">专栏:</strong> <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover"
+                                               href="/categories/IOS/">IOS</a>
+        
+
+        
+
+    </h6>
+    <h6 class="g-color-gray-dark-v1">
+        <strong class="g-mr-5">标签:</strong>
+
+        
+
+        
+        <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5"
+           href="/tags/越狱/">越狱</a>
+        
+        <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5"
+           href="/tags/cydia/">cydia</a>
+        
+        <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5"
+           href="/tags/制作源/">制作源</a>
+        
+
+        
+
+    </h6>
+    <br>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="media">
+                    <div class="media-body">
+                        <span class="g-color-gray-dark-v4 g-font-size-12">本博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a></span>
+                        <br>
+                        <span class="g-color-gray-dark-v4 g-font-size-12">本文首发于<a
+                                    href="http://blog.msiter.com">小酒馆老板</a>的博客<a
+                                    href="http://blog.msiter.com">荆文征</a>，版权所有，侵权必究。</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <hr class="g-brd-gray-light-v4">
+
+        </article>
+
+      </div>
+      <!-- End Articles Content -->
+
+      <!-- Sidebar -->
+      <div class="col-lg-3">
+
+        <div id="stickyblock-start" class="js-sticky-block g-sticky-block--lg g-pt-20" data-start-point="#stickyblock-start" data-end-point="#stickyblock-end" style="top: 0px; width: 255px; height: 957px;">
+
+  
+
+  <div class="g-mb-40">
+
+  <ul class="nav u-nav-v5-1 g-brd-bottom--md g-brd-gray-light-v4" role="tablist" data-target="nav-5-1-default-hor-left-border-bottom" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-lightgray">
+    <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#nav-5-1-default-hor-left-border-bottom--1" role="tab">目录</a>
+    </li>
+  </ul>
+
+  <div id="nav-5-1-default-hor-left-border-bottom" class="tab-content g-pt-20">
+    <div class="tab-pane fade show active" id="nav-5-1-default-hor-left-border-bottom--1" role="tabpanel">
+    <div class="g-mb-40 post-toc">
+      <ol class="post-nav"><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#制作自己的-Cydia源"><span class="post-nav-number">1.</span> <span class="post-nav-text">制作自己的 Cydia源</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#文件讲解"><span class="post-nav-number">1.1.</span> <span class="post-nav-text">文件讲解</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#Release-文件讲解"><span class="post-nav-number">1.1.1.</span> <span class="post-nav-text">Release 文件讲解</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#生成Packages文件"><span class="post-nav-number">1.1.2.</span> <span class="post-nav-text">生成Packages文件</span></a></li></ol></li></ol></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#旧-制作-自己deb-文件"><span class="post-nav-number">2.</span> <span class="post-nav-text">(旧) 制作 自己deb 文件</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#总结"><span class="post-nav-number">2.1.</span> <span class="post-nav-text">总结</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#各个文件讲解"><span class="post-nav-number">2.1.1.</span> <span class="post-nav-text">各个文件讲解</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#DEBIAN-control-文件描述"><span class="post-nav-number">2.1.2.</span> <span class="post-nav-text">DEBIAN/control 文件描述</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#DEBIAN-preinst-postinst-prerm-postrm-extrainst-文件描述"><span class="post-nav-number">2.1.3.</span> <span class="post-nav-text">DEBIAN/preinst/postinst/prerm/postrm/extrainst_  文件描述</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#会使用到的系统命令操作"><span class="post-nav-number">2.1.4.</span> <span class="post-nav-text">会使用到的系统命令操作</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-5"><a class="post-nav-link" href="#权限"><span class="post-nav-number">2.1.4.1.</span> <span class="post-nav-text">权限</span></a></li><li class="post-nav-item post-nav-level-5"><a class="post-nav-link" href="#设置用户-组"><span class="post-nav-number">2.1.4.2.</span> <span class="post-nav-text">设置用户/组</span></a></li><li class="post-nav-item post-nav-level-5"><a class="post-nav-link" href="#复制文件-文件夹"><span class="post-nav-number">2.1.4.3.</span> <span class="post-nav-text">复制文件/文件夹</span></a></li><li class="post-nav-item post-nav-level-5"><a class="post-nav-link" href="#移动文件-文件夹-amp-重命名"><span class="post-nav-number">2.1.4.4.</span> <span class="post-nav-text">移动文件/文件夹 &amp; 重命名</span></a></li><li class="post-nav-item post-nav-level-5"><a class="post-nav-link" href="#显示语句"><span class="post-nav-number">2.1.4.5.</span> <span class="post-nav-text">显示语句</span></a></li><li class="post-nav-item post-nav-level-5"><a class="post-nav-link" href="#管理自启动服务"><span class="post-nav-number">2.1.4.6.</span> <span class="post-nav-text">管理自启动服务</span></a></li><li class="post-nav-item post-nav-level-5"><a class="post-nav-link" href="#杀死进程"><span class="post-nav-number">2.1.4.7.</span> <span class="post-nav-text">杀死进程</span></a></li><li class="post-nav-item post-nav-level-5"><a class="post-nav-link" href="#判断"><span class="post-nav-number">2.1.4.8.</span> <span class="post-nav-text">判断</span></a></li><li class="post-nav-item post-nav-level-5"><a class="post-nav-link" href="#获取固件系统版本号"><span class="post-nav-number">2.1.4.9.</span> <span class="post-nav-text">获取固件系统版本号</span></a></li><li class="post-nav-item post-nav-level-5"><a class="post-nav-link" href="#获取设备型号"><span class="post-nav-number">2.1.4.10.</span> <span class="post-nav-text">获取设备型号</span></a></li><li class="post-nav-item post-nav-level-5"><a class="post-nav-link" href="#Cydia中安装完之后重新启动SpringBoard"><span class="post-nav-number">2.1.4.11.</span> <span class="post-nav-text">Cydia中安装完之后重新启动SpringBoard</span></a></li><li class="post-nav-item post-nav-level-5"><a class="post-nav-link" href="#几个比较有用的实例"><span class="post-nav-number">2.1.4.12.</span> <span class="post-nav-text">几个比较有用的实例</span></a></li></ol></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#打包"><span class="post-nav-number">2.1.5.</span> <span class="post-nav-text">打包</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#【可选】deb文件规范命名"><span class="post-nav-number">2.1.6.</span> <span class="post-nav-text">【可选】deb文件规范命名</span></a></li></ol></li></ol></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#新-制作自己的deb文件"><span class="post-nav-number">3.</span> <span class="post-nav-text">(新) 制作自己的deb文件</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#安装theos"><span class="post-nav-number">3.1.</span> <span class="post-nav-text">安装theos</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#安装idld"><span class="post-nav-number">3.2.</span> <span class="post-nav-text">安装idld</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#安装iOSOpenDev"><span class="post-nav-number">3.3.</span> <span class="post-nav-text">安装iOSOpenDev</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#真机调试"><span class="post-nav-number">3.4.</span> <span class="post-nav-text">真机调试</span></a></li></ol></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#Theos-创建-Cydia-应用"><span class="post-nav-number">4.</span> <span class="post-nav-text">Theos 创建 Cydia 应用</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#首先安装-Theos"><span class="post-nav-number">4.1.</span> <span class="post-nav-text">首先安装 Theos</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#使用Theos创建应用"><span class="post-nav-number">4.2.</span> <span class="post-nav-text">使用Theos创建应用</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#运行到真机"><span class="post-nav-number">4.3.</span> <span class="post-nav-text">运行到真机</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#第一个问题-ldid"><span class="post-nav-number">4.3.1.</span> <span class="post-nav-text">第一个问题 ldid</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#第二个问题-dpkg"><span class="post-nav-number">4.3.2.</span> <span class="post-nav-text">第二个问题 dpkg</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#dpkg-1-18-14-版本问题"><span class="post-nav-number">4.3.3.</span> <span class="post-nav-text">dpkg 1.18.14 版本问题</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#这个时候需要修改-opt-theos-makefiles-package-deb-mk-文件"><span class="post-nav-number">4.3.4.</span> <span class="post-nav-text">这个时候需要修改 /opt/theos/makefiles/package/deb.mk 文件</span></a></li></ol></li></ol></li></ol>
+    </div>
+    </div>
+  </div>
+
+  </div>
+
+
+<script src="/assets/js/helpers/timeago.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+    initScrollSpy();
+
+    function initScrollSpy() {
+      var tocSelector = '.post-toc';
+      var $tocElement = $(tocSelector);
+      var activeCurrentSelector = '.active-current';
+
+      $tocElement
+        .on('activate.bs.scrollspy', addClassCurrentActiveClass)
+        .on('clear.bs.scrollspy', removeCurrentActiveClass);
+
+      $('body').scrollspy({
+        target: tocSelector
+      });
+
+      function addClassCurrentActiveClass(){
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+        $tocElement.scrollTop($currentActiveElement.offset().top - $tocElement.offset().top + $tocElement.scrollTop() - ($tocElement.height() / 2));
+      }
+
+      function removeCurrentActiveClass() {
+        $(tocSelector + ' ' + activeCurrentSelector)
+          .removeClass(activeCurrentSelector.substring(1));
+      }
+    }
+
+  });
+
+  $(document).ready(function() {
+    var html = $('html');
+    var hasVelocity = $.isFunction(html.velocity);
+
+    // TOC item animation navigate & prevent #item selector in adress bar.
+    $('.post-toc a').on('click', function(e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+  });
+</script>
+
+
+<script type="text/javascript">
+  function escapeSelector(selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, '\\$&');
+  }
+
+  +
+  function($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector = (this.options.target || '') + ' .post-nav li > a'
+      this.offsets = []
+      this.targets = []
+      this.activeTarget = null
+      this.scrollHeight = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function() {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function() {
+      var that = this
+      var offsetMethod = 'offset'
+      var offsetBase = 0
+
+      this.offsets = []
+      this.targets = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function() {
+          var $el = $(this)
+          var href = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href &&
+            $href.length &&
+            $href.is(':visible') && [
+              [$href[offsetMethod]().top + offsetBase, href]
+            ]) || null
+        })
+        .sort(function(a, b) {
+          return a[0] - b[0]
+        })
+        .each(function() {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function() {
+      var scrollTop = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets = this.offsets
+      var targets = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy') // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i] &&
+          scrollTop >= offsets[i] &&
+          (!offsets[i + 1] || scrollTop <= offsets[i + 1]) &&
+          this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function(target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function() {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function() {
+        var $this = $(this)
+        var data = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function() {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function() {
+      $('[data-spy="scroll"]').each(function() {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+<style>
+  .post-toc {
+    overflow: auto;
+  }
+
+  .post-toc ol {
+    margin: 0;
+    padding: 0 2px 5px 10px;
+    text-align: left;
+    list-style: none;
+    font-size: 14px;
+  }
+
+  .post-toc ol>ol {
+    padding-left: 0;
+  }
+
+  .post-toc ol a {
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+    transition-property: all;
+    color: #111;
+    border-bottom-color: #555;
+  }
+
+  .post-toc ol a:hover {
+    color: #4f72c1;
+    border-bottom-color: #ccc;
+  }
+
+  .post-toc .post-nav-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.8;
+  }
+
+  .post-toc .post-nav .post-nav-child {
+    display: none;
+  }
+
+  .post-toc .post-nav .active>.post-nav-child {
+    display: block;
+  }
+
+  .post-toc .post-nav .active-current>.post-nav-child {
+    display: block;
+  }
+
+  .post-toc .post-nav .active-current>.post-nav-child>.post-nav-item {
+    display: block;
+  }
+
+  .post-toc .post-nav .active>a {
+    color: #6281c8;
+    border-bottom-color: #87daff;
+  }
+
+  .post-toc .post-nav .active-current>a {
+    color: #6281c8;
+  }
+
+  .post-toc .post-nav .active-current>a:hover {
+    color: #87daff;
+  }
+</style>
+
+  <!-- News Feed -->
+<div class="g-mb-40">
+
+  <!-- Nav tabs -->
+  <ul class="nav u-nav-v5-1 g-brd-bottom--md g-brd-gray-light-v4" role="tablist" data-target="nav-5-2-default-hor-left-border-bottom" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-lightgray">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#nav-5-2-default-hor-left-border-bottom--1" role="tab">最新文章</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#nav-5-2-default-hor-left-border-bottom--2" role="tab">修改历史</a>
+    </li>
+  </ul>
+  <!-- End Nav tabs -->
+
+
+  <!-- Tab panes -->
+  <div id="nav-5-2-default-hor-left-border-bottom" class="tab-content g-pt-20">
+    <div class="tab-pane fade show active" id="nav-5-2-default-hor-left-border-bottom--1" role="tabpanel">
+      
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/Hashimoto IO bound proof of work-20180824.html">Hashimoto I/O bound proof of work</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/8/24 15:25:0
+        </span>
+        </article>
+        
+          <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+          
+            
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/Practical Byzantine Fault Tolerance-20180803.html">Practical Byzantine Fault Tolerance</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/8/3 14:22:0
+        </span>
+        </article>
+        
+          <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+          
+            
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/Paxos Made Live - An Engineering Perspective-20180731.html">Paxos Made Live - An Engineering Perspective</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/7/31 15:5:0
+        </span>
+        </article>
+        
+          <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+          
+            
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/paxos-simple-20180726.html">Paxos Made Simple - Leslie Lamport</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/7/26 18:22:0
+        </span>
+        </article>
+        
+            
+    </div>
+
+
+    <div class="tab-pane fade" id="nav-5-2-default-hor-left-border-bottom--2" role="tabpanel">
+      <table id="commit-history-new" style="width:100%">
+        <thead><tr><th></th></tr></thead >
+        <tbody id="commit-history-new-body">
+          <tr><td>
+            <li class="media g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1">
+              <div class="media-body">
+                <span class="d-block g-font-size-11 text-center">正在加载...</span>
+              </div>
+            </li>
+          </tr></td>
+        </tbody>
+        <p class="text-center g-font-size-10" id="history_infomessagelabel"></p>
+      </table>
+    </div>
+  </div>
+  <!-- End Tab panes -->
+
+
+</div>
+<!-- End News Feed -->
+
+
+
+</div>
+
+
+      </div>
+      <!-- End Sidebar -->
+    </div>
+
+    <div class="g-mb-60" id="commit-container">
+  <!--PC版-->
+
+
+
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script type="text/javascript">
+
+var gitalk = new Gitalk({
+  clientID: '9fba00e5b04b66d8424e',
+  clientSecret: '87d759d3284033b6e5aaac980e63fa74e57fcda7',
+  repo: 'aimobier.github.io',
+  owner: 'aimobier',
+  admin: ['aimobier'],
+  id: md5(window.location.pathname),      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
+
+gitalk.render('commit-container')
+	
+</script>
+
+
+
+  </div>
+
+  <div id="stickyblock-end" style="width: 100%;height: 1px;"></div>
+</section>
+
+
+<script src="/assets/js/components/hs.sticky-block.js"></script>
+<script src="/assets/js/githubhistory.js"></script>
+<script type="text/javascript">
+  // initialization of sticky blocks
+  $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
+</script>
+
+
+    
+<script type="text/x-mathjax-config">
+/// Google  不在翻译 
+MathJax.Hub.Queue(function() {
+      $("span.MathJax").each(function(){
+          $(this).attr("translate","no");
+          $(this).addClass("notranslate");
+    });
+})
+
+</script>
+
+
+
+
+      <!-- JS Implementing Plugins -->
+<script src="/assets/vendor/custombox/custombox.min.js"></script>
+
+<!-- JS Unify -->
+<script src="/assets/js/components/hs.modal-window.js"></script>
+
+
+<!-- Footer -->
+<footer class="g-bg-black-opacity-0_9 g-color-white-opacity-0_8 ">
+  <br><br><br>
+  <div class="container g-mb-60">
+    <div class="row">
+
+      <!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">关于我</h2>
+  </div>
+
+  <div class="g-mb-30">
+    <p class="g-color-white-opacity-0_8">努力学习的IOS程序员。目前在学习制作Hexo主题，主要还是为了做自己的一个博客.之后会好好学习linux以及服务器相关的知识.</p>
+  </div>
+
+  <address class="mb-0">
+    <div class="g-mb-30">
+      <h4 class="h6 g-font-weight-600">现居地</h4>
+      <p class="mb-0 g-color-white-opacity-0_8">北京 - 国家的首都 </p>
+    </div>
+
+    <!-- 配置标签相关视图 -->
+    
+
+      <div class="g-mb-30">
+        <h4 class="h6 g-font-weight-600">邮箱:</h4>
+
+        
+
+                <p class="mb-0 g-color-white-opacity-0_8">alphabetion@gmail.com</p>
+        
+
+                <p class="mb-0 g-color-white-opacity-0_8">jingwenzheng@baimaodai.com</p>
+        
+
+      </div>
+
+      
+
+
+
+    <div class="mb-0">
+      <h4 class="h6 g-font-weight-600">一言:</h4>
+      <p class="mb-0">
+        <a class="g-color-white-opacity-0_8" id="hitokoto" href="http://hitokoto.cn/">support@htmlstream.com</a>
+      </p>
+    </div>
+  </address>
+</div>
+<!-- End Footer Content -->
+
+
+        <!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+
+
+  <!-- 配置标签相关视图 -->
+  
+    <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+      <h2 class="u-heading-v2__title h6 text-uppercase mb-0">标签</h2>
+    </div>
+    <ul class="u-list-inline g-font-size-12 g-mb-30">
+
+      
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/生活/">
+            生活
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/悲观/">
+            悲观
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/Objective-C/">
+            Objective-C
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/AsyncDisplayKit/">
+            AsyncDisplayKit
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/ios/">
+            ios
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/约束教程/">
+            约束教程
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/AttributedString/">
+            AttributedString
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/iOS8-html2AttributedString-error/">
+            iOS8 html2AttributedString error
+          </a>
+        </li>
+        
+    </ul>
+    
+
+      <!-- 布局相关链接-->
+
+      <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+        <h2 class="u-heading-v2__title h6 text-uppercase mb-0">友情链接</h2>
+      </div>
+
+      <ul class="list-unstyled">
+        
+
+          <li class="g-mb-5">
+            <i class="fa fa-angle-right g-mr-5"></i>
+
+            <a class="g-color-white-opacity-0_8" href="https://baidu.com">
+              百度
+            </a>
+          </li>
+
+          
+
+          <li class="g-mb-5">
+            <i class="fa fa-angle-right g-mr-5"></i>
+
+            <a class="g-color-white-opacity-0_8" href="https://test.baidu.com">
+              测试链接
+            </a>
+          </li>
+
+          
+
+          <li class="g-mb-5">
+            <i class="fa fa-angle-right g-mr-5"></i>
+
+            <a class="g-color-white-opacity-0_8" href="https://baidu.com">
+              hexo
+            </a>
+          </li>
+
+          
+      </ul>
+
+
+
+</div>
+<!-- End Footer Content -->
+
+
+          <!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">最近文章</h2>
+  </div>
+
+  
+    
+
+  <article class="media">
+
+
+  
+
+
+
+
+  <a class="d-flex g-mt-3 mr-3" href="/Hashimoto IO bound proof of work-20180824.html">
+    <img class="g-width-60 g-height-60 rounded" src="/publicFiles/images/hashimoto/WX20180824-152143.png" alt="Image Description">
+  </a>
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/Hashimoto IO bound proof of work-20180824.html">Hashimoto I/O bound proof of work</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/8/24 15:25:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/Hashimoto IO bound proof of work-20180824.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/zzygzjd Cydia y-20161112.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <article class="media">
+
+
+  
+
+
+
+
+  <a class="d-flex g-mt-3 mr-3" href="/Practical Byzantine Fault Tolerance-20180803.html">
+    <img class="g-width-60 g-height-60 rounded" src="/publicFiles/images/Practical Byzantine Fault Tolerance/WX20180803-120202.png" alt="Image Description">
+  </a>
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/Practical Byzantine Fault Tolerance-20180803.html">Practical Byzantine Fault Tolerance</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/8/3 14:22:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/Practical Byzantine Fault Tolerance-20180803.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/zzygzjd Cydia y-20161112.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <article class="media">
+
+
+  
+
+
+
+
+  <a class="d-flex g-mt-3 mr-3" href="/Paxos Made Live - An Engineering Perspective-20180731.html">
+    <img class="g-width-60 g-height-60 rounded" src="/publicFiles/images/Paxos Made Live/WX20180731-101403.png" alt="Image Description">
+  </a>
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/Paxos Made Live - An Engineering Perspective-20180731.html">Paxos Made Live - An Engineering Perspective</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/7/31 15:5:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/Paxos Made Live - An Engineering Perspective-20180731.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/zzygzjd Cydia y-20161112.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <article class="media">
+
+
+  
+
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/paxos-simple-20180726.html">Paxos Made Simple - Leslie Lamport</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/7/26 18:22:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/paxos-simple-20180726.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/zzygzjd Cydia y-20161112.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytc1YTze">
+  </script>
+
+      
+</div>
+<!-- End Footer Content -->
+
+
+            <!-- Footer Content -->
+<div class="col-lg-3 col-md-6">
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">订阅</h2>
+  </div>
+
+  <div class="g-mb-30">
+    <p class="g-color-white-opacity-0_8">订阅我可以更及时的获取到文章的推送，请在下方输入您的邮箱地址获取文章更新</p>
+    <div class="input-group border-0 g-rounded-30">
+      <input class="form-control border-0 g-rounded-left-30 g-px-12 g-py-8" type="email" placeholder="输入您的邮箱地址">
+      <div class="input-group-addon border-0 p-0">
+        <button class="btn u-btn-primary g-rounded-right-30 g-px-12 g-py-8" type="submit" role="button">订阅</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">社交</h2>
+  </div>
+
+  <p class="g-color-white-opacity-0_8">作为一个宅男，长期宅在家里，会不定期的更新文章。如果你想更新的了解到我的动态，请选择一下任意一种社交方式关注我。</p>
+  <ul class="list-inline mb-0">
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="https://www.facebook.com/aimobier">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="https://www.instagram.com/aimobier/">
+        <i class="fa fa-instagram"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="https://github.com/aimobier">
+        <i class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="http://weibo.com/aouns">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="#modal1" data-modal-target="#modal1" data-modal-effect="fadein">
+        <i class="fa fa-weixin"></i>
+</a>
+    </li>
+  </ul>
+</div>
+<!-- End Footer Content -->
+
+    </div>
+  </div>
+
+
+  <!-- Copyright Footer -->
+<div class="g-bg-black-opacity-0_1 g-color-white-opacity-0_8 text-center g-py-20">
+  <div class="container">
+    
+      
+        
+        <small class="g-font-size-7 g-mr-10 g-mb-10 g-mb-0--md">2015 - 2018 © All Rights Reserved. Msiter by
+        <a class="g-color-white-opacity-0_8" href="#">Jing WenZheng</a>
+      </small>
+  </div>
+</div>
+<!-- End Copyright Footer -->
+
+
+</footer>
+<!-- End Footer -->
+<a class="js-go-to u-go-to-v1" href="#" data-type="fixed" data-position='{
+ "bottom": 15,
+ "right": 15
+}' data-offset-top="400" data-compensation="#js-header" data-show-effect="zoomIn">
+  <i class="hs-icon hs-icon-arrow-top"></i>
+</a>
+
+<script type="text/javascript">
+  $(function() {
+
+    // initialization of go to
+    $.HSCore.components.HSGoTo.init('.js-go-to');
+    $.HSCore.components.HSModalWindow.init('[data-modal-target]');
+    $.getJSON("https://v1.hitokoto.cn/?encode=json", function(json) {
+
+      var author = json["from"];
+      var content = json["hitokoto"];
+
+      $("#hitokoto").html(content);
+
+      $("blockquote .content").html(content);
+      $("blockquote .author").html(author);
+    });
+  });
+</script>
+
+
+    </main>
+
+    <div class="u-outer-spaces-helper"></div>
+
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

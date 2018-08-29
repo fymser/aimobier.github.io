@@ -1,0 +1,3359 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Title -->
+      
+      <title>大话数据结构 - 树 （6） | 荆文征</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="baidu-site-verification" content="x3N9zxqrty" />
+    <meta name="baidu-site-verification" content="cP2u6szylS" />
+    <meta name="google-site-verification" content="pwQ78Z9AmtXiVWejypS4rBSfBZ4_G95mchbkWo3EWmI" />
+    
+      <meta name="keywords" content="荆文征,MSITER,msiter,jingwenzheng,IOS,Blog,博客,荆文征博客,Nodejs,JAVA,JavaScript,js,swift,oc,objective-c,c++,c">
+    
+    
+      <meta name="author" content="小酒馆老板">
+    
+    
+      <meta name="description" content="欲买桂花同载酒&lt;br/&gt;终不似 少年游">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700%7COpen+Sans:400,600,700">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/assets/vendor/icon-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/vendor/icon-line-pro/style.css">
+    <link rel="stylesheet" href="/assets/vendor/icon-hs/style.css">
+    <link rel="stylesheet" href="/assets/vendor/animate.css">
+    <link rel="stylesheet" href="/assets/vendor/hs-megamenu/src/hs.megamenu.css">
+    <link rel="stylesheet" href="/assets/vendor/hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" href="/assets/vendor/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="/assets/vendor/fancybox/jquery.fancybox.css">
+
+    <!-- Revolution Slider -->
+    <link rel="stylesheet" href="/assets/vendor/revolution-slider/revolution/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="/assets/vendor/revolution-slider/revolution/css/settings.css">
+    <link rel="stylesheet" href="/revolution-slider/carousel-gallery/assets/css/style.css">
+
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" href="/assets/css/styles.bm-classic.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="/assets/css/custom.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link  rel="stylesheet" href="/assets/vendor/fancybox/jquery.fancybox.min.css">
+
+  <link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<!-- JS Global Compulsory -->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+<script src="/assets/vendor/popper.js/index.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="/assets/vendor/appear.js"></script>
+<script src="/assets/vendor/slick-carousel/slick/slick.js"></script>
+<script src="/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+<script src="/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+
+<!-- JS Unify -->
+<script src="/assets/js/hs.core.js"></script>
+<script src="/assets/js/components/hs.header.js"></script>
+<script src="/assets/js/helpers/hs.hamburgers.js"></script>
+<script src="/assets/js/components/hs.dropdown.js"></script>
+<script src="/assets/js/components/hs.carousel.js"></script>
+<script src="/assets/js/components/hs.go-to.js"></script>
+<script src="/assets/js/components/hs.popup.js"></script>
+
+<!-- JS Revolution Slider -->
+<script src="/assets/vendor/revolution-slider/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/jquery.themepunch.revolution.min.js"></script>
+
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
+<!-- JS Customization -->
+<script src="/assets/js/custom.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script  src="/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+
+<!-- JS Unify -->
+<script  src="/assets/js/components/hs.popup.js"></script>
+
+<script src="https://cdn.wilddog.com/sdk/js/2.5.17/wilddog-sync.js"></script>
+
+<script>
+  function SETValue(key, value) {
+    if (typeof(Storage) !== "undefined") {
+      var curTime = new Date().getTime();
+      localStorage.setItem(key, JSON.stringify({
+        data: value,
+        time: curTime
+      }));
+    }
+  }
+
+  function GETvalue(key) {
+    if (typeof(Storage) !== "undefined") {
+      var data = localStorage.getItem(key);
+      if(data) {
+        var dataObj = JSON.parse(data);
+        if (new Date().getTime() - dataObj.time > 1000*60*60) {
+          //alert("信息已过期")
+        } else {
+          //console.log("data="+dataObj.data);
+          //console.log(JSON.parse(dataObj.data));
+          var dataObjDatatoJson = dataObj.data
+          return dataObjDatatoJson;
+        }
+      }
+    }
+  }
+
+  function REQuest(url, finish) {
+
+    var value = GETvalue(url);
+
+    if (value) {
+      finish(value);
+      return;
+    }
+
+    $.ajax({
+      type: "get",
+      dataType: "jsonp",
+      cache: true,
+      url: url,
+      success: function(data) {
+        SETValue(url, data);
+        finish(data);
+      }
+    });
+  }
+
+
+  $(document).on('ready', function() {
+    // initialization of header
+    $.HSCore.components.HSHeader.init($('#js-header'));
+    $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+    // initialization of MegaMenu
+    $('.js-mega-menu').HSMegaMenu();
+
+    // initialization of HSDropdown component
+    $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
+      afterOpen: function() {
+        $(this).find('input[type="search"]').focus();
+      }
+    });
+    // initialization of popups
+                                $.HSCore.components.HSPopup.init('.js-fancybox');
+
+                                // initialization of gallery with thumbs
+                                $.HSCore.components.HSPopup.init('.js-fancybox-thumbs', {
+                                  thumbs: {
+                                    showOnStart: true
+                                  }
+                                });
+
+    // initialization of go to
+    $.HSCore.components.HSGoTo.init('.js-go-to');
+  });
+</script>
+
+<script>
+
+//  百度站长 推送
+
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+  <body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><main>
+
+  <!-- Header -->
+  <header id="js-header" class="u-header u-header--static u-shadow-v19">
+    <!-- Top Bar -->
+    <div class="u-header__section g-brd-bottom g-brd-gray-light-v4 g-py-18">
+      <div class="container">
+        <div class="row align-items-center">
+
+          <!-- Logo -->
+<div class="col-md-3 g-hidden-md-down logo">
+  <a href="/" class="navbar-brand">
+    <img src="/favicon/logo.png" alt="Logo">
+  </a>
+</div>
+<!-- End Logo -->
+
+
+          <style media="screen">
+  .searchbox {
+    border-style: hidden;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .markdown {
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top: 42px;
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  #searchdownview {
+    display: none;
+  }
+
+  #searchdownview nav {
+    padding-top: 10px;
+  }
+
+  #PostSearchResults_wrapper {
+    margin: 0px;
+    padding-bottom: 0px;
+  }
+
+  /* 配置 没有搜索到内容的 上边距 */
+
+  #emptymessageview {
+    display: none;
+  }
+
+  #emptymessageview p {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+
+  #searchdownview table {
+    table-layout: fixed;
+  }
+
+  #searchdownview td {
+
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
+
+
+  /* 搜索结果 设置 */
+
+  .resultlist {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .resultlist li {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #e0e4ea;
+  }
+
+  /* 搜索结果关键字 高粱设置 */
+
+  .search-keyword {
+    font-size: 1rem;
+    color: #6281c8;
+    border-bottom: 1px dashed #4088b8;
+    font-weight:700;
+  }
+
+  /*  分页 前一夜 后一页 隐藏 边框 */
+
+  .searchpage a {
+    border-style: hidden;
+  }
+</style>
+
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" charset="utf-8"></script>
+<script src="/assets/js/helpers/hs.pages.table.js" charset="utf-8"></script>
+
+<!-- Subscribe Form -->
+<div class="col-lg-5 col-md-10 col-sm-10 col-xs-12">
+  <form class="input-group rounded">
+    <div class="form-control w-100 searchbox">
+      <input class="form-control w-100
+      g-brd-secondary-light-v2
+      g-brd-primary--focus
+      g-color-secondary-dark-v1
+      g-placeholder-secondary-dark-v1
+      g-bg-white g-font-weight-400
+      g-font-size-13 rounded g-px-20
+      g-py-12 searchinput"
+      autocomplete="off"
+      id="PostSearchInput" type="text" placeholder="输入以搜索该博客文章">
+
+      <div class=" w-100 markdown g-bg-white
+      g-brd-secondary-light-v2 rounded
+      g-brd-primary--focus" id="searchdownview">
+      <table id="PostSearchResults" ></table>
+        <p class="text-center g-font-size-10" id="infomessagelabel"></p>
+      </div>
+
+      <div class=" w-100 markdown g-bg-white
+      g-brd-secondary-light-v2 rounded
+      g-brd-primary--focus" id="emptymessageview">
+        <p class="text-center g-font-size-13">什么都没有找到</p>
+      </div>
+
+    </div>
+
+
+    <span class="input-group-addon g-brd-none g-py-0 g-pr-0">
+      <button id="BarrageStartButton" class="btn u-btn-white g-color-primary--hover g-bg-secondary g-font-weight-600 g-font-size-13 text-uppercase rounded g-py-12 g-px-20">
+        <span class="g-hidden-md-down">search</span>
+    <i class="g-hidden-lg-up fa fa-search"></i>
+    </button>
+    </span>
+  </form>
+
+</div>
+<!-- End Subscribe Form -->
+
+
+
+<script type="text/javascript">
+  var SearchDataTablesElment;
+
+  var SearchKeyElemnt = "search";
+
+  var Timer = {
+    data: {},
+    start: function(key) {
+      Timer.data[key] = new Date();
+    },
+    stop: function(key) {
+      var time = Timer.data[key];
+      if (time)
+        Timer.data[key] = new Date() - time;
+    },
+    getTime: function(key) {
+      return Timer.data[key];
+    }
+  };
+
+  // AJAX 请求获取 XML 数据
+  function RequestSearchXMLMethod(finish) {
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    $.ajax({
+      url: path,
+      dataType: "xml",
+      success: function(xmlResponse) {
+        // get the contents from search data
+        var datas = $("entry", xmlResponse).map(function() {
+          return {
+            title: $("title", this).text(),
+            content: $("content", this).text(),
+            url: $("url", this).text()
+          };
+        }).get();
+        WhachSearchInputMethod(datas, finish);
+      }
+    });
+  }
+
+  function createTemp(title, url, content) {
+
+    if (content.length > 200) {
+      content = content.substring(0, 200) + "...";
+    }
+
+    return "\
+  <ul class='list-unstyled resultlist' >\
+  <li class='g-pa-20 g-mb-minus-1'>\
+    <!-- Article -->\
+    <article>\
+          <h3 class='h6'>\
+            <a class='g-color-main g-color-primary--hover' href='" + url + "'>" +
+      title +
+      "</a>\
+          </h3>\
+          <p class='g-font-size-12'>" +
+      content + "</p>\
+        </article>\
+    <!-- End Article -->\
+  </li>\
+  </ul>\
+  ";
+  }
+
+
+  function WatchLeftAndRightKeyWork() {
+
+    $(document).keydown(function(event) {
+
+      var pointEvent = event.which == 37 || event.which == 39 || event.which == 27 || event.which == 96;
+
+      var pointStatus = $('#searchdownview').css('display') != 'none' || $("#PostSearchInput").is(':focus') || $("#PostSearchInput").val().length > 0;
+
+      if (pointEvent && pointStatus) {
+        $("#PostSearchInput").blur(); // 失去焦点
+        event.preventDefault(); // 组织键盘
+        switch (event.which) { //判断按键;
+          case 37: // 上一页
+            SearchDataTablesElment.page('previous').draw('page');
+            break;
+          case 39: // 下一页
+            SearchDataTablesElment.page('next').draw('page');
+            break;
+          case 27:
+          case 96:
+            $("#PostSearchInput").val("");
+            $("#PostSearchInput").trigger("input");
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  }
+
+  // 监视输入框的一些输入问题
+  // @params data XML 解析出来的JOSN 数据
+  // @params finish 检测到输入框修改之后 回调的数据
+  //
+  // @return nil
+  function WhachSearchInputMethod(datas, finish) {
+
+    WatchLeftAndRightKeyWork();
+
+    $("#PostSearchInput").on('input', function(e) {
+
+      var startTime = new Date().getTime(); // 开始时间
+
+      var dataSet = [];
+      var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+      if (this.value.trim().length <= 0) {
+        finish(keywords, dataSet);
+        return;
+      }
+      // perform local searching
+      datas.forEach(function(data) {
+        var isMatch = true;
+        var content_index = [];
+        var data_title = data.title.trim().toLowerCase();
+        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+        var data_url = data.url;
+        var index_title = -1;
+        var index_content = -1;
+        var first_occur = -1;
+        // only match artiles with not empty titles and contents
+        if (data_title != '' && data_content != '') {
+          keywords.forEach(function(keyword, i) {
+            index_title = data_title.indexOf(keyword);
+            index_content = data_content.indexOf(keyword);
+            if (index_title < 0 && index_content < 0) {
+              isMatch = false;
+            } else {
+              if (index_content < 0) {
+                index_content = 0;
+              }
+              if (i == 0) {
+                first_occur = index_content;
+              }
+            }
+          });
+        }
+        // show search results
+        if (isMatch) {
+          var content = data.content.trim().replace(/<[^>]+>/g, "");
+          if (first_occur >= 0) {
+            // cut out characters
+            var start = first_occur - 6;
+            var end = first_occur + 6;
+            if (start < 0) {
+              start = 0;
+            }
+            if (start == 0) {
+              end = 10;
+            }
+            if (end > content.length) {
+              end = content.length;
+            }
+            var match_content = content.substr(start, end);
+            // highlight all keywords
+            keywords.forEach(function(keyword) {
+              var regS = new RegExp(keyword, "gi");
+              data_title = data_title.replace(regS, "<strong class=\"search-keyword\">" + keyword + "</strong>");
+              match_content = match_content.replace(regS, "<strong class=\"search-keyword\">" + keyword + "</strong>");
+            });
+            var datas = [createTemp(data_title, data_url, match_content)];
+            dataSet.push(datas);
+          };
+        };
+      });
+
+      var endTime = new Date().getTime(); // 开始时间
+
+      finish(keywords, dataSet, endTime - startTime);
+    });
+  };
+
+  function EmptyViewHandleMethod(datacount) {
+    if (datacount <= 0 && $("#PostSearchInput").val().length > 0) {
+      $("#emptymessageview").attr("style", "display:block;"); //隐藏div
+    } else {
+      $("#emptymessageview").attr("style", "display:none;"); //显示div
+    }
+  }
+
+  function InitSearchInterfaceMethod() {
+
+    $("#PostSearchInput").focus(function(){
+        if ($("#PostSearchInput").val().length > 0) {
+          $("#PostSearchInput").trigger("input");
+        }
+    });
+
+    RequestSearchXMLMethod(function(keywords, datas, times) {
+      if (datas.length <= 0) {
+        $("#searchdownview").attr("style", "display:none;"); //隐藏div
+      } else {
+        $("#searchdownview").attr("style", "display:block;"); //显示div
+      }
+      EmptyViewHandleMethod(datas.length);
+      if (!SearchDataTablesElment) {
+        SearchDataTablesElment = $('#PostSearchResults').DataTable({
+          data: datas,
+          autoWidth: false,
+          ordering: false,
+          searching: false,
+          lengthChange: false,
+          pageLength: 4,
+          info: false,
+          iShowPages: 3,
+          pagingType: "cutsomPage",
+          footerCallback: function(tfoot, data, start, end, display) {
+
+            var keyWorkd = "<span style='color: #6281c8;font-weight: bold;'>" + $("#PostSearchInput").val() + "</span>";
+
+            var title = "查询[" + keyWorkd + "]结果共" + data.length + "个,总耗时" + times / 1000 + "秒";
+
+            $("#infomessagelabel").html(title);
+          },
+          columns: [{
+            title: ""
+          }]
+        });
+      } else {
+        SearchDataTablesElment.clear().rows.add(datas).draw();
+      }
+
+
+
+    });
+  };
+
+  $(document).ready(function() {
+
+    InitSearchInterfaceMethod();
+  });
+</script>
+
+
+          <!-- Language -->
+<div id="clock" class="col-xl-2 col-md-2 col-sm-2 g-hidden-xs-down ml-auto ">
+</div>
+<!-- End Language -->
+
+
+<script type="text/javascript">
+
+var counter;
+
+var config = {
+  syncURL: "https://wd2622139095udguuj.wilddogio.com" //输入节点 URL
+};
+wilddog.initializeApp(config);
+var ref = wilddog.sync().ref("browerlog");
+
+ref.push({
+  "url": window.location.href,
+  "path": window.location.pathname,
+  "date": Math.round(new Date().getTime())
+});
+
+ref.orderByChild("path").equalTo(window.location.pathname).on('value', function(snapshot) {
+
+  var value = snapshot.val() == null ? 0 : Object.keys(snapshot.val()).length
+
+  $("#clock").text("No."+value);
+});
+
+var zan = wilddog.sync().ref("dianzan");
+
+zan.on('value', function(snapshot) {
+    counter = snapshot.val();
+    $("#counter").html(""+counter);
+  }, function (error) {
+    console.log(error);
+  });
+
+
+function zanUpMethod(){
+  zan.set(counter+1)
+}
+function zanDownMethod(){
+  zan.set(counter-1)
+}
+
+</script>
+
+
+          <!-- Account -->
+<div class="col-1 g-hidden-md-down" id="account">
+  <a id="account-dropdown-invoker" class="media align-items-center float-right g-text-underline--none--hover" href="#"
+     aria-controls="account-dropdown"
+     aria-haspopup="true"
+     aria-expanded="false"
+     data-dropdown-event="hover"
+     data-dropdown-target="#account-dropdown"
+     data-dropdown-type="css-animation"
+     data-dropdown-duration="300"
+     data-dropdown-hide-on-scroll="false"
+     data-dropdown-animation-in="fadeIn"
+     data-dropdown-animation-out="fadeOut">
+    <div class="d-flex g-width-30 g-height-30 mr-2">
+      <img class="img-fluid rounded-circle" src="http://blog.msiter.com/favicon/avatar.jpg" alt="Image Description">
+    </div>
+    <div class="media-body">
+      <span class="d-block g-hidden-sm-down g-color-main g-font-weight-600 g-font-size-13">文征</span>
+    </div>
+  </a>
+
+  <div id="account-dropdown" class="list-unstyled g-brd-around g-brd-secondary-light-v2 g-bg-white rounded g-pos-abs g-right-0 g-py-5 g-mt-57" aria-labelledby="account-dropdown-invoker" style="width:300px;">
+
+
+
+
+
+
+    <div class="col-lg-12 g-mb-30">
+        <!-- Figure -->
+        <figure class="u-shadow-v19 g-bg-white g-rounded-4 g-pa-20">
+
+          <div id="counter" class="text-center g-font-size-20">
+
+            0
+
+          </div>
+
+          <hr class="g-brd-gray-light-v4 g-my-15">
+
+          <div class="d-flex justify-content-start">
+            <!-- Figure Image -->
+            <img class="g-width-90 g-height-90 rounded-circle g-mr-15" src="http://blog.msiter.com/favicon/avatar.jpg" alt="Image Description">
+            <!-- Figure Image -->
+
+            <div class="d-block">
+              <!-- Figure Info -->
+              <div class="g-mb-5">
+                <h4 class="h5 g-mb-1">荆文征</h4>
+                <em class="d-block g-color-gray-dark-v4 g-font-style-normal g-font-size-13">Zhidu Inc.</em>
+              </div>
+              <!-- End Figure Info -->
+
+              <!-- Social Icons -->
+              <ul class="list-inline mb-0">
+                <li class="list-inline-item g-mx-2">
+                  <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-facebook--hover g-ml-minus-15" href="javascript:;" onclick="zanUpMethod()">
+                    <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-thumbs-o-up"></i>
+                    <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-thumbs-up"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item g-mx-2">
+                  <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-twitter--hover" href="javascript:void(0)" onclick="zanDownMethod()">
+                    <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-thumbs-o-down"></i>
+                    <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-thumbs-down"></i>
+                  </a>
+                </li>
+              </ul>
+              <!-- End Social Icons -->
+            </div>
+          </div>
+
+          <hr class="g-brd-gray-light-v4 g-my-15">
+
+          <div class="g-py-10">
+            <!-- Figure Contacts -->
+            <ul class="list-unstyled g-color-gray-dark-v5 g-font-size-13 g-mb-0">
+              <li class="g-mb-10">
+                <i class="g-pos-rel g-mt-1 mr-2 icon-communication-062 u-line-icon-pro"></i>
+                <a href="mailto:alphabetion@gmail.com">alphabetion@gmail.com</a>
+              </li>
+              <li>
+                <i class="g-pos-rel g-top-1 mr-2 icon-electronics-005 u-line-icon-pro"></i>
+                <em class="g-font-style-normal">+(86) 136 0135 6004</em>
+              </li>
+            </ul>
+            <!-- End Figure Contacts -->
+          </div>
+
+          <hr class="g-brd-gray-light-v4 g-my-15">
+            <!-- Border Primary Blockquotes -->
+            <blockquote class="blockquote g-brd-2 g-brd-primary g-font-size-12 g-mb-30">
+              <p class="content"></p>
+              <footer class="blockquote-footer text-right">
+                <cite title="Source Title" class="author"></cite>
+              </footer>
+            </blockquote>
+            <!-- End Border Primary Blockquotes -->
+        </figure>
+        <!-- End Figure -->
+      </div>
+
+
+
+
+
+
+
+  </div>
+
+
+</div>
+<!-- End Account -->
+
+<script type="text/javascript">
+
+$("#account").mouseover(function(){
+
+
+});
+
+$("#account").mouseout(function(){
+
+});
+
+</script>
+
+
+        </div>
+      </div>
+    </div>
+    <!-- End Top Bar -->
+
+    <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10">
+      <nav class="js-mega-menu navbar navbar-expand-lg g-px-0">
+        <div class="container g-px-15">
+          <!-- Logo -->
+          <a class="navbar-brand g-hidden-lg-up" href="bm-classic-home-page-1.html">
+            <img src="/assets/img/logo.png" alt="Logo">
+          </a>
+          <!-- End Logo -->
+
+          <!-- Responsive Toggle Button -->
+          <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 ml-auto" type="button"
+                  aria-label="Toggle navigation"
+                  aria-expanded="false"
+                  aria-controls="navBar"
+                  data-toggle="collapse"
+                  data-target="#navBar">
+            <span class="hamburger hamburger--slider g-pa-0">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+            </span>
+          </button>
+          <!-- End Responsive Toggle Button -->
+
+          <!-- Navigation -->
+          <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg" id="navBar">
+            <ul class="navbar-nav g-font-weight-600">
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-1" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">标签
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-1">
+    <div class="row">
+      <div class="col-lg-2">
+        <ul class="list-unstyled mb-0" style="ov">
+
+          
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/生活/">生活</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/悲观/">悲观</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/Objective-C/">Objective-C</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/AsyncDisplayKit/">AsyncDisplayKit</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/ios/">ios</a></li>
+
+            
+
+        </ul>
+      </div>
+      <div class="col-lg-1">
+
+      </div>
+      <div class="col-lg-9" style="height:auto;" >
+
+        <!-- Background Gray Colored -->
+        <ul class="u-list-inline">
+
+          
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/约束教程/">约束教程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/AttributedString/">AttributedString</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/iOS8-html2AttributedString-error/">iOS8 html2AttributedString error</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/IOS/">IOS</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/ObjC/">ObjC</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Pthreads/">Pthreads</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/线程/">线程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/POSIX/">POSIX</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/RxSwift/">RxSwift</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Moya/">Moya</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/java/">java</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/spring-boot/">spring boot</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mybatis/">mybatis</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/WKWebView/">WKWebView</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Systematic-distinction/">Systematic distinction</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/WebKit/">WebKit</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/WebView/">WebView</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/UIWebView/">UIWebView</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Input/">Input</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/File/">File</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Bug/">Bug</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/稀奇古怪的问题/">稀奇古怪的问题</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/博客美化/">博客美化</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/hexo/">hexo</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mathjax/">mathjax</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/objc/">objc</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/travis-ci/">travis-ci</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/cocoapods/">cocoapods</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/NodeJS/">NodeJS</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/APNs/">APNs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/八爪鱼/">八爪鱼</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/html/">html</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/js/">js</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Javascript/">Javascript</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/鼠标悬浮/">鼠标悬浮</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/面试题目/">面试题目</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/递归/">递归</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/error/">error</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/奇怪的问题/">奇怪的问题</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/希望/">希望</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/家庭/">家庭</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/测试/">测试</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/MARKDOWN/">MARKDOWN</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/无趣，心理学/">无趣，心理学</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Iterm/">Iterm</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/zsh/">zsh</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/主题/">主题</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/hashimoto/">hashimoto</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/论文/">论文</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/共识算法/">共识算法</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/技巧/">技巧</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/swift/">swift</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Waver/">Waver</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/AVFoundation/">AVFoundation</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/逆向/">逆向</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/theos/">theos</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/tweak/">tweak</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mongodb/">mongodb</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mongoose/">mongoose</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/nodejs/">nodejs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/RX/">RX</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/c/">c</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/c/">c++</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/reactiv/">reactiv</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/rxswift/">rxswift</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/swagger/">swagger</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/api/">api</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Web3js/">Web3js</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Ethereum/">Ethereum</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Solidity/">Solidity</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/truffle/">truffle</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/ganache/">ganache</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/数据结构/">数据结构</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/计算机基础/">计算机基础</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/手势密码/">手势密码</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/autolayout/">autolayout</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/破解/">破解</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/抓包/">抓包</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/DB/">DB</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/realm/">realm</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/jooq/">jooq</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/paoxs/">paoxs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/越狱/">越狱</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/cydia/">cydia</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/制作源/">制作源</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Segwit/">Segwit</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Lightning-Network/">Lightning Network</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Atomic-Transaction/">Atomic Transaction</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/HD-Wallet/">HD Wallet</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/BIP32-44/">BIP32-44</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Block-chain/">Block chain</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/multi-paoxs/">multi-paoxs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/async/">async</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/区块链/">区块链</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/p2p/">p2p</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/dns-seed/">dns seed</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/PBFT/">PBFT</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/consensus/">consensus</a>
+                        </li>
+
+            
+
+        </ul>
+        <!-- End Background Gray Colored -->
+
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-5" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">栏目
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-primary g-left-15 g-right-15 g-px-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-5">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="list-inline text-center mb-0">
+
+
+
+          
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/牢骚/">牢骚</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/IOS/">IOS</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/学习/">学习</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/线程/">线程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/服务器/">服务器</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/博客历程/">博客历程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/学习资料/">学习资料</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/Web-前端/">Web 前端</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/面试题目/">面试题目</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/生活/">生活</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/测试用例/">测试用例</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/hexo/">hexo</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/共识算法/">共识算法</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/开发帮助/">开发帮助</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/区块链/">区块链</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/数据结构/">数据结构</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/ios/">ios</a>
+                        </li>
+
+            
+
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-3" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">最新文章
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-3">
+    <div class="row">
+      <div class="col-lg-4">
+        <article>
+          <figure class="g-pos-rel">
+            <img class="img-fluid w-100 g-mb-20" src="/assets/img-temp/900x600/img7.jpg" alt="Image Description">
+          </figure>
+          <h3 class="h4 g-mb-10"><a class="g-color-gray-dark-v2" href="#">Love the mother nature</a>
+          </h3>
+          <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+            <li class="list-inline-item">
+              <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">Kathy Reyes</a>
+            </li>
+            <li class="list-inline-item">/</li>
+            <li class="list-inline-item">July 20, 2016</li>
+            <li class="list-inline-item">/</li>
+            <li class="list-inline-item">
+              <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                <i class="fa fa-comments-o"></i> 18
+              </a>
+            </li>
+          </ul>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img1.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Top 10 Luxury Hotels - 5 Star Best Luxury Hotels</a>
+            </h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 07, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 24
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img2.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6"><a class="g-color-main" href="#">10 Most beautiful beaches</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 20, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 18
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img3.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Stylish things to do, see and buy this week</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 16, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 31
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img1.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">8 health benefits and drawbacks of coffee</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 30, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 12
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img2.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Stylish things to do, see and buy this week</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 16, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 31
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img3.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Top 10 Luxury Hotels - 5 Star Best Luxury Hotels</a>
+            </h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 07, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 24
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-4" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">最火文章
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-4">
+    <div class="row">
+      <div class="col-lg-4">
+        <article class="u-block-hover">
+          <figure class="g-bg-cover g-bg-black-gradient-opacity-v1--after">
+            <img class="img-fluid u-block-hover__main--zoom-v1" src="/assets/img-temp/500x320/img1.jpg" alt="Image Description">
+          </figure>
+          <span class="g-pos-abs g-top-20 g-left-20">
+          <a class="btn btn-sm u-btn-red rounded-0" href="#">Fashion</a>
+        </span>
+          <span class="u-icon-v3 u-icon-size--sm g-bg-white g-color-black g-rounded-50x g-cursor-pointer g-pos-abs g-top-20 g-right-20">
+          <i class="icon-camera"></i>
+        </span>
+          <header class="g-pos-abs g-bottom-10 g-left-20 g-right-20">
+            <small class="g-color-white">
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 26, 2016
+            </small>
+            <h3 class="h4 g-font-weight-600 g-mt-5">
+              <a class="g-color-white g-color-white--hover" href="#">Be ready, fashion of the year is coming this year</a>
+            </h3>
+          </header>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="u-block-hover">
+          <figure class="g-bg-cover g-bg-black-gradient-opacity-v1--after">
+            <img class="img-fluid u-block-hover__main--zoom-v1" src="/assets/img-temp/500x320/img2.jpg" alt="Image Description">
+          </figure>
+          <span class="g-pos-abs g-top-20 g-left-20">
+          <a class="btn btn-sm u-btn-red rounded-0" href="#">Beaches</a>
+        </span>
+          <span class="u-icon-v3 u-icon-size--sm g-bg-white g-color-black g-rounded-50x g-cursor-pointer g-pos-abs g-top-20 g-right-20">
+          <i class="icon-camera"></i>
+        </span>
+          <header class="g-pos-abs g-bottom-10 g-left-20 g-right-20">
+            <small class="g-color-white">
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 15, 2016
+            </small>
+            <h3 class="h4 g-font-weight-600 g-mt-5">
+              <a class="g-color-white g-color-white--hover" href="#">Must be visited places in the USA - Florida Beaches</a>
+            </h3>
+          </header>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="u-block-hover">
+          <figure class="g-bg-cover g-bg-black-gradient-opacity-v1--after">
+            <img class="img-fluid u-block-hover__main--zoom-v1" src="/assets/img-temp/500x320/img3.jpg" alt="Image Description">
+          </figure>
+          <span class="g-pos-abs g-top-20 g-left-20">
+          <a class="btn btn-sm u-btn-red rounded-0" href="#">Food</a>
+        </span>
+          <span class="u-icon-v3 u-icon-size--sm g-bg-white g-color-black g-rounded-50x g-cursor-pointer g-pos-abs g-top-20 g-right-20">
+          <i class="icon-camera g-left-2"></i>
+        </span>
+          <header class="g-pos-abs g-bottom-10 g-left-20 g-right-20">
+            <small class="g-color-white">
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 8, 2016
+            </small>
+            <h3 class="h4 g-font-weight-600 g-mt-5">
+              <a class="g-color-white g-color-white--hover" href="#">Why your next glass of juice will cost you more</a>
+            </h3>
+          </header>
+        </article>
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-ml-15--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-7" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">新闻热点
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-7">
+    <div class="row">
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 16, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">You've been making French Pie all wrong - Until Now</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 02, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Unify facts, study finds - sensitive to gluten without having coeliac disease</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 18, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Why your next cup of cofee with milk will cost you more</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 12, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Incredible product and quality: Unify best template of the year</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 16, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Some post title will be implimented here and It's cool!</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 02, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Wireframe approach for the news blocks and pages</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 18, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Over thousands of components help you to boost your project</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 12, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">How to run a ticket: Best 10 point approaches for people who stands..</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Main -->
+<li class="nav-item g-mx-10--lg g-mx-20--xl">
+  <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-0" href="/">
+    主页
+  </a>
+</li>
+<!-- End Main -->
+
+
+
+
+
+
+
+
+            </ul>
+          </div>
+          <!-- End Navigation -->
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- End Header -->
+
+
+
+            <style media="screen">
+  .barrage {
+    width: 100%;
+    background-color: #6281c8;
+    position: fixed;
+    top: 0px;
+    display: none;
+  }
+
+  .barrage .logo {
+    visibility: hidden;
+  }
+</style>
+
+<header id="BarrageInputView" class="u-header u-header--static u-shadow-v19 barrage">
+  <div class="u-header__section g-brd-bottom g-brd-gray-light-v4 g-py-18">
+    <div class="container">
+      <div class="row align-items-center">
+
+        <!-- Logo -->
+<div class="col-md-3 g-hidden-md-down logo">
+  <a href="/" class="navbar-brand">
+    <img src="/favicon/logo.png" alt="Logo">
+  </a>
+</div>
+<!-- End Logo -->
+
+
+          <h3 class="col-4 col-lg-2 g-pos-rel g-px-15 ml-auto text-center g-color-white">你好，再见</h3>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    var barrageInputView = $("#BarrageInputView");
+
+    $("#BarrageStartButton").click(function(event) {
+
+      barrageInputView.css("display", "block");
+      barrageInputView.css("top", "-300px");
+
+      console.log("这个按钮一点用都没有.直接搜索就好了");
+
+      barrageInputView.animate({
+        top: "0",
+      }, 1000, function() {
+        setTimeout(function() {
+
+          barrageInputView.animate({
+            top: "-200"
+          }, 1000,function(){
+            barrageInputView.css("display", "none");
+          });
+
+        }, 1000);
+      });
+
+    });
+  });
+</script>
+
+
+
+    
+
+<section class="g-pt-50 g-pb-100">
+  <div class="container">
+    <div class="row">
+      <!-- Articles Content -->
+      <div class="col-lg-9 g-mb-50 g-mb-0--lg">
+        <article class="g-mb-60">
+          <header class="g-mb-30">
+            <h2 class="h1 g-mb-15">大话数据结构 - 树 （6）</h2>
+
+            <ul id="editHtmlElement" class="list-inline d-sm-flex g-color-gray-dark-v4 mb-0">
+              <li class="list-inline-item">
+                小酒馆老板
+              </li>
+              <li class="list-inline-item g-mx-10">/</li>
+              <li class="list-inline-item">
+                2018/1/5 10:19:0
+              </li>
+              <li class="list-inline-item g-mx-10">/</li>
+              <li class="list-inline-item g-mr-10">
+                <i class="align-middle mr-2 icon-hotel-restaurant-242 u-line-icon-pro"></i>共有
+                8,212个字
+              </li>
+              <li class="list-inline-item g-mx-10">/</li>
+              <li class="list-inline-item g-mr-10">
+                <i class="align-middle mr-2 icon-hotel-restaurant-003 u-line-icon-pro"></i>预计阅读
+                29分钟
+              </li>
+            </ul>
+
+            <hr class="g-brd-gray-light-v4 g-my-15">
+
+          </header>
+
+          <div class="">
+            <br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="树的定义" style="display: inline;"><a href="#树的定义" class="headerlink" title="树的定义"></a>树的定义</h2><p>之前我么你只在谈的是一对一的线性结构，可现实中，还有很多一对多的情况徐耀处理，所以我们需要研究这种一对多的数据结构—–“树”，考虑他的各种特性，来解决我们在编程中遇到的相关问题。</p>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>树(Tree)是n（n&gt;=0）个结点的有限集。n=0时称为空树。在任意一颗非空树中：(1)有且仅有一个特定的称为根(Root)的结点；(2)当n&gt;1时，其余结点可分为m(m&gt;0)个互不相交的有限集T1,T2,….Tm，其中每个节点本身又是一棵树，并且成为根的子树(SubTree)</p>
+</em>                                </div>        
+<a id="more"></a>
+<p><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/树示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/树示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">树示意图</figcaption></figure><br><br>树的定义其实就是我们在讲解栈时提到的递归的方法。也就是在树的定义之中还用到了树的概念，这是一种比较新的定义方法。图6-2-2的子树T1和子树T2就是根结点A的子树。当然，D，G，H，I组成的树又是B为结点的子树，E，J组成的树是C为结点的子树。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/子树示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/子树示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">子树示意图</figcaption></figure><br><br>对于树的定义还需要强调两点：</p>
+<ol>
+<li>n&gt;0 时根结点时唯一的，不可能存在多个跟结点，别和现实中的大树混在一起，现实中的树有很多的根须，那是真实的树，数据结构中的树只能有一个根结点</li>
+<li>m&gt;0 时，子树的个数没有限制，但他们一定是互不相欠的。像图6-2-3中的两个结构就不符合树的定义，因为他们都有相交的子树。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/错误的树结构.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/错误的树结构.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">错误的树结构</figcaption></figure><br></li>
+</ol>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="结点分类" style="display: inline;"><a href="#结点分类" class="headerlink" title="结点分类"></a>结点分类</h3><p>树的结点包含一个数据元素及若干指向其子树的分之。<strong>结点拥有的子树数称为结点的度（Degree）。度为0的结点称为叶结点（Leaf）或终端结点；度不为0 的结点称为非终端结点或分之结点。除跟结点之外，分支结点也称为内部结点。树的度是树的个结点的度的最大值。</strong> 如图6-2-4所示，因为这棵树结点的度最大值D的度为3，所以树的度也为3。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/结点分类树度示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/结点分类树度示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">结点分类树度示意图</figcaption></figure><br></p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="结点间关系" style="display: inline;"><a href="#结点间关系" class="headerlink" title="结点间关系"></a>结点间关系</h3><p><strong>结点的子树的根称为该结点的孩子（Child），相应地，该结点称为孩子的双亲（Parent）。</strong> 嗯，为什么不是父或母，叫双亲呢？呵呵，对于结点来说，其父母同题，唯一的一个，所以只能称他为双亲了。<strong>同一个双亲的孩子之间称为（Slibling）。结点的祖先是从到该结点所经分枝上的所有结点。</strong> 所以对于H来说，D，B，A都是它的祖先。反之，<strong>以某结点为根的子树中的热一结点都称为该结点的子孙。</strong><br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/结点关系示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/结点关系示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">结点关系示意图</figcaption></figure><br></p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="树的其他相关概念" style="display: inline;"><a href="#树的其他相关概念" class="headerlink" title="树的其他相关概念"></a>树的其他相关概念</h3><p><strong>结点的层次（Level）从根开始定义起，根为第一层，根的孩子为第二层。</strong> 所某结点在第l层，则其子树的根就在l+1层。<strong>其双亲在同一层的结点互为堂兄弟。</strong> 显然图6-2-6中的D，E，F是堂兄弟，而G，H，I，J也是。<strong>树中结点最大层次成为树的深度（Depth）或高度，</strong> 当前树的深度为4。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/树的深度高度示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/树的深度高度示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">树的深度高度示意图</figcaption></figure><br><br><strong>如果将树中结点的各子树看成从左至右是有次序的，不能互换的，称为该树为有序树，否则称为无序树。</strong><br>森林（Forest）是m（m&gt;=0）棵互不相交的树的集合。对树中每个节点而言，其子树的集合即为森林。对于图6-2-1中的树而言，图6-2-2中的两颗子树其实就可以理解为森林。<br>对比线性表与树的结构，他们有很大的不同。<br>| 线性结构        | 树结构           |<br>| ————- |:————-:|<br>| 第一个元素：无前驱      | 根结点：无双亲，唯一 |<br>| 最后一个元素：无后继      | 叶结点：无孩子，可以多个      |<br>| 中间元素：一个前驱一个后继      | 中间结构：一个双亲多个孩子      |</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="树的存储结构" style="display: inline;"><a href="#树的存储结构" class="headerlink" title="树的存储结构"></a>树的存储结构</h2><p>说到存储结构，就会想到我们前面章节讲过的顺序存储和链式存储两种结构。<br>先来看看顺序存储结构，用一段地址连续的存储依次存储线性表的数据元素。这对于线性表来说自然是正常的，对于树这种一对多的结构呢？<br>树中某个节点的孩子可以是多个的，这就意味着，无论按照和中环许将书中所有节点存出道数组中，结点的存储位置都无法直接反映逻辑关系，你想想看，数据元素挨个的存储，谁是谁的双亲，谁是谁的孩子呢？简单的顺序存储结构是不能满足树的实现要求的。<br>不过充分利用顺序存储和链式存储结构的特点，完全可以实现对树的存储结构的表示。我们这里就要介绍三种不同的表示法：双亲表示法，孩子表示法，孩子兄弟表示法</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="双亲表示法" style="display: inline;"><a href="#双亲表示法" class="headerlink" title="双亲表示法"></a>双亲表示法</h3><p>我们人可能因为种种原因，没有孩子，但无论是谁都不可能是从石头里蹦出来的，孙武哦那个显然不能算是人，所以人是一定要有父母的。树这种结构也不例外，除了跟结点外，其余每个结点，他不一定有孩子，但是一定有且仅有一个双亲。<br>我们假设以一组连续空间存储树的结点，同时 <strong>在每个结点中，附设一个指示器指示器双亲结点到链表中的位置。</strong> 也就是说，每个结点除了知道自己是谁以外，还知道他的双亲在哪里。他的结点结构为表6-4-1所示。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/双亲表示法第一示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/双亲表示法第一示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">双亲表示法第一示意图</figcaption></figure><br><br>其中datas是数据域，存储结点的数据信息。而parent是指针域，存储该结点的双亲在数组中的下标。<br>有了这样的结构定义，我们就可以来实现双亲表示法了。由于跟结点是没有双亲的，所以我们约定跟结点的位置域s设置为-1，这也就意味着，我们所有的结点都存有它双亲的位置。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/双亲表示法示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/双亲表示法示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">双亲表示法示意图</figcaption></figure><br><br>这样的存储结构，我们可以根据结点的parent指针很容易的找到他的双亲结点，所有的时间复杂度为O(1)，直到parent为-1时，表示找到了数结点的根。可如果我们要知道结点的孩子是什么，对不起，请遍历整个结构才行。<br>这真是麻烦，能不能改进一下呢？<br>当然可以。我们增加一个结点最左边孩子的域，不妨叫他长子域，这样就可以很容易得到结点的孩子。如果没有孩子的结点，这个长子域就设置为-1.<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/长子域示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/长子域示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">长子域示意图</figcaption></figure><br><br>对于有0个或一个孩子结点来说，这样的结构是解决了要找结点孩子的问题了。甚至是有两个孩子，直到长子是谁，另一个当然就是次子了。<br>另一个问题场景，我们很关注个兄弟之间的关系，双亲表示法无法体现这样的关系，那我们怎么办？嗯，可以增加一个右兄弟域来体现兄弟关系，也就是说，每个节点如果他存在右兄弟，则记录下右兄弟的下标。同样的，如果右兄弟不存在，则复制为-1.<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/右兄弟示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/右兄弟示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">右兄弟示意图</figcaption></figure><br><br>但如果结点的孩子很多，超过了2个。我们有关注结点的双亲，有关注结点的孩子，还关注结点的兄弟，而且对时间遍历要求还比较高，那么我们还可以把此结构扩展为有双亲域，长子域，再有右兄弟域。<strong>存储结构的设计是一个非常灵活的过程。一个存储结构设计的是否合理，取决于基于该春初结构的运算是否适合，方便，时间复杂度好不好等。</strong> 注意也不是越多越好，有需要时在设计相应的结构。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="孩子表示法" style="display: inline;"><a href="#孩子表示法" class="headerlink" title="孩子表示法"></a>孩子表示法</h3><p>换一种完全不同的考虑方法。由于树中每个节点可能有多颗子树，可以考虑用多重链表，即 <strong>每个节点都有多个指针域，其中每个指针指向一个子树的跟结点，我们就把这种放啊，叫做多重链表表示法。</strong> 不过，树的每个节点的树，也就是他的孩子格式视图不同的，所以可以设计两种方案来解决。<br>方案一<br>一种时指针域的个数就等于输的度，复习一下，树的度时各个节点度的最大值。结构如下<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/指针域树的结构.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/指针域树的结构.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">指针域树的结构</figcaption></figure><br><br>其中data是数据域，child到childd是指针域，用来只想该结点的孩子结点。<br>对于图6-4-1来说，树的度是3，所以我们的指针域的个数是3，这种方法实现如下所示。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/链表指针域.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/链表指针域.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">链表指针域</figcaption></figure><br><br>这种方法对于树中各结点的度差异很大时，显然是浪费空间的，因为有很多的结点，他的指针域时空的。不过如果书的各结点度相差很小时，那就意味着开辟的空间被充分利用了，这是存储结构的缺点反而变成了优点。<br>既然很多指针域都可能为空，为什么不按需分配空间呢。于是我们有了第二种方案。<br>方案二<br>第二种方案每个节点指针域的个数等于该结点的度，我们专门去一个位置来存储结点指针域的个数<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/指针域个数等结点的度.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/指针域个数等结点的度.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">指针域个数等结点的度</figcaption></figure><br><br>其中data为数据域，degree为度域，也就是存储该结点的孩子结点的个数，child1到childd为指针域，只想该结点各个孩子的结点。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/指针域等于度示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/指针域等于度示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">指针域等于度示意图</figcaption></figure><br><br>这种方法克服了浪费空间的缺点，对空间利用率很高了，但是由于每个节点的链表是不相同的结构，加上要维护结点的度的数值，在运算上就会带来时间上的损耗。<br>能否有更好的方法，既可以减少控制真的浪诶又能使结点结构相同。<br>仔细观察，我们为了要遍历政客书，把每个节点放在一个舒徐存储结构的数组是合理的，但每个结点的孩子的有多少是不确定的，所以我们在对每个节点的孩子建立一个单链表体现他们的关系。<br>这就是我们要将的孩子表示法。具体实现办法是，<strong>把每个节点的孩子结点排序起来，以单链表做存储结构，则n个结点有n个孩子链表，如果是叶子结点则此单链表为空。然后n个头指针又组成一个线性表，采用顺序排序规则，存放斤一个一维数组中。</strong><br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/孩子表示法示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/孩子表示法示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">孩子表示法示意图</figcaption></figure><br><br>为此，设计两种结点结构，一种是孩子链表的孩子结构。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/孩子表示法孩子结构示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/孩子表示法孩子结构示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">孩子表示法孩子结构示意图</figcaption></figure><br><br>其中child是数据域，用来存储某个节点在表头数组中的下标。next是指针域，用来存储只想某结点的下一个孩子结点的指针。<br>另一个是表头数组的表头结构。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/孩子表示法表头结构示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/孩子表示法表头结构示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">孩子表示法表头结构示意图</figcaption></figure><br><br>其中data是数据域，存储某结点的数据信息，firstchild 是头指针域，存储钙及诶单孩子链表的头指针。<br>这样的结构对于我们要茶渣某个节点的某个孩子，或者找某个节点的兄弟，只徐耀查找这个结点的孩子单链表即可。对于遍历政客书也是很方便的，对头结点的数组循环即可。<br>但是，这也存在着问题，我如何知道某个节点的双亲是谁呢？比较麻烦，徐耀整合树遍历才行，难道就不可以把双亲表示法和孩子表示法综合一下吗？当然是可以的<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/双亲表示法孩子表示法结合示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/双亲表示法孩子表示法结合示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">双亲表示法孩子表示法结合示意图</figcaption></figure><br><br>我们把这种方法称为双亲孩子表示法，应该算是孩子表示法的改进。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="孩子兄弟表示法" style="display: inline;"><a href="#孩子兄弟表示法" class="headerlink" title="孩子兄弟表示法"></a>孩子兄弟表示法</h3><p>刚才分别从双亲的角度和从孩子的角度研究书的存储结构，如果我们从树结点的兄弟的角度又会如何呢？当然，对于树这样的层级结构来说，只研究结点的兄弟是不行的，我们观察后发现。<strong>任意一棵树，他的结点的第一个孩子如果存在就是唯一的，它的右兄弟如果存在也是唯一的。因此，我们设置两个指针，分别指向该结点的第一个孩子和此结点的右兄弟。</strong><br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/存储示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/存储示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">存储示意图</figcaption></figure><br><br>其中data是数据域，firstchild为指针域，存储该结点的第一个孩子结点的存储地址，rightsib是指针域，存储该结点的右兄弟结点的存储地址。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/孩子兄弟表示法示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/孩子兄弟表示法示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">孩子兄弟表示法示意图</figcaption></figure><br><br>这种表示法，给查找某个节点的某个孩子带来了方便，只需要通过firstchild找到该结点的长子，然后再通过的长子结点的rightsib找到他的二弟，接着一直下去，直到找到具体的孩子。当然，如果想要找到某个结点的双亲，这个表示法也是有缺陷的。怎么办呢啊你？<br>嗯，如果真的有必要，完全可以再增加一个parent指针域来解决快速查找双亲的问题。<br>其实这个表示法的最大好处是它把一个复杂的树变成了一个二叉树<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/孩子兄弟表示法二叉树.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/孩子兄弟表示法二叉树.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">孩子兄弟表示法二叉树</figcaption></figure><br></p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="二叉树的定义" style="display: inline;"><a href="#二叉树的定义" class="headerlink" title="二叉树的定义"></a>二叉树的定义</h2><p>对于在某个阶段都是两种结果的情形，比如开和关，0和1，真和假，上和下等，都适合用树状结构来建模，而这种书是一种很特殊的树状结构，叫做二叉树。</p>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>二叉树（Binary Tree）是n(n&gt;=0)个基点的有限集合，该集合或者为空集（称为空二叉树），或者有一个根结点和两个互不相交的，分别称为跟结点的左子树和右子树的二叉树组成。</p>
+</em>                                </div>        
+<p>图6-5-2就是一颗二叉树，而图6-2-1的树，因为D结点有三个子树，所以他不是二叉树。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/二叉树示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/二叉树示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">二叉树示意图</figcaption></figure><br></p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="二叉树的特点" style="display: inline;"><a href="#二叉树的特点" class="headerlink" title="二叉树的特点"></a>二叉树的特点</h3><p>二叉树的特点有：</p>
+<ul class="g-list-style-circle">
+<li>每个节点最多有两颗子树，所以二叉树中不存在度大于2的结点。注意不是只有两个子树，而是最多有。没有子树或者有一颗子树都是可以的。</li>
+<li>左子树和右子树是有顺序的，次序不能任意颠倒。就像人是双手，双脚，但是左手和右手 左脚和右脚是不一样的 。</li>
+<li>即使树中的某个及诶单只有一个子树，也要区分他们是左子树还是右子树。</li>
+</ul>
+<p>二叉树具有五种基本形态：</p>
+<ol>
+<li>空二叉树</li>
+<li>只有一个跟结点</li>
+<li>根结点只有左子树</li>
+<li>根结点只有右子树</li>
+<li>根结点既有左子树又有右子树</li>
+</ol>
+<p>应该说这五种状态还是比较好理解的。接下来我们来考虑下只有三个结点的二叉树会有几种形态呢？<br>若只从形态上考虑，三个节点的树只有两种情况，那就是图6-5-4中的有两层的树1和有三层的后四种的任意一种，但是对于二叉树来说由于区分左右，所以就演变了五种形态<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/只有三个结点的五种形态.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/只有三个结点的五种形态.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">只有三个结点的五种形态</figcaption></figure><br></p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="特殊二叉树" style="display: inline;"><a href="#特殊二叉树" class="headerlink" title="特殊二叉树"></a>特殊二叉树</h3><p>我们再来介绍一些特殊的二叉树。这些书可能暂时你不能理解他有什么用处，但先了解一下，以后会提到他们的实际用途。</p>
+<ol>
+<li>斜树<br> 顾名思义，斜树一定要斜的，但是往哪儿斜是有讲究的。<strong>所有的及诶单都只有左子树的二叉树叫做左斜树。所有结点都是只有右子树的二叉树叫右斜树。这两者统称为斜树。</strong> 图6-5-4中的树2就是左斜树。树5就是右斜树。斜树有很明显的特点，就是每一层都只有一个及诶单，结点的个数和二叉树的深度是相同的。<br> 有人会想这还叫树呀，与我们的线性结构不是一样吗。对的其实线性结构就可以理解为树的一种及其特殊的表现形式</li>
+<li>满二叉树<br> 苏东坡曾有诗云：“人有悲欢离合，月有阴晴圆缺，此事古难全”。意思就是说完美是理想，不完美才是人生。我们通过通常的例子也都是左高右低，参差不齐的二叉树，那是否存在完美的二叉树呢？<br> <strong>在一棵二叉树中，如果所有分之结点都存在左子树和右子树，并且所有叶子都在同一层上，这样的二叉树被称为满二叉树</strong><br> <br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/满二叉树.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/满二叉树.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">满二叉树</figcaption></figure><br><br> 但是每个节点都存在左右子树，不能算是满二叉树，还比徐耀所有的叶子都在同一层，这就能做到整颗树的平衡。因此，满二叉树的特点有：<ol>
+<li>叶子只能出现在最下一层，出现在其他层就不可能达到平衡了。</li>
+<li>非叶子结点的度一定是2，否则就是缺胳膊少腿了</li>
+<li>在同样深度的二叉树中，满二叉树的结点个数最多，叶子树最多</li>
+</ol>
+</li>
+<li>完全二叉树<br> 对一棵树具有n个结点的二叉树按层序编号，如果编号为i（1&lt;=i&lt;=n）的结点于同样深度的满二叉树的编号为i的结点的在二叉树中位置完全相同，则这颗二叉树被称为完全二叉树。<br> <br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/完全二叉树.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/完全二叉树.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">完全二叉树</figcaption></figure><br><br> 这是一种有些理解难度的特殊二叉树。<br> 首先要从字面上区分，“完全”和“满”的差异，满二叉树一定是一颗完全二叉树，但完全二叉树不一定是满的<br> 其次，完全二叉树的所有节点与同样深度的满二叉树，他们按层序编号相同的结点，是一一对应的。这里有个关键词是按层序编号，像图6-5-7中的树1，因为5结点没有左子树，却又右子树，那就使得按层序编号的第10个编号空荡了<br> <br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/分析完全二叉树特点.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/分析完全二叉树特点.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">分析完全二叉树特点</figcaption></figure><br><br> 从这里我也可以得出一些完全二叉树的特点：<ol>
+<li>叶子结点只能出现在最下两层</li>
+<li>最下层的叶子一定集中在左部连续位置</li>
+<li>倒数二层，如有叶子结点，一定都在右部连续位置</li>
+<li>如果结点度为1，则该结点只有左孩子，既不存在只有右子树的情况。</li>
+<li>同样结点的二叉树，完全二叉树的结点最小<br>从上面的例子，也给了我们一个判断某二叉树是否是完全二叉树的办法，那就是看着书的示意图，心中默默给每个节点按照满二叉树的结构储层编号，如果编号出现空档，就书评不是完全二叉树，否则就是。</li>
+</ol>
+</li>
+</ol>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="二叉树的性质" style="display: inline;"><a href="#二叉树的性质" class="headerlink" title="二叉树的性质"></a>二叉树的性质</h2><p>二叉树有一些徐耀并记住的特性，以便于我们更好的使用它。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="二叉树性质1" style="display: inline;"><a href="#二叉树性质1" class="headerlink" title="二叉树性质1"></a>二叉树性质1</h3><p>性质1: 在二叉树的第i层至少有2i-1个结点(i&gt;=1)。<br>这个性质很好记忆，观察一下图6-5-5。<br>第一层是跟结点，只有一个，所以2^{1-1}即2^{0}=1。<br>第二层有两个<br>…<br>通过数据归纳法的论证，可以很容易地得出在二叉树第i层上至少有2^{i-1}个结点(i&gt;=1)的结论。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="二叉树性质2" style="display: inline;"><a href="#二叉树性质2" class="headerlink" title="二叉树性质2"></a>二叉树性质2</h3><p>性质2: 深度为k的二叉树至少有2^{k}-1个结点(k&gt;=1)<br>注意这里一定要看清楚，是2^{k}后在减去1，而不是2^{k-1}。以前很多同学不能完全戒，这样去记忆，就容易把性质1和2弄混淆了。<br>深度为k的意思就是k有两层树。我们先来看简单的<br>如果有一层，至多1=2^{0}-1个结点<br>如果有两层，至多1+2=3=2^{2}-1各结点<br>….<br>通过数据归纳法的论证，可以得出，如果有k层，此二叉树之多有2^{k}-1个结点。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="二叉树性质3" style="display: inline;"><a href="#二叉树性质3" class="headerlink" title="二叉树性质3"></a>二叉树性质3</h3><p>性质3:对任何一颗二叉树T，如果其终端结点树为n<em>{0},度为2的结点n</em>{2},则n<em>{0}=n</em>{2}+1。<br>终端结点其实就是叶子结点树，而一颗二叉树，除了叶子结点树，剩下的就是度1或2的几点输了，我们设n<em>{1}为度是1的结点树。则树T的结点总数n=n</em>{0}+n<em>{1}+n</em>{2}。<br>比如图6-6-1的例子，结点总数为10，他是由A，B，C，D等度为2结点，F，G，H，I等度为0的叶子结点和E这个度为1的及诶单组成。综合为4+1+5=10.<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/二叉树性质3.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/二叉树性质3.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">二叉树性质3</figcaption></figure><br><br>我们换个角度，再数一数他的链接线数，由于跟结点只有分支出去，没有分支进来，所以分之嫌总数为结点总数减去1.图6-6-1就是9个分支。对于ABCD结点来说，他们都有两个分支线出去，而E结点只有一个分支线出去。所以总分支线为4x2+1x1=9.<br>用袋鼠表达就是分支线总数=n-1=n<em>{1}+2n{2}结论就是n</em>{0}=n_{2}+1.</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="二叉树性质4" style="display: inline;"><a href="#二叉树性质4" class="headerlink" title="二叉树性质4"></a>二叉树性质4</h3><p>性质4:具有n个结点的完全二叉树的深度为[Log_{2n}]+1([x]表示不大于x的最大整数)。<br>由二叉树的定义我们可以知道，深度为k的满二叉树的结点n一定是Sk-1.因为这个是最多的结点个数。那么对于n=2k-1倒退得到满二叉树的度数为k=log2（n+1），比如说结点为15的满二叉树，度为4.<br>完全二叉树我们已经提到，它是一颗觉有n个结点的二叉树，若按层序编号，与其同样深度的满二叉树编号几点在二叉树位置完全相同，那他就是完全二叉树。也就是说，它的叶子结点只会出现爱着妳最下面的两层。<br>它的结点树一定少雨等于同样读书的满二叉树的结点树2k-1但一定不会多余2k-1-1，</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="二叉树性质5" style="display: inline;"><a href="#二叉树性质5" class="headerlink" title="二叉树性质5"></a>二叉树性质5</h3><p>性质5:如果对一颗由n个结点的完全而二叉树（其深度为[log2n]+1）的结点按层序变化</p>
+<p>…. 性质这里蒙蔽了。。有时间再说</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="二叉树的存储结构" style="display: inline;"><a href="#二叉树的存储结构" class="headerlink" title="二叉树的存储结构"></a>二叉树的存储结构</h2><br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="二叉树的顺序存储结构" style="display: inline;"><a href="#二叉树的顺序存储结构" class="headerlink" title="二叉树的顺序存储结构"></a>二叉树的顺序存储结构</h3><p>前面我们已经谈到了树的存储结构，并且谈到顺序存储结构对树这种一对多的关系结构实现起来是比较困难的。但是二叉树是一种特殊的树，由于它的特殊性，使得用顺序存储结构也可以实现。<br>二叉树的顺序存储结构就是用一位数组存储二叉树中的结点，并且结点的存储位置，也就是鼠标的下标要能体现节点之间的逻辑关系，比如双亲与孩子的关系，左右兄弟的关系等。<br>先来看看完全二叉树的顺序存储，一颗完全二叉树如6-7-1所示。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/完全二叉树顺序存储示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/完全二叉树顺序存储示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">完全二叉树顺序存储示意图</figcaption></figure><br><br>将这颗二叉树村入数组中，相应的下标对应起同样的位置。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/完全二叉树顺序存储结构.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/完全二叉树顺序存储结构.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">完全二叉树顺序存储结构</figcaption></figure><br><br>这些看出俄安全二叉树的优越性来了吗。由于它定义的严格，所以用顺序结构也可以表现出二叉树的结构来，当然对于一般的二叉树，筋骨按层序编号不能反映逻辑关系，但是可以按前完全二叉树编号只不过，把不存在的结点设置为“^”而已。如图6-7-3.注意浅色结点表示不存在<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/非完全二叉树顺序存储.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/非完全二叉树顺序存储.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">非完全二叉树顺序存储</figcaption></figure><br><br>考虑一种极端的情况，一颗深度为k的右斜树，他只有k各结点，却要分配2k-1个存储但愿空间，这显然是对存储空间的浪费。所以顺序存储结构一般只用于完全二叉树。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/特殊情况对于存储空间的浪费.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/特殊情况对于存储空间的浪费.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">特殊情况对于存储空间的浪费</figcaption></figure><br></p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="二叉链表" style="display: inline;"><a href="#二叉链表" class="headerlink" title="二叉链表"></a>二叉链表</h3><p>既然顺序存储适用性不强，我们就要考虑链式存储结构。<strong>二叉树每个节点最多有两个孩子，所以为她设计一个数据域和两个指针域是比较自然的想法，我们成这样的链表叫做二叉链表。</strong><br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/二叉链表结构示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/二叉链表结构示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">二叉链表结构示意图</figcaption></figure><br><br>其中data是数据域，ichild和richild都是指针域，分别存放左孩子和右孩子的指针。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/二叉链示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/二叉链示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">二叉链示意图</figcaption></figure><br><br>就如同树的存储结构中讨论的一样，如果有徐耀，还可以再增加一个只想起双亲的指针域，那样我们称之为s三叉链表，由于与树的存储结构类似，这里就不详述了。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="遍历二叉树" style="display: inline;"><a href="#遍历二叉树" class="headerlink" title="遍历二叉树"></a>遍历二叉树</h2><br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="二叉树遍历原理" style="display: inline;"><a href="#二叉树遍历原理" class="headerlink" title="二叉树遍历原理"></a>二叉树遍历原理</h3><p>假设，我手头头20长100元和2000张1元的奖券，同时撒向了空中，大家比赛开谁最终见得最多。如果是你你会怎么办？<br>相信所有的同学都会说鲜见100原单额。       </p>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>二叉树的遍历(Traversing binary tree)是指从很结点出发，按照某种需一次访问二叉树中所有节点，使得每个节点被访问一次且仅访问一次。</p>
+</em>                                </div>        
+<p>这里有两个关键词，访问和次序。<br>访问其实要跟根据实际的需要来确定具体做什么，比如每个结点哦度进行相关计算，输出打印等，它算作是一个抽象操作。在这里我们可以简单的嘉定就是输出结点的数据信息。<br>二叉树的遍历次序不同于线性结构，最多也就是从头至尾，循环，双向等见扽遍历方式。树的结点之间不存在唯一的前驱和后继的关系，在访问一个节点后，下一个被访问的结点面临着不同的选择。就像你人生的道路上。由于选择方式的不同，遍历的次序就完全不同了。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="二叉树遍历方法" style="display: inline;"><a href="#二叉树遍历方法" class="headerlink" title="二叉树遍历方法"></a>二叉树遍历方法</h3><p>二叉树遍历方式恶意很多，如果我们限制了从左到右的习惯方式，那么主要就分为四种。      </p>
+<ol>
+<li>前序遍历<br> 规则是若二叉树为空，则空操作返回，否则先访问跟结点，在遍历左子树，在前序遍历右子树。遍历的舒徐是ABDHCEIF。<br> <br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/前序遍历示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/前序遍历示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">前序遍历示意图</figcaption></figure><br></li>
+<li>中序遍历<br> 规则是若树为空，则空操作返回，否则从跟结点开始（注意并不是先访问跟结点），中序遍历跟结点的左子树，然后是访问跟结点，最后中序遍历右子树。所以遍历的顺序是 GDHBAEICF。<br> <br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/中序遍历示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/中序遍历示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">中序遍历示意图</figcaption></figure><br></li>
+<li>后序遍历<br> 规则是若树为空，则空操作返回，否则就从左到右先叶子后结点的方式遍历访问左右子树，最后访问跟结点。遍历的顺序是GHDBIEFCA。<br> <br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/后序遍历示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/后序遍历示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">后序遍历示意图</figcaption></figure><br></li>
+<li>层序遍历<br> 规则是若树为空，则空操作返回，否则丛书的第一层，也就是跟结点开始访问，从上而下储层便利。从左到右顺序对结点出个访问。ABCDEFGHI。<br> <br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/层序遍历示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/层序遍历示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">层序遍历示意图</figcaption></figure><br></li>
+</ol>
+<p>我们同图形的方式来表现书的结构，应该说是非常直观和容易理解，但是对于计算机来说，她只有循环，判断等方式来处理，也就是说，他只会处理线性序列，而我们刚才提到的四种变方法，其实就是把树中的结点变成某种意义的线性序列，这就给程序的实现带来了好处。<br>另外不同的遍历提供了对结点一次护理的分不同方式，可以在遍历过程中对结点进行各种处理。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="排序算法" style="display: inline;"><a href="#排序算法" class="headerlink" title="排序算法"></a>排序算法</h2><p>在排序之前，先让我们建立一些数据</p>
+<pre class="line-numbers language-swift g-mb-30"><code class="language-swift"><span class="token keyword">class</span> <span class="token class-name">TreeNode</span><span class="token punctuation">{</span>
+
+    <span class="token comment" spellcheck="true">/// 存储的值</span>
+    <span class="token keyword">var</span> value<span class="token punctuation">:</span><span class="token builtin">String</span>
+
+    <span class="token comment" spellcheck="true">/// 左子树和右子树</span>
+    <span class="token keyword">var</span> leftTreeNode<span class="token punctuation">:</span><span class="token builtin">TreeNode</span><span class="token operator">?</span>
+    <span class="token keyword">var</span> rightTreeNode<span class="token punctuation">:</span><span class="token builtin">TreeNode</span><span class="token operator">?</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">init</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span><span class="token builtin">String</span><span class="token punctuation">)</span> <span class="token punctuation">{</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>value <span class="token operator">=</span> value
+    <span class="token punctuation">}</span>
+
+    <span class="token keyword">private</span> <span class="token keyword">func</span> <span class="token function">setLeft</span><span class="token punctuation">(</span>treeNode<span class="token punctuation">:</span><span class="token builtin">TreeNode</span><span class="token operator">?</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">TreeNode</span> <span class="token punctuation">{</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>leftTreeNode <span class="token operator">=</span> treeNode
+        <span class="token keyword">return</span> <span class="token keyword">self</span>
+    <span class="token punctuation">}</span>
+
+
+    <span class="token keyword">private</span> <span class="token keyword">func</span> <span class="token function">setRight</span><span class="token punctuation">(</span>treeNode<span class="token punctuation">:</span><span class="token builtin">TreeNode</span><span class="token operator">?</span><span class="token punctuation">)</span> <span class="token operator">-</span><span class="token operator">></span> <span class="token builtin">TreeNode</span> <span class="token punctuation">{</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>rightTreeNode <span class="token operator">=</span> treeNode
+        <span class="token keyword">return</span> <span class="token keyword">self</span>
+    <span class="token punctuation">}</span>
+
+    <span class="token comment" spellcheck="true">/// 初始化后的数据源 单例</span>
+    <span class="token keyword">static</span> <span class="token keyword">let</span> rootTreeNode<span class="token punctuation">:</span> <span class="token builtin">TreeNode</span> <span class="token operator">=</span> <span class="token punctuation">{</span>
+
+        <span class="token keyword">let</span> <span class="token builtin">AtreeNode</span> <span class="token operator">=</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token string">"A"</span><span class="token punctuation">)</span>
+        <span class="token keyword">let</span> <span class="token builtin">BtreeNode</span> <span class="token operator">=</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token string">"B"</span><span class="token punctuation">)</span>
+        <span class="token keyword">let</span> <span class="token builtin">CtreeNode</span> <span class="token operator">=</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token string">"C"</span><span class="token punctuation">)</span>
+        <span class="token keyword">let</span> <span class="token builtin">DtreeNode</span> <span class="token operator">=</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token string">"D"</span><span class="token punctuation">)</span>
+        <span class="token keyword">let</span> <span class="token builtin">EtreeNode</span> <span class="token operator">=</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token string">"E"</span><span class="token punctuation">)</span>
+        <span class="token keyword">let</span> <span class="token builtin">FtreeNode</span> <span class="token operator">=</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token string">"F"</span><span class="token punctuation">)</span>
+        <span class="token keyword">let</span> <span class="token builtin">GtreeNode</span> <span class="token operator">=</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token string">"G"</span><span class="token punctuation">)</span>
+        <span class="token keyword">let</span> <span class="token builtin">HtreeNode</span> <span class="token operator">=</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token string">"H"</span><span class="token punctuation">)</span>
+        <span class="token keyword">let</span> <span class="token builtin">ItreeNode</span> <span class="token operator">=</span> <span class="token function">TreeNode</span><span class="token punctuation">(</span>value<span class="token punctuation">:</span> <span class="token string">"I"</span><span class="token punctuation">)</span>
+
+        <span class="token builtin">AtreeNode</span><span class="token punctuation">.</span><span class="token function">setLeft</span><span class="token punctuation">(</span>treeNode<span class="token punctuation">:</span> <span class="token builtin">BtreeNode</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setRight</span><span class="token punctuation">(</span>treeNode<span class="token punctuation">:</span> <span class="token builtin">CtreeNode</span><span class="token punctuation">)</span>
+        <span class="token builtin">BtreeNode</span><span class="token punctuation">.</span><span class="token function">setLeft</span><span class="token punctuation">(</span>treeNode<span class="token punctuation">:</span> <span class="token builtin">DtreeNode</span><span class="token punctuation">)</span>
+        <span class="token builtin">CtreeNode</span><span class="token punctuation">.</span><span class="token function">setLeft</span><span class="token punctuation">(</span>treeNode<span class="token punctuation">:</span> <span class="token builtin">EtreeNode</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setRight</span><span class="token punctuation">(</span>treeNode<span class="token punctuation">:</span> <span class="token builtin">FtreeNode</span><span class="token punctuation">)</span>
+        <span class="token builtin">DtreeNode</span><span class="token punctuation">.</span><span class="token function">setLeft</span><span class="token punctuation">(</span>treeNode<span class="token punctuation">:</span> <span class="token builtin">GtreeNode</span><span class="token punctuation">)</span><span class="token punctuation">.</span><span class="token function">setRight</span><span class="token punctuation">(</span>treeNode<span class="token punctuation">:</span> <span class="token builtin">HtreeNode</span><span class="token punctuation">)</span>
+        <span class="token builtin">EtreeNode</span><span class="token punctuation">.</span><span class="token function">setRight</span><span class="token punctuation">(</span>treeNode<span class="token punctuation">:</span> <span class="token builtin">ItreeNode</span><span class="token punctuation">)</span>
+
+        <span class="token keyword">return</span> <span class="token builtin">AtreeNode</span>
+    <span class="token punctuation">}</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>我们通过上面的代码获取到的rootTreeNode 就是图 6-8-2 掩饰的数据结构了。接下来让我们一次实验这些不同的排序算法把</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="前序遍历算法" style="display: inline;"><a href="#前序遍历算法" class="headerlink" title="前序遍历算法"></a>前序遍历算法</h3><pre class="line-numbers language-swift g-mb-30"><code class="language-swift"><span class="token comment" spellcheck="true">/// 前序遍历算法</span>
+<span class="token keyword">extension</span> <span class="token builtin">TreeNode</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">func</span> <span class="token function">preOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>leftTreeNode<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">preOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>rightTreeNode<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">preOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"-----preOrderTraverse-------"</span><span class="token punctuation">)</span>
+<span class="token builtin">TreeNode</span><span class="token punctuation">.</span>rootTreeNode<span class="token punctuation">.</span><span class="token function">preOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>打印结果</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">-----preOrderTraverse-------
+A
+B
+D
+H
+K
+E
+C
+F
+I
+G
+J
+</code></pre><p>前序算法，其实就是先遍历所有的左子树，在遍历了左子树没有了之后，就前往上一层的遍历右子树，之后继续循环</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="中序遍历方法" style="display: inline;"><a href="#中序遍历方法" class="headerlink" title="中序遍历方法"></a>中序遍历方法</h3><pre class="line-numbers language-swift g-mb-30"><code class="language-swift"><span class="token comment" spellcheck="true">/// 中序遍历算法</span>
+<span class="token keyword">extension</span> <span class="token builtin">TreeNode</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">func</span> <span class="token function">inOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+        <span class="token keyword">self</span><span class="token punctuation">.</span>leftTreeNode<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">inOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>rightTreeNode<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">inOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"-----inOrderTraverse-------"</span><span class="token punctuation">)</span>
+<span class="token builtin">TreeNode</span><span class="token punctuation">.</span>rootTreeNode<span class="token punctuation">.</span><span class="token function">inOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>打印结果</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">-----inOrderTraverse-------
+H
+K
+D
+B
+E
+A
+F
+I
+C
+G
+J
+</code></pre><p>中序就是顺序错开一点，循环遍历直到找到最左叶开始打印，之后遍历回来</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="后序遍历方法" style="display: inline;"><a href="#后序遍历方法" class="headerlink" title="后序遍历方法"></a>后序遍历方法</h3><pre class="line-numbers language-swift g-mb-30"><code class="language-swift"><span class="token comment" spellcheck="true">/// 后序遍历算法</span>
+<span class="token keyword">extension</span> <span class="token builtin">TreeNode</span> <span class="token punctuation">{</span>
+
+    <span class="token keyword">func</span> <span class="token function">postOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+
+        <span class="token keyword">self</span><span class="token punctuation">.</span>leftTreeNode<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">postOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token keyword">self</span><span class="token punctuation">.</span>rightTreeNode<span class="token operator">?</span><span class="token punctuation">.</span><span class="token function">postOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token function">print</span><span class="token punctuation">(</span><span class="token keyword">self</span><span class="token punctuation">.</span>value<span class="token punctuation">)</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"-----postOrderTraverse-------"</span><span class="token punctuation">)</span>
+<span class="token builtin">TreeNode</span><span class="token punctuation">.</span>rootTreeNode<span class="token punctuation">.</span><span class="token function">postOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>打印结果</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">-----postOrderTraverse-------
+K
+H
+D
+E
+B
+I
+F
+J
+G
+C
+A
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="层序遍历算法" style="display: inline;"><a href="#层序遍历算法" class="headerlink" title="层序遍历算法"></a>层序遍历算法</h3><pre class="line-numbers language-swift g-mb-30"><code class="language-swift">
+<span class="token comment" spellcheck="true">/// 层序遍历算法</span>
+<span class="token keyword">extension</span> <span class="token builtin">TreeNode</span><span class="token punctuation">{</span>
+
+    <span class="token keyword">func</span> <span class="token function">cengOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">var</span> treeNodes <span class="token operator">=</span> <span class="token punctuation">[</span><span class="token keyword">self</span><span class="token punctuation">]</span>
+        <span class="token keyword">while</span> treeNodes<span class="token punctuation">.</span><span class="token builtin">count</span> <span class="token operator">></span> <span class="token number">0</span> <span class="token punctuation">{</span>
+            <span class="token keyword">guard</span> <span class="token keyword">let</span> selfNode <span class="token operator">=</span> treeNodes<span class="token punctuation">.</span><span class="token builtin">last</span> <span class="token keyword">else</span> <span class="token punctuation">{</span>
+                <span class="token keyword">return</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token keyword">let</span> rn <span class="token operator">=</span> selfNode<span class="token punctuation">.</span>leftTreeNode <span class="token punctuation">{</span>
+                treeNodes<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>rn<span class="token punctuation">,</span> at<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+            <span class="token keyword">if</span> <span class="token keyword">let</span> ln <span class="token operator">=</span> selfNode<span class="token punctuation">.</span>rightTreeNode <span class="token punctuation">{</span>
+                treeNodes<span class="token punctuation">.</span><span class="token function">insert</span><span class="token punctuation">(</span>ln<span class="token punctuation">,</span> at<span class="token punctuation">:</span> <span class="token number">0</span><span class="token punctuation">)</span>
+            <span class="token punctuation">}</span>
+            <span class="token function">print</span><span class="token punctuation">(</span>selfNode<span class="token punctuation">.</span>value<span class="token punctuation">)</span>
+            treeNodes<span class="token punctuation">.</span><span class="token function">removeLast</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+
+<span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"-----cengOrderTraverse-------"</span><span class="token punctuation">)</span>
+<span class="token builtin">TreeNode</span><span class="token punctuation">.</span>rootTreeNode<span class="token punctuation">.</span><span class="token function">cengOrderTraverse</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>打印结果</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">-----cengOrderTraverse-------
+A
+B。
+C
+D
+E
+F
+G
+H
+I
+J
+K
+</code></pre><br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="二叉树的创建" style="display: inline;"><a href="#二叉树的创建" class="headerlink" title="二叉树的创建"></a>二叉树的创建</h2><p>…… 暂时搁置</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="线索二叉树" style="display: inline;"><a href="#线索二叉树" class="headerlink" title="线索二叉树"></a>线索二叉树</h2><br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="线索二叉树原理" style="display: inline;"><a href="#线索二叉树原理" class="headerlink" title="线索二叉树原理"></a>线索二叉树原理</h3><p>我们现在提倡节约型社会，一切都应该节约为本。对待我们的程序也不例外，能不浪费的时间或空间偶应该考虑节省，我们再来考虑6-10-1，会发现指针域并不是都充分的利用了，有许许多多的”^”，也就是空指针域的存在，这实在不是好现象，应该要想办法利用起来。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/树/二叉树利用率低示意图.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/树/二叉树利用率低示意图.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">二叉树利用率低示意图</figcaption></figure><br><br>首先我们要来看看这空指针有多少个呢？对于一个有n个绩点的二叉链表，每个节点有志向左右孩子的两个指针域，所以一共是2n个指针域，而n个结点的二叉树一共有n-1条分支线数，也就是说，其实是存在2n-（n-1）=n+1个空指针域。这些空间不怒出任何事物，白白地浪费着内存的资源。<br>另一方面，我们左遍历时，遍历了之后，我们可以知道。<br>可以这是建立过的基础之上的，在二叉链表上，我们只能知道每个节点只想起左右</p>
+    <p hidden id="CurrentFileName">大话数据结构-树.md</p>    
+          </div>
+
+          <!-- Sources & Tags -->
+<div class="g-mb-30">
+    <h6 class="g-color-gray-dark-v1 g-mb-15">
+
+        
+
+        
+
+        <strong class="g-mr-5">专栏:</strong> <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover"
+                                               href="/categories/数据结构/">数据结构</a>
+        
+
+        
+
+    </h6>
+    <h6 class="g-color-gray-dark-v1">
+        <strong class="g-mr-5">标签:</strong>
+
+        
+
+        
+        <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5"
+           href="/tags/数据结构/">数据结构</a>
+        
+        <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5"
+           href="/tags/计算机基础/">计算机基础</a>
+        
+
+        
+
+    </h6>
+    <br>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="media">
+                    <div class="media-body">
+                        <span class="g-color-gray-dark-v4 g-font-size-12">本博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a></span>
+                        <br>
+                        <span class="g-color-gray-dark-v4 g-font-size-12">本文首发于<a
+                                    href="http://blog.msiter.com">小酒馆老板</a>的博客<a
+                                    href="http://blog.msiter.com">荆文征</a>，版权所有，侵权必究。</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <hr class="g-brd-gray-light-v4">
+
+        </article>
+
+      </div>
+      <!-- End Articles Content -->
+
+      <!-- Sidebar -->
+      <div class="col-lg-3">
+
+        <div id="stickyblock-start" class="js-sticky-block g-sticky-block--lg g-pt-20" data-start-point="#stickyblock-start" data-end-point="#stickyblock-end" style="top: 0px; width: 255px; height: 957px;">
+
+  
+
+  <div class="g-mb-40">
+
+  <ul class="nav u-nav-v5-1 g-brd-bottom--md g-brd-gray-light-v4" role="tablist" data-target="nav-5-1-default-hor-left-border-bottom" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-lightgray">
+    <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#nav-5-1-default-hor-left-border-bottom--1" role="tab">目录</a>
+    </li>
+  </ul>
+
+  <div id="nav-5-1-default-hor-left-border-bottom" class="tab-content g-pt-20">
+    <div class="tab-pane fade show active" id="nav-5-1-default-hor-left-border-bottom--1" role="tabpanel">
+    <div class="g-mb-40 post-toc">
+      <ol class="post-nav"><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#树的定义"><span class="post-nav-number">1.</span> <span class="post-nav-text">树的定义</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#结点分类"><span class="post-nav-number">1.1.</span> <span class="post-nav-text">结点分类</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#结点间关系"><span class="post-nav-number">1.2.</span> <span class="post-nav-text">结点间关系</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#树的其他相关概念"><span class="post-nav-number">1.3.</span> <span class="post-nav-text">树的其他相关概念</span></a></li></ol></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#树的存储结构"><span class="post-nav-number">2.</span> <span class="post-nav-text">树的存储结构</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#双亲表示法"><span class="post-nav-number">2.1.</span> <span class="post-nav-text">双亲表示法</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#孩子表示法"><span class="post-nav-number">2.2.</span> <span class="post-nav-text">孩子表示法</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#孩子兄弟表示法"><span class="post-nav-number">2.3.</span> <span class="post-nav-text">孩子兄弟表示法</span></a></li></ol></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#二叉树的定义"><span class="post-nav-number">3.</span> <span class="post-nav-text">二叉树的定义</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#二叉树的特点"><span class="post-nav-number">3.1.</span> <span class="post-nav-text">二叉树的特点</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#特殊二叉树"><span class="post-nav-number">3.2.</span> <span class="post-nav-text">特殊二叉树</span></a></li></ol></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#二叉树的性质"><span class="post-nav-number">4.</span> <span class="post-nav-text">二叉树的性质</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#二叉树性质1"><span class="post-nav-number">4.1.</span> <span class="post-nav-text">二叉树性质1</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#二叉树性质2"><span class="post-nav-number">4.2.</span> <span class="post-nav-text">二叉树性质2</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#二叉树性质3"><span class="post-nav-number">4.3.</span> <span class="post-nav-text">二叉树性质3</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#二叉树性质4"><span class="post-nav-number">4.4.</span> <span class="post-nav-text">二叉树性质4</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#二叉树性质5"><span class="post-nav-number">4.5.</span> <span class="post-nav-text">二叉树性质5</span></a></li></ol></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#二叉树的存储结构"><span class="post-nav-number">5.</span> <span class="post-nav-text">二叉树的存储结构</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#二叉树的顺序存储结构"><span class="post-nav-number">5.1.</span> <span class="post-nav-text">二叉树的顺序存储结构</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#二叉链表"><span class="post-nav-number">5.2.</span> <span class="post-nav-text">二叉链表</span></a></li></ol></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#遍历二叉树"><span class="post-nav-number">6.</span> <span class="post-nav-text">遍历二叉树</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#二叉树遍历原理"><span class="post-nav-number">6.1.</span> <span class="post-nav-text">二叉树遍历原理</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#二叉树遍历方法"><span class="post-nav-number">6.2.</span> <span class="post-nav-text">二叉树遍历方法</span></a></li></ol></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#排序算法"><span class="post-nav-number">7.</span> <span class="post-nav-text">排序算法</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#前序遍历算法"><span class="post-nav-number">7.1.</span> <span class="post-nav-text">前序遍历算法</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#中序遍历方法"><span class="post-nav-number">7.2.</span> <span class="post-nav-text">中序遍历方法</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#后序遍历方法"><span class="post-nav-number">7.3.</span> <span class="post-nav-text">后序遍历方法</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#层序遍历算法"><span class="post-nav-number">7.4.</span> <span class="post-nav-text">层序遍历算法</span></a></li></ol></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#二叉树的创建"><span class="post-nav-number">8.</span> <span class="post-nav-text">二叉树的创建</span></a></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#线索二叉树"><span class="post-nav-number">9.</span> <span class="post-nav-text">线索二叉树</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#线索二叉树原理"><span class="post-nav-number">9.1.</span> <span class="post-nav-text">线索二叉树原理</span></a></li></ol></li></ol>
+    </div>
+    </div>
+  </div>
+
+  </div>
+
+
+<script src="/assets/js/helpers/timeago.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+    initScrollSpy();
+
+    function initScrollSpy() {
+      var tocSelector = '.post-toc';
+      var $tocElement = $(tocSelector);
+      var activeCurrentSelector = '.active-current';
+
+      $tocElement
+        .on('activate.bs.scrollspy', addClassCurrentActiveClass)
+        .on('clear.bs.scrollspy', removeCurrentActiveClass);
+
+      $('body').scrollspy({
+        target: tocSelector
+      });
+
+      function addClassCurrentActiveClass(){
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+        $tocElement.scrollTop($currentActiveElement.offset().top - $tocElement.offset().top + $tocElement.scrollTop() - ($tocElement.height() / 2));
+      }
+
+      function removeCurrentActiveClass() {
+        $(tocSelector + ' ' + activeCurrentSelector)
+          .removeClass(activeCurrentSelector.substring(1));
+      }
+    }
+
+  });
+
+  $(document).ready(function() {
+    var html = $('html');
+    var hasVelocity = $.isFunction(html.velocity);
+
+    // TOC item animation navigate & prevent #item selector in adress bar.
+    $('.post-toc a').on('click', function(e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+  });
+</script>
+
+
+<script type="text/javascript">
+  function escapeSelector(selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, '\\$&');
+  }
+
+  +
+  function($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector = (this.options.target || '') + ' .post-nav li > a'
+      this.offsets = []
+      this.targets = []
+      this.activeTarget = null
+      this.scrollHeight = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function() {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function() {
+      var that = this
+      var offsetMethod = 'offset'
+      var offsetBase = 0
+
+      this.offsets = []
+      this.targets = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function() {
+          var $el = $(this)
+          var href = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href &&
+            $href.length &&
+            $href.is(':visible') && [
+              [$href[offsetMethod]().top + offsetBase, href]
+            ]) || null
+        })
+        .sort(function(a, b) {
+          return a[0] - b[0]
+        })
+        .each(function() {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function() {
+      var scrollTop = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets = this.offsets
+      var targets = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy') // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i] &&
+          scrollTop >= offsets[i] &&
+          (!offsets[i + 1] || scrollTop <= offsets[i + 1]) &&
+          this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function(target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function() {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function() {
+        var $this = $(this)
+        var data = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function() {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function() {
+      $('[data-spy="scroll"]').each(function() {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+<style>
+  .post-toc {
+    overflow: auto;
+  }
+
+  .post-toc ol {
+    margin: 0;
+    padding: 0 2px 5px 10px;
+    text-align: left;
+    list-style: none;
+    font-size: 14px;
+  }
+
+  .post-toc ol>ol {
+    padding-left: 0;
+  }
+
+  .post-toc ol a {
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+    transition-property: all;
+    color: #111;
+    border-bottom-color: #555;
+  }
+
+  .post-toc ol a:hover {
+    color: #4f72c1;
+    border-bottom-color: #ccc;
+  }
+
+  .post-toc .post-nav-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.8;
+  }
+
+  .post-toc .post-nav .post-nav-child {
+    display: none;
+  }
+
+  .post-toc .post-nav .active>.post-nav-child {
+    display: block;
+  }
+
+  .post-toc .post-nav .active-current>.post-nav-child {
+    display: block;
+  }
+
+  .post-toc .post-nav .active-current>.post-nav-child>.post-nav-item {
+    display: block;
+  }
+
+  .post-toc .post-nav .active>a {
+    color: #6281c8;
+    border-bottom-color: #87daff;
+  }
+
+  .post-toc .post-nav .active-current>a {
+    color: #6281c8;
+  }
+
+  .post-toc .post-nav .active-current>a:hover {
+    color: #87daff;
+  }
+</style>
+
+  <!-- News Feed -->
+<div class="g-mb-40">
+
+  <!-- Nav tabs -->
+  <ul class="nav u-nav-v5-1 g-brd-bottom--md g-brd-gray-light-v4" role="tablist" data-target="nav-5-2-default-hor-left-border-bottom" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-lightgray">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#nav-5-2-default-hor-left-border-bottom--1" role="tab">最新文章</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#nav-5-2-default-hor-left-border-bottom--2" role="tab">修改历史</a>
+    </li>
+  </ul>
+  <!-- End Nav tabs -->
+
+
+  <!-- Tab panes -->
+  <div id="nav-5-2-default-hor-left-border-bottom" class="tab-content g-pt-20">
+    <div class="tab-pane fade show active" id="nav-5-2-default-hor-left-border-bottom--1" role="tabpanel">
+      
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/Hashimoto IO bound proof of work-20180824.html">Hashimoto I/O bound proof of work</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/8/24 15:25:0
+        </span>
+        </article>
+        
+          <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+          
+            
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/Practical Byzantine Fault Tolerance-20180803.html">Practical Byzantine Fault Tolerance</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/8/3 14:22:0
+        </span>
+        </article>
+        
+          <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+          
+            
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/Paxos Made Live - An Engineering Perspective-20180731.html">Paxos Made Live - An Engineering Perspective</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/7/31 15:5:0
+        </span>
+        </article>
+        
+          <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+          
+            
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/paxos-simple-20180726.html">Paxos Made Simple - Leslie Lamport</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/7/26 18:22:0
+        </span>
+        </article>
+        
+            
+    </div>
+
+
+    <div class="tab-pane fade" id="nav-5-2-default-hor-left-border-bottom--2" role="tabpanel">
+      <table id="commit-history-new" style="width:100%">
+        <thead><tr><th></th></tr></thead >
+        <tbody id="commit-history-new-body">
+          <tr><td>
+            <li class="media g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1">
+              <div class="media-body">
+                <span class="d-block g-font-size-11 text-center">正在加载...</span>
+              </div>
+            </li>
+          </tr></td>
+        </tbody>
+        <p class="text-center g-font-size-10" id="history_infomessagelabel"></p>
+      </table>
+    </div>
+  </div>
+  <!-- End Tab panes -->
+
+
+</div>
+<!-- End News Feed -->
+
+
+
+</div>
+
+
+      </div>
+      <!-- End Sidebar -->
+    </div>
+
+    <div class="g-mb-60" id="commit-container">
+  <!--PC版-->
+
+
+
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script type="text/javascript">
+
+var gitalk = new Gitalk({
+  clientID: '9fba00e5b04b66d8424e',
+  clientSecret: '87d759d3284033b6e5aaac980e63fa74e57fcda7',
+  repo: 'aimobier.github.io',
+  owner: 'aimobier',
+  admin: ['aimobier'],
+  id: md5(window.location.pathname),      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
+
+gitalk.render('commit-container')
+	
+</script>
+
+
+
+  </div>
+
+  <div id="stickyblock-end" style="width: 100%;height: 1px;"></div>
+</section>
+
+
+<script src="/assets/js/components/hs.sticky-block.js"></script>
+<script src="/assets/js/githubhistory.js"></script>
+<script type="text/javascript">
+  // initialization of sticky blocks
+  $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
+</script>
+
+
+    
+<script type="text/x-mathjax-config">
+/// Google  不在翻译 
+MathJax.Hub.Queue(function() {
+      $("span.MathJax").each(function(){
+          $(this).attr("translate","no");
+          $(this).addClass("notranslate");
+    });
+})
+
+</script>
+
+
+
+
+      <!-- JS Implementing Plugins -->
+<script src="/assets/vendor/custombox/custombox.min.js"></script>
+
+<!-- JS Unify -->
+<script src="/assets/js/components/hs.modal-window.js"></script>
+
+
+<!-- Footer -->
+<footer class="g-bg-black-opacity-0_9 g-color-white-opacity-0_8 ">
+  <br><br><br>
+  <div class="container g-mb-60">
+    <div class="row">
+
+      <!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">关于我</h2>
+  </div>
+
+  <div class="g-mb-30">
+    <p class="g-color-white-opacity-0_8">努力学习的IOS程序员。目前在学习制作Hexo主题，主要还是为了做自己的一个博客.之后会好好学习linux以及服务器相关的知识.</p>
+  </div>
+
+  <address class="mb-0">
+    <div class="g-mb-30">
+      <h4 class="h6 g-font-weight-600">现居地</h4>
+      <p class="mb-0 g-color-white-opacity-0_8">北京 - 国家的首都 </p>
+    </div>
+
+    <!-- 配置标签相关视图 -->
+    
+
+      <div class="g-mb-30">
+        <h4 class="h6 g-font-weight-600">邮箱:</h4>
+
+        
+
+                <p class="mb-0 g-color-white-opacity-0_8">alphabetion@gmail.com</p>
+        
+
+                <p class="mb-0 g-color-white-opacity-0_8">jingwenzheng@baimaodai.com</p>
+        
+
+      </div>
+
+      
+
+
+
+    <div class="mb-0">
+      <h4 class="h6 g-font-weight-600">一言:</h4>
+      <p class="mb-0">
+        <a class="g-color-white-opacity-0_8" id="hitokoto" href="http://hitokoto.cn/">support@htmlstream.com</a>
+      </p>
+    </div>
+  </address>
+</div>
+<!-- End Footer Content -->
+
+
+        <!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+
+
+  <!-- 配置标签相关视图 -->
+  
+    <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+      <h2 class="u-heading-v2__title h6 text-uppercase mb-0">标签</h2>
+    </div>
+    <ul class="u-list-inline g-font-size-12 g-mb-30">
+
+      
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/生活/">
+            生活
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/悲观/">
+            悲观
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/Objective-C/">
+            Objective-C
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/AsyncDisplayKit/">
+            AsyncDisplayKit
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/ios/">
+            ios
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/约束教程/">
+            约束教程
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/AttributedString/">
+            AttributedString
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/iOS8-html2AttributedString-error/">
+            iOS8 html2AttributedString error
+          </a>
+        </li>
+        
+    </ul>
+    
+
+      <!-- 布局相关链接-->
+
+      <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+        <h2 class="u-heading-v2__title h6 text-uppercase mb-0">友情链接</h2>
+      </div>
+
+      <ul class="list-unstyled">
+        
+
+          <li class="g-mb-5">
+            <i class="fa fa-angle-right g-mr-5"></i>
+
+            <a class="g-color-white-opacity-0_8" href="https://baidu.com">
+              百度
+            </a>
+          </li>
+
+          
+
+          <li class="g-mb-5">
+            <i class="fa fa-angle-right g-mr-5"></i>
+
+            <a class="g-color-white-opacity-0_8" href="https://test.baidu.com">
+              测试链接
+            </a>
+          </li>
+
+          
+
+          <li class="g-mb-5">
+            <i class="fa fa-angle-right g-mr-5"></i>
+
+            <a class="g-color-white-opacity-0_8" href="https://baidu.com">
+              hexo
+            </a>
+          </li>
+
+          
+      </ul>
+
+
+
+</div>
+<!-- End Footer Content -->
+
+
+          <!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">最近文章</h2>
+  </div>
+
+  
+    
+
+  <article class="media">
+
+
+  
+
+
+
+
+  <a class="d-flex g-mt-3 mr-3" href="/Hashimoto IO bound proof of work-20180824.html">
+    <img class="g-width-60 g-height-60 rounded" src="/publicFiles/images/hashimoto/WX20180824-152143.png" alt="Image Description">
+  </a>
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/Hashimoto IO bound proof of work-20180824.html">Hashimoto I/O bound proof of work</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/8/24 15:25:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/Hashimoto IO bound proof of work-20180824.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/d,thsjjg-s-20180105.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <article class="media">
+
+
+  
+
+
+
+
+  <a class="d-flex g-mt-3 mr-3" href="/Practical Byzantine Fault Tolerance-20180803.html">
+    <img class="g-width-60 g-height-60 rounded" src="/publicFiles/images/Practical Byzantine Fault Tolerance/WX20180803-120202.png" alt="Image Description">
+  </a>
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/Practical Byzantine Fault Tolerance-20180803.html">Practical Byzantine Fault Tolerance</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/8/3 14:22:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/Practical Byzantine Fault Tolerance-20180803.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/d,thsjjg-s-20180105.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <article class="media">
+
+
+  
+
+
+
+
+  <a class="d-flex g-mt-3 mr-3" href="/Paxos Made Live - An Engineering Perspective-20180731.html">
+    <img class="g-width-60 g-height-60 rounded" src="/publicFiles/images/Paxos Made Live/WX20180731-101403.png" alt="Image Description">
+  </a>
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/Paxos Made Live - An Engineering Perspective-20180731.html">Paxos Made Live - An Engineering Perspective</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/7/31 15:5:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/Paxos Made Live - An Engineering Perspective-20180731.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/d,thsjjg-s-20180105.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <article class="media">
+
+
+  
+
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/paxos-simple-20180726.html">Paxos Made Simple - Leslie Lamport</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/7/26 18:22:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/paxos-simple-20180726.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/d,thsjjg-s-20180105.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytc1YTze">
+  </script>
+
+      
+</div>
+<!-- End Footer Content -->
+
+
+            <!-- Footer Content -->
+<div class="col-lg-3 col-md-6">
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">订阅</h2>
+  </div>
+
+  <div class="g-mb-30">
+    <p class="g-color-white-opacity-0_8">订阅我可以更及时的获取到文章的推送，请在下方输入您的邮箱地址获取文章更新</p>
+    <div class="input-group border-0 g-rounded-30">
+      <input class="form-control border-0 g-rounded-left-30 g-px-12 g-py-8" type="email" placeholder="输入您的邮箱地址">
+      <div class="input-group-addon border-0 p-0">
+        <button class="btn u-btn-primary g-rounded-right-30 g-px-12 g-py-8" type="submit" role="button">订阅</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">社交</h2>
+  </div>
+
+  <p class="g-color-white-opacity-0_8">作为一个宅男，长期宅在家里，会不定期的更新文章。如果你想更新的了解到我的动态，请选择一下任意一种社交方式关注我。</p>
+  <ul class="list-inline mb-0">
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="https://www.facebook.com/aimobier">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="https://www.instagram.com/aimobier/">
+        <i class="fa fa-instagram"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="https://github.com/aimobier">
+        <i class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="http://weibo.com/aouns">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="#modal1" data-modal-target="#modal1" data-modal-effect="fadein">
+        <i class="fa fa-weixin"></i>
+</a>
+    </li>
+  </ul>
+</div>
+<!-- End Footer Content -->
+
+    </div>
+  </div>
+
+
+  <!-- Copyright Footer -->
+<div class="g-bg-black-opacity-0_1 g-color-white-opacity-0_8 text-center g-py-20">
+  <div class="container">
+    
+      
+        
+        <small class="g-font-size-7 g-mr-10 g-mb-10 g-mb-0--md">2015 - 2018 © All Rights Reserved. Msiter by
+        <a class="g-color-white-opacity-0_8" href="#">Jing WenZheng</a>
+      </small>
+  </div>
+</div>
+<!-- End Copyright Footer -->
+
+
+</footer>
+<!-- End Footer -->
+<a class="js-go-to u-go-to-v1" href="#" data-type="fixed" data-position='{
+ "bottom": 15,
+ "right": 15
+}' data-offset-top="400" data-compensation="#js-header" data-show-effect="zoomIn">
+  <i class="hs-icon hs-icon-arrow-top"></i>
+</a>
+
+<script type="text/javascript">
+  $(function() {
+
+    // initialization of go to
+    $.HSCore.components.HSGoTo.init('.js-go-to');
+    $.HSCore.components.HSModalWindow.init('[data-modal-target]');
+    $.getJSON("https://v1.hitokoto.cn/?encode=json", function(json) {
+
+      var author = json["from"];
+      var content = json["hitokoto"];
+
+      $("#hitokoto").html(content);
+
+      $("blockquote .content").html(content);
+      $("blockquote .author").html(author);
+    });
+  });
+</script>
+
+
+    </main>
+
+    <div class="u-outer-spaces-helper"></div>
+
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

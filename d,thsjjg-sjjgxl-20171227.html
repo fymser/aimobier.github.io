@@ -1,0 +1,3225 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Title -->
+      
+      <title>大话数据结构 - 数据结构绪论 （1） | 荆文征</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="baidu-site-verification" content="x3N9zxqrty" />
+    <meta name="baidu-site-verification" content="cP2u6szylS" />
+    <meta name="google-site-verification" content="pwQ78Z9AmtXiVWejypS4rBSfBZ4_G95mchbkWo3EWmI" />
+    
+      <meta name="keywords" content="荆文征,MSITER,msiter,jingwenzheng,IOS,Blog,博客,荆文征博客,Nodejs,JAVA,JavaScript,js,swift,oc,objective-c,c++,c">
+    
+    
+      <meta name="author" content="小酒馆老板">
+    
+    
+      <meta name="description" content="欲买桂花同载酒&lt;br/&gt;终不似 少年游">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700%7COpen+Sans:400,600,700">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/assets/vendor/icon-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/vendor/icon-line-pro/style.css">
+    <link rel="stylesheet" href="/assets/vendor/icon-hs/style.css">
+    <link rel="stylesheet" href="/assets/vendor/animate.css">
+    <link rel="stylesheet" href="/assets/vendor/hs-megamenu/src/hs.megamenu.css">
+    <link rel="stylesheet" href="/assets/vendor/hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" href="/assets/vendor/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="/assets/vendor/fancybox/jquery.fancybox.css">
+
+    <!-- Revolution Slider -->
+    <link rel="stylesheet" href="/assets/vendor/revolution-slider/revolution/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="/assets/vendor/revolution-slider/revolution/css/settings.css">
+    <link rel="stylesheet" href="/revolution-slider/carousel-gallery/assets/css/style.css">
+
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" href="/assets/css/styles.bm-classic.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="/assets/css/custom.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link  rel="stylesheet" href="/assets/vendor/fancybox/jquery.fancybox.min.css">
+
+  <link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<!-- JS Global Compulsory -->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+<script src="/assets/vendor/popper.js/index.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="/assets/vendor/appear.js"></script>
+<script src="/assets/vendor/slick-carousel/slick/slick.js"></script>
+<script src="/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+<script src="/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+
+<!-- JS Unify -->
+<script src="/assets/js/hs.core.js"></script>
+<script src="/assets/js/components/hs.header.js"></script>
+<script src="/assets/js/helpers/hs.hamburgers.js"></script>
+<script src="/assets/js/components/hs.dropdown.js"></script>
+<script src="/assets/js/components/hs.carousel.js"></script>
+<script src="/assets/js/components/hs.go-to.js"></script>
+<script src="/assets/js/components/hs.popup.js"></script>
+
+<!-- JS Revolution Slider -->
+<script src="/assets/vendor/revolution-slider/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/jquery.themepunch.revolution.min.js"></script>
+
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
+<!-- JS Customization -->
+<script src="/assets/js/custom.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script  src="/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+
+<!-- JS Unify -->
+<script  src="/assets/js/components/hs.popup.js"></script>
+
+<script src="https://cdn.wilddog.com/sdk/js/2.5.17/wilddog-sync.js"></script>
+
+<script>
+  function SETValue(key, value) {
+    if (typeof(Storage) !== "undefined") {
+      var curTime = new Date().getTime();
+      localStorage.setItem(key, JSON.stringify({
+        data: value,
+        time: curTime
+      }));
+    }
+  }
+
+  function GETvalue(key) {
+    if (typeof(Storage) !== "undefined") {
+      var data = localStorage.getItem(key);
+      if(data) {
+        var dataObj = JSON.parse(data);
+        if (new Date().getTime() - dataObj.time > 1000*60*60) {
+          //alert("信息已过期")
+        } else {
+          //console.log("data="+dataObj.data);
+          //console.log(JSON.parse(dataObj.data));
+          var dataObjDatatoJson = dataObj.data
+          return dataObjDatatoJson;
+        }
+      }
+    }
+  }
+
+  function REQuest(url, finish) {
+
+    var value = GETvalue(url);
+
+    if (value) {
+      finish(value);
+      return;
+    }
+
+    $.ajax({
+      type: "get",
+      dataType: "jsonp",
+      cache: true,
+      url: url,
+      success: function(data) {
+        SETValue(url, data);
+        finish(data);
+      }
+    });
+  }
+
+
+  $(document).on('ready', function() {
+    // initialization of header
+    $.HSCore.components.HSHeader.init($('#js-header'));
+    $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+    // initialization of MegaMenu
+    $('.js-mega-menu').HSMegaMenu();
+
+    // initialization of HSDropdown component
+    $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
+      afterOpen: function() {
+        $(this).find('input[type="search"]').focus();
+      }
+    });
+    // initialization of popups
+                                $.HSCore.components.HSPopup.init('.js-fancybox');
+
+                                // initialization of gallery with thumbs
+                                $.HSCore.components.HSPopup.init('.js-fancybox-thumbs', {
+                                  thumbs: {
+                                    showOnStart: true
+                                  }
+                                });
+
+    // initialization of go to
+    $.HSCore.components.HSGoTo.init('.js-go-to');
+  });
+</script>
+
+<script>
+
+//  百度站长 推送
+
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+  <body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><main>
+
+  <!-- Header -->
+  <header id="js-header" class="u-header u-header--static u-shadow-v19">
+    <!-- Top Bar -->
+    <div class="u-header__section g-brd-bottom g-brd-gray-light-v4 g-py-18">
+      <div class="container">
+        <div class="row align-items-center">
+
+          <!-- Logo -->
+<div class="col-md-3 g-hidden-md-down logo">
+  <a href="/" class="navbar-brand">
+    <img src="/favicon/logo.png" alt="Logo">
+  </a>
+</div>
+<!-- End Logo -->
+
+
+          <style media="screen">
+  .searchbox {
+    border-style: hidden;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .markdown {
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top: 42px;
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  #searchdownview {
+    display: none;
+  }
+
+  #searchdownview nav {
+    padding-top: 10px;
+  }
+
+  #PostSearchResults_wrapper {
+    margin: 0px;
+    padding-bottom: 0px;
+  }
+
+  /* 配置 没有搜索到内容的 上边距 */
+
+  #emptymessageview {
+    display: none;
+  }
+
+  #emptymessageview p {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+
+  #searchdownview table {
+    table-layout: fixed;
+  }
+
+  #searchdownview td {
+
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
+
+
+  /* 搜索结果 设置 */
+
+  .resultlist {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .resultlist li {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #e0e4ea;
+  }
+
+  /* 搜索结果关键字 高粱设置 */
+
+  .search-keyword {
+    font-size: 1rem;
+    color: #6281c8;
+    border-bottom: 1px dashed #4088b8;
+    font-weight:700;
+  }
+
+  /*  分页 前一夜 后一页 隐藏 边框 */
+
+  .searchpage a {
+    border-style: hidden;
+  }
+</style>
+
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" charset="utf-8"></script>
+<script src="/assets/js/helpers/hs.pages.table.js" charset="utf-8"></script>
+
+<!-- Subscribe Form -->
+<div class="col-lg-5 col-md-10 col-sm-10 col-xs-12">
+  <form class="input-group rounded">
+    <div class="form-control w-100 searchbox">
+      <input class="form-control w-100
+      g-brd-secondary-light-v2
+      g-brd-primary--focus
+      g-color-secondary-dark-v1
+      g-placeholder-secondary-dark-v1
+      g-bg-white g-font-weight-400
+      g-font-size-13 rounded g-px-20
+      g-py-12 searchinput"
+      autocomplete="off"
+      id="PostSearchInput" type="text" placeholder="输入以搜索该博客文章">
+
+      <div class=" w-100 markdown g-bg-white
+      g-brd-secondary-light-v2 rounded
+      g-brd-primary--focus" id="searchdownview">
+      <table id="PostSearchResults" ></table>
+        <p class="text-center g-font-size-10" id="infomessagelabel"></p>
+      </div>
+
+      <div class=" w-100 markdown g-bg-white
+      g-brd-secondary-light-v2 rounded
+      g-brd-primary--focus" id="emptymessageview">
+        <p class="text-center g-font-size-13">什么都没有找到</p>
+      </div>
+
+    </div>
+
+
+    <span class="input-group-addon g-brd-none g-py-0 g-pr-0">
+      <button id="BarrageStartButton" class="btn u-btn-white g-color-primary--hover g-bg-secondary g-font-weight-600 g-font-size-13 text-uppercase rounded g-py-12 g-px-20">
+        <span class="g-hidden-md-down">search</span>
+    <i class="g-hidden-lg-up fa fa-search"></i>
+    </button>
+    </span>
+  </form>
+
+</div>
+<!-- End Subscribe Form -->
+
+
+
+<script type="text/javascript">
+  var SearchDataTablesElment;
+
+  var SearchKeyElemnt = "search";
+
+  var Timer = {
+    data: {},
+    start: function(key) {
+      Timer.data[key] = new Date();
+    },
+    stop: function(key) {
+      var time = Timer.data[key];
+      if (time)
+        Timer.data[key] = new Date() - time;
+    },
+    getTime: function(key) {
+      return Timer.data[key];
+    }
+  };
+
+  // AJAX 请求获取 XML 数据
+  function RequestSearchXMLMethod(finish) {
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    $.ajax({
+      url: path,
+      dataType: "xml",
+      success: function(xmlResponse) {
+        // get the contents from search data
+        var datas = $("entry", xmlResponse).map(function() {
+          return {
+            title: $("title", this).text(),
+            content: $("content", this).text(),
+            url: $("url", this).text()
+          };
+        }).get();
+        WhachSearchInputMethod(datas, finish);
+      }
+    });
+  }
+
+  function createTemp(title, url, content) {
+
+    if (content.length > 200) {
+      content = content.substring(0, 200) + "...";
+    }
+
+    return "\
+  <ul class='list-unstyled resultlist' >\
+  <li class='g-pa-20 g-mb-minus-1'>\
+    <!-- Article -->\
+    <article>\
+          <h3 class='h6'>\
+            <a class='g-color-main g-color-primary--hover' href='" + url + "'>" +
+      title +
+      "</a>\
+          </h3>\
+          <p class='g-font-size-12'>" +
+      content + "</p>\
+        </article>\
+    <!-- End Article -->\
+  </li>\
+  </ul>\
+  ";
+  }
+
+
+  function WatchLeftAndRightKeyWork() {
+
+    $(document).keydown(function(event) {
+
+      var pointEvent = event.which == 37 || event.which == 39 || event.which == 27 || event.which == 96;
+
+      var pointStatus = $('#searchdownview').css('display') != 'none' || $("#PostSearchInput").is(':focus') || $("#PostSearchInput").val().length > 0;
+
+      if (pointEvent && pointStatus) {
+        $("#PostSearchInput").blur(); // 失去焦点
+        event.preventDefault(); // 组织键盘
+        switch (event.which) { //判断按键;
+          case 37: // 上一页
+            SearchDataTablesElment.page('previous').draw('page');
+            break;
+          case 39: // 下一页
+            SearchDataTablesElment.page('next').draw('page');
+            break;
+          case 27:
+          case 96:
+            $("#PostSearchInput").val("");
+            $("#PostSearchInput").trigger("input");
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  }
+
+  // 监视输入框的一些输入问题
+  // @params data XML 解析出来的JOSN 数据
+  // @params finish 检测到输入框修改之后 回调的数据
+  //
+  // @return nil
+  function WhachSearchInputMethod(datas, finish) {
+
+    WatchLeftAndRightKeyWork();
+
+    $("#PostSearchInput").on('input', function(e) {
+
+      var startTime = new Date().getTime(); // 开始时间
+
+      var dataSet = [];
+      var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+      if (this.value.trim().length <= 0) {
+        finish(keywords, dataSet);
+        return;
+      }
+      // perform local searching
+      datas.forEach(function(data) {
+        var isMatch = true;
+        var content_index = [];
+        var data_title = data.title.trim().toLowerCase();
+        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+        var data_url = data.url;
+        var index_title = -1;
+        var index_content = -1;
+        var first_occur = -1;
+        // only match artiles with not empty titles and contents
+        if (data_title != '' && data_content != '') {
+          keywords.forEach(function(keyword, i) {
+            index_title = data_title.indexOf(keyword);
+            index_content = data_content.indexOf(keyword);
+            if (index_title < 0 && index_content < 0) {
+              isMatch = false;
+            } else {
+              if (index_content < 0) {
+                index_content = 0;
+              }
+              if (i == 0) {
+                first_occur = index_content;
+              }
+            }
+          });
+        }
+        // show search results
+        if (isMatch) {
+          var content = data.content.trim().replace(/<[^>]+>/g, "");
+          if (first_occur >= 0) {
+            // cut out characters
+            var start = first_occur - 6;
+            var end = first_occur + 6;
+            if (start < 0) {
+              start = 0;
+            }
+            if (start == 0) {
+              end = 10;
+            }
+            if (end > content.length) {
+              end = content.length;
+            }
+            var match_content = content.substr(start, end);
+            // highlight all keywords
+            keywords.forEach(function(keyword) {
+              var regS = new RegExp(keyword, "gi");
+              data_title = data_title.replace(regS, "<strong class=\"search-keyword\">" + keyword + "</strong>");
+              match_content = match_content.replace(regS, "<strong class=\"search-keyword\">" + keyword + "</strong>");
+            });
+            var datas = [createTemp(data_title, data_url, match_content)];
+            dataSet.push(datas);
+          };
+        };
+      });
+
+      var endTime = new Date().getTime(); // 开始时间
+
+      finish(keywords, dataSet, endTime - startTime);
+    });
+  };
+
+  function EmptyViewHandleMethod(datacount) {
+    if (datacount <= 0 && $("#PostSearchInput").val().length > 0) {
+      $("#emptymessageview").attr("style", "display:block;"); //隐藏div
+    } else {
+      $("#emptymessageview").attr("style", "display:none;"); //显示div
+    }
+  }
+
+  function InitSearchInterfaceMethod() {
+
+    $("#PostSearchInput").focus(function(){
+        if ($("#PostSearchInput").val().length > 0) {
+          $("#PostSearchInput").trigger("input");
+        }
+    });
+
+    RequestSearchXMLMethod(function(keywords, datas, times) {
+      if (datas.length <= 0) {
+        $("#searchdownview").attr("style", "display:none;"); //隐藏div
+      } else {
+        $("#searchdownview").attr("style", "display:block;"); //显示div
+      }
+      EmptyViewHandleMethod(datas.length);
+      if (!SearchDataTablesElment) {
+        SearchDataTablesElment = $('#PostSearchResults').DataTable({
+          data: datas,
+          autoWidth: false,
+          ordering: false,
+          searching: false,
+          lengthChange: false,
+          pageLength: 4,
+          info: false,
+          iShowPages: 3,
+          pagingType: "cutsomPage",
+          footerCallback: function(tfoot, data, start, end, display) {
+
+            var keyWorkd = "<span style='color: #6281c8;font-weight: bold;'>" + $("#PostSearchInput").val() + "</span>";
+
+            var title = "查询[" + keyWorkd + "]结果共" + data.length + "个,总耗时" + times / 1000 + "秒";
+
+            $("#infomessagelabel").html(title);
+          },
+          columns: [{
+            title: ""
+          }]
+        });
+      } else {
+        SearchDataTablesElment.clear().rows.add(datas).draw();
+      }
+
+
+
+    });
+  };
+
+  $(document).ready(function() {
+
+    InitSearchInterfaceMethod();
+  });
+</script>
+
+
+          <!-- Language -->
+<div id="clock" class="col-xl-2 col-md-2 col-sm-2 g-hidden-xs-down ml-auto ">
+</div>
+<!-- End Language -->
+
+
+<script type="text/javascript">
+
+var counter;
+
+var config = {
+  syncURL: "https://wd2622139095udguuj.wilddogio.com" //输入节点 URL
+};
+wilddog.initializeApp(config);
+var ref = wilddog.sync().ref("browerlog");
+
+ref.push({
+  "url": window.location.href,
+  "path": window.location.pathname,
+  "date": Math.round(new Date().getTime())
+});
+
+ref.orderByChild("path").equalTo(window.location.pathname).on('value', function(snapshot) {
+
+  var value = snapshot.val() == null ? 0 : Object.keys(snapshot.val()).length
+
+  $("#clock").text("No."+value);
+});
+
+var zan = wilddog.sync().ref("dianzan");
+
+zan.on('value', function(snapshot) {
+    counter = snapshot.val();
+    $("#counter").html(""+counter);
+  }, function (error) {
+    console.log(error);
+  });
+
+
+function zanUpMethod(){
+  zan.set(counter+1)
+}
+function zanDownMethod(){
+  zan.set(counter-1)
+}
+
+</script>
+
+
+          <!-- Account -->
+<div class="col-1 g-hidden-md-down" id="account">
+  <a id="account-dropdown-invoker" class="media align-items-center float-right g-text-underline--none--hover" href="#"
+     aria-controls="account-dropdown"
+     aria-haspopup="true"
+     aria-expanded="false"
+     data-dropdown-event="hover"
+     data-dropdown-target="#account-dropdown"
+     data-dropdown-type="css-animation"
+     data-dropdown-duration="300"
+     data-dropdown-hide-on-scroll="false"
+     data-dropdown-animation-in="fadeIn"
+     data-dropdown-animation-out="fadeOut">
+    <div class="d-flex g-width-30 g-height-30 mr-2">
+      <img class="img-fluid rounded-circle" src="http://blog.msiter.com/favicon/avatar.jpg" alt="Image Description">
+    </div>
+    <div class="media-body">
+      <span class="d-block g-hidden-sm-down g-color-main g-font-weight-600 g-font-size-13">文征</span>
+    </div>
+  </a>
+
+  <div id="account-dropdown" class="list-unstyled g-brd-around g-brd-secondary-light-v2 g-bg-white rounded g-pos-abs g-right-0 g-py-5 g-mt-57" aria-labelledby="account-dropdown-invoker" style="width:300px;">
+
+
+
+
+
+
+    <div class="col-lg-12 g-mb-30">
+        <!-- Figure -->
+        <figure class="u-shadow-v19 g-bg-white g-rounded-4 g-pa-20">
+
+          <div id="counter" class="text-center g-font-size-20">
+
+            0
+
+          </div>
+
+          <hr class="g-brd-gray-light-v4 g-my-15">
+
+          <div class="d-flex justify-content-start">
+            <!-- Figure Image -->
+            <img class="g-width-90 g-height-90 rounded-circle g-mr-15" src="http://blog.msiter.com/favicon/avatar.jpg" alt="Image Description">
+            <!-- Figure Image -->
+
+            <div class="d-block">
+              <!-- Figure Info -->
+              <div class="g-mb-5">
+                <h4 class="h5 g-mb-1">荆文征</h4>
+                <em class="d-block g-color-gray-dark-v4 g-font-style-normal g-font-size-13">Zhidu Inc.</em>
+              </div>
+              <!-- End Figure Info -->
+
+              <!-- Social Icons -->
+              <ul class="list-inline mb-0">
+                <li class="list-inline-item g-mx-2">
+                  <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-facebook--hover g-ml-minus-15" href="javascript:;" onclick="zanUpMethod()">
+                    <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-thumbs-o-up"></i>
+                    <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-thumbs-up"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item g-mx-2">
+                  <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-twitter--hover" href="javascript:void(0)" onclick="zanDownMethod()">
+                    <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-thumbs-o-down"></i>
+                    <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-thumbs-down"></i>
+                  </a>
+                </li>
+              </ul>
+              <!-- End Social Icons -->
+            </div>
+          </div>
+
+          <hr class="g-brd-gray-light-v4 g-my-15">
+
+          <div class="g-py-10">
+            <!-- Figure Contacts -->
+            <ul class="list-unstyled g-color-gray-dark-v5 g-font-size-13 g-mb-0">
+              <li class="g-mb-10">
+                <i class="g-pos-rel g-mt-1 mr-2 icon-communication-062 u-line-icon-pro"></i>
+                <a href="mailto:alphabetion@gmail.com">alphabetion@gmail.com</a>
+              </li>
+              <li>
+                <i class="g-pos-rel g-top-1 mr-2 icon-electronics-005 u-line-icon-pro"></i>
+                <em class="g-font-style-normal">+(86) 136 0135 6004</em>
+              </li>
+            </ul>
+            <!-- End Figure Contacts -->
+          </div>
+
+          <hr class="g-brd-gray-light-v4 g-my-15">
+            <!-- Border Primary Blockquotes -->
+            <blockquote class="blockquote g-brd-2 g-brd-primary g-font-size-12 g-mb-30">
+              <p class="content"></p>
+              <footer class="blockquote-footer text-right">
+                <cite title="Source Title" class="author"></cite>
+              </footer>
+            </blockquote>
+            <!-- End Border Primary Blockquotes -->
+        </figure>
+        <!-- End Figure -->
+      </div>
+
+
+
+
+
+
+
+  </div>
+
+
+</div>
+<!-- End Account -->
+
+<script type="text/javascript">
+
+$("#account").mouseover(function(){
+
+
+});
+
+$("#account").mouseout(function(){
+
+});
+
+</script>
+
+
+        </div>
+      </div>
+    </div>
+    <!-- End Top Bar -->
+
+    <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10">
+      <nav class="js-mega-menu navbar navbar-expand-lg g-px-0">
+        <div class="container g-px-15">
+          <!-- Logo -->
+          <a class="navbar-brand g-hidden-lg-up" href="bm-classic-home-page-1.html">
+            <img src="/assets/img/logo.png" alt="Logo">
+          </a>
+          <!-- End Logo -->
+
+          <!-- Responsive Toggle Button -->
+          <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 ml-auto" type="button"
+                  aria-label="Toggle navigation"
+                  aria-expanded="false"
+                  aria-controls="navBar"
+                  data-toggle="collapse"
+                  data-target="#navBar">
+            <span class="hamburger hamburger--slider g-pa-0">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+            </span>
+          </button>
+          <!-- End Responsive Toggle Button -->
+
+          <!-- Navigation -->
+          <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg" id="navBar">
+            <ul class="navbar-nav g-font-weight-600">
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-1" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">标签
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-1">
+    <div class="row">
+      <div class="col-lg-2">
+        <ul class="list-unstyled mb-0" style="ov">
+
+          
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/生活/">生活</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/悲观/">悲观</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/Objective-C/">Objective-C</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/AsyncDisplayKit/">AsyncDisplayKit</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/ios/">ios</a></li>
+
+            
+
+        </ul>
+      </div>
+      <div class="col-lg-1">
+
+      </div>
+      <div class="col-lg-9" style="height:auto;" >
+
+        <!-- Background Gray Colored -->
+        <ul class="u-list-inline">
+
+          
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/约束教程/">约束教程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/AttributedString/">AttributedString</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/iOS8-html2AttributedString-error/">iOS8 html2AttributedString error</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/IOS/">IOS</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/ObjC/">ObjC</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Pthreads/">Pthreads</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/线程/">线程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/POSIX/">POSIX</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/RxSwift/">RxSwift</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Moya/">Moya</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/java/">java</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/spring-boot/">spring boot</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mybatis/">mybatis</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/WKWebView/">WKWebView</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Systematic-distinction/">Systematic distinction</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/WebKit/">WebKit</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/WebView/">WebView</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/UIWebView/">UIWebView</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Input/">Input</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/File/">File</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Bug/">Bug</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/稀奇古怪的问题/">稀奇古怪的问题</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/博客美化/">博客美化</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/hexo/">hexo</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mathjax/">mathjax</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/objc/">objc</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/travis-ci/">travis-ci</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/cocoapods/">cocoapods</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/NodeJS/">NodeJS</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/APNs/">APNs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/八爪鱼/">八爪鱼</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/html/">html</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/js/">js</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Javascript/">Javascript</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/鼠标悬浮/">鼠标悬浮</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/面试题目/">面试题目</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/递归/">递归</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/error/">error</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/奇怪的问题/">奇怪的问题</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/希望/">希望</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/家庭/">家庭</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/测试/">测试</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/MARKDOWN/">MARKDOWN</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/无趣，心理学/">无趣，心理学</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Iterm/">Iterm</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/zsh/">zsh</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/主题/">主题</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/hashimoto/">hashimoto</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/论文/">论文</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/共识算法/">共识算法</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/技巧/">技巧</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/swift/">swift</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Waver/">Waver</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/AVFoundation/">AVFoundation</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/逆向/">逆向</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/theos/">theos</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/tweak/">tweak</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mongodb/">mongodb</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mongoose/">mongoose</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/nodejs/">nodejs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/RX/">RX</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/c/">c</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/c/">c++</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/reactiv/">reactiv</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/rxswift/">rxswift</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/swagger/">swagger</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/api/">api</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Web3js/">Web3js</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Ethereum/">Ethereum</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Solidity/">Solidity</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/truffle/">truffle</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/ganache/">ganache</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/数据结构/">数据结构</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/计算机基础/">计算机基础</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/手势密码/">手势密码</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/autolayout/">autolayout</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/破解/">破解</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/抓包/">抓包</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/DB/">DB</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/realm/">realm</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/jooq/">jooq</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/paoxs/">paoxs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/越狱/">越狱</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/cydia/">cydia</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/制作源/">制作源</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Segwit/">Segwit</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Lightning-Network/">Lightning Network</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Atomic-Transaction/">Atomic Transaction</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/HD-Wallet/">HD Wallet</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/BIP32-44/">BIP32-44</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Block-chain/">Block chain</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/multi-paoxs/">multi-paoxs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/async/">async</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/区块链/">区块链</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/p2p/">p2p</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/dns-seed/">dns seed</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/PBFT/">PBFT</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/consensus/">consensus</a>
+                        </li>
+
+            
+
+        </ul>
+        <!-- End Background Gray Colored -->
+
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-5" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">栏目
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-primary g-left-15 g-right-15 g-px-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-5">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="list-inline text-center mb-0">
+
+
+
+          
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/牢骚/">牢骚</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/IOS/">IOS</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/学习/">学习</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/线程/">线程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/服务器/">服务器</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/博客历程/">博客历程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/学习资料/">学习资料</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/Web-前端/">Web 前端</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/面试题目/">面试题目</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/生活/">生活</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/测试用例/">测试用例</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/hexo/">hexo</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/共识算法/">共识算法</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/开发帮助/">开发帮助</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/区块链/">区块链</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/数据结构/">数据结构</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/ios/">ios</a>
+                        </li>
+
+            
+
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-3" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">最新文章
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-3">
+    <div class="row">
+      <div class="col-lg-4">
+        <article>
+          <figure class="g-pos-rel">
+            <img class="img-fluid w-100 g-mb-20" src="/assets/img-temp/900x600/img7.jpg" alt="Image Description">
+          </figure>
+          <h3 class="h4 g-mb-10"><a class="g-color-gray-dark-v2" href="#">Love the mother nature</a>
+          </h3>
+          <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+            <li class="list-inline-item">
+              <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">Kathy Reyes</a>
+            </li>
+            <li class="list-inline-item">/</li>
+            <li class="list-inline-item">July 20, 2016</li>
+            <li class="list-inline-item">/</li>
+            <li class="list-inline-item">
+              <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                <i class="fa fa-comments-o"></i> 18
+              </a>
+            </li>
+          </ul>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img1.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Top 10 Luxury Hotels - 5 Star Best Luxury Hotels</a>
+            </h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 07, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 24
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img2.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6"><a class="g-color-main" href="#">10 Most beautiful beaches</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 20, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 18
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img3.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Stylish things to do, see and buy this week</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 16, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 31
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img1.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">8 health benefits and drawbacks of coffee</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 30, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 12
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img2.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Stylish things to do, see and buy this week</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 16, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 31
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img3.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Top 10 Luxury Hotels - 5 Star Best Luxury Hotels</a>
+            </h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 07, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 24
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-4" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">最火文章
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-4">
+    <div class="row">
+      <div class="col-lg-4">
+        <article class="u-block-hover">
+          <figure class="g-bg-cover g-bg-black-gradient-opacity-v1--after">
+            <img class="img-fluid u-block-hover__main--zoom-v1" src="/assets/img-temp/500x320/img1.jpg" alt="Image Description">
+          </figure>
+          <span class="g-pos-abs g-top-20 g-left-20">
+          <a class="btn btn-sm u-btn-red rounded-0" href="#">Fashion</a>
+        </span>
+          <span class="u-icon-v3 u-icon-size--sm g-bg-white g-color-black g-rounded-50x g-cursor-pointer g-pos-abs g-top-20 g-right-20">
+          <i class="icon-camera"></i>
+        </span>
+          <header class="g-pos-abs g-bottom-10 g-left-20 g-right-20">
+            <small class="g-color-white">
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 26, 2016
+            </small>
+            <h3 class="h4 g-font-weight-600 g-mt-5">
+              <a class="g-color-white g-color-white--hover" href="#">Be ready, fashion of the year is coming this year</a>
+            </h3>
+          </header>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="u-block-hover">
+          <figure class="g-bg-cover g-bg-black-gradient-opacity-v1--after">
+            <img class="img-fluid u-block-hover__main--zoom-v1" src="/assets/img-temp/500x320/img2.jpg" alt="Image Description">
+          </figure>
+          <span class="g-pos-abs g-top-20 g-left-20">
+          <a class="btn btn-sm u-btn-red rounded-0" href="#">Beaches</a>
+        </span>
+          <span class="u-icon-v3 u-icon-size--sm g-bg-white g-color-black g-rounded-50x g-cursor-pointer g-pos-abs g-top-20 g-right-20">
+          <i class="icon-camera"></i>
+        </span>
+          <header class="g-pos-abs g-bottom-10 g-left-20 g-right-20">
+            <small class="g-color-white">
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 15, 2016
+            </small>
+            <h3 class="h4 g-font-weight-600 g-mt-5">
+              <a class="g-color-white g-color-white--hover" href="#">Must be visited places in the USA - Florida Beaches</a>
+            </h3>
+          </header>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="u-block-hover">
+          <figure class="g-bg-cover g-bg-black-gradient-opacity-v1--after">
+            <img class="img-fluid u-block-hover__main--zoom-v1" src="/assets/img-temp/500x320/img3.jpg" alt="Image Description">
+          </figure>
+          <span class="g-pos-abs g-top-20 g-left-20">
+          <a class="btn btn-sm u-btn-red rounded-0" href="#">Food</a>
+        </span>
+          <span class="u-icon-v3 u-icon-size--sm g-bg-white g-color-black g-rounded-50x g-cursor-pointer g-pos-abs g-top-20 g-right-20">
+          <i class="icon-camera g-left-2"></i>
+        </span>
+          <header class="g-pos-abs g-bottom-10 g-left-20 g-right-20">
+            <small class="g-color-white">
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 8, 2016
+            </small>
+            <h3 class="h4 g-font-weight-600 g-mt-5">
+              <a class="g-color-white g-color-white--hover" href="#">Why your next glass of juice will cost you more</a>
+            </h3>
+          </header>
+        </article>
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-ml-15--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-7" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">新闻热点
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-7">
+    <div class="row">
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 16, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">You've been making French Pie all wrong - Until Now</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 02, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Unify facts, study finds - sensitive to gluten without having coeliac disease</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 18, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Why your next cup of cofee with milk will cost you more</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 12, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Incredible product and quality: Unify best template of the year</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 16, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Some post title will be implimented here and It's cool!</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 02, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Wireframe approach for the news blocks and pages</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 18, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Over thousands of components help you to boost your project</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 12, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">How to run a ticket: Best 10 point approaches for people who stands..</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Main -->
+<li class="nav-item g-mx-10--lg g-mx-20--xl">
+  <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-0" href="/">
+    主页
+  </a>
+</li>
+<!-- End Main -->
+
+
+
+
+
+
+
+
+            </ul>
+          </div>
+          <!-- End Navigation -->
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- End Header -->
+
+
+
+            <style media="screen">
+  .barrage {
+    width: 100%;
+    background-color: #6281c8;
+    position: fixed;
+    top: 0px;
+    display: none;
+  }
+
+  .barrage .logo {
+    visibility: hidden;
+  }
+</style>
+
+<header id="BarrageInputView" class="u-header u-header--static u-shadow-v19 barrage">
+  <div class="u-header__section g-brd-bottom g-brd-gray-light-v4 g-py-18">
+    <div class="container">
+      <div class="row align-items-center">
+
+        <!-- Logo -->
+<div class="col-md-3 g-hidden-md-down logo">
+  <a href="/" class="navbar-brand">
+    <img src="/favicon/logo.png" alt="Logo">
+  </a>
+</div>
+<!-- End Logo -->
+
+
+          <h3 class="col-4 col-lg-2 g-pos-rel g-px-15 ml-auto text-center g-color-white">你好，再见</h3>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    var barrageInputView = $("#BarrageInputView");
+
+    $("#BarrageStartButton").click(function(event) {
+
+      barrageInputView.css("display", "block");
+      barrageInputView.css("top", "-300px");
+
+      console.log("这个按钮一点用都没有.直接搜索就好了");
+
+      barrageInputView.animate({
+        top: "0",
+      }, 1000, function() {
+        setTimeout(function() {
+
+          barrageInputView.animate({
+            top: "-200"
+          }, 1000,function(){
+            barrageInputView.css("display", "none");
+          });
+
+        }, 1000);
+      });
+
+    });
+  });
+</script>
+
+
+
+    
+
+<section class="g-pt-50 g-pb-100">
+  <div class="container">
+    <div class="row">
+      <!-- Articles Content -->
+      <div class="col-lg-9 g-mb-50 g-mb-0--lg">
+        <article class="g-mb-60">
+          <header class="g-mb-30">
+            <h2 class="h1 g-mb-15">大话数据结构 - 数据结构绪论 （1）</h2>
+
+            <ul id="editHtmlElement" class="list-inline d-sm-flex g-color-gray-dark-v4 mb-0">
+              <li class="list-inline-item">
+                小酒馆老板
+              </li>
+              <li class="list-inline-item g-mx-10">/</li>
+              <li class="list-inline-item">
+                2017/12/27 14:22:0
+              </li>
+              <li class="list-inline-item g-mx-10">/</li>
+              <li class="list-inline-item g-mr-10">
+                <i class="align-middle mr-2 icon-hotel-restaurant-242 u-line-icon-pro"></i>共有
+                5,205个字
+              </li>
+              <li class="list-inline-item g-mx-10">/</li>
+              <li class="list-inline-item g-mr-10">
+                <i class="align-middle mr-2 icon-hotel-restaurant-003 u-line-icon-pro"></i>预计阅读
+                18分钟
+              </li>
+            </ul>
+
+            <hr class="g-brd-gray-light-v4 g-my-15">
+
+          </header>
+
+          <div class="">
+            <br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="数据结构绪论" style="display: inline;"><a href="#数据结构绪论" class="headerlink" title="数据结构绪论"></a>数据结构绪论</h2>                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>数据结构： 是相互之间存在一种或多种特定关系的数据元素的集合。</p>
+</em>                                </div>        
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="数据结构起源" style="display: inline;"><a href="#数据结构起源" class="headerlink" title="数据结构起源"></a>数据结构起源</h3><p>早起人们都把计算机理解为数值计算工具，就是感觉计算机当然是用来计算的，所以计算机额解决问题，应该先从具体问题抽象成一个适当的数据模型，设计出一个借此数据模型的算法，然后在编写程序，得到一个实际的软件。</p>
+<a id="more"></a>
+<p>可现实中，我们更多的不是解决数值计算的问题，而是需要一些更可可续有效的手段（比如表，树和图等数据结构）的帮助，才能更好的处理问题。所以 <strong>数据结构是一门研究非数值计算的程序设计问题中的操作对象，以及它们之间关系和操作等相关问题的学科</strong></p>
+<!-- more -->
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="基础概念和术语" style="display: inline;"><a href="#基础概念和术语" class="headerlink" title="基础概念和术语"></a>基础概念和术语</h3><p>说到数据结构是什么，我们得先来谈谈什么是数据。<br>正所谓“巧妇难为无米之炊”，在强大的计算机，也是要有“米”下锅才可以干活儿的，否则就是一堆破铜烂铁，这个“米”就是数据</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="数据" style="display: inline;"><a href="#数据" class="headerlink" title="数据"></a>数据</h4><p><strong>数据：是描述客观事物的符号，是计算机中可以操作的对象，是能被计算机识别，并输入给计算机处理的符号集合。</strong> 数据不仅仅包括整型，实型等数值类型，还包括字符以及声音 图像 视频等非数值类型</p>
+<p>比如我们现在常用的搜索引擎，一般会有网页，MP3，图片，视频等分类。MP3就是声音数据，图片当然是图像数据，视频就不用说了，而网页其实指的就是全部数据的搜索，包括最重要的数字和字符等文字数据</p>
+<p>也就是说，我们这里说的数据，其实就是符号，而且这些符号必须具备两个前提：</p>
+<ul class="g-list-style-circle">
+<li>可以输入到计算器中</li>
+<li>能被计算机程序处理<br>对于整型，实型等数值类型，可以进行数值计算。<br>对于字符数据类型，就需要进行非数值的处理。而声音，图像，视频等其实可以通过编码的手段变成字符数据来处理的。</li>
+</ul>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="数据元素" style="display: inline;"><a href="#数据元素" class="headerlink" title="数据元素"></a>数据元素</h4><p><strong>数据元素: 是组成数据的，有一定意义的基本单位，在计算机中通常作为整体处理，也被称为记录。</strong><br>比如，在人类中什么事数据元素呀？当然使人了<br>畜类呢？牛 吗 羊 鸡 猪 够 等动物当然就是畜类的数据元素。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="数据项" style="display: inline;"><a href="#数据项" class="headerlink" title="数据项"></a>数据项</h4><p><strong>数据项：一个数据元素可以有若干个数据项组成</strong><br>比如人这样的数据元素，可以有眼，耳朵，鼻子，嘴巴，手脚这些数据项，也可以有姓名，年龄，性别出生地址，联系电话等数据项，具体有哪些数据项那个，要是你做的系统来决定。</p>
+<p><strong>数据项是数据不可分割的最小单位。</strong> 在数据机构这门课程中，我们把数据项定义为最小单位，是有助于我们更好的解决问题。所以，记住了，数据形式数据的最小单位。但是真正讨论问题的时候，数据元素才是数据结构建立数据模型的着眼点，就像我们讨论一部电影时，是要论这部电影角色这样的数据元素，而不是针对这个角色的姓名或者年龄这样的“数据项”去研究分析。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="数据对象" style="display: inline;"><a href="#数据对象" class="headerlink" title="数据对象"></a>数据对象</h4><p><strong>数据对象：是性质相同的数据元素的集合，是数据的子集</strong><br>什么叫性质相同呢。是指数据元素具有相同数量和类型的数据项，比如，还是刚才的例子，人都有姓名，生日，性别等相同的数据项。<br>既然数据对象是数据的子集，在实际应用中，处理的数据元素通常具有相同性质，在不产生混淆的情况下，我们都将数据对象简称为数据。<br>好了，有了这些感念的铺垫，我们的主角登场了。<br>说了数据的定义，那么数据结构中的结构又是什么呢？</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="数据结构" style="display: inline;"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h4><p>结构，简单的理解就是关系，比如分子结构，就是说组成分子的原子之间的排列方式。严格点说，结构是指各个组成部分相互搭配和排序的方式。在现实生活中 <strong>不同数据元素之间不是独立的，而是存在特定的关系的，我们将这些关系成为结构。</strong> 那数据结构是什么？</p>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p><strong>数据结构：是相关之间存在一种或者多种特定关系的数据元素的集合。</strong>     </p>
+</em>                                </div>        
+<p>在计算机中，数据元素并不是孤立，杂乱无序的，而是具有内在联系的数据集合。数据元素之间存在的一种或多种特定关系，也就是数据的组织形式。<br>为编写好一个“好”的程序，必须分析待处理对象的特性及个处理对象之间存在的关系。这也就是研究数据结构的意义存在。</p>
+<p>定义中提到的一种或多种特定关系，具体是什么样的关系，这正是我们下面要讨论的问题。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="个人理解与总结-数据-数据对象-数据元素-数据项之间的关系" style="display: inline;"><a href="#个人理解与总结-数据-数据对象-数据元素-数据项之间的关系" class="headerlink" title="个人理解与总结  数据-数据对象-数据元素-数据项之间的关系"></a>个人理解与总结  数据-数据对象-数据元素-数据项之间的关系</h4><p>我们首先学习了什么是数据，之后说明了一些名词。那么他们是什么关系呢</p>
+<pre class="line-numbers language-txt g-mb-30"><code class="language-txt">                                          数据
+                      +--------------------|------------------+
+                      |                                       |
+                   数据对象                                  数据对象
+            +---------|---------+                    +---------|----------+    
+            |                   |                    |                    |
+         数据元素              数据元素              数据元素               数据元素
+      +-----|-----+        +-----|-----+        +-----|-----+        +-----|-----+  
+      |           |        |           |        |           |        |           |
+  数据项1       数据项2    数据项1     数据项2    数据项1       数据项2   数据项1     数据项2
+</code></pre><p>简单就是说，“耳朵 ，鼻子 嘴巴 ”这些 <strong>数据项</strong>，组成了“人”这些 <strong>数据元素</strong>，而人又组成了人类这个 <strong>数据对象</strong>，而人类是 又是 生物的一个子集，也就是包含 那么生命就是 <strong>数据</strong></p>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>数据项组成了数据元素，而数据对象是性质相同的数据元素的集合，是数据的子集~~</p>
+</em>                                </div>        
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="逻辑结构与物理结构" style="display: inline;"><a href="#逻辑结构与物理结构" class="headerlink" title="逻辑结构与物理结构"></a>逻辑结构与物理结构</h3><p>按照视点的不同，我们把数据结构分为逻辑结构和物理结构</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="逻辑结构" style="display: inline;"><a href="#逻辑结构" class="headerlink" title="逻辑结构"></a>逻辑结构</h4><p><strong>逻辑结构：是指数据对象之间的相互关系。</strong> 其实这也是我们今后最徐耀关注的问题。<br>逻辑结构分为以下4种：</p>
+<ol>
+<li>集合结构<br>集合结构： 集合结构中的元素除了同属于一个集合外，他们之间没有其他关系。各个数据元素是“平等”的，他们的共同属性是“同属于一个集合”。数据结构中的数据关系就类似于数学中的集合<br>            <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/结构绪论/集合结构.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/结构绪论/集合结构.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">集合结构示意图</figcaption></figure></li>
+<li>线性结构<br>线性结构：线性结构中的数据元素之间是一对一的关系<br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/结构绪论/线性结构.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/结构绪论/线性结构.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">线形结构示意图</figcaption></figure></li>
+<li>树形结构<br>树形结构：树形结构中的数据元素存在一种一对多的层次关系<br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/结构绪论/树形结构.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/结构绪论/树形结构.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">树形结构示意图</figcaption></figure></li>
+<li>图形结构<br>图形结构：图形结构中的数据元素存在多对多的关系<br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/结构绪论/图形结构.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/结构绪论/图形结构.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">图形结构示意图</figcaption></figure><br><br>我们在用示意图表示数据的逻辑机构是，要注意两点：<ul class="g-list-style-circle">
+<li>将每一个数据元素看作一个节点，永远泉表示</li>
+<li>元素之间的逻辑关系用节点之间的连线表示，如果这个关系是有方向的，那么用带箭头的连线表示</li>
+</ul>
+</li>
+</ol>
+<p>从之前的例子也可以看出，逻辑机构是针对具体问题的，是为了解决某个问题的，在对问题理解的基础上，选择一个合适的数据结构表示数据元素之间的逻辑关系。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="物理结构" style="display: inline;"><a href="#物理结构" class="headerlink" title="物理结构"></a>物理结构</h4><p>说完了逻辑结构，我们再来看看物理结构（很多书中也叫存储结构，你只要理解上把他们当作一回事就好了）。<br><strong>物理结构： 是指数据的逻辑结构在计算机的存储形式</strong><br>数据是数据元素的集合，那么根据物理结构的定义，实际上就是如何把数据存储到计算机的存储器中，存储器主要是针对内存而言，像硬盘，软盘，光盘等外部的存储器数据组织通常用文件结构来描述。<br>数据的存储结构应正确反应数据元素之间的逻辑关系，这才是最关键的，如何存储数据元素之间的逻辑关系，是实现物理结构的重点和难点。</p>
+<p>数据元素的存储结构形式有两种： 顺序存储和链式存储。</p>
+<ol>
+<li><strong>顺序存储结构</strong><br>顺序存储结构： 是把数据元素存储在地址连续的存储单元里，其数据见的逻辑关系与物理关系是一致的。<br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/结构绪论/顺序存储结构.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/结构绪论/顺序存储结构.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">顺序存储结构示意图</figcaption></figure><br>这种存储结构其实很简单，说白了，就是排队占位。大家都按顺序排好，每个人，占一小段空间，大家谁也别插谁的队。我们之前学计算机语言时，数组就是这样的顺序存储结构。当你告诉计算机，你要建立一个又9个整型数组时，计算机就在内存找了一片空地，按照一个模型所占的位置乘以9，开辟一段连续的空间，于是第一个就放在第一个位置，第二个数据就放在第二个，这样依次摆放。</li>
+<li><strong>链式存储结构</strong><br>如果就是这么简单和有规律，一切就都好办了。可实际上，又会有人插队，也会有人要上厕所，有人放弃排队。所以这个队伍当中会添加新成员，也有可能会去掉老成员，整个结构时刻都处于变化中。显然，面对这样市场要变化的结构，顺序存储是不科学的。那怎么办呢？<br>现在如银行，医院等地方，设置了排队系统，也就是每个人去了，限领一个号，等着叫号，叫到时去办理业务或看病。在等待的时候，你爱在哪儿在哪儿，可以坐着，站着或者走动，甚至出去逛一圈，只要及时赶回来就行。你关注的是前一个号有没有被叫到，叫到了，下一个就轮到了。<br><strong>链式存储结构：是把数据元素存放在任意的存储单位中，这组存储单元可以是连续的，也可以是不连续的。</strong> 数据元素的春初关系并不能反映其逻辑关系，但是需要用一个指针存放数据元素的地址，这样通过地址就可以找到相关数据元素的位置<br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/结构绪论/链式存储结构.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/结构绪论/链式存储结构.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">链式存储结构示意图</figcaption></figure><br>显然，链式存储就灵活多了，数据存放哪里不重要，只要有一个指针，存放了相应的地址就能找到他了。</li>
+</ol>
+<p>逻辑结构是面向问题的，而物理结构是面向计算机的，其基础的目标就是将数据及其逻辑关系存到计算机的内存中。</p>
+<p>先说说，逻辑结构和物理结构。书上总结的已经很好了。</p>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>逻辑结构是面向问题的，而物理结构是面向计算机的。</p>
+</em>                                </div>        
+<p>其实简单来说就是, 如果把人类存储起来，那么 按照他们的籍贯。还是年龄大小。还是之间的亲戚关系。这种叫做 逻辑结构。<br>如果是把人放到 放在广场。是排队还是随便走动，这个是物理结构。。。感觉解释的还是不行。。。</p>
+<p>顺序结构和 链式结构的区别和相同</p>
+             <div class="card g-brd-bluegray rounded-0 g-mb-30">                <strong class="card-header g-bg-linkedin g-brd-transparent g-color-white g-font-size-13 rounded-0 mb-0"><i class="fa fa-table g-mr-5"></i>我就一展示数据的表格 </strong>                <div class="table-responsive">                    <table class="table table-striped u-table--v1 mb-0">
+<thead>
+<tr>
+<th>名称</th>
+<th style="text-align:center">不同点</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>顺序存储结构</td>
+<td style="text-align:center">顺序结构是连续的内存地址，所以数量必须提前定好。</td>
+</tr>
+<tr>
+<td>链式存储结构</td>
+<td style="text-align:center">链式存储是非连续内存地址，只需要知道下一个数据元素在那里就好了，所以理论上在内存不满之前是无限个个数的</td>
+</tr>
+</tbody>
+                    </table>                </div>            </div>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="抽象数据类型" style="display: inline;"><a href="#抽象数据类型" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h3><br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="数据类型" style="display: inline;"><a href="#数据类型" class="headerlink" title="数据类型"></a>数据类型</h4><p><strong>数据类型：是指一组性质相同值的集合及定义在此集合上的一些操作的总称</strong><br>数据类型是按照值的不同进行划分的。在高级语言中，每个变量，常量和表达式都有各自的取值范围。类型就用来说明变量或表达式的取值范围和所能进行的操作。<br>当年那些设计计算机语言的人，为什么会考虑到数据类型呢？<br>比如，大家都需要住房子，也都希望房子越大越好。很显然，没有钱，考虑房子没啥意义。于是商品房就出现了各种各样的方形，有别墅的，有错层的，有单间的。有一百多平的，也有几十平的，甚至北京还出了胶囊公寓。这眼就满足了不同人的需求。<br>同样，在计算机中，内存也不是无限大的，你要计算一个1+1=2，3+5=8的这样的整型数字的减价运算，显然不徐耀开辟很大的适合小数甚至字符运算的内存空间。于是计算机的研究者门就考虑，要对数据进行分类，分出来多种数据类型。</p>
+<p>在C语言中，按照取值的不同，数据可以分为两类</p>
+<ul class="g-list-style-circle">
+<li>原子类型： 是不可以在分解的基本类型，包括 整型，实型，字符型等。</li>
+<li>结构类型： 是由若干各类型组合而成，是可以在分解的。例如，整型数组是有若干整型数据组成。</li>
+</ul>
+<p>比如，在C语言中变量生变int a,b ，这就意味着，再给变量a和b复制时不能超出 int 的取值范围，变量a和b之间的运算也只能是int类型所允许的运算。<br>因为不同的计算机有不同的硬件系统，这就要求程序语言最终通过编译器或者解释器转换成底层语言，如汇编语言甚至是通过机器语言的数据类型来实现的。可事实上，高级语言的编程者不管最终程序原型在什么计算机上，他的目的就是为了实现两个整型数字的运行，如 a+b，a-b，axb，a/b等，他才不关系证书在计算机内部是如何表示的，也不需要知道，CPU为了实现1+2进行了几次开关操作，这些操作是如何实现的，对高级语言开发者来讲根本不重要。于是我们就会考虑，无论什么计算机，什么计算机语言，大都会面临着 整数运算，实数运算，字符运算等操作我们可以考虑把他们抽象出来</p>
+<p><strong>抽象是指抽取出食物具有的普遍性的本质。</strong> 它是抽出问题的特征而忽略非本质的细节，是对具体事物的一个概括。抽象是一种思考问题的方式，它隐藏了繁杂的细节，只保留了实现目标所需的信息。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H4   </span><h4 id="抽象数据类型-1" style="display: inline;"><a href="#抽象数据类型-1" class="headerlink" title="抽象数据类型"></a>抽象数据类型</h4><p>我们对已有的数据类型进行抽象，就有了抽象数据类型。<br><strong>抽象数据类型（Abstract Data Type,ADT）：是指一个数据模型以及定义在该模型的一组操作。</strong> 抽象数据类型的定义仅取决于他的一组逻辑特性，而与其在计算机内部如何表示和实现无关。<br>比如刚才的例子，各个计算机，不管是大型机，小型机，PC，平板电脑，PDA甚至智能手机都有“整数”类型，也需要整数间的运算，那么整形其实就是一个抽象数据类型，尽管他在上面提到的这些不同计算机中实现方法不一样，但是由于其定义的数学特性相同，在计算机编程者看来，他们都是相同的。因此，<strong>“抽象”的意义在于数据类型的数学抽象特性</strong><br>而且，抽象数据类型不仅仅指那些已经定义并实现的数据类型，还可以是计算机编程者在设计软件程序时自己定义的数据类型，比如我们便携计算机绘图或者地图累的软件系统，经常会用到坐标，也就是说，总是有成对出现的X和Y，在3D的软件中甚至会出现Z。既然这三个整型数字是始终出现在在一起出现，我们就定一个叫 point的抽象属类型，他有XYZ三个整型变量，这样我们很方的操作一个point数据变量就能知道这一点的坐标了。</p>
+<p>根据抽象数据类型的定义，它还包括定义在该模型的一组操作。就像“超级玛丽”这个经典的任天堂游戏，里面的游戏主角是马里奥（Mario）。我们给他定义了几个基本操作，走（前进，后退，上，下）跳，打子弹等。一个抽象数据类型定义了：一个数据对象，数据对象中个数据元素之间的关系及数据元素的操作。至于，一个抽象数据类型到底需要那些操作，这就只能由设计者根据实际需要来定。像马里奥，可能开始只有两种操作，走和跳，后来发现应该要增加一种打子弹的操作，再后来发现有些玩家希望他可以走的快一点，就有了按住子弹后前进就会“跑”的操作。这些都是根据实际情况来设计的</p>
+<p>事实上，抽象数据类型体现了程序设计中问题分解，抽象和信息隐藏的特性。抽象数据类型把实际生活中的问题分解为多个规模小且容易处理的问题，然后建立一个计算机能处理的数据模型，并把每个功能模块的实现细节都作为一个独立的单位，从而使具体的实现过程隐藏起来。</p>
+<p>为了便于我们在之后的讲解中对抽象数据进行规范的描述，我们给出了描述对象书库类型的标准格式：</p>
+<pre class="line-numbers language-swift g-mb-30"><code class="language-swift"><span class="token comment" spellcheck="true">/// 抽象数据类型</span>
+<span class="token builtin">Class</span> <span class="token class-name">ADT</span><span class="token punctuation">{</span>
+    <span class="token comment" spellcheck="true">/// 数据元素之间的逻辑关系的定义</span>
+    <span class="token keyword">let</span> data1
+    <span class="token keyword">let</span> data2
+    <span class="token comment" spellcheck="true">/// 操作</span>
+    <span class="token keyword">func</span> oper1<span class="token punctuation">{</span><span class="token punctuation">}</span>
+    <span class="token keyword">func</span> oper2<span class="token punctuation">{</span><span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="总结回顾" style="display: inline;"><a href="#总结回顾" class="headerlink" title="总结回顾"></a>总结回顾</h3><p>数据结构的相关结构<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/结构绪论/数据结构概念.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/结构绪论/数据结构概念.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">数据结构概念图</figcaption></figure><br></p>
+<p>由这些概念，给出了数据结构的定义：<strong>数据结构是相互之间存在的一种或多种特定关系的数据元素的集合。</strong> 同样是结构，从不同的角度讨论会有不同的分类。<br><br>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/大话数据结构/结构绪论/结构分类.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/大话数据结构/结构绪论/结构分类.png" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">结构分类示意图</figcaption></figure><br></p>
+<p>总结：</p>
+<ol>
+<li>数据 是有数据元素 或者 数据对象构成，数据对象是由特性一样的一群数据元素构成，一个或者多个数据项构成了数据元素</li>
+<li>数据结构按照 分类有两种结构，逻辑结构和物理结构。 逻辑结构多表示数据见的逻辑关系，包含（1.集合机构（无关系）2.线性关系（一对一）3.树性关系（一对多）4.图形关系（多对多））等。而物理结构，则是其存储在计算机的存储器中的无力位置来定的。（比如：必须在连续的内存地址中的 顺序存储结构，以及相对应的 不要再连续地址中的 链式存储结构）</li>
+<li>计算器的数据存储器是内存，硬盘等存储，存储的是文件结构。</li>
+<li>抽象数据类型是为了规定某一种数据元素的 取值 以及 操作。这个还不是非常明白。但是大概就是 目前我们所学的对象。比如 人抽象承认，那么他就是一个人，需要由消化系统等变量，当然还需要拥有，呼吸，眨眼等操作</li>
+</ol>
+    <p hidden id="CurrentFileName">大话数据结构-数据结构绪论.md</p>    
+          </div>
+
+          <!-- Sources & Tags -->
+<div class="g-mb-30">
+    <h6 class="g-color-gray-dark-v1 g-mb-15">
+
+        
+
+        
+
+        <strong class="g-mr-5">专栏:</strong> <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover"
+                                               href="/categories/数据结构/">数据结构</a>
+        
+
+        
+
+    </h6>
+    <h6 class="g-color-gray-dark-v1">
+        <strong class="g-mr-5">标签:</strong>
+
+        
+
+        
+        <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5"
+           href="/tags/数据结构/">数据结构</a>
+        
+        <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5"
+           href="/tags/计算机基础/">计算机基础</a>
+        
+
+        
+
+    </h6>
+    <br>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="media">
+                    <div class="media-body">
+                        <span class="g-color-gray-dark-v4 g-font-size-12">本博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a></span>
+                        <br>
+                        <span class="g-color-gray-dark-v4 g-font-size-12">本文首发于<a
+                                    href="http://blog.msiter.com">小酒馆老板</a>的博客<a
+                                    href="http://blog.msiter.com">荆文征</a>，版权所有，侵权必究。</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <hr class="g-brd-gray-light-v4">
+
+        </article>
+
+      </div>
+      <!-- End Articles Content -->
+
+      <!-- Sidebar -->
+      <div class="col-lg-3">
+
+        <div id="stickyblock-start" class="js-sticky-block g-sticky-block--lg g-pt-20" data-start-point="#stickyblock-start" data-end-point="#stickyblock-end" style="top: 0px; width: 255px; height: 957px;">
+
+  
+
+  <div class="g-mb-40">
+
+  <ul class="nav u-nav-v5-1 g-brd-bottom--md g-brd-gray-light-v4" role="tablist" data-target="nav-5-1-default-hor-left-border-bottom" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-lightgray">
+    <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#nav-5-1-default-hor-left-border-bottom--1" role="tab">目录</a>
+    </li>
+  </ul>
+
+  <div id="nav-5-1-default-hor-left-border-bottom" class="tab-content g-pt-20">
+    <div class="tab-pane fade show active" id="nav-5-1-default-hor-left-border-bottom--1" role="tabpanel">
+    <div class="g-mb-40 post-toc">
+      <ol class="post-nav"><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#数据结构绪论"><span class="post-nav-number">1.</span> <span class="post-nav-text">数据结构绪论</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#数据结构起源"><span class="post-nav-number">1.1.</span> <span class="post-nav-text">数据结构起源</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#基础概念和术语"><span class="post-nav-number">1.2.</span> <span class="post-nav-text">基础概念和术语</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#数据"><span class="post-nav-number">1.2.1.</span> <span class="post-nav-text">数据</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#数据元素"><span class="post-nav-number">1.2.2.</span> <span class="post-nav-text">数据元素</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#数据项"><span class="post-nav-number">1.2.3.</span> <span class="post-nav-text">数据项</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#数据对象"><span class="post-nav-number">1.2.4.</span> <span class="post-nav-text">数据对象</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#数据结构"><span class="post-nav-number">1.2.5.</span> <span class="post-nav-text">数据结构</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#个人理解与总结-数据-数据对象-数据元素-数据项之间的关系"><span class="post-nav-number">1.2.6.</span> <span class="post-nav-text">个人理解与总结  数据-数据对象-数据元素-数据项之间的关系</span></a></li></ol></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#逻辑结构与物理结构"><span class="post-nav-number">1.3.</span> <span class="post-nav-text">逻辑结构与物理结构</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#逻辑结构"><span class="post-nav-number">1.3.1.</span> <span class="post-nav-text">逻辑结构</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#物理结构"><span class="post-nav-number">1.3.2.</span> <span class="post-nav-text">物理结构</span></a></li></ol></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#抽象数据类型"><span class="post-nav-number">1.4.</span> <span class="post-nav-text">抽象数据类型</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#数据类型"><span class="post-nav-number">1.4.1.</span> <span class="post-nav-text">数据类型</span></a></li><li class="post-nav-item post-nav-level-4"><a class="post-nav-link" href="#抽象数据类型-1"><span class="post-nav-number">1.4.2.</span> <span class="post-nav-text">抽象数据类型</span></a></li></ol></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#总结回顾"><span class="post-nav-number">1.5.</span> <span class="post-nav-text">总结回顾</span></a></li></ol></li></ol>
+    </div>
+    </div>
+  </div>
+
+  </div>
+
+
+<script src="/assets/js/helpers/timeago.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+    initScrollSpy();
+
+    function initScrollSpy() {
+      var tocSelector = '.post-toc';
+      var $tocElement = $(tocSelector);
+      var activeCurrentSelector = '.active-current';
+
+      $tocElement
+        .on('activate.bs.scrollspy', addClassCurrentActiveClass)
+        .on('clear.bs.scrollspy', removeCurrentActiveClass);
+
+      $('body').scrollspy({
+        target: tocSelector
+      });
+
+      function addClassCurrentActiveClass(){
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+        $tocElement.scrollTop($currentActiveElement.offset().top - $tocElement.offset().top + $tocElement.scrollTop() - ($tocElement.height() / 2));
+      }
+
+      function removeCurrentActiveClass() {
+        $(tocSelector + ' ' + activeCurrentSelector)
+          .removeClass(activeCurrentSelector.substring(1));
+      }
+    }
+
+  });
+
+  $(document).ready(function() {
+    var html = $('html');
+    var hasVelocity = $.isFunction(html.velocity);
+
+    // TOC item animation navigate & prevent #item selector in adress bar.
+    $('.post-toc a').on('click', function(e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+  });
+</script>
+
+
+<script type="text/javascript">
+  function escapeSelector(selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, '\\$&');
+  }
+
+  +
+  function($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector = (this.options.target || '') + ' .post-nav li > a'
+      this.offsets = []
+      this.targets = []
+      this.activeTarget = null
+      this.scrollHeight = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function() {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function() {
+      var that = this
+      var offsetMethod = 'offset'
+      var offsetBase = 0
+
+      this.offsets = []
+      this.targets = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function() {
+          var $el = $(this)
+          var href = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href &&
+            $href.length &&
+            $href.is(':visible') && [
+              [$href[offsetMethod]().top + offsetBase, href]
+            ]) || null
+        })
+        .sort(function(a, b) {
+          return a[0] - b[0]
+        })
+        .each(function() {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function() {
+      var scrollTop = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets = this.offsets
+      var targets = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy') // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i] &&
+          scrollTop >= offsets[i] &&
+          (!offsets[i + 1] || scrollTop <= offsets[i + 1]) &&
+          this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function(target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function() {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function() {
+        var $this = $(this)
+        var data = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function() {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function() {
+      $('[data-spy="scroll"]').each(function() {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+<style>
+  .post-toc {
+    overflow: auto;
+  }
+
+  .post-toc ol {
+    margin: 0;
+    padding: 0 2px 5px 10px;
+    text-align: left;
+    list-style: none;
+    font-size: 14px;
+  }
+
+  .post-toc ol>ol {
+    padding-left: 0;
+  }
+
+  .post-toc ol a {
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+    transition-property: all;
+    color: #111;
+    border-bottom-color: #555;
+  }
+
+  .post-toc ol a:hover {
+    color: #4f72c1;
+    border-bottom-color: #ccc;
+  }
+
+  .post-toc .post-nav-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.8;
+  }
+
+  .post-toc .post-nav .post-nav-child {
+    display: none;
+  }
+
+  .post-toc .post-nav .active>.post-nav-child {
+    display: block;
+  }
+
+  .post-toc .post-nav .active-current>.post-nav-child {
+    display: block;
+  }
+
+  .post-toc .post-nav .active-current>.post-nav-child>.post-nav-item {
+    display: block;
+  }
+
+  .post-toc .post-nav .active>a {
+    color: #6281c8;
+    border-bottom-color: #87daff;
+  }
+
+  .post-toc .post-nav .active-current>a {
+    color: #6281c8;
+  }
+
+  .post-toc .post-nav .active-current>a:hover {
+    color: #87daff;
+  }
+</style>
+
+  <!-- News Feed -->
+<div class="g-mb-40">
+
+  <!-- Nav tabs -->
+  <ul class="nav u-nav-v5-1 g-brd-bottom--md g-brd-gray-light-v4" role="tablist" data-target="nav-5-2-default-hor-left-border-bottom" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-lightgray">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#nav-5-2-default-hor-left-border-bottom--1" role="tab">最新文章</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#nav-5-2-default-hor-left-border-bottom--2" role="tab">修改历史</a>
+    </li>
+  </ul>
+  <!-- End Nav tabs -->
+
+
+  <!-- Tab panes -->
+  <div id="nav-5-2-default-hor-left-border-bottom" class="tab-content g-pt-20">
+    <div class="tab-pane fade show active" id="nav-5-2-default-hor-left-border-bottom--1" role="tabpanel">
+      
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/Hashimoto IO bound proof of work-20180824.html">Hashimoto I/O bound proof of work</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/8/24 15:25:0
+        </span>
+        </article>
+        
+          <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+          
+            
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/Practical Byzantine Fault Tolerance-20180803.html">Practical Byzantine Fault Tolerance</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/8/3 14:22:0
+        </span>
+        </article>
+        
+          <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+          
+            
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/Paxos Made Live - An Engineering Perspective-20180731.html">Paxos Made Live - An Engineering Perspective</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/7/31 15:5:0
+        </span>
+        </article>
+        
+          <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+          
+            
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/paxos-simple-20180726.html">Paxos Made Simple - Leslie Lamport</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/7/26 18:22:0
+        </span>
+        </article>
+        
+            
+    </div>
+
+
+    <div class="tab-pane fade" id="nav-5-2-default-hor-left-border-bottom--2" role="tabpanel">
+      <table id="commit-history-new" style="width:100%">
+        <thead><tr><th></th></tr></thead >
+        <tbody id="commit-history-new-body">
+          <tr><td>
+            <li class="media g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1">
+              <div class="media-body">
+                <span class="d-block g-font-size-11 text-center">正在加载...</span>
+              </div>
+            </li>
+          </tr></td>
+        </tbody>
+        <p class="text-center g-font-size-10" id="history_infomessagelabel"></p>
+      </table>
+    </div>
+  </div>
+  <!-- End Tab panes -->
+
+
+</div>
+<!-- End News Feed -->
+
+
+
+</div>
+
+
+      </div>
+      <!-- End Sidebar -->
+    </div>
+
+    <div class="g-mb-60" id="commit-container">
+  <!--PC版-->
+
+
+
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script type="text/javascript">
+
+var gitalk = new Gitalk({
+  clientID: '9fba00e5b04b66d8424e',
+  clientSecret: '87d759d3284033b6e5aaac980e63fa74e57fcda7',
+  repo: 'aimobier.github.io',
+  owner: 'aimobier',
+  admin: ['aimobier'],
+  id: md5(window.location.pathname),      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
+
+gitalk.render('commit-container')
+	
+</script>
+
+
+
+  </div>
+
+  <div id="stickyblock-end" style="width: 100%;height: 1px;"></div>
+</section>
+
+
+<script src="/assets/js/components/hs.sticky-block.js"></script>
+<script src="/assets/js/githubhistory.js"></script>
+<script type="text/javascript">
+  // initialization of sticky blocks
+  $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
+</script>
+
+
+    
+<script type="text/x-mathjax-config">
+/// Google  不在翻译 
+MathJax.Hub.Queue(function() {
+      $("span.MathJax").each(function(){
+          $(this).attr("translate","no");
+          $(this).addClass("notranslate");
+    });
+})
+
+</script>
+
+
+
+
+      <!-- JS Implementing Plugins -->
+<script src="/assets/vendor/custombox/custombox.min.js"></script>
+
+<!-- JS Unify -->
+<script src="/assets/js/components/hs.modal-window.js"></script>
+
+
+<!-- Footer -->
+<footer class="g-bg-black-opacity-0_9 g-color-white-opacity-0_8 ">
+  <br><br><br>
+  <div class="container g-mb-60">
+    <div class="row">
+
+      <!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">关于我</h2>
+  </div>
+
+  <div class="g-mb-30">
+    <p class="g-color-white-opacity-0_8">努力学习的IOS程序员。目前在学习制作Hexo主题，主要还是为了做自己的一个博客.之后会好好学习linux以及服务器相关的知识.</p>
+  </div>
+
+  <address class="mb-0">
+    <div class="g-mb-30">
+      <h4 class="h6 g-font-weight-600">现居地</h4>
+      <p class="mb-0 g-color-white-opacity-0_8">北京 - 国家的首都 </p>
+    </div>
+
+    <!-- 配置标签相关视图 -->
+    
+
+      <div class="g-mb-30">
+        <h4 class="h6 g-font-weight-600">邮箱:</h4>
+
+        
+
+                <p class="mb-0 g-color-white-opacity-0_8">alphabetion@gmail.com</p>
+        
+
+                <p class="mb-0 g-color-white-opacity-0_8">jingwenzheng@baimaodai.com</p>
+        
+
+      </div>
+
+      
+
+
+
+    <div class="mb-0">
+      <h4 class="h6 g-font-weight-600">一言:</h4>
+      <p class="mb-0">
+        <a class="g-color-white-opacity-0_8" id="hitokoto" href="http://hitokoto.cn/">support@htmlstream.com</a>
+      </p>
+    </div>
+  </address>
+</div>
+<!-- End Footer Content -->
+
+
+        <!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+
+
+  <!-- 配置标签相关视图 -->
+  
+    <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+      <h2 class="u-heading-v2__title h6 text-uppercase mb-0">标签</h2>
+    </div>
+    <ul class="u-list-inline g-font-size-12 g-mb-30">
+
+      
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/生活/">
+            生活
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/悲观/">
+            悲观
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/Objective-C/">
+            Objective-C
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/AsyncDisplayKit/">
+            AsyncDisplayKit
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/ios/">
+            ios
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/约束教程/">
+            约束教程
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/AttributedString/">
+            AttributedString
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/iOS8-html2AttributedString-error/">
+            iOS8 html2AttributedString error
+          </a>
+        </li>
+        
+    </ul>
+    
+
+      <!-- 布局相关链接-->
+
+      <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+        <h2 class="u-heading-v2__title h6 text-uppercase mb-0">友情链接</h2>
+      </div>
+
+      <ul class="list-unstyled">
+        
+
+          <li class="g-mb-5">
+            <i class="fa fa-angle-right g-mr-5"></i>
+
+            <a class="g-color-white-opacity-0_8" href="https://baidu.com">
+              百度
+            </a>
+          </li>
+
+          
+
+          <li class="g-mb-5">
+            <i class="fa fa-angle-right g-mr-5"></i>
+
+            <a class="g-color-white-opacity-0_8" href="https://test.baidu.com">
+              测试链接
+            </a>
+          </li>
+
+          
+
+          <li class="g-mb-5">
+            <i class="fa fa-angle-right g-mr-5"></i>
+
+            <a class="g-color-white-opacity-0_8" href="https://baidu.com">
+              hexo
+            </a>
+          </li>
+
+          
+      </ul>
+
+
+
+</div>
+<!-- End Footer Content -->
+
+
+          <!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">最近文章</h2>
+  </div>
+
+  
+    
+
+  <article class="media">
+
+
+  
+
+
+
+
+  <a class="d-flex g-mt-3 mr-3" href="/Hashimoto IO bound proof of work-20180824.html">
+    <img class="g-width-60 g-height-60 rounded" src="/publicFiles/images/hashimoto/WX20180824-152143.png" alt="Image Description">
+  </a>
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/Hashimoto IO bound proof of work-20180824.html">Hashimoto I/O bound proof of work</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/8/24 15:25:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/Hashimoto IO bound proof of work-20180824.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/d,thsjjg-sjjgxl-20171227.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <article class="media">
+
+
+  
+
+
+
+
+  <a class="d-flex g-mt-3 mr-3" href="/Practical Byzantine Fault Tolerance-20180803.html">
+    <img class="g-width-60 g-height-60 rounded" src="/publicFiles/images/Practical Byzantine Fault Tolerance/WX20180803-120202.png" alt="Image Description">
+  </a>
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/Practical Byzantine Fault Tolerance-20180803.html">Practical Byzantine Fault Tolerance</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/8/3 14:22:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/Practical Byzantine Fault Tolerance-20180803.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/d,thsjjg-sjjgxl-20171227.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <article class="media">
+
+
+  
+
+
+
+
+  <a class="d-flex g-mt-3 mr-3" href="/Paxos Made Live - An Engineering Perspective-20180731.html">
+    <img class="g-width-60 g-height-60 rounded" src="/publicFiles/images/Paxos Made Live/WX20180731-101403.png" alt="Image Description">
+  </a>
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/Paxos Made Live - An Engineering Perspective-20180731.html">Paxos Made Live - An Engineering Perspective</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/7/31 15:5:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/Paxos Made Live - An Engineering Perspective-20180731.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/d,thsjjg-sjjgxl-20171227.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <article class="media">
+
+
+  
+
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/paxos-simple-20180726.html">Paxos Made Simple - Leslie Lamport</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/7/26 18:22:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/paxos-simple-20180726.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/d,thsjjg-sjjgxl-20171227.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytc1YTze">
+  </script>
+
+      
+</div>
+<!-- End Footer Content -->
+
+
+            <!-- Footer Content -->
+<div class="col-lg-3 col-md-6">
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">订阅</h2>
+  </div>
+
+  <div class="g-mb-30">
+    <p class="g-color-white-opacity-0_8">订阅我可以更及时的获取到文章的推送，请在下方输入您的邮箱地址获取文章更新</p>
+    <div class="input-group border-0 g-rounded-30">
+      <input class="form-control border-0 g-rounded-left-30 g-px-12 g-py-8" type="email" placeholder="输入您的邮箱地址">
+      <div class="input-group-addon border-0 p-0">
+        <button class="btn u-btn-primary g-rounded-right-30 g-px-12 g-py-8" type="submit" role="button">订阅</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">社交</h2>
+  </div>
+
+  <p class="g-color-white-opacity-0_8">作为一个宅男，长期宅在家里，会不定期的更新文章。如果你想更新的了解到我的动态，请选择一下任意一种社交方式关注我。</p>
+  <ul class="list-inline mb-0">
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="https://www.facebook.com/aimobier">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="https://www.instagram.com/aimobier/">
+        <i class="fa fa-instagram"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="https://github.com/aimobier">
+        <i class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="http://weibo.com/aouns">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="#modal1" data-modal-target="#modal1" data-modal-effect="fadein">
+        <i class="fa fa-weixin"></i>
+</a>
+    </li>
+  </ul>
+</div>
+<!-- End Footer Content -->
+
+    </div>
+  </div>
+
+
+  <!-- Copyright Footer -->
+<div class="g-bg-black-opacity-0_1 g-color-white-opacity-0_8 text-center g-py-20">
+  <div class="container">
+    
+      
+        
+        <small class="g-font-size-7 g-mr-10 g-mb-10 g-mb-0--md">2015 - 2018 © All Rights Reserved. Msiter by
+        <a class="g-color-white-opacity-0_8" href="#">Jing WenZheng</a>
+      </small>
+  </div>
+</div>
+<!-- End Copyright Footer -->
+
+
+</footer>
+<!-- End Footer -->
+<a class="js-go-to u-go-to-v1" href="#" data-type="fixed" data-position='{
+ "bottom": 15,
+ "right": 15
+}' data-offset-top="400" data-compensation="#js-header" data-show-effect="zoomIn">
+  <i class="hs-icon hs-icon-arrow-top"></i>
+</a>
+
+<script type="text/javascript">
+  $(function() {
+
+    // initialization of go to
+    $.HSCore.components.HSGoTo.init('.js-go-to');
+    $.HSCore.components.HSModalWindow.init('[data-modal-target]');
+    $.getJSON("https://v1.hitokoto.cn/?encode=json", function(json) {
+
+      var author = json["from"];
+      var content = json["hitokoto"];
+
+      $("#hitokoto").html(content);
+
+      $("blockquote .content").html(content);
+      $("blockquote .author").html(author);
+    });
+  });
+</script>
+
+
+    </main>
+
+    <div class="u-outer-spaces-helper"></div>
+
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>

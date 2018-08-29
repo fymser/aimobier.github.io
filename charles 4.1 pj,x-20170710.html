@@ -1,0 +1,3239 @@
+<!DOCTYPE html>
+<html lang="zh">
+  <head>
+
+      <!-- hexo-inject:begin --><!-- hexo-inject:end --><!-- Title -->
+      
+      <title>Charles version 4.1 破解 以及 Https 的破译 | 荆文征</title>
+
+    <!-- Required Meta Tags Always Come First -->
+    <meta charset="utf-8">
+    <meta name="referrer" content="no-referrer" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <meta name="baidu-site-verification" content="x3N9zxqrty" />
+    <meta name="baidu-site-verification" content="cP2u6szylS" />
+    <meta name="google-site-verification" content="pwQ78Z9AmtXiVWejypS4rBSfBZ4_G95mchbkWo3EWmI" />
+    
+      <meta name="keywords" content="荆文征,MSITER,msiter,jingwenzheng,IOS,Blog,博客,荆文征博客,Nodejs,JAVA,JavaScript,js,swift,oc,objective-c,c++,c">
+    
+    
+      <meta name="author" content="小酒馆老板">
+    
+    
+      <meta name="description" content="欲买桂花同载酒&lt;br/&gt;终不似 少年游">
+    
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/favicon.ico">
+
+    <!-- Google Fonts -->
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700%7COpen+Sans:400,600,700">
+
+    <!-- CSS Global Compulsory -->
+    <link rel="stylesheet" href="/assets/vendor/bootstrap/bootstrap.min.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link rel="stylesheet" href="/assets/vendor/icon-awesome/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/assets/vendor/icon-line-pro/style.css">
+    <link rel="stylesheet" href="/assets/vendor/icon-hs/style.css">
+    <link rel="stylesheet" href="/assets/vendor/animate.css">
+    <link rel="stylesheet" href="/assets/vendor/hs-megamenu/src/hs.megamenu.css">
+    <link rel="stylesheet" href="/assets/vendor/hamburgers/hamburgers.min.css">
+    <link rel="stylesheet" href="/assets/vendor/slick-carousel/slick/slick.css">
+    <link rel="stylesheet" href="/assets/vendor/fancybox/jquery.fancybox.css">
+
+    <!-- Revolution Slider -->
+    <link rel="stylesheet" href="/assets/vendor/revolution-slider/revolution/fonts/pe-icon-7-stroke/css/pe-icon-7-stroke.css">
+    <link rel="stylesheet" href="/assets/vendor/revolution-slider/revolution/css/settings.css">
+    <link rel="stylesheet" href="/revolution-slider/carousel-gallery/assets/css/style.css">
+
+    <!-- CSS Unify Theme -->
+    <link rel="stylesheet" href="/assets/css/styles.bm-classic.css">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="/assets/css/custom.css">
+
+    <!-- CSS Implementing Plugins -->
+    <link  rel="stylesheet" href="/assets/vendor/fancybox/jquery.fancybox.min.css">
+
+  <link rel="stylesheet" href="/css/prism-atom-dark.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><!-- hexo-inject:begin --><!-- hexo-inject:end --></head>
+
+
+<!-- JS Global Compulsory -->
+<script src="/assets/vendor/jquery/jquery.min.js"></script>
+<script src="/assets/vendor/jquery-migrate/jquery-migrate.min.js"></script>
+<script src="/assets/vendor/popper.js/index.js"></script>
+<script src="/assets/vendor/bootstrap/bootstrap.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="/assets/vendor/appear.js"></script>
+<script src="/assets/vendor/slick-carousel/slick/slick.js"></script>
+<script src="/assets/vendor/hs-megamenu/src/hs.megamenu.js"></script>
+<script src="/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+
+<!-- JS Unify -->
+<script src="/assets/js/hs.core.js"></script>
+<script src="/assets/js/components/hs.header.js"></script>
+<script src="/assets/js/helpers/hs.hamburgers.js"></script>
+<script src="/assets/js/components/hs.dropdown.js"></script>
+<script src="/assets/js/components/hs.carousel.js"></script>
+<script src="/assets/js/components/hs.go-to.js"></script>
+<script src="/assets/js/components/hs.popup.js"></script>
+
+<!-- JS Revolution Slider -->
+<script src="/assets/vendor/revolution-slider/revolution/js/jquery.themepunch.tools.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/jquery.themepunch.revolution.min.js"></script>
+
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.actions.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.carousel.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.kenburn.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.layeranimation.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.migration.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.navigation.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.parallax.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.slideanims.min.js"></script>
+<script src="/assets/vendor/revolution-slider/revolution/js/extensions/revolution.extension.video.min.js"></script>
+
+<!-- JS Customization -->
+<script src="/assets/js/custom.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script  src="/assets/vendor/fancybox/jquery.fancybox.min.js"></script>
+
+<!-- JS Unify -->
+<script  src="/assets/js/components/hs.popup.js"></script>
+
+<script src="https://cdn.wilddog.com/sdk/js/2.5.17/wilddog-sync.js"></script>
+
+<script>
+  function SETValue(key, value) {
+    if (typeof(Storage) !== "undefined") {
+      var curTime = new Date().getTime();
+      localStorage.setItem(key, JSON.stringify({
+        data: value,
+        time: curTime
+      }));
+    }
+  }
+
+  function GETvalue(key) {
+    if (typeof(Storage) !== "undefined") {
+      var data = localStorage.getItem(key);
+      if(data) {
+        var dataObj = JSON.parse(data);
+        if (new Date().getTime() - dataObj.time > 1000*60*60) {
+          //alert("信息已过期")
+        } else {
+          //console.log("data="+dataObj.data);
+          //console.log(JSON.parse(dataObj.data));
+          var dataObjDatatoJson = dataObj.data
+          return dataObjDatatoJson;
+        }
+      }
+    }
+  }
+
+  function REQuest(url, finish) {
+
+    var value = GETvalue(url);
+
+    if (value) {
+      finish(value);
+      return;
+    }
+
+    $.ajax({
+      type: "get",
+      dataType: "jsonp",
+      cache: true,
+      url: url,
+      success: function(data) {
+        SETValue(url, data);
+        finish(data);
+      }
+    });
+  }
+
+
+  $(document).on('ready', function() {
+    // initialization of header
+    $.HSCore.components.HSHeader.init($('#js-header'));
+    $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+    // initialization of MegaMenu
+    $('.js-mega-menu').HSMegaMenu();
+
+    // initialization of HSDropdown component
+    $.HSCore.components.HSDropdown.init($('[data-dropdown-target]'), {
+      afterOpen: function() {
+        $(this).find('input[type="search"]').focus();
+      }
+    });
+    // initialization of popups
+                                $.HSCore.components.HSPopup.init('.js-fancybox');
+
+                                // initialization of gallery with thumbs
+                                $.HSCore.components.HSPopup.init('.js-fancybox-thumbs', {
+                                  thumbs: {
+                                    showOnStart: true
+                                  }
+                                });
+
+    // initialization of go to
+    $.HSCore.components.HSGoTo.init('.js-go-to');
+  });
+</script>
+
+<script>
+
+//  百度站长 推送
+
+(function(){
+    var bp = document.createElement('script');
+    var curProtocol = window.location.protocol.split(':')[0];
+    if (curProtocol === 'https') {
+        bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+    }
+    else {
+        bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+    }
+    var s = document.getElementsByTagName("script")[0];
+    s.parentNode.insertBefore(bp, s);
+})();
+</script>
+
+
+
+  <body>
+    <!-- hexo-inject:begin --><!-- hexo-inject:end --><main>
+
+  <!-- Header -->
+  <header id="js-header" class="u-header u-header--static u-shadow-v19">
+    <!-- Top Bar -->
+    <div class="u-header__section g-brd-bottom g-brd-gray-light-v4 g-py-18">
+      <div class="container">
+        <div class="row align-items-center">
+
+          <!-- Logo -->
+<div class="col-md-3 g-hidden-md-down logo">
+  <a href="/" class="navbar-brand">
+    <img src="/favicon/logo.png" alt="Logo">
+  </a>
+</div>
+<!-- End Logo -->
+
+
+          <style media="screen">
+  .searchbox {
+    border-style: hidden;
+    padding: 0px;
+    margin: 0px;
+  }
+
+  .markdown {
+    margin: 0px;
+    padding: 0px;
+    position: absolute;
+    top: 42px;
+    border-width: 1px;
+    border-style: solid;
+  }
+
+  #searchdownview {
+    display: none;
+  }
+
+  #searchdownview nav {
+    padding-top: 10px;
+  }
+
+  #PostSearchResults_wrapper {
+    margin: 0px;
+    padding-bottom: 0px;
+  }
+
+  /* 配置 没有搜索到内容的 上边距 */
+
+  #emptymessageview {
+    display: none;
+  }
+
+  #emptymessageview p {
+    margin-top: 10px;
+    font-weight: bold;
+  }
+
+
+  #searchdownview table {
+    table-layout: fixed;
+  }
+
+  #searchdownview td {
+
+    word-break: break-all;
+    word-wrap: break-word;
+  }
+
+
+
+  /* 搜索结果 设置 */
+
+  .resultlist {
+    margin: 0px;
+    padding: 0px;
+  }
+
+  .resultlist li {
+    border-bottom-width: 1px;
+    border-bottom-style: solid;
+    border-bottom-color: #e0e4ea;
+  }
+
+  /* 搜索结果关键字 高粱设置 */
+
+  .search-keyword {
+    font-size: 1rem;
+    color: #6281c8;
+    border-bottom: 1px dashed #4088b8;
+    font-weight:700;
+  }
+
+  /*  分页 前一夜 后一页 隐藏 边框 */
+
+  .searchpage a {
+    border-style: hidden;
+  }
+</style>
+
+
+<script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js" charset="utf-8"></script>
+<script src="/assets/js/helpers/hs.pages.table.js" charset="utf-8"></script>
+
+<!-- Subscribe Form -->
+<div class="col-lg-5 col-md-10 col-sm-10 col-xs-12">
+  <form class="input-group rounded">
+    <div class="form-control w-100 searchbox">
+      <input class="form-control w-100
+      g-brd-secondary-light-v2
+      g-brd-primary--focus
+      g-color-secondary-dark-v1
+      g-placeholder-secondary-dark-v1
+      g-bg-white g-font-weight-400
+      g-font-size-13 rounded g-px-20
+      g-py-12 searchinput"
+      autocomplete="off"
+      id="PostSearchInput" type="text" placeholder="输入以搜索该博客文章">
+
+      <div class=" w-100 markdown g-bg-white
+      g-brd-secondary-light-v2 rounded
+      g-brd-primary--focus" id="searchdownview">
+      <table id="PostSearchResults" ></table>
+        <p class="text-center g-font-size-10" id="infomessagelabel"></p>
+      </div>
+
+      <div class=" w-100 markdown g-bg-white
+      g-brd-secondary-light-v2 rounded
+      g-brd-primary--focus" id="emptymessageview">
+        <p class="text-center g-font-size-13">什么都没有找到</p>
+      </div>
+
+    </div>
+
+
+    <span class="input-group-addon g-brd-none g-py-0 g-pr-0">
+      <button id="BarrageStartButton" class="btn u-btn-white g-color-primary--hover g-bg-secondary g-font-weight-600 g-font-size-13 text-uppercase rounded g-py-12 g-px-20">
+        <span class="g-hidden-md-down">search</span>
+    <i class="g-hidden-lg-up fa fa-search"></i>
+    </button>
+    </span>
+  </form>
+
+</div>
+<!-- End Subscribe Form -->
+
+
+
+<script type="text/javascript">
+  var SearchDataTablesElment;
+
+  var SearchKeyElemnt = "search";
+
+  var Timer = {
+    data: {},
+    start: function(key) {
+      Timer.data[key] = new Date();
+    },
+    stop: function(key) {
+      var time = Timer.data[key];
+      if (time)
+        Timer.data[key] = new Date() - time;
+    },
+    getTime: function(key) {
+      return Timer.data[key];
+    }
+  };
+
+  // AJAX 请求获取 XML 数据
+  function RequestSearchXMLMethod(finish) {
+    var search_path = "search.xml";
+    if (search_path.length == 0) {
+      search_path = "search.xml";
+    }
+    var path = "/" + search_path;
+    $.ajax({
+      url: path,
+      dataType: "xml",
+      success: function(xmlResponse) {
+        // get the contents from search data
+        var datas = $("entry", xmlResponse).map(function() {
+          return {
+            title: $("title", this).text(),
+            content: $("content", this).text(),
+            url: $("url", this).text()
+          };
+        }).get();
+        WhachSearchInputMethod(datas, finish);
+      }
+    });
+  }
+
+  function createTemp(title, url, content) {
+
+    if (content.length > 200) {
+      content = content.substring(0, 200) + "...";
+    }
+
+    return "\
+  <ul class='list-unstyled resultlist' >\
+  <li class='g-pa-20 g-mb-minus-1'>\
+    <!-- Article -->\
+    <article>\
+          <h3 class='h6'>\
+            <a class='g-color-main g-color-primary--hover' href='" + url + "'>" +
+      title +
+      "</a>\
+          </h3>\
+          <p class='g-font-size-12'>" +
+      content + "</p>\
+        </article>\
+    <!-- End Article -->\
+  </li>\
+  </ul>\
+  ";
+  }
+
+
+  function WatchLeftAndRightKeyWork() {
+
+    $(document).keydown(function(event) {
+
+      var pointEvent = event.which == 37 || event.which == 39 || event.which == 27 || event.which == 96;
+
+      var pointStatus = $('#searchdownview').css('display') != 'none' || $("#PostSearchInput").is(':focus') || $("#PostSearchInput").val().length > 0;
+
+      if (pointEvent && pointStatus) {
+        $("#PostSearchInput").blur(); // 失去焦点
+        event.preventDefault(); // 组织键盘
+        switch (event.which) { //判断按键;
+          case 37: // 上一页
+            SearchDataTablesElment.page('previous').draw('page');
+            break;
+          case 39: // 下一页
+            SearchDataTablesElment.page('next').draw('page');
+            break;
+          case 27:
+          case 96:
+            $("#PostSearchInput").val("");
+            $("#PostSearchInput").trigger("input");
+            break;
+          default:
+            break;
+        }
+      }
+    });
+  }
+
+  // 监视输入框的一些输入问题
+  // @params data XML 解析出来的JOSN 数据
+  // @params finish 检测到输入框修改之后 回调的数据
+  //
+  // @return nil
+  function WhachSearchInputMethod(datas, finish) {
+
+    WatchLeftAndRightKeyWork();
+
+    $("#PostSearchInput").on('input', function(e) {
+
+      var startTime = new Date().getTime(); // 开始时间
+
+      var dataSet = [];
+      var keywords = this.value.trim().toLowerCase().split(/[\s\-]+/);
+      if (this.value.trim().length <= 0) {
+        finish(keywords, dataSet);
+        return;
+      }
+      // perform local searching
+      datas.forEach(function(data) {
+        var isMatch = true;
+        var content_index = [];
+        var data_title = data.title.trim().toLowerCase();
+        var data_content = data.content.trim().replace(/<[^>]+>/g, "").toLowerCase();
+        var data_url = data.url;
+        var index_title = -1;
+        var index_content = -1;
+        var first_occur = -1;
+        // only match artiles with not empty titles and contents
+        if (data_title != '' && data_content != '') {
+          keywords.forEach(function(keyword, i) {
+            index_title = data_title.indexOf(keyword);
+            index_content = data_content.indexOf(keyword);
+            if (index_title < 0 && index_content < 0) {
+              isMatch = false;
+            } else {
+              if (index_content < 0) {
+                index_content = 0;
+              }
+              if (i == 0) {
+                first_occur = index_content;
+              }
+            }
+          });
+        }
+        // show search results
+        if (isMatch) {
+          var content = data.content.trim().replace(/<[^>]+>/g, "");
+          if (first_occur >= 0) {
+            // cut out characters
+            var start = first_occur - 6;
+            var end = first_occur + 6;
+            if (start < 0) {
+              start = 0;
+            }
+            if (start == 0) {
+              end = 10;
+            }
+            if (end > content.length) {
+              end = content.length;
+            }
+            var match_content = content.substr(start, end);
+            // highlight all keywords
+            keywords.forEach(function(keyword) {
+              var regS = new RegExp(keyword, "gi");
+              data_title = data_title.replace(regS, "<strong class=\"search-keyword\">" + keyword + "</strong>");
+              match_content = match_content.replace(regS, "<strong class=\"search-keyword\">" + keyword + "</strong>");
+            });
+            var datas = [createTemp(data_title, data_url, match_content)];
+            dataSet.push(datas);
+          };
+        };
+      });
+
+      var endTime = new Date().getTime(); // 开始时间
+
+      finish(keywords, dataSet, endTime - startTime);
+    });
+  };
+
+  function EmptyViewHandleMethod(datacount) {
+    if (datacount <= 0 && $("#PostSearchInput").val().length > 0) {
+      $("#emptymessageview").attr("style", "display:block;"); //隐藏div
+    } else {
+      $("#emptymessageview").attr("style", "display:none;"); //显示div
+    }
+  }
+
+  function InitSearchInterfaceMethod() {
+
+    $("#PostSearchInput").focus(function(){
+        if ($("#PostSearchInput").val().length > 0) {
+          $("#PostSearchInput").trigger("input");
+        }
+    });
+
+    RequestSearchXMLMethod(function(keywords, datas, times) {
+      if (datas.length <= 0) {
+        $("#searchdownview").attr("style", "display:none;"); //隐藏div
+      } else {
+        $("#searchdownview").attr("style", "display:block;"); //显示div
+      }
+      EmptyViewHandleMethod(datas.length);
+      if (!SearchDataTablesElment) {
+        SearchDataTablesElment = $('#PostSearchResults').DataTable({
+          data: datas,
+          autoWidth: false,
+          ordering: false,
+          searching: false,
+          lengthChange: false,
+          pageLength: 4,
+          info: false,
+          iShowPages: 3,
+          pagingType: "cutsomPage",
+          footerCallback: function(tfoot, data, start, end, display) {
+
+            var keyWorkd = "<span style='color: #6281c8;font-weight: bold;'>" + $("#PostSearchInput").val() + "</span>";
+
+            var title = "查询[" + keyWorkd + "]结果共" + data.length + "个,总耗时" + times / 1000 + "秒";
+
+            $("#infomessagelabel").html(title);
+          },
+          columns: [{
+            title: ""
+          }]
+        });
+      } else {
+        SearchDataTablesElment.clear().rows.add(datas).draw();
+      }
+
+
+
+    });
+  };
+
+  $(document).ready(function() {
+
+    InitSearchInterfaceMethod();
+  });
+</script>
+
+
+          <!-- Language -->
+<div id="clock" class="col-xl-2 col-md-2 col-sm-2 g-hidden-xs-down ml-auto ">
+</div>
+<!-- End Language -->
+
+
+<script type="text/javascript">
+
+var counter;
+
+var config = {
+  syncURL: "https://wd2622139095udguuj.wilddogio.com" //输入节点 URL
+};
+wilddog.initializeApp(config);
+var ref = wilddog.sync().ref("browerlog");
+
+ref.push({
+  "url": window.location.href,
+  "path": window.location.pathname,
+  "date": Math.round(new Date().getTime())
+});
+
+ref.orderByChild("path").equalTo(window.location.pathname).on('value', function(snapshot) {
+
+  var value = snapshot.val() == null ? 0 : Object.keys(snapshot.val()).length
+
+  $("#clock").text("No."+value);
+});
+
+var zan = wilddog.sync().ref("dianzan");
+
+zan.on('value', function(snapshot) {
+    counter = snapshot.val();
+    $("#counter").html(""+counter);
+  }, function (error) {
+    console.log(error);
+  });
+
+
+function zanUpMethod(){
+  zan.set(counter+1)
+}
+function zanDownMethod(){
+  zan.set(counter-1)
+}
+
+</script>
+
+
+          <!-- Account -->
+<div class="col-1 g-hidden-md-down" id="account">
+  <a id="account-dropdown-invoker" class="media align-items-center float-right g-text-underline--none--hover" href="#"
+     aria-controls="account-dropdown"
+     aria-haspopup="true"
+     aria-expanded="false"
+     data-dropdown-event="hover"
+     data-dropdown-target="#account-dropdown"
+     data-dropdown-type="css-animation"
+     data-dropdown-duration="300"
+     data-dropdown-hide-on-scroll="false"
+     data-dropdown-animation-in="fadeIn"
+     data-dropdown-animation-out="fadeOut">
+    <div class="d-flex g-width-30 g-height-30 mr-2">
+      <img class="img-fluid rounded-circle" src="http://blog.msiter.com/favicon/avatar.jpg" alt="Image Description">
+    </div>
+    <div class="media-body">
+      <span class="d-block g-hidden-sm-down g-color-main g-font-weight-600 g-font-size-13">文征</span>
+    </div>
+  </a>
+
+  <div id="account-dropdown" class="list-unstyled g-brd-around g-brd-secondary-light-v2 g-bg-white rounded g-pos-abs g-right-0 g-py-5 g-mt-57" aria-labelledby="account-dropdown-invoker" style="width:300px;">
+
+
+
+
+
+
+    <div class="col-lg-12 g-mb-30">
+        <!-- Figure -->
+        <figure class="u-shadow-v19 g-bg-white g-rounded-4 g-pa-20">
+
+          <div id="counter" class="text-center g-font-size-20">
+
+            0
+
+          </div>
+
+          <hr class="g-brd-gray-light-v4 g-my-15">
+
+          <div class="d-flex justify-content-start">
+            <!-- Figure Image -->
+            <img class="g-width-90 g-height-90 rounded-circle g-mr-15" src="http://blog.msiter.com/favicon/avatar.jpg" alt="Image Description">
+            <!-- Figure Image -->
+
+            <div class="d-block">
+              <!-- Figure Info -->
+              <div class="g-mb-5">
+                <h4 class="h5 g-mb-1">荆文征</h4>
+                <em class="d-block g-color-gray-dark-v4 g-font-style-normal g-font-size-13">Zhidu Inc.</em>
+              </div>
+              <!-- End Figure Info -->
+
+              <!-- Social Icons -->
+              <ul class="list-inline mb-0">
+                <li class="list-inline-item g-mx-2">
+                  <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-facebook--hover g-ml-minus-15" href="javascript:;" onclick="zanUpMethod()">
+                    <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-thumbs-o-up"></i>
+                    <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-thumbs-up"></i>
+                  </a>
+                </li>
+                <li class="list-inline-item g-mx-2">
+                  <a class="u-icon-v1 u-icon-slide-up--hover g-color-gray-dark-v4 g-color-twitter--hover" href="javascript:void(0)" onclick="zanDownMethod()">
+                    <i class="g-font-size-default g-line-height-1 u-icon__elem-regular fa fa-thumbs-o-down"></i>
+                    <i class="g-font-size-default g-line-height-0_8 u-icon__elem-hover fa fa-thumbs-down"></i>
+                  </a>
+                </li>
+              </ul>
+              <!-- End Social Icons -->
+            </div>
+          </div>
+
+          <hr class="g-brd-gray-light-v4 g-my-15">
+
+          <div class="g-py-10">
+            <!-- Figure Contacts -->
+            <ul class="list-unstyled g-color-gray-dark-v5 g-font-size-13 g-mb-0">
+              <li class="g-mb-10">
+                <i class="g-pos-rel g-mt-1 mr-2 icon-communication-062 u-line-icon-pro"></i>
+                <a href="mailto:alphabetion@gmail.com">alphabetion@gmail.com</a>
+              </li>
+              <li>
+                <i class="g-pos-rel g-top-1 mr-2 icon-electronics-005 u-line-icon-pro"></i>
+                <em class="g-font-style-normal">+(86) 136 0135 6004</em>
+              </li>
+            </ul>
+            <!-- End Figure Contacts -->
+          </div>
+
+          <hr class="g-brd-gray-light-v4 g-my-15">
+            <!-- Border Primary Blockquotes -->
+            <blockquote class="blockquote g-brd-2 g-brd-primary g-font-size-12 g-mb-30">
+              <p class="content"></p>
+              <footer class="blockquote-footer text-right">
+                <cite title="Source Title" class="author"></cite>
+              </footer>
+            </blockquote>
+            <!-- End Border Primary Blockquotes -->
+        </figure>
+        <!-- End Figure -->
+      </div>
+
+
+
+
+
+
+
+  </div>
+
+
+</div>
+<!-- End Account -->
+
+<script type="text/javascript">
+
+$("#account").mouseover(function(){
+
+
+});
+
+$("#account").mouseout(function(){
+
+});
+
+</script>
+
+
+        </div>
+      </div>
+    </div>
+    <!-- End Top Bar -->
+
+    <div class="u-header__section u-header__section--light g-bg-white g-transition-0_3 g-py-10">
+      <nav class="js-mega-menu navbar navbar-expand-lg g-px-0">
+        <div class="container g-px-15">
+          <!-- Logo -->
+          <a class="navbar-brand g-hidden-lg-up" href="bm-classic-home-page-1.html">
+            <img src="/assets/img/logo.png" alt="Logo">
+          </a>
+          <!-- End Logo -->
+
+          <!-- Responsive Toggle Button -->
+          <button class="navbar-toggler navbar-toggler-right btn g-line-height-1 g-brd-none g-pa-0 ml-auto" type="button"
+                  aria-label="Toggle navigation"
+                  aria-expanded="false"
+                  aria-controls="navBar"
+                  data-toggle="collapse"
+                  data-target="#navBar">
+            <span class="hamburger hamburger--slider g-pa-0">
+              <span class="hamburger-box">
+                <span class="hamburger-inner"></span>
+              </span>
+            </span>
+          </button>
+          <!-- End Responsive Toggle Button -->
+
+          <!-- Navigation -->
+          <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg" id="navBar">
+            <ul class="navbar-nav g-font-weight-600">
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-1" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">标签
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-1">
+    <div class="row">
+      <div class="col-lg-2">
+        <ul class="list-unstyled mb-0" style="ov">
+
+          
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/生活/">生活</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/悲观/">悲观</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/Objective-C/">Objective-C</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/AsyncDisplayKit/">AsyncDisplayKit</a></li>
+
+            
+
+                      <li class="g-brd-bottom g-brd-gray-light-v4 g-py-10">
+                        <a class="g-color-main g-color-main--hover" href="/tags/ios/">ios</a></li>
+
+            
+
+        </ul>
+      </div>
+      <div class="col-lg-1">
+
+      </div>
+      <div class="col-lg-9" style="height:auto;" >
+
+        <!-- Background Gray Colored -->
+        <ul class="u-list-inline">
+
+          
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/约束教程/">约束教程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/AttributedString/">AttributedString</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/iOS8-html2AttributedString-error/">iOS8 html2AttributedString error</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/IOS/">IOS</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/ObjC/">ObjC</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Pthreads/">Pthreads</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/线程/">线程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/POSIX/">POSIX</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/RxSwift/">RxSwift</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Moya/">Moya</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/java/">java</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/spring-boot/">spring boot</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mybatis/">mybatis</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/WKWebView/">WKWebView</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Systematic-distinction/">Systematic distinction</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/WebKit/">WebKit</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/WebView/">WebView</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/UIWebView/">UIWebView</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Input/">Input</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/File/">File</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Bug/">Bug</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/稀奇古怪的问题/">稀奇古怪的问题</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/博客美化/">博客美化</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/hexo/">hexo</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mathjax/">mathjax</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/objc/">objc</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/travis-ci/">travis-ci</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/cocoapods/">cocoapods</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/NodeJS/">NodeJS</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/APNs/">APNs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/八爪鱼/">八爪鱼</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/html/">html</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/js/">js</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Javascript/">Javascript</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/鼠标悬浮/">鼠标悬浮</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/面试题目/">面试题目</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/递归/">递归</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/error/">error</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/奇怪的问题/">奇怪的问题</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/希望/">希望</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/家庭/">家庭</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/测试/">测试</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/MARKDOWN/">MARKDOWN</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/无趣，心理学/">无趣，心理学</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Iterm/">Iterm</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/zsh/">zsh</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/主题/">主题</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/hashimoto/">hashimoto</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/论文/">论文</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/共识算法/">共识算法</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/技巧/">技巧</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/swift/">swift</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Waver/">Waver</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/AVFoundation/">AVFoundation</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/逆向/">逆向</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/theos/">theos</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/tweak/">tweak</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mongodb/">mongodb</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/mongoose/">mongoose</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/nodejs/">nodejs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/RX/">RX</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/c/">c</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/c/">c++</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/reactiv/">reactiv</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/rxswift/">rxswift</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/swagger/">swagger</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/api/">api</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Web3js/">Web3js</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Ethereum/">Ethereum</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Solidity/">Solidity</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/truffle/">truffle</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/ganache/">ganache</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/数据结构/">数据结构</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/计算机基础/">计算机基础</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/手势密码/">手势密码</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/autolayout/">autolayout</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/破解/">破解</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/抓包/">抓包</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/DB/">DB</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/realm/">realm</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/jooq/">jooq</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/paoxs/">paoxs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/越狱/">越狱</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/cydia/">cydia</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/制作源/">制作源</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Segwit/">Segwit</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Lightning-Network/">Lightning Network</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Atomic-Transaction/">Atomic Transaction</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/HD-Wallet/">HD Wallet</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/BIP32-44/">BIP32-44</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/Block-chain/">Block chain</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/multi-paoxs/">multi-paoxs</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/async/">async</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/区块链/">区块链</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/p2p/">p2p</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/dns-seed/">dns seed</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/PBFT/">PBFT</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item g-mb-10">
+                          <a class="u-tags-v1 g-color-main g-bg-gray-light-v4 g-bg-black--hover g-color-white--hover g-py-4 g-px-10" href="/tags/consensus/">consensus</a>
+                        </li>
+
+            
+
+        </ul>
+        <!-- End Background Gray Colored -->
+
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-5" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">栏目
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-primary g-left-15 g-right-15 g-px-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-5">
+    <div class="row">
+      <div class="col-lg-12">
+        <ul class="list-inline text-center mb-0">
+
+
+
+          
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/牢骚/">牢骚</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/IOS/">IOS</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/学习/">学习</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/线程/">线程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/服务器/">服务器</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/博客历程/">博客历程</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/学习资料/">学习资料</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/Web-前端/">Web 前端</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/面试题目/">面试题目</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/生活/">生活</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/测试用例/">测试用例</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/hexo/">hexo</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/共识算法/">共识算法</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/开发帮助/">开发帮助</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/区块链/">区块链</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/数据结构/">数据结构</a>
+                        </li>
+
+            
+
+                        <li class="list-inline-item">
+                          <a class="d-inline-block g-color-white-opacity-0_8 g-color-white--hover g-px-10 g-py-15" href="/categories/ios/">ios</a>
+                        </li>
+
+            
+
+
+        </ul>
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-3" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">最新文章
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-3">
+    <div class="row">
+      <div class="col-lg-4">
+        <article>
+          <figure class="g-pos-rel">
+            <img class="img-fluid w-100 g-mb-20" src="/assets/img-temp/900x600/img7.jpg" alt="Image Description">
+          </figure>
+          <h3 class="h4 g-mb-10"><a class="g-color-gray-dark-v2" href="#">Love the mother nature</a>
+          </h3>
+          <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+            <li class="list-inline-item">
+              <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">Kathy Reyes</a>
+            </li>
+            <li class="list-inline-item">/</li>
+            <li class="list-inline-item">July 20, 2016</li>
+            <li class="list-inline-item">/</li>
+            <li class="list-inline-item">
+              <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                <i class="fa fa-comments-o"></i> 18
+              </a>
+            </li>
+          </ul>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img1.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Top 10 Luxury Hotels - 5 Star Best Luxury Hotels</a>
+            </h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 07, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 24
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img2.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6"><a class="g-color-main" href="#">10 Most beautiful beaches</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 20, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 18
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img3.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Stylish things to do, see and buy this week</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 16, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 31
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img1.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">8 health benefits and drawbacks of coffee</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 30, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 12
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img2.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Stylish things to do, see and buy this week</a></h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 16, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 31
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+
+        <article class="media g-mb-20">
+          <a class="d-flex mr-3" href="#"><img class="g-width-120 g-height-70" src="/assets/img-temp/500x320/img3.jpg" alt="Image Description"></a>
+          <div class="media-body">
+            <h3 class="h6">
+              <a class="g-color-main" href="#">Top 10 Luxury Hotels - 5 Star Best Luxury Hotels</a>
+            </h3>
+            <ul class="u-list-inline g-font-size-12 g-color-gray-dark-v4">
+              <li class="list-inline-item">July 07, 2016</li>
+              <li class="list-inline-item">/</li>
+              <li class="list-inline-item">
+                <a class="g-color-gray-dark-v4 g-text-underline--none--hover" href="#">
+                  <i class="fa fa-comments-o"></i> 24
+                </a>
+              </li>
+            </ul>
+          </div>
+        </article>
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-mx-20--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-4" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">最火文章
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-4">
+    <div class="row">
+      <div class="col-lg-4">
+        <article class="u-block-hover">
+          <figure class="g-bg-cover g-bg-black-gradient-opacity-v1--after">
+            <img class="img-fluid u-block-hover__main--zoom-v1" src="/assets/img-temp/500x320/img1.jpg" alt="Image Description">
+          </figure>
+          <span class="g-pos-abs g-top-20 g-left-20">
+          <a class="btn btn-sm u-btn-red rounded-0" href="#">Fashion</a>
+        </span>
+          <span class="u-icon-v3 u-icon-size--sm g-bg-white g-color-black g-rounded-50x g-cursor-pointer g-pos-abs g-top-20 g-right-20">
+          <i class="icon-camera"></i>
+        </span>
+          <header class="g-pos-abs g-bottom-10 g-left-20 g-right-20">
+            <small class="g-color-white">
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 26, 2016
+            </small>
+            <h3 class="h4 g-font-weight-600 g-mt-5">
+              <a class="g-color-white g-color-white--hover" href="#">Be ready, fashion of the year is coming this year</a>
+            </h3>
+          </header>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="u-block-hover">
+          <figure class="g-bg-cover g-bg-black-gradient-opacity-v1--after">
+            <img class="img-fluid u-block-hover__main--zoom-v1" src="/assets/img-temp/500x320/img2.jpg" alt="Image Description">
+          </figure>
+          <span class="g-pos-abs g-top-20 g-left-20">
+          <a class="btn btn-sm u-btn-red rounded-0" href="#">Beaches</a>
+        </span>
+          <span class="u-icon-v3 u-icon-size--sm g-bg-white g-color-black g-rounded-50x g-cursor-pointer g-pos-abs g-top-20 g-right-20">
+          <i class="icon-camera"></i>
+        </span>
+          <header class="g-pos-abs g-bottom-10 g-left-20 g-right-20">
+            <small class="g-color-white">
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 15, 2016
+            </small>
+            <h3 class="h4 g-font-weight-600 g-mt-5">
+              <a class="g-color-white g-color-white--hover" href="#">Must be visited places in the USA - Florida Beaches</a>
+            </h3>
+          </header>
+        </article>
+      </div>
+      <div class="col-lg-4">
+        <article class="u-block-hover">
+          <figure class="g-bg-cover g-bg-black-gradient-opacity-v1--after">
+            <img class="img-fluid u-block-hover__main--zoom-v1" src="/assets/img-temp/500x320/img3.jpg" alt="Image Description">
+          </figure>
+          <span class="g-pos-abs g-top-20 g-left-20">
+          <a class="btn btn-sm u-btn-red rounded-0" href="#">Food</a>
+        </span>
+          <span class="u-icon-v3 u-icon-size--sm g-bg-white g-color-black g-rounded-50x g-cursor-pointer g-pos-abs g-top-20 g-right-20">
+          <i class="icon-camera g-left-2"></i>
+        </span>
+          <header class="g-pos-abs g-bottom-10 g-left-20 g-right-20">
+            <small class="g-color-white">
+              <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 8, 2016
+            </small>
+            <h3 class="h4 g-font-weight-600 g-mt-5">
+              <a class="g-color-white g-color-white--hover" href="#">Why your next glass of juice will cost you more</a>
+            </h3>
+          </header>
+        </article>
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Mega Menu Item -->
+<li class="hs-has-mega-menu nav-item g-mx-10--lg g-ml-15--xl"
+    data-animation-in="fadeIn"
+    data-animation-out="fadeOut"
+    data-position="right">
+  <a id="mega-menu-label-7" class="nav-link text-uppercase g-px-0" href="#" aria-haspopup="true" aria-expanded="false">新闻热点
+    <i class="hs-icon hs-icon-arrow-bottom g-font-size-11 g-ml-5"></i></a>
+
+  <!-- Mega Menu -->
+  <div class="hs-mega-menu u-shadow-v11 g-text-transform-none g-font-weight-400 g-brd-top g-brd-primary g-brd-top-2 g-bg-white g-left-15 g-right-15 g-pa-30 g-mt-17 g-mt-7--lg--scrolling" aria-labelledby="mega-menu-label-7">
+    <div class="row">
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 16, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">You've been making French Pie all wrong - Until Now</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 02, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Unify facts, study finds - sensitive to gluten without having coeliac disease</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 18, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Why your next cup of cofee with milk will cost you more</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 12, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Incredible product and quality: Unify best template of the year</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 16, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Some post title will be implimented here and It's cool!</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> Aug 02, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Wireframe approach for the news blocks and pages</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+
+      <div class="col-lg-3 g-mb-20 g-mb-0--lg">
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 18, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">Over thousands of components help you to boost your project</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+
+        <hr class="g-mt-15 g-mb-10">
+
+        <!-- Article -->
+        <article>
+          <div class="g-font-size-12 g-mb-5">
+            <i class="icon-clock g-pos-rel g-top-1 g-mr-2"></i> July 12, 2016
+          </div>
+
+          <h3 class="h6">
+            <a class="g-color-main" href="#">How to run a ticket: Best 10 point approaches for people who stands..</a>
+          </h3>
+        </article>
+        <!-- End Article -->
+      </div>
+    </div>
+  </div>
+  <!-- End Mega Menu -->
+</li>
+<!-- End Mega Menu Item -->
+
+              <!-- Main -->
+<li class="nav-item g-mx-10--lg g-mx-20--xl">
+  <a id="nav-link--pages" class="nav-link text-uppercase g-color-primary--hover g-px-0" href="/">
+    主页
+  </a>
+</li>
+<!-- End Main -->
+
+
+
+
+
+
+
+
+            </ul>
+          </div>
+          <!-- End Navigation -->
+        </div>
+      </nav>
+    </div>
+  </header>
+  <!-- End Header -->
+
+
+
+            <style media="screen">
+  .barrage {
+    width: 100%;
+    background-color: #6281c8;
+    position: fixed;
+    top: 0px;
+    display: none;
+  }
+
+  .barrage .logo {
+    visibility: hidden;
+  }
+</style>
+
+<header id="BarrageInputView" class="u-header u-header--static u-shadow-v19 barrage">
+  <div class="u-header__section g-brd-bottom g-brd-gray-light-v4 g-py-18">
+    <div class="container">
+      <div class="row align-items-center">
+
+        <!-- Logo -->
+<div class="col-md-3 g-hidden-md-down logo">
+  <a href="/" class="navbar-brand">
+    <img src="/favicon/logo.png" alt="Logo">
+  </a>
+</div>
+<!-- End Logo -->
+
+
+          <h3 class="col-4 col-lg-2 g-pos-rel g-px-15 ml-auto text-center g-color-white">你好，再见</h3>
+
+      </div>
+    </div>
+  </div>
+</header>
+
+
+<script type="text/javascript">
+  $(document).ready(function() {
+
+    var barrageInputView = $("#BarrageInputView");
+
+    $("#BarrageStartButton").click(function(event) {
+
+      barrageInputView.css("display", "block");
+      barrageInputView.css("top", "-300px");
+
+      console.log("这个按钮一点用都没有.直接搜索就好了");
+
+      barrageInputView.animate({
+        top: "0",
+      }, 1000, function() {
+        setTimeout(function() {
+
+          barrageInputView.animate({
+            top: "-200"
+          }, 1000,function(){
+            barrageInputView.css("display", "none");
+          });
+
+        }, 1000);
+      });
+
+    });
+  });
+</script>
+
+
+
+    
+
+<section class="g-pt-50 g-pb-100">
+  <div class="container">
+    <div class="row">
+      <!-- Articles Content -->
+      <div class="col-lg-9 g-mb-50 g-mb-0--lg">
+        <article class="g-mb-60">
+          <header class="g-mb-30">
+            <h2 class="h1 g-mb-15">Charles version 4.1 破解 以及 Https 的破译</h2>
+
+            <ul id="editHtmlElement" class="list-inline d-sm-flex g-color-gray-dark-v4 mb-0">
+              <li class="list-inline-item">
+                小酒馆老板
+              </li>
+              <li class="list-inline-item g-mx-10">/</li>
+              <li class="list-inline-item">
+                2017/7/10 13:26:0
+              </li>
+              <li class="list-inline-item g-mx-10">/</li>
+              <li class="list-inline-item g-mr-10">
+                <i class="align-middle mr-2 icon-hotel-restaurant-242 u-line-icon-pro"></i>共有
+                4,159个字
+              </li>
+              <li class="list-inline-item g-mx-10">/</li>
+              <li class="list-inline-item g-mr-10">
+                <i class="align-middle mr-2 icon-hotel-restaurant-003 u-line-icon-pro"></i>预计阅读
+                15分钟
+              </li>
+            </ul>
+
+            <hr class="g-brd-gray-light-v4 g-my-15">
+
+          </header>
+
+          <div class="">
+            <p>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/stock-photo-219218271.jpg" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/stock-photo-219218271.jpg" alt="Image Description">              </a><figcaption class="figure-caption g-font-size-12 g-color-gray-dark-v4 g-mt-5 text-center">后来我终于知道,它并不是我的花,我只是恰好途径了它的盛放。</figcaption></figure></p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="Charles-限时优惠" style="display: inline;"><a href="#Charles-限时优惠" class="headerlink" title="Charles 限时优惠"></a>Charles 限时优惠</h2><p>Charles 4 正版限时优惠优惠活动（限时：2016 年 8 月 8 日 - 15 日），优惠 30 元，<a href="https://taoquan.taobao.com/coupon/unify_apply.htm?sellerId=881336826&amp;activityId=8764822622de490a82ccc6383abce406" target="_blank" rel="noopener">点击领取优惠券</a>。</p>
+<!--
+淘口令：Charles 新版发布，使用￥Charles￥限时特惠购买正版（长按复制整段文案，打开手机淘宝即可进入活动内容）
+-->
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="简介" style="display: inline;"><a href="#简介" class="headerlink" title="简介"></a>简介</h2>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-logo.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-logo.png" alt="Image Description">              </a></figure>
+<p><a href="http://www.charlesproxy.com/" target="_blank" rel="noopener">Charles</a> 是在 Mac 下常用的网络封包截取工具，在做<br>移动开发时，我们为了调试与服务器端的网络通讯协议，常常需要截取网络封包来分析。</p>
+<a id="more"></a>
+<p>Charles 通过将自己设置成系统的网络访问代理服务器，使得所有的网络访问请求都通过它来完成，从而实现了网络封包的截取和分析。</p>
+<p>除了在做移动开发中调试端口外，Charles 也可以用于分析第三方应用的通讯协议。配合 Charles 的 SSL 功能，Charles 还可以分析 Https 协议。</p>
+<p>Charles 是收费软件，可以免费试用 30 天。试用期过后，未付费的用户仍然可以继续使用，但是每次使用时间不能超过 30 分钟，并且启动时将会有 10 秒种的延时。因此，该付费方案对广大用户还是相当友好的，即使你长期不付费，也能使用完整的软件功能。只是当你需要长时间进行封包调试时，会因为 Charles 强制关闭而遇到影响。</p>
+<p>Charles 主要的功能包括：</p>
+<ol>
+<li>截取 Http 和 Https 网络封包。</li>
+<li>支持重发网络请求，方便后端调试。</li>
+<li>支持修改网络请求参数。</li>
+<li>支持网络请求的截获并动态修改。</li>
+<li>支持模拟慢速网络。</li>
+</ol>
+<p>Charles 4 新增的主要功能包括：</p>
+<ol>
+<li>支持 Http 2。</li>
+<li>支持 IPv6。</li>
+</ol>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="安装-Charles" style="display: inline;"><a href="#安装-Charles" class="headerlink" title="安装 Charles"></a>安装 Charles</h2><p>去 Charles 的官方网站（<a href="http://www.charlesproxy.com" target="_blank" rel="noopener">http://www.charlesproxy.com</a>）下载最新版的 Charles 安装包，是一个 dmg 后缀的文件。打开后将 Charles 拖到 Application 目录下即完成安装。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="将-Charles-设置成系统代理" style="display: inline;"><a href="#将-Charles-设置成系统代理" class="headerlink" title="将 Charles 设置成系统代理"></a>将 Charles 设置成系统代理</h2><p>之前提到，Charles 是通过将自己设置成代理服务器来完成封包截取的，所以使用 Charles 的第一步是将其设置成系统的代理服务器。</p>
+<p>启动 Charles 后，第一次 Charles 会请求你给它设置系统代理的权限。你可以输入登录密码授予 Charles 该权限。你也可以忽略该请求，然后在需要将 Charles 设置成系统代理时，选择菜单中的 “Proxy” -&gt; “Mac OS X Proxy” 来将 Charles 设置成系统代理。如下所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-pro-3.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-pro-3.png" alt="Image Description">              </a></figure>
+<p>之后，你就可以看到源源不断的网络请求出现在 Charles 的界面中。</p>
+<p>需要注意的是，Chrome 和 Firefox 浏览器默认并不使用系统的代理服务器设置，而 Charles 是通过将自己设置成代理服务器来完成封包截取的，所以在默认情况下无法截取 Chrome 和 Firefox 浏览器的网络通讯内容。如果你需要截取的话，在 Chrome 中设置成使用系统的代理服务器设置即可，或者直接将代理服务器设置成 <code>127.0.0.1:8888</code> 也可达到相同效果。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="Charles-主界面介绍" style="display: inline;"><a href="#Charles-主界面介绍" class="headerlink" title="Charles 主界面介绍"></a>Charles 主界面介绍</h2>           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-pro-4.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-pro-4.png" alt="Image Description">              </a></figure>
+<p>Charles 主要提供两种查看封包的视图，分别名为 “Structure” 和 “Sequence”。</p>
+<ol>
+<li>Structure 视图将网络请求按访问的域名分类。</li>
+<li>Sequence 视图将网络请求按访问的时间排序。</li>
+</ol>
+<p>大家可以根据具体的需要在这两种视图之前来回切换。请求多了有些时候会看不过来，Charles 提供了一个简单的 Filter 功能，可以输入关键字来快速筛选出 URL 中带指定关键字的网络请求。</p>
+<p>对于某一个具体的网络请求，你可以查看其详细的请求内容和响应内容。如果请求内容是 POST 的表单，Charles 会自动帮你将表单进行分项显示。如果响应内容是 JSON 格式的，那么 Charles 可以自动帮你将 JSON 内容格式化，方便你查看。如果响应内容是图片，那么 Charles 可以显示出图片的预览。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="过滤网络请求" style="display: inline;"><a href="#过滤网络请求" class="headerlink" title="过滤网络请求"></a>过滤网络请求</h2><p>通常情况下，我们需要对网络请求进行过滤，只监控向指定目录服务器上发送的请求。对于这种需求，以下几种办法：</p>
+<p>方法一：在主界面的中部的 Filter 栏中填入需要过滤出来的关键字。例如我们的服务器的地址是：<code>http://yuantiku.com</code> , 那么只需要在 Filter 栏中填入 yuantiku 即可。</p>
+<p>方法二：在 Charles 的菜单栏选择 “Proxy”-&gt;”Recording Settings”，然后选择 Include 栏，选择添加一个项目，然后填入需要监控的协议，主机地址，端口号。这样就可以只截取目标网站的封包了。如下图所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-filter-setting.jpg" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-filter-setting.jpg" alt="Image Description">              </a></figure>
+<p>通常情况下，我们使用方法一做一些临时性的封包过滤，使用方法二做一些经常性的封包过滤。</p>
+<p>方法三：在想过滤的网络请求上右击，选择 “Focus”，之后在 Filter 一栏勾选上 Focussed 一项，如下图所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-focus.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-focus.png" alt="Image Description">              </a></figure>
+<p>这种方式可以临时性的，快速地过滤出一些没有通过关键字的一类网络请求。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="截取-iPhone-上的网络封包" style="display: inline;"><a href="#截取-iPhone-上的网络封包" class="headerlink" title="截取 iPhone 上的网络封包"></a>截取 iPhone 上的网络封包</h2><p>Charles 通常用来截取本地上的网络封包，但是当我们需要时，我们也可以用来截取其它设备上的网络请求。下面我就以 iPhone 为例，讲解如何进行相应操作。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="Charles-上的设置" style="display: inline;"><a href="#Charles-上的设置" class="headerlink" title="Charles 上的设置"></a>Charles 上的设置</h3><p>要截取 iPhone 上的网络请求，我们首先需要将 Charles 的代理功能打开。在 Charles 的菜单栏上选择 “Proxy”-&gt;”Proxy Settings”，填入代理端口 8888，并且勾上 “Enable transparent HTTP proxying” 就完成了在 Charles 上的设置。如下图所示:</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-proxy-setting.jpg" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-proxy-setting.jpg" alt="Image Description">              </a></figure>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="iPhone-上的设置" style="display: inline;"><a href="#iPhone-上的设置" class="headerlink" title="iPhone 上的设置"></a>iPhone 上的设置</h3><p>首先我们需要获取 Charles 运行所在电脑的 IP 地址，Charles 的顶部菜单的 “Help”-&gt;”Local IP Address”，即可在弹出的对话框中看到 IP 地址，如下图所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-local-ip.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-local-ip.png" alt="Image Description">              </a></figure>
+<p>在 iPhone 的 “ 设置 “-&gt;” 无线局域网 “ 中，可以看到当前连接的 wifi 名，通过点击右边的详情键，可以看到当前连接上的 wifi 的详细信息，包括 IP 地址，子网掩码等信息。在其最底部有「HTTP 代理」一项，我们将其切换成手动，然后填上 Charles 运行所在的电脑的 IP，以及端口号 8888，如下图所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-iphone-setting.jpg" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-iphone-setting.jpg" alt="Image Description">              </a></figure>
+<p>设置好之后，我们打开 iPhone 上的任意需要网络通讯的程序，就可以看到 Charles 弹出 iPhone 请求连接的确认菜单（如下图所示），点击 “Allow” 即可完成设置。</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-proxy-confirm.jpg" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-proxy-confirm.jpg" alt="Image Description">              </a></figure>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="截取-Https-通讯信息" style="display: inline;"><a href="#截取-Https-通讯信息" class="headerlink" title="截取 Https 通讯信息"></a>截取 Https 通讯信息</h2><br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="安装证书" style="display: inline;"><a href="#安装证书" class="headerlink" title="安装证书"></a>安装证书</h3><p>如果你需要截取分析 Https 协议相关的内容。那么需要安装 Charles 的 CA 证书。具体步骤如下。</p>
+<p>首先我们需要在 Mac 电脑上安装证书。点击 Charles 的顶部菜单，选择 “Help” -&gt; “SSL Proxying” -&gt; “Install Charles Root Certificate”，然后输入系统的帐号密码，即可在 KeyChain 看到添加好的证书。如下图所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-pro-1.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-pro-1.png" alt="Image Description">              </a></figure>
+<p>需要注意的是，即使是安装完证书之后，Charles 默认也并不截取 Https 网络通讯的信息，如果你想对截取某个网站上的所有 Https 网络请求，可以在该请求上右击，选择 SSL proxy，如下图所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-ssl-add-host.jpg" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-ssl-add-host.jpg" alt="Image Description">              </a></figure>
+<p>这样，对于该 Host 的所有 SSL 请求可以被截取到了。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="截取移动设备中的-Https-通讯信息" style="display: inline;"><a href="#截取移动设备中的-Https-通讯信息" class="headerlink" title="截取移动设备中的 Https 通讯信息"></a>截取移动设备中的 Https 通讯信息</h3><p>如果我们需要在 iOS 或 Android 机器上截取 Https 协议的通讯内容，还需要在手机上安装相应的证书。点击 Charles 的顶部菜单，选择 “Help” -&gt; “SSL Proxying” -&gt; “Install Charles Root Certificate on a Mobile Device or Remote Browser”，然后就可以看到 Charles 弹出的简单的安装教程。如下图所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-pro-2.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-pro-2.png" alt="Image Description">              </a></figure>
+<p>按照我们之前说的教程，在设备上设置好 Charles 为代理后，在手机浏览器中访问地址：<a href="http://charlesproxy.com/getssl" target="_blank" rel="noopener">http://charlesproxy.com/getssl</a>，即可打开证书安装的界面，安装完证书后，就可以截取手机上的 Https 通讯内容了。不过同样需要注意，默认情况下 Charles 并不做截取，你还需要在要截取的网络请求上右击，选择 SSL proxy 菜单项。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="模拟慢速网络" style="display: inline;"><a href="#模拟慢速网络" class="headerlink" title="模拟慢速网络"></a>模拟慢速网络</h2><p>在做移动开发的时候，我们常常需要模拟慢速网络或者高延迟的网络，以测试在移动网络下，应用的表现是否正常。Charles 对此需求提供了很好的支持。</p>
+<p>在 Charles 的菜单上，选择 “Proxy”-&gt;”Throttle Setting” 项，在之后弹出的对话框中，我们可以勾选上 “Enable Throttling”，并且可以设置 Throttle Preset 的类型。如下图所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-throttle-setting.jpg" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-throttle-setting.jpg" alt="Image Description">              </a></figure>
+<p>如果我们只想模拟指定网站的慢速网络，可以再勾选上图中的 “Only for selected hosts” 项，然后在对话框的下半部分设置中增加指定的 hosts 项即可。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="修改网络请求内容" style="display: inline;"><a href="#修改网络请求内容" class="headerlink" title="修改网络请求内容"></a>修改网络请求内容</h2><p>有些时候为了调试服务器的接口，我们需要反复尝试不同参数的网络请求。Charles 可以方便地提供网络请求的修改和重发功能。只需要在以往的网络请求上点击右键，选择 “Edit”，即可创建一个可编辑的网络请求。如下所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-edit.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-edit.png" alt="Image Description">              </a></figure>
+<p>我们可以修改该请求的任何信息，包括 URL 地址、端口、参数等，之后点击 “Execute” 即可发送该修改后的网络请求（如下图所示）。Charles 支持我们多次修改和发送该请求，这对于我们和服务器端调试接口非常方便，如下图所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-execute.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-execute.png" alt="Image Description">              </a></figure>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="给服务器做压力测试" style="display: inline;"><a href="#给服务器做压力测试" class="headerlink" title="给服务器做压力测试"></a>给服务器做压力测试</h2><p>我们可以使用 Charles 的 Repeat 功能来简单地测试服务器的并发处理能力，方法如下。</p>
+<p>我们在想打压的网络请求上（POST 或 GET 请求均可）右击，然后选择 「Repeat Advanced」菜单项，如下所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-repeat-1.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-repeat-1.png" alt="Image Description">              </a></figure>
+<p>接着我们就可以在弹出的对话框中，选择打压的并发线程数以及打压次数，确定之后，即可开始打压。</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-repeat-2.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-repeat-2.png" alt="Image Description">              </a></figure>
+<p>悄悄说一句，一些写得很弱的投票网站，也可以用这个办法来快速投票。当然，我也拿 Charles 的 Repeat 功能给一些诈骗的钓鱼网站喂了不少垃圾数据，上次不小心还把一个钓鱼网站的数据库打挂了，嗯，请叫我雷锋。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="修改服务器返回内容" style="display: inline;"><a href="#修改服务器返回内容" class="headerlink" title="修改服务器返回内容"></a>修改服务器返回内容</h2><p>有些时候我们想让服务器返回一些指定的内容，方便我们调试一些特殊情况。例如列表页面为空的情况，数据异常的情况，部分耗时的网络请求超时的情况等。如果没有 Charles，要服务器配合构造相应的数据显得会比较麻烦。这个时候，使用 Charles 相关的功能就可以满足我们的需求。</p>
+<p>根据具体的需求，Charles 提供了 Map 功能、 Rewrite 功能以及 Breakpoints 功能，都可以达到修改服务器返回内容的目的。这三者在功能上的差异是：</p>
+<ol>
+<li>Map 功能适合长期地将某一些请求重定向到另一个网络地址或本地文件。</li>
+<li>Rewrite 功能适合对网络请求进行一些正则替换。</li>
+<li>Breakpoints 功能适合做一些临时性的修改。</li>
+</ol>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="Map-功能" style="display: inline;"><a href="#Map-功能" class="headerlink" title="Map 功能"></a>Map 功能</h3><p>Charles 的 Map 功能分 Map Remote 和 Map Local 两种，顾名思义，Map Remote 是将指定的网络请求重定向到另一个网址请求地址，Map Local 是将指定的网络请求重定向到本地文件。</p>
+<p>在 Charles 的菜单中，选择 “Tools”-&gt;”Map Remote” 或 “Map Local” 即可进入到相应功能的设置页面。</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-map.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-map.png" alt="Image Description">              </a></figure>
+<p>对于 Map Remote 功能，我们需要分别填写网络重定向的源地址和目的地址，对于不需要限制的条件，可以留空。下图是一个示例，我将所有 <code>ytk1.yuanku.ws</code>（测试服务器）的请求重定向到了 <code>www.yuantiku.com</code>（线上服务器）。</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-map-remote.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-map-remote.png" alt="Image Description">              </a></figure>
+<p>对于 Map Local 功能，我们需要填写的重定向的源地址和本地的目标文件。对于有一些复杂的网络请求结果，我们可以先使用 Charles 提供的 “Save Response…” 功能，将请求结果保存到本地（如下图所示），然后稍加修改，成为我们的目标映射文件。</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-save-response.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-save-response.png" alt="Image Description">              </a></figure>
+<p>下图是一个示例，我将一个指定的网络请求通过 Map Local 功能映射到了本地的一个经过修改的文件中。</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-map-local.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-map-local.png" alt="Image Description">              </a></figure>
+<p>Map Local 在使用的时候，有一个潜在的问题，就是其返回的 Http Response Header 与正常的请求并不一样。这个时候如果客户端校验了 Http Response Header 中的部分内容，就会使得该功能失效。解决办法是同时使用 Map Local 以下面提到的 Rewrite 功能，将相关的 Http 头 Rewrite 成我们希望的内容。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="Rewrite-功能" style="display: inline;"><a href="#Rewrite-功能" class="headerlink" title="Rewrite 功能"></a>Rewrite 功能</h3><p>Rewrite 功能功能适合对某一类网络请求进行一些正则替换，以达到修改结果的目的。</p>
+<p>例如，我们的客户端有一个 API 请求是获得用户昵称，而我当前的昵称是 “tangqiaoboy”，如下所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-rewrite-1.jpeg" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-rewrite-1.jpeg" alt="Image Description">              </a></figure>
+<p>我们想试着直接修改网络返回值，将 tangqiaoboy 换成成 iosboy。于是我们启用 Rewrite 功能，然后设置如下的规则：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-rewrite-2.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-rewrite-2.png" alt="Image Description">              </a></figure>
+<p>完成设置之后，我们就可以从 Charles 中看到，之后的 API 获得的昵称被自动 Rewrite 成了 iosboy，如下图所示：</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-rewrite-3.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-rewrite-3.png" alt="Image Description">              </a></figure>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H3   </span><h3 id="Breakpoints-功能" style="display: inline;"><a href="#Breakpoints-功能" class="headerlink" title="Breakpoints 功能"></a>Breakpoints 功能</h3><p>上面提供的 Rewrite 功能最适合做批量和长期的替换，但是很多时候，我们只是想临时修改一次网络请求结果，这个时候，使用 Rewrite 功能虽然也可以达到目的，但是过于麻烦，对于临时性的修改，我们最好使用 Breakpoints 功能。</p>
+<p>Breakpoints 功能类似我们在 Xcode 中设置的断点一样，当指定的网络请求发生时，Charles 会截获该请求，这个时候，我们可以在 Charles 中临时修改网络请求的返回内容。</p>
+<p>下图是我们临时修改获取用户信息的 API，将用户的昵称进行了更改，修改完成后点击 “Execute” 则可以让网络请求继续进行。</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-breakpoint.png" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-breakpoint.png" alt="Image Description">              </a></figure>
+<p>需要注意的是，使用 Breakpoints 功能将网络请求截获并修改过程中，整个网络请求的计时并不会暂停，所以长时间的暂停可能导致客户端的请求超时。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="反向代理" style="display: inline;"><a href="#反向代理" class="headerlink" title="反向代理"></a>反向代理</h2><p>Charles 的反向代理功能允许我们将本地的端口映射到远程的另一个端口上。例如，在下图中，我将本机的 61234 端口映射到了远程（www.yuantiku.com）的80端口上了。这样，当我访问本地的 61234 端口时，实际返回的内容会由 www.yuantiku.com 的 80 端口提供。</p>
+           <figure class="mb-4 text-center">              <a class="js-fancybox-thumbs" href="/publicFiles/images/stock-photo/charles-reverse-proxy.jpg" title="Lightbox Gallery" data-fancybox-gallery="lightbox-gallery-2" data-fancybox-speed="500" data-fancybox-slide-speed="1000">                <br><img class="img-fluid g-brd-around g-brd-gray-light-v4 g-line-height-2" src="/publicFiles/images/stock-photo/charles-reverse-proxy.jpg" alt="Image Description">              </a></figure>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="设置外部代理，解决与翻墙软件的冲突" style="display: inline;"><a href="#设置外部代理，解决与翻墙软件的冲突" class="headerlink" title="设置外部代理，解决与翻墙软件的冲突"></a>设置外部代理，解决与翻墙软件的冲突</h2><p>Charles 的原理是把自己设置成系统的代理服务器，但是在中国，由于工作需要，我们常常需要使用 Google 搜索，所以大部分程序员都有自己的翻墙软件，而这些软件的基本原理，也是把自己设置成系统的代理服务器，来做到透明的翻墙。</p>
+<p>为了使得两者能够和平共处，我们可以在 Charles 的 <code>External Proxy Settings</code> 中，设置翻墙的代理端口以及相关信息。同时，我们也要关闭相关翻墙软件的自动设置，使其不主动修改系统代理，避免 Charles 失效。</p>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="破解" style="display: inline;"><a href="#破解" class="headerlink" title="破解"></a>破解</h2><ol>
+<li>下载特定的版本的<a href="/publicFiles/images/stock-photo/charles-proxy-4.1.dmg">Charles</a>以及破解文件 <a href="/publicFiles/images/stock-photo/charles.jar">charles.jar</a></li>
+<li>在应用程序中右键Charles，选择“显示包内容”。</li>
+<li>依次打开目录：Contents -&gt; Java</li>
+<li>用下载的charles.jar替换目录中的charles.jar。</li>
+<li>重新打开后还是破解失败的所以需要 点击 Help -&gt; Register Charles 随便输入即可破解完成</li>
+</ol>
+<br><span class="g-font-size-14 g-color-gray-dark-v4">H2   </span><h2 id="总结" style="display: inline;"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>通过 Charles 软件，我们可以很方便地在日常开发中，截取和调试网络请求内容，分析封包协议以及模拟慢速网络。用好 Charles 可以极大的方便我们对于带有网络请求的 App 的开发和调试。</p>
+<p>愿本文帮助大家成为 Charles 的专家，祝大家玩得开心～</p>
+                                <div class="g-brd-around g-brd-gray-light-v4 g-brd-2 g-brd-red-left g-line-height-1_8 g-pa-30 g-mb-30">                                  <em style="padding:0px;margin:0px;">
+<p>本文全部引用自 唐巧的 <a href="http://blog.devtang.com/2015/11/14/charles-introduction/" target="_blank" rel="noopener">Charles 从入门到精通</a></p>
+</em>                                </div>        
+    <p hidden id="CurrentFileName">charles 4.1 破解.md</p>    
+          </div>
+
+          <!-- Sources & Tags -->
+<div class="g-mb-30">
+    <h6 class="g-color-gray-dark-v1 g-mb-15">
+
+        
+
+        
+
+        <strong class="g-mr-5">专栏:</strong> <a class="u-link-v5 g-color-gray-dark-v4 g-color-primary--hover"
+                                               href="/categories/开发帮助/">开发帮助</a>
+        
+
+        
+
+    </h6>
+    <h6 class="g-color-gray-dark-v1">
+        <strong class="g-mr-5">标签:</strong>
+
+        
+
+        
+        <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5"
+           href="/tags/ios/">ios</a>
+        
+        <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5"
+           href="/tags/约束教程/">约束教程</a>
+        
+        <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5"
+           href="/tags/破解/">破解</a>
+        
+        <a class="u-tags-v1 g-font-size-12 g-brd-around g-brd-gray-light-v4 g-bg-primary--hover g-brd-primary--hover g-color-black-opacity-0_8 g-color-white--hover rounded g-py-6 g-px-15 g-mr-5"
+           href="/tags/抓包/">抓包</a>
+        
+
+        
+
+    </h6>
+    <br>
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="alert alert-success alert-dismissible fade show" role="alert">
+                <div class="media">
+                    <div class="media-body">
+                        <span class="g-color-gray-dark-v4 g-font-size-12">本博客采用<a href="https://creativecommons.org/licenses/by-nc-nd/4.0/">创作共用保留署名-非商业-禁止演绎4.0国际许可证</a></span>
+                        <br>
+                        <span class="g-color-gray-dark-v4 g-font-size-12">本文首发于<a
+                                    href="http://blog.msiter.com">小酒馆老板</a>的博客<a
+                                    href="http://blog.msiter.com">荆文征</a>，版权所有，侵权必究。</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+            <hr class="g-brd-gray-light-v4">
+
+        </article>
+
+      </div>
+      <!-- End Articles Content -->
+
+      <!-- Sidebar -->
+      <div class="col-lg-3">
+
+        <div id="stickyblock-start" class="js-sticky-block g-sticky-block--lg g-pt-20" data-start-point="#stickyblock-start" data-end-point="#stickyblock-end" style="top: 0px; width: 255px; height: 957px;">
+
+  
+
+  <div class="g-mb-40">
+
+  <ul class="nav u-nav-v5-1 g-brd-bottom--md g-brd-gray-light-v4" role="tablist" data-target="nav-5-1-default-hor-left-border-bottom" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-lightgray">
+    <li class="nav-item">
+    <a class="nav-link active" data-toggle="tab" href="#nav-5-1-default-hor-left-border-bottom--1" role="tab">目录</a>
+    </li>
+  </ul>
+
+  <div id="nav-5-1-default-hor-left-border-bottom" class="tab-content g-pt-20">
+    <div class="tab-pane fade show active" id="nav-5-1-default-hor-left-border-bottom--1" role="tabpanel">
+    <div class="g-mb-40 post-toc">
+      <ol class="post-nav"><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#Charles-限时优惠"><span class="post-nav-number">1.</span> <span class="post-nav-text">Charles 限时优惠</span></a></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#简介"><span class="post-nav-number">2.</span> <span class="post-nav-text">简介</span></a></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#安装-Charles"><span class="post-nav-number">3.</span> <span class="post-nav-text">安装 Charles</span></a></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#将-Charles-设置成系统代理"><span class="post-nav-number">4.</span> <span class="post-nav-text">将 Charles 设置成系统代理</span></a></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#Charles-主界面介绍"><span class="post-nav-number">5.</span> <span class="post-nav-text">Charles 主界面介绍</span></a></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#过滤网络请求"><span class="post-nav-number">6.</span> <span class="post-nav-text">过滤网络请求</span></a></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#截取-iPhone-上的网络封包"><span class="post-nav-number">7.</span> <span class="post-nav-text">截取 iPhone 上的网络封包</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#Charles-上的设置"><span class="post-nav-number">7.1.</span> <span class="post-nav-text">Charles 上的设置</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#iPhone-上的设置"><span class="post-nav-number">7.2.</span> <span class="post-nav-text">iPhone 上的设置</span></a></li></ol></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#截取-Https-通讯信息"><span class="post-nav-number">8.</span> <span class="post-nav-text">截取 Https 通讯信息</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#安装证书"><span class="post-nav-number">8.1.</span> <span class="post-nav-text">安装证书</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#截取移动设备中的-Https-通讯信息"><span class="post-nav-number">8.2.</span> <span class="post-nav-text">截取移动设备中的 Https 通讯信息</span></a></li></ol></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#模拟慢速网络"><span class="post-nav-number">9.</span> <span class="post-nav-text">模拟慢速网络</span></a></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#修改网络请求内容"><span class="post-nav-number">10.</span> <span class="post-nav-text">修改网络请求内容</span></a></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#给服务器做压力测试"><span class="post-nav-number">11.</span> <span class="post-nav-text">给服务器做压力测试</span></a></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#修改服务器返回内容"><span class="post-nav-number">12.</span> <span class="post-nav-text">修改服务器返回内容</span></a><ol class="post-nav-child"><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#Map-功能"><span class="post-nav-number">12.1.</span> <span class="post-nav-text">Map 功能</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#Rewrite-功能"><span class="post-nav-number">12.2.</span> <span class="post-nav-text">Rewrite 功能</span></a></li><li class="post-nav-item post-nav-level-3"><a class="post-nav-link" href="#Breakpoints-功能"><span class="post-nav-number">12.3.</span> <span class="post-nav-text">Breakpoints 功能</span></a></li></ol></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#反向代理"><span class="post-nav-number">13.</span> <span class="post-nav-text">反向代理</span></a></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#设置外部代理，解决与翻墙软件的冲突"><span class="post-nav-number">14.</span> <span class="post-nav-text">设置外部代理，解决与翻墙软件的冲突</span></a></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#破解"><span class="post-nav-number">15.</span> <span class="post-nav-text">破解</span></a></li><li class="post-nav-item post-nav-level-2"><a class="post-nav-link" href="#总结"><span class="post-nav-number">16.</span> <span class="post-nav-text">总结</span></a></li></ol>
+    </div>
+    </div>
+  </div>
+
+  </div>
+
+
+<script src="/assets/js/helpers/timeago.min.js" charset="utf-8"></script>
+<script type="text/javascript">
+
+  $(document).ready(function() {
+
+    initScrollSpy();
+
+    function initScrollSpy() {
+      var tocSelector = '.post-toc';
+      var $tocElement = $(tocSelector);
+      var activeCurrentSelector = '.active-current';
+
+      $tocElement
+        .on('activate.bs.scrollspy', addClassCurrentActiveClass)
+        .on('clear.bs.scrollspy', removeCurrentActiveClass);
+
+      $('body').scrollspy({
+        target: tocSelector
+      });
+
+      function addClassCurrentActiveClass(){
+        var $currentActiveElement = $(tocSelector + ' .active').last();
+        removeCurrentActiveClass();
+        $currentActiveElement.addClass('active-current');
+        $tocElement.scrollTop($currentActiveElement.offset().top - $tocElement.offset().top + $tocElement.scrollTop() - ($tocElement.height() / 2));
+      }
+
+      function removeCurrentActiveClass() {
+        $(tocSelector + ' ' + activeCurrentSelector)
+          .removeClass(activeCurrentSelector.substring(1));
+      }
+    }
+
+  });
+
+  $(document).ready(function() {
+    var html = $('html');
+    var hasVelocity = $.isFunction(html.velocity);
+
+    // TOC item animation navigate & prevent #item selector in adress bar.
+    $('.post-toc a').on('click', function(e) {
+      e.preventDefault();
+      var targetSelector = escapeSelector(this.getAttribute('href'));
+      var offset = $(targetSelector).offset().top;
+
+      hasVelocity ?
+        html.velocity('stop').velocity('scroll', {
+          offset: offset + 'px',
+          mobileHA: false
+        }) :
+        $('html, body').stop().animate({
+          scrollTop: offset
+        }, 500);
+    });
+  });
+</script>
+
+
+<script type="text/javascript">
+  function escapeSelector(selector) {
+    return selector.replace(/[!"$%&'()*+,.\/:;<=>?@[\\\]^`{|}~]/g, '\\$&');
+  }
+
+  +
+  function($) {
+    'use strict';
+
+    // SCROLLSPY CLASS DEFINITION
+    // ==========================
+
+    function ScrollSpy(element, options) {
+      this.$body = $(document.body)
+      this.$scrollElement = $(element).is(document.body) ? $(window) : $(element)
+      this.options = $.extend({}, ScrollSpy.DEFAULTS, options)
+      this.selector = (this.options.target || '') + ' .post-nav li > a'
+      this.offsets = []
+      this.targets = []
+      this.activeTarget = null
+      this.scrollHeight = 0
+
+      this.$scrollElement.on('scroll.bs.scrollspy', $.proxy(this.process, this))
+      this.refresh()
+      this.process()
+    }
+
+    ScrollSpy.VERSION = '3.3.2'
+
+    ScrollSpy.DEFAULTS = {
+      offset: 10
+    }
+
+    ScrollSpy.prototype.getScrollHeight = function() {
+      return this.$scrollElement[0].scrollHeight || Math.max(this.$body[0].scrollHeight, document.documentElement.scrollHeight)
+    }
+
+    ScrollSpy.prototype.refresh = function() {
+      var that = this
+      var offsetMethod = 'offset'
+      var offsetBase = 0
+
+      this.offsets = []
+      this.targets = []
+      this.scrollHeight = this.getScrollHeight()
+
+      if (!$.isWindow(this.$scrollElement[0])) {
+        offsetMethod = 'position'
+        offsetBase = this.$scrollElement.scrollTop()
+      }
+
+      this.$body
+        .find(this.selector)
+        .map(function() {
+          var $el = $(this)
+          var href = $el.data('target') || $el.attr('href')
+          var $href = /^#./.test(href) && $(escapeSelector(href)) // Need to escape selector.
+
+          return ($href &&
+            $href.length &&
+            $href.is(':visible') && [
+              [$href[offsetMethod]().top + offsetBase, href]
+            ]) || null
+        })
+        .sort(function(a, b) {
+          return a[0] - b[0]
+        })
+        .each(function() {
+          that.offsets.push(this[0])
+          that.targets.push(this[1])
+        })
+
+
+    }
+
+    ScrollSpy.prototype.process = function() {
+      var scrollTop = this.$scrollElement.scrollTop() + this.options.offset
+      var scrollHeight = this.getScrollHeight()
+      var maxScroll = this.options.offset + scrollHeight - this.$scrollElement.height()
+      var offsets = this.offsets
+      var targets = this.targets
+      var activeTarget = this.activeTarget
+      var i
+
+      if (this.scrollHeight != scrollHeight) {
+        this.refresh()
+      }
+
+      if (scrollTop >= maxScroll) {
+        return activeTarget != (i = targets[targets.length - 1]) && this.activate(i)
+      }
+
+      if (activeTarget && scrollTop < offsets[0]) {
+        $(this.selector).trigger('clear.bs.scrollspy') // Add a custom event.
+        this.activeTarget = null
+        return this.clear()
+      }
+
+      for (i = offsets.length; i--;) {
+        activeTarget != targets[i] &&
+          scrollTop >= offsets[i] &&
+          (!offsets[i + 1] || scrollTop <= offsets[i + 1]) &&
+          this.activate(targets[i])
+      }
+    }
+
+    ScrollSpy.prototype.activate = function(target) {
+      this.activeTarget = target
+
+      this.clear()
+
+      var selector = this.selector +
+        '[data-target="' + target + '"],' +
+        this.selector + '[href="' + target + '"]'
+
+      var active = $(selector)
+        .parents('li')
+        .addClass('active')
+
+      if (active.parent('.dropdown-menu').length) {
+        active = active
+          .closest('li.dropdown')
+          .addClass('active')
+      }
+
+      active.trigger('activate.bs.scrollspy')
+    }
+
+    ScrollSpy.prototype.clear = function() {
+      $(this.selector)
+        .parentsUntil(this.options.target, '.active')
+        .removeClass('active')
+    }
+
+
+    // SCROLLSPY PLUGIN DEFINITION
+    // ===========================
+
+    function Plugin(option) {
+      return this.each(function() {
+        var $this = $(this)
+        var data = $this.data('bs.scrollspy')
+        var options = typeof option == 'object' && option
+
+        if (!data) $this.data('bs.scrollspy', (data = new ScrollSpy(this, options)))
+        if (typeof option == 'string') data[option]()
+      })
+    }
+
+    var old = $.fn.scrollspy
+
+    $.fn.scrollspy = Plugin
+    $.fn.scrollspy.Constructor = ScrollSpy
+
+
+    // SCROLLSPY NO CONFLICT
+    // =====================
+
+    $.fn.scrollspy.noConflict = function() {
+      $.fn.scrollspy = old
+      return this
+    }
+
+
+    // SCROLLSPY DATA-API
+    // ==================
+
+    $(window).on('load.bs.scrollspy.data-api', function() {
+      $('[data-spy="scroll"]').each(function() {
+        var $spy = $(this)
+        Plugin.call($spy, $spy.data())
+      })
+    })
+
+  }(jQuery);
+</script>
+
+<style>
+  .post-toc {
+    overflow: auto;
+  }
+
+  .post-toc ol {
+    margin: 0;
+    padding: 0 2px 5px 10px;
+    text-align: left;
+    list-style: none;
+    font-size: 14px;
+  }
+
+  .post-toc ol>ol {
+    padding-left: 0;
+  }
+
+  .post-toc ol a {
+    transition-duration: 0.2s;
+    transition-timing-function: ease-in-out;
+    transition-delay: 0s;
+    transition-property: all;
+    color: #111;
+    border-bottom-color: #555;
+  }
+
+  .post-toc ol a:hover {
+    color: #4f72c1;
+    border-bottom-color: #ccc;
+  }
+
+  .post-toc .post-nav-item {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    line-height: 1.8;
+  }
+
+  .post-toc .post-nav .post-nav-child {
+    display: none;
+  }
+
+  .post-toc .post-nav .active>.post-nav-child {
+    display: block;
+  }
+
+  .post-toc .post-nav .active-current>.post-nav-child {
+    display: block;
+  }
+
+  .post-toc .post-nav .active-current>.post-nav-child>.post-nav-item {
+    display: block;
+  }
+
+  .post-toc .post-nav .active>a {
+    color: #6281c8;
+    border-bottom-color: #87daff;
+  }
+
+  .post-toc .post-nav .active-current>a {
+    color: #6281c8;
+  }
+
+  .post-toc .post-nav .active-current>a:hover {
+    color: #87daff;
+  }
+</style>
+
+  <!-- News Feed -->
+<div class="g-mb-40">
+
+  <!-- Nav tabs -->
+  <ul class="nav u-nav-v5-1 g-brd-bottom--md g-brd-gray-light-v4" role="tablist" data-target="nav-5-2-default-hor-left-border-bottom" data-tabs-mobile-type="slide-up-down" data-btn-classes="btn btn-md btn-block rounded-0 u-btn-outline-lightgray">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#nav-5-2-default-hor-left-border-bottom--1" role="tab">最新文章</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#nav-5-2-default-hor-left-border-bottom--2" role="tab">修改历史</a>
+    </li>
+  </ul>
+  <!-- End Nav tabs -->
+
+
+  <!-- Tab panes -->
+  <div id="nav-5-2-default-hor-left-border-bottom" class="tab-content g-pt-20">
+    <div class="tab-pane fade show active" id="nav-5-2-default-hor-left-border-bottom--1" role="tabpanel">
+      
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/Hashimoto IO bound proof of work-20180824.html">Hashimoto I/O bound proof of work</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/8/24 15:25:0
+        </span>
+        </article>
+        
+          <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+          
+            
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/Practical Byzantine Fault Tolerance-20180803.html">Practical Byzantine Fault Tolerance</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/8/3 14:22:0
+        </span>
+        </article>
+        
+          <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+          
+            
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/Paxos Made Live - An Engineering Perspective-20180731.html">Paxos Made Live - An Engineering Perspective</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/7/31 15:5:0
+        </span>
+        </article>
+        
+          <hr class="g-brd-gray-light-v4 g-mt-15 g-mb-10">
+          
+            
+        <article>
+          <h3 class="h6">
+            <a class="g-color-gray-dark-v1" href="/paxos-simple-20180726.html">Paxos Made Simple - Leslie Lamport</a>
+        </h3>
+          <span class="g-font-size-12">
+            2018/7/26 18:22:0
+        </span>
+        </article>
+        
+            
+    </div>
+
+
+    <div class="tab-pane fade" id="nav-5-2-default-hor-left-border-bottom--2" role="tabpanel">
+      <table id="commit-history-new" style="width:100%">
+        <thead><tr><th></th></tr></thead >
+        <tbody id="commit-history-new-body">
+          <tr><td>
+            <li class="media g-brd-around g-brd-gray-light-v4 g-pa-20 g-mb-minus-1">
+              <div class="media-body">
+                <span class="d-block g-font-size-11 text-center">正在加载...</span>
+              </div>
+            </li>
+          </tr></td>
+        </tbody>
+        <p class="text-center g-font-size-10" id="history_infomessagelabel"></p>
+      </table>
+    </div>
+  </div>
+  <!-- End Tab panes -->
+
+
+</div>
+<!-- End News Feed -->
+
+
+
+</div>
+
+
+      </div>
+      <!-- End Sidebar -->
+    </div>
+
+    <div class="g-mb-60" id="commit-container">
+  <!--PC版-->
+
+
+
+
+</div>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.css">
+<script src="https://cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js"></script>
+
+<script type="text/javascript" src="//cdn.bootcss.com/blueimp-md5/2.10.0/js/md5.js"></script>
+
+<script type="text/javascript">
+
+var gitalk = new Gitalk({
+  clientID: '9fba00e5b04b66d8424e',
+  clientSecret: '87d759d3284033b6e5aaac980e63fa74e57fcda7',
+  repo: 'aimobier.github.io',
+  owner: 'aimobier',
+  admin: ['aimobier'],
+  id: md5(window.location.pathname),      // Ensure uniqueness and length less than 50
+  distractionFreeMode: false  // Facebook-like distraction free mode
+})
+
+gitalk.render('commit-container')
+	
+</script>
+
+
+
+  </div>
+
+  <div id="stickyblock-end" style="width: 100%;height: 1px;"></div>
+</section>
+
+
+<script src="/assets/js/components/hs.sticky-block.js"></script>
+<script src="/assets/js/githubhistory.js"></script>
+<script type="text/javascript">
+  // initialization of sticky blocks
+  $.HSCore.components.HSStickyBlock.init('.js-sticky-block');
+</script>
+
+
+    
+<script type="text/x-mathjax-config">
+/// Google  不在翻译 
+MathJax.Hub.Queue(function() {
+      $("span.MathJax").each(function(){
+          $(this).attr("translate","no");
+          $(this).addClass("notranslate");
+    });
+})
+
+</script>
+
+
+
+
+      <!-- JS Implementing Plugins -->
+<script src="/assets/vendor/custombox/custombox.min.js"></script>
+
+<!-- JS Unify -->
+<script src="/assets/js/components/hs.modal-window.js"></script>
+
+
+<!-- Footer -->
+<footer class="g-bg-black-opacity-0_9 g-color-white-opacity-0_8 ">
+  <br><br><br>
+  <div class="container g-mb-60">
+    <div class="row">
+
+      <!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">关于我</h2>
+  </div>
+
+  <div class="g-mb-30">
+    <p class="g-color-white-opacity-0_8">努力学习的IOS程序员。目前在学习制作Hexo主题，主要还是为了做自己的一个博客.之后会好好学习linux以及服务器相关的知识.</p>
+  </div>
+
+  <address class="mb-0">
+    <div class="g-mb-30">
+      <h4 class="h6 g-font-weight-600">现居地</h4>
+      <p class="mb-0 g-color-white-opacity-0_8">北京 - 国家的首都 </p>
+    </div>
+
+    <!-- 配置标签相关视图 -->
+    
+
+      <div class="g-mb-30">
+        <h4 class="h6 g-font-weight-600">邮箱:</h4>
+
+        
+
+                <p class="mb-0 g-color-white-opacity-0_8">alphabetion@gmail.com</p>
+        
+
+                <p class="mb-0 g-color-white-opacity-0_8">jingwenzheng@baimaodai.com</p>
+        
+
+      </div>
+
+      
+
+
+
+    <div class="mb-0">
+      <h4 class="h6 g-font-weight-600">一言:</h4>
+      <p class="mb-0">
+        <a class="g-color-white-opacity-0_8" id="hitokoto" href="http://hitokoto.cn/">support@htmlstream.com</a>
+      </p>
+    </div>
+  </address>
+</div>
+<!-- End Footer Content -->
+
+
+        <!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+
+
+  <!-- 配置标签相关视图 -->
+  
+    <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+      <h2 class="u-heading-v2__title h6 text-uppercase mb-0">标签</h2>
+    </div>
+    <ul class="u-list-inline g-font-size-12 g-mb-30">
+
+      
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/生活/">
+            生活
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/悲观/">
+            悲观
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/Objective-C/">
+            Objective-C
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/AsyncDisplayKit/">
+            AsyncDisplayKit
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/ios/">
+            ios
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/约束教程/">
+            约束教程
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/AttributedString/">
+            AttributedString
+          </a>
+        </li>
+        
+        <li class="list-inline-item g-mb-10">
+          <a class="u-tags-v1 g-brd-around g-brd-white-opacity-0_1 g-bg-primary--hover g-brd-primary--hover g-color-white-opacity-0_8 g-rounded-50 g-py-4 g-px-15" href="/tags/iOS8-html2AttributedString-error/">
+            iOS8 html2AttributedString error
+          </a>
+        </li>
+        
+    </ul>
+    
+
+      <!-- 布局相关链接-->
+
+      <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+        <h2 class="u-heading-v2__title h6 text-uppercase mb-0">友情链接</h2>
+      </div>
+
+      <ul class="list-unstyled">
+        
+
+          <li class="g-mb-5">
+            <i class="fa fa-angle-right g-mr-5"></i>
+
+            <a class="g-color-white-opacity-0_8" href="https://baidu.com">
+              百度
+            </a>
+          </li>
+
+          
+
+          <li class="g-mb-5">
+            <i class="fa fa-angle-right g-mr-5"></i>
+
+            <a class="g-color-white-opacity-0_8" href="https://test.baidu.com">
+              测试链接
+            </a>
+          </li>
+
+          
+
+          <li class="g-mb-5">
+            <i class="fa fa-angle-right g-mr-5"></i>
+
+            <a class="g-color-white-opacity-0_8" href="https://baidu.com">
+              hexo
+            </a>
+          </li>
+
+          
+      </ul>
+
+
+
+</div>
+<!-- End Footer Content -->
+
+
+          <!-- Footer Content -->
+<div class="col-lg-3 col-md-6 g-mb-40 g-mb-0--lg">
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">最近文章</h2>
+  </div>
+
+  
+    
+
+  <article class="media">
+
+
+  
+
+
+
+
+  <a class="d-flex g-mt-3 mr-3" href="/Hashimoto IO bound proof of work-20180824.html">
+    <img class="g-width-60 g-height-60 rounded" src="/publicFiles/images/hashimoto/WX20180824-152143.png" alt="Image Description">
+  </a>
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/Hashimoto IO bound proof of work-20180824.html">Hashimoto I/O bound proof of work</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/8/24 15:25:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/Hashimoto IO bound proof of work-20180824.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/charles 4.1 pj,x-20170710.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <article class="media">
+
+
+  
+
+
+
+
+  <a class="d-flex g-mt-3 mr-3" href="/Practical Byzantine Fault Tolerance-20180803.html">
+    <img class="g-width-60 g-height-60 rounded" src="/publicFiles/images/Practical Byzantine Fault Tolerance/WX20180803-120202.png" alt="Image Description">
+  </a>
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/Practical Byzantine Fault Tolerance-20180803.html">Practical Byzantine Fault Tolerance</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/8/3 14:22:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/Practical Byzantine Fault Tolerance-20180803.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/charles 4.1 pj,x-20170710.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <article class="media">
+
+
+  
+
+
+
+
+  <a class="d-flex g-mt-3 mr-3" href="/Paxos Made Live - An Engineering Perspective-20180731.html">
+    <img class="g-width-60 g-height-60 rounded" src="/publicFiles/images/Paxos Made Live/WX20180731-101403.png" alt="Image Description">
+  </a>
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/Paxos Made Live - An Engineering Perspective-20180731.html">Paxos Made Live - An Engineering Perspective</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/7/31 15:5:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/Paxos Made Live - An Engineering Perspective-20180731.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/charles 4.1 pj,x-20170710.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <article class="media">
+
+
+  
+
+
+
+
+
+
+
+
+
+    <div class="media-body">
+      <h3 class="h6">
+            <a class="g-color-white-opacity-0_8 g-color-white--hover" href="/paxos-simple-20180726.html">Paxos Made Simple - Leslie Lamport</a>
+      </h3>
+      <ul class="u-list-inline g-font-size-12">
+        <li class="list-inline-item">
+          2018/7/26 18:22:0
+        </li>
+        <li class="list-inline-item">/</li>
+        <li class="list-inline-item">
+          <a class="u-link-v5 g-color-white-opacity-0_8 g-color-white--hover" href="/paxos-simple-20180726.html">
+                <i class="fa fa-comments-o"></i>
+                <span id = "sourceId::http://blog.msiter.com/charles 4.1 pj,x-20170710.html" class = "cy_cmt_count" ></span>
+              </a>
+        </li>
+      </ul>
+    </div>
+  </article>
+
+
+  <hr class="g-brd-white-opacity-0_1 g-mt-20 g-mb-15">
+
+
+  
+
+  <script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytc1YTze">
+  </script>
+
+      
+</div>
+<!-- End Footer Content -->
+
+
+            <!-- Footer Content -->
+<div class="col-lg-3 col-md-6">
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">订阅</h2>
+  </div>
+
+  <div class="g-mb-30">
+    <p class="g-color-white-opacity-0_8">订阅我可以更及时的获取到文章的推送，请在下方输入您的邮箱地址获取文章更新</p>
+    <div class="input-group border-0 g-rounded-30">
+      <input class="form-control border-0 g-rounded-left-30 g-px-12 g-py-8" type="email" placeholder="输入您的邮箱地址">
+      <div class="input-group-addon border-0 p-0">
+        <button class="btn u-btn-primary g-rounded-right-30 g-px-12 g-py-8" type="submit" role="button">订阅</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="u-heading-v2-3--bottom g-brd-white-opacity-0_8 g-mb-20">
+    <h2 class="u-heading-v2__title h6 text-uppercase mb-0">社交</h2>
+  </div>
+
+  <p class="g-color-white-opacity-0_8">作为一个宅男，长期宅在家里，会不定期的更新文章。如果你想更新的了解到我的动态，请选择一下任意一种社交方式关注我。</p>
+  <ul class="list-inline mb-0">
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="https://www.facebook.com/aimobier">
+        <i class="fa fa-facebook"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="https://www.instagram.com/aimobier/">
+        <i class="fa fa-instagram"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="https://github.com/aimobier">
+        <i class="fa fa-github"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="http://weibo.com/aouns">
+        <i class="fa fa-weibo"></i>
+      </a>
+    </li>
+    <li class="list-inline-item g-mr-10">
+      <a class="u-icon-v3 u-icon-size--xs g-bg-white-opacity-0_1 g-bg-white-opacity-0_2--hover g-color-white-opacity-0_6 rounded" href="#modal1" data-modal-target="#modal1" data-modal-effect="fadein">
+        <i class="fa fa-weixin"></i>
+</a>
+    </li>
+  </ul>
+</div>
+<!-- End Footer Content -->
+
+    </div>
+  </div>
+
+
+  <!-- Copyright Footer -->
+<div class="g-bg-black-opacity-0_1 g-color-white-opacity-0_8 text-center g-py-20">
+  <div class="container">
+    
+      
+        
+        <small class="g-font-size-7 g-mr-10 g-mb-10 g-mb-0--md">2015 - 2018 © All Rights Reserved. Msiter by
+        <a class="g-color-white-opacity-0_8" href="#">Jing WenZheng</a>
+      </small>
+  </div>
+</div>
+<!-- End Copyright Footer -->
+
+
+</footer>
+<!-- End Footer -->
+<a class="js-go-to u-go-to-v1" href="#" data-type="fixed" data-position='{
+ "bottom": 15,
+ "right": 15
+}' data-offset-top="400" data-compensation="#js-header" data-show-effect="zoomIn">
+  <i class="hs-icon hs-icon-arrow-top"></i>
+</a>
+
+<script type="text/javascript">
+  $(function() {
+
+    // initialization of go to
+    $.HSCore.components.HSGoTo.init('.js-go-to');
+    $.HSCore.components.HSModalWindow.init('[data-modal-target]');
+    $.getJSON("https://v1.hitokoto.cn/?encode=json", function(json) {
+
+      var author = json["from"];
+      var content = json["hitokoto"];
+
+      $("#hitokoto").html(content);
+
+      $("blockquote .content").html(content);
+      $("blockquote .author").html(author);
+    });
+  });
+</script>
+
+
+    </main>
+
+    <div class="u-outer-spaces-helper"></div>
+
+
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+        tex2jax: {
+            inlineMath: [ ["$","$"], ["\\(","\\)"] ],
+            skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code'],
+            processEscapes: true
+        }
+    });
+    MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax();
+        for (var i = 0; i < all.length; ++i)
+            all[i].SourceElement().parentNode.className += ' has-jax';
+    });
+</script>
+<script src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script><!-- hexo-inject:begin --><!-- Begin: Injected MathJax -->
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Config("");
+</script>
+
+<script type="text/x-mathjax-config">
+  MathJax.Hub.Queue(function() {
+    var all = MathJax.Hub.getAllJax(), i;
+    for(i=0; i < all.length; i += 1) {
+      all[i].SourceElement().parentNode.className += ' has-jax';
+    }
+  });
+</script>
+
+<script type="text/javascript" src="//cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<!-- End: Injected MathJax -->
+<!-- hexo-inject:end -->
+</body>
+</html>
